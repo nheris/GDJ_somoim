@@ -5,9 +5,10 @@
   <configuration>
   <typeAliases>
   
-  <typeAlias type="com.somoim.board.notice.NoticeDTO" alias="NoticeDTO"/>
-  <typeAlias type="com.somoim.board.qna.QnaDTO" alias="QnaDTO"/>
-  <typeAlias type="com.somoim.board.BoardDTO" alias="BoardDTO"/>
+  <typeAlias type="com.somoim.app.board.notice.NoticeDTO" alias="NoticeDTO"/>
+  <typeAlias type="com.somoim.app.board.qna.QnaDTO" alias="QnaDTO"/>
+  <typeAlias type="com.somoim.app.board.BoardDTO" alias="BoardDTO"/>
   
   </typeAliases>
+  
   </configuration>

@@ -3,7 +3,30 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <!-- mapper namespace는 비우면 에러 -->
-  <mapper namespace="com.somoim.board.notice.NoticeDAO">
+  <mapper namespace="com.somoim.app.board.notice.NoticeDAO">
+  
+<!-- 	<sql id="search2">
+		WHERE
+		<choose>
+			<when test="searchFind=='searchFind1'">
+				boardTitle like '%'||#{search}||'%'
+			</when>
+			<when test="searchFind=='searchFind2'">
+				boardWriter like '%'||#{search}||'%'
+			</when>
+			<when test="searchFind=='searchFind3'">
+				boardContents like '%'||#{search}||'%'
+			</when>
+			<otherwise>
+				noticeNum like '%'||#{search}||'%'
+			</otherwise>
+		</choose>
+	</sql>
+  
+  	<sql id="search">
+		WHERE boardTitle LIKE '%'||#{search}||'%'
+	</sql> -->
+  
   
   <insert id="setAdd" parameterType="BoardDTO">
   	<selectKey keyProperty="noticeNum" resultType="Long" order="BEFORE">
@@ -17,19 +40,23 @@
   
   
   
-  <select id="getList" resultType="BoardDTO"> 
- SELECT * FROM
-(SELECT ROWNUM R, N.* FROM
-(
-SELECT * FROM NOTICEBOARD 
-ORDER BY username DESC
-)
-N)
-WHERE R BETWEEN #{startRow} AND #{lastRow}
-  </select>
+  	<select id="getList" parameterType="BoardDTO" resultType="BoardDTO">
+ 		SELECT *
+		FROM NOTICEBOARD
+		WHERE noticeNum IN 
+			 (SELECT noticeNum
+	   		 FROM MEMBER
+	   		 WHERE USERNAME = ${userName});
+  		
+  	</select>
   
   
-  
+<!--   		getTotal
+	<select id="getTotalCount" resultType="Long">
+	SELECT COUNT(noticeNum) FROM NOTICEBOARD
+	 <include refid="search2"></include>
+	</select> -->
+	
   
   
   

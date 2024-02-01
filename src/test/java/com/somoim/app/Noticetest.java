@@ -10,9 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.somoim.app.board.BoardDTO;
+import com.somoim.app.board.notice.NoticeDAO;
 import com.somoim.app.util.Pager;
-import com.somoim.board.BoardDTO;
-import com.somoim.board.notice.NoticeDAO;
 
 
 

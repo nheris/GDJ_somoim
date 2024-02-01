@@ -23,7 +23,7 @@ uri="http://java.sun.com/jsp/jstl/core"%>
         </a>
 
         <div class="d-grid gap-3">
-            <div class="p-5 bg-light border"></div>
+            <div class="p-5"></div>
             <div class="p-3 mx-auto">
                 <h3>공지게시판</h3>
             </div>
@@ -82,6 +82,40 @@ uri="http://java.sun.com/jsp/jstl/core"%>
                 </tbody>
             </table>
         </div>
+<div></div>
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="row justify-content-center">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                        <c:if test="${!pager.start}">
+                            <li class="page-item">
+                                <a class="page-link" href="./list?page=${pager.startNum-1}&search=${pager.search}&searchFind=${pager.searchFind}" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                        </c:if>
+
+                        <c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
+                            <li class="page-item"><a class="page-link" href="./list?page=${i}">${i}</a></li>
+                        </c:forEach>
+
+                        <c:if test="${!pager.last}">
+                            <li class="page-item">
+                                <a class="page-link" href="./list?page=${pager.lastNum+1}&search=${pager.search}&searchFind=${pager.searchFind}" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                        </c:if>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+
 
         <!-- ========================= JS improt ========================= -->
         <c:import url="../temps/footer.jsp"></c:import>
