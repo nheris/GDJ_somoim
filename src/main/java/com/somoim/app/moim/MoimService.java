@@ -14,6 +14,7 @@ public class MoimService {
 	
 	public List<MoimDTO> getList(MemberDTO memberDTO) {
 		return moimDAO.getList(memberDTO);
+		
 	}
 	
 	

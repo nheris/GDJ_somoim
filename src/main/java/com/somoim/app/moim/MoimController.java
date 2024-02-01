@@ -20,13 +20,13 @@ public class MoimController {
 	
 	@GetMapping("list")
 	public void getList(HttpSession session, Model model) {
-		//MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
-		//임시---------
-		MemberDTO memberDTO= new MemberDTO();
-		memberDTO.setUserName("user1");
-		//-------------
-		List<MoimDTO> ar = moimService.getList(memberDTO);
-		model.addAttribute("list", ar);
+//		//MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+//		//임시---------
+//		MemberDTO memberDTO= new MemberDTO();
+//		memberDTO.setUserName("user1");
+//		//-------------
+//		List<MoimDTO> ar = moimService.getList(memberDTO);
+//		model.addAttribute("list", ar);
 	}
 	
 	
