@@ -1,5 +1,7 @@
 package com.somoim.app.member;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -10,4 +12,15 @@ public class MemberDAO {
 	private SqlSession sqlSession;
 	private final String namespace="com.somoim.app.member.MemberDAO.";
 	
+	public int setJoin(MemberDTO memberDTO)throws Exception{
+		return sqlSession.insert(namespace+"setJoin", memberDTO);
+	}
+	
+	public int setProfileJoin(ProfileDTO profileDTO)throws Exception{
+		return sqlSession.insert(namespace+"setProfileJoin", profileDTO);
+	}
+	
+	public List<MemberDTO> getDetail(ProfileDTO memberDTO)throws Exception{
+		return sqlSession.selectList(namespace+"getDetail", memberDTO);
+	}
 }
