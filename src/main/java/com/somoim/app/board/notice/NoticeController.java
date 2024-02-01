@@ -1,4 +1,4 @@
-package com.somoim.board.notice;
+package com.somoim.app.board.notice;
 
 import java.util.List;
 
@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.somoim.app.board.BoardDTO;
+import com.somoim.app.board.MemberDTO;
 import com.somoim.app.util.Pager;
-import com.somoim.board.BoardDTO;
-import com.somoim.board.MemberDTO;
 
 
 @Controller
@@ -25,11 +25,12 @@ public class NoticeController {
 	@Autowired
 	private NoticeService noticeService;
 	
-	@ModelAttribute("board")
-	public String getBoard() {
-		return "notice";
-	}
+//	@ModelAttribute("board")
+//	public String getBoard() {
+//		return "notice";
+//	}
 		
+	
 	
 	// 등록
 	@GetMapping("add")
@@ -51,8 +52,8 @@ public class NoticeController {
 	//리스트
 	@GetMapping("list")
 	public String getList(Pager pager, Model model)throws Exception{
-		List<BoardDTO> ar = noticeService.getList(pager);
-		model.addAttribute("list", ar);	
+//		List<BoardDTO> ar = noticeService.getList(pager);
+//		model.addAttribute("list", ar);	
 		return "board/list";
 	}
 
@@ -61,7 +62,7 @@ public class NoticeController {
 	public String getDetail(BoardDTO boardDTO, Model model)throws Exception{
 	boardDTO = noticeService.getDetail(boardDTO);
 	model.addAttribute("detail", boardDTO);
-	return "board/detial";
+	return "board/detail";
 	
 	}
 	

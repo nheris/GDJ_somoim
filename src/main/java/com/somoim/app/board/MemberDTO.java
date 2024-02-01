@@ -1,4 +1,4 @@
-package com.somoim.board;
+package com.somoim.app.board;
 
 public class MemberDTO {
 private String userName;

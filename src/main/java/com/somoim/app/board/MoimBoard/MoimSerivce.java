@@ -1,14 +1,14 @@
-package com.somoim.board.qna;
+package com.somoim.app.board.MoimBoard;
 
 import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import com.somoim.app.board.BoardDTO;
+import com.somoim.app.board.BoardService;
 import com.somoim.app.util.Pager;
-import com.somoim.board.BoardDTO;
-import com.somoim.board.BoardService;
 
-public class QnaService implements BoardService{
+public class MoimSerivce implements BoardService{
 
 	@Override
 	public List<BoardDTO> getList(Pager pager) throws Exception {

@@ -1,4 +1,4 @@
-package com.somoim.board.notice;
+package com.somoim.app.board.notice;
 
 import java.util.List;
 
@@ -8,9 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.somoim.app.board.BoardDTO;
+import com.somoim.app.board.BoardService;
 import com.somoim.app.util.Pager;
-import com.somoim.board.BoardDTO;
-import com.somoim.board.BoardService;
 
 
 @Service

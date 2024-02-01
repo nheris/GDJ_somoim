@@ -1,14 +1,18 @@
-package com.somoim.board.MoimBoard;
+package com.somoim.app.board.MoimBoard;
 
 import java.util.List;
 
-import org.springframework.web.multipart.MultipartFile;
-
+import com.somoim.app.board.BoardDAO;
+import com.somoim.app.board.BoardDTO;
 import com.somoim.app.util.Pager;
-import com.somoim.board.BoardDTO;
-import com.somoim.board.BoardService;
 
-public class MoimSerivce implements BoardService{
+public class MoimDAO implements BoardDAO{
+
+	@Override
+	public Long getTotalCount(Pager pager) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 	@Override
 	public List<BoardDTO> getList(Pager pager) throws Exception {
@@ -23,13 +27,13 @@ public class MoimSerivce implements BoardService{
 	}
 
 	@Override
-	public int setAdd(BoardDTO boardDTO, MultipartFile[] attchs) throws Exception {
+	public int setAdd(BoardDTO boardDTO) throws Exception {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public int setUpdate(BoardDTO boardDTO, MultipartFile[] attachs) throws Exception {
+	public int setUpdate(BoardDTO boardDTO) throws Exception {
 		// TODO Auto-generated method stub
 		return 0;
 	}
