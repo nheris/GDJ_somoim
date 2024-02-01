@@ -33,8 +33,8 @@ public class HomeController {
 		
 		model.addAttribute("serverTime", formattedDate );
 		
+		return "/board/list";
 		//return "index";
-		return "board/add";
 	}
 	
 }

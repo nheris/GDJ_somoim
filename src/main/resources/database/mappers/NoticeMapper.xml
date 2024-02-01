@@ -17,6 +17,17 @@
   
   
   
+  <select id="getList" resultType="BoardDTO"> 
+ SELECT * FROM
+(SELECT ROWNUM R, N.* FROM
+(
+SELECT * FROM NOTICEBOARD 
+ORDER BY username DESC
+)
+N)
+WHERE R BETWEEN #{startRow} AND #{lastRow}
+  </select>
+  
   
   
   

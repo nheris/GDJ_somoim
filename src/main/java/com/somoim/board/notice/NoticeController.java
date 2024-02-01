@@ -16,6 +16,8 @@ import org.springframework.web.multipart.MultipartFile;
 import com.somoim.app.util.Pager;
 import com.somoim.board.BoardDTO;
 import com.somoim.board.MemberDTO;
+
+
 @Controller
 @RequestMapping("/notice/*")
 public class NoticeController {
