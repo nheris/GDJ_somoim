@@ -10,7 +10,7 @@
 		WHERE MOIMNUM IN 
 			 (SELECT MOIMNUM
 	   		 FROM MOIMMEMBER
-	   		 WHERE USERNAME = #{userName});
+	   		 WHERE USERNAME = #{userName})
   		
   	</select>
   
