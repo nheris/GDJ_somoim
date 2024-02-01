@@ -21,4 +21,3 @@
 .noto-sans kr-
 <uniquifier> { font-family: "Noto Sans KR", sans-serif;
 font-optical-sizing: auto; font-weight: 600; font-style: normal; } 
-</uniquifier>
