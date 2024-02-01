@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <!-- mapper namespace는 비우면 에러 -->
+  <mapper namespace="com.somoim.app.moim.MoimDAO">
+  	<select id="getList" parameterType="MemberDTO" resultType="MoimDTO">
+  		SELECT *
+		FROM MOIM
+		WHERE MOIMNUM IN 
+			 (SELECT MOIMNUM
+	   		 FROM MOIMMEMBER
+	   		 WHERE USERNAME = #{userName});
+  		
+  	</select>
+  
+  
+  </mapper>
