@@ -10,27 +10,8 @@
 <title>Somoim</title>
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="shortcut icon" type="image/x-icon"
-	href="/resources/assets/images/favicon.svg" />
-<!-- Place favicon.ico in the root directory -->
-
-<!-- Web Font -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link
-	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@600&display=swap"
-	rel="stylesheet">
-
-<!-- ========================= CSS here ========================= -->
-<link rel="stylesheet" href="/resources/assets/css/bootstrap.min.css" />
-<link rel="stylesheet" href="/resources/assets/css/LineIcons.2.0.css" />
-<link rel="stylesheet" href="/resources/assets/css/animate.css" />
-<link rel="stylesheet" href="/resources/assets/css/tiny-slider.css" />
-<link rel="stylesheet" href="/resources/assets/css/glightbox.min.css" />
-<link rel="stylesheet" href="/resources/assets/css/main.css" />
-.noto-sans kr-
-<uniquifier> { font-family: "Noto Sans KR", sans-serif;
-font-optical-sizing: auto; font-weight: 600; font-style: normal; } 
+<!-- CSS 임포트 -->
+<c:import url="./temps/head_css.jsp"></c:import>
 </head>
 
 <body>
@@ -41,7 +22,8 @@ font-optical-sizing: auto; font-weight: 600; font-style: normal; }
         your experience and security.
       </p>
     <![endif]-->
-
+	<!-- 내비게이터 import -->
+	<c:import url="./temps/header.jsp"></c:import>
 	<!-- Preloader -->
 	<div class="preloader">
 		<div class="preloader-inner">
@@ -50,65 +32,6 @@ font-optical-sizing: auto; font-weight: 600; font-style: normal; }
 			</div>
 		</div>
 	</div>
-	<!-- /End Preloader -->
-
-	<!-- Start Header Area -->
-	<header class="header navbar-area">
-		<div class="container">
-			<div class="row align-items-center">
-				<div class="col-lg-12">
-					<div class="nav-inner">
-						<nav class="navbar navbar-expand-lg">
-							<a class="navbar-brand" href="index.html"> <img
-								src="/resources/assets/images/logo/logo.png" alt="Logo">
-							</a>
-							<button class="navbar-toggler mobile-menu-btn" type="button"
-								data-bs-toggle="collapse"
-								data-bs-target="#navbarSupportedContent"
-								aria-controls="navbarSupportedContent" aria-expanded="false"
-								aria-label="Toggle navigation">
-								<span class="toggler-icon"></span> <span class="toggler-icon"></span>
-								<span class="toggler-icon"></span>
-							</button>
-							<div class="collapse navbar-collapse sub-menu-bar"
-								id="navbarSupportedContent">
-								<ul id="nav" class="navbar-nav ms-auto">
-									<li class="nav-item"><a href="/">Home</a></li>
-									<li class="nav-item"><a href="/"
-										aria-label="Toggle navigation">내 모임리스트</a></li>
-									<li class="nav-item"><a href="/">모임만들기</a></li>
-									<li class="nav-item"><a href="/">공지사항</a></li>
-								</ul>
-							</div>
-							<!-- navbar collapse -->
-							<div class="login-button">
-								<ul>
-									<c:if test="${member ne null}">
-										<li><a href="/member/login"><i
-												class="lni lni-enter"></i> 로그인</a></li>
-										<li><a href="/member/join"><i
-												class="lni lni-user"></i> 회원가입</a></li>
-									</c:if>
-									<c:if test="${member eq null}">
-										<li><a href="/mypage"><i
-												class="lni lni-user"></i> 마이페이지</a></li>
-										<li><a href="/member/logout"><i
-												class="lni lni-ban"></i> 로그아웃</a></li>
-									</c:if>
-								</ul>
-							</div>
-						</nav>
-						<!-- navbar -->
-					</div>
-				</div>
-			</div>
-			<!-- row -->
-		</div>
-		<!-- container -->
-	</header>
-	<!-- End Header Area -->
-
-	<!-- Start Hero Area -->
 	<section class="hero-area overlay">
 		<div class="container">
 			<div class="row">
@@ -118,19 +41,14 @@ font-optical-sizing: auto; font-weight: 600; font-style: normal; }
 						<div class="section-heading">
 							<h2 class="wow fadeInUp" data-wow-delay=".3s">소모임 서비스에 오신걸
 								환영 합니다!</h2>
-							<p class="wow fadeInUp" data-wow-delay=".5s">우리동네 친구만들기! 홀로
-								외로이 떨어져 지내는 타지 생활에 힘이되는 친구를 만들어 보세요!</p>
+							<p class="wow fadeInUp" data-wow-delay=".5s">우리동네 친구만들기! <br>혼자 외롭게 떨어져 지내는 타지 생활에 힘이 되는 친구를 만들어 보세요!</p>
 						</div>
-						<!-- End Search Form -->
-						<!-- Start Search Form -->
-						<!-- End Search Form -->
+
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
-	<!-- End Hero Area -->
-
 	<!-- Start Categories Area -->
 	<section class="categories">
 		<div class="container">
@@ -587,112 +505,14 @@ font-optical-sizing: auto; font-weight: 600; font-style: normal; }
 			</div>
 		</div>
 	</section>
-	<!-- /End Items Grid Area -->
-
-	<!-- Start Why Choose Area -->
-	<!-- /End Why Choose Area -->
-
-	<!-- Start Call Action Area -->
-
-	<!-- End Call Action Area -->
-
-	<!-- Start Pricing Table Area -->
-
-	<!--/ End Pricing Table Area -->
-
-	<!-- Start How Works Area -->
-
-	<!-- End How Works Area -->
-
-	<!-- Start Newsletter Area -->
-
-	<!-- End Newsletter Area -->
-
-	<!-- Start Footer Area -->
-	<footer class="footer">
-		<!-- Start Footer Top -->
-		<div class="footer-top">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-3 col-md-6 col-12">
-						<!-- Single Widget -->
-						<div class="single-footer f-link">
-							<h3>Quick Links</h3>
-							<ul>
-								<li><a href="/">Login</a></li>
-								<li><a href="/">Sign Up</a></li>
-								<li><a href="/">Help & Support</a></li>
-							</ul>
-						</div>
-						<!-- End Single Widget -->
-					</div>
-					<div class="col-lg-3 col-md-6 col-12">
-						<!-- Single Widget -->
-						<div class="single-footer f-contact">
-							<h3>Contact</h3>
-							<ul>
-								<li>대한민국 서울특별시 금천구<br> 가산디지털2로 95 3층
-								</li>
-								<li>Tel. +(082) 10-7777-7777 <br> Mail.
-									support@somoim.com
-								</li>
-							</ul>
-						</div>
-						<!-- End Single Widget -->
-					</div>
-				</div>
-			</div>
-		</div>
-		<!--/ End Footer Middle -->
-		<!-- Start Footer Bottom -->
-		<div class="footer-bottom">
-			<div class="container">
-				<div class="inner">
-					<div class="row">
-						<div class="col-12">
-							<div class="content">
-								<ul class="footer-bottom-links">
-									<li><a href="javascript:void(0)">Terms of use</a></li>
-									<li><a href="javascript:void(0)"> Privacy Policy</a></li>
-									<li><a href="javascript:void(0)">Advanced Search</a></li>
-									<li><a href="javascript:void(0)">Site Map</a></li>
-									<li><a href="javascript:void(0)">Information</a></li>
-								</ul>
-								<p class="copyright-text">
-									Designed and Developed by <a href="https://graygrids.com/"
-										rel="nofollow" target="_blank">구디아카데미</a>
-								</p>
-								<ul class="footer-social">
-									<li><a href="javascript:void(0)"><i
-											class="lni lni-facebook-filled"></i></a></li>
-									<li><a href="javascript:void(0)"><i
-											class="lni lni-twitter-original"></i></a></li>
-									<li><a href="javascript:void(0)"><i
-											class="lni lni-youtube"></i></a></li>
-									<li><a href="javascript:void(0)"><i
-											class="lni lni-linkedin-original"></i></a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- End Footer Middle -->
-	</footer>
-	<!--/ End Footer Area -->
 
 	<!-- ========================= scroll-top ========================= -->
 	<a href="#" class="scroll-top btn-hover"> <i
 		class="lni lni-chevron-up"></i>
 	</a>
 
-	<!-- ========================= JS here ========================= -->
-	<script src="/resources/assets/js/bootstrap.min.js"></script>
-	<script src="/resources/assets/js/wow.min.js"></script>
-	<script src="/resources/assets/js/tiny-slider.js"></script>
-	<script src="/resources/assets/js/glightbox.min.js"></script>
-	<script src="/resources/assets/js/main.js"></script>
+	<!-- ========================= JS improt ========================= -->
+	<c:import url="./temps/footer.jsp"></c:import>
 	<script type="text/javascript">
 		//========= Category Slider 
 		tns({
