@@ -1,19 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-<meta charset="utf-8" />
-<meta http-equiv="x-ua-compatible" content="ie=edge" />
-<title>Somoim</title>
-<meta name="description" content="" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<!-- CSS 임포트 -->
-<c:import url="../temps/head_css.jsp"></c:import>
-<!-- 내비게이터 import -->
-<c:import url="../temps/header.jsp"></c:import>
+<meta charset="UTF-8">
+<title>Insert title here</title>
 </head>
 <body>
 	<section class="dashboard section bg-light">
@@ -97,5 +89,4 @@
 	<script src="https://cdn.iamport.kr/v1/iamport.js"></script>
 	<script src="/resources/js/payment.js"></script>
 </body>
-
 </html>
