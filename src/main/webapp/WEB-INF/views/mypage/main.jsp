@@ -32,7 +32,7 @@
 								<td rowspan="2" colspan="2">Steve Aldridge</td>
 							</tr>
 							<tr>
-	
+
 							</tr>
 							<tr>
 								<td colspan="2"><span><a href="javascript:void(0)">${member.userName}</a></span></td>
@@ -63,30 +63,34 @@
 									결제 하기</a></li>
 						</ul>
 						<div class="text-center">
-						<button class="btn btn-danger mt-5" href="javascript:void(0)">회원탈퇴</button>
+							<button class="btn btn-danger mt-5" href="javascript:void(0)">회원탈퇴</button>
 						</div>
 					</div>
 				</nav>
 				<div class="col-lg-1 col-md-1"></div>
 				<!-- Main content -->
-				<div class="col-lg-9 col-md-7 col-12 bg-white" style="border-radius: 10px">
+				<div class="col-lg-9 col-md-7 col-12 bg-white"
+					style="border-radius: 10px">
 					<div class="row">
-						<h2>Profile Settings</h2>
-						<div>
-							<c:if test= "${empty member.profiles}">
-							<img class="rounded float-left" src="/resources/asset/images/profile/profile.jpg" alt="...">
-							</c:if>
-							<c:if test= "${not empty member.profiles}">
-							<img class="rounded float-left" src="../resources/upload/member/${member.profiles.filename} alt="...">
-							</c:if>
-							
-						</div>
+						<h2 class="mb-4">Profile Settings</h2>
+						<div></div>
 						<table class="table table-hover">
 							<tr>
-								<td class="table dark">닉네임</td>
-								<td><label for="nickName">${member.nickName}</label>
-									<input type="text" id="nickName">
+								<td colspan="2">
+									<c:if test="${empty member.profiles}">
+										<img class="rounded float-left"
+											src="/resources/img/profile/profile.jpg" alt="..." style="width: 80px; height: 80px;">
+									</c:if> 
+									<c:if test="${not empty member.profiles}">
+										<img class="rounded float-left"
+											src="../resources/upload/member/${member.profiles.filename} alt="...">
+									</c:if>
 								</td>
+							</tr>
+							
+							<tr>
+								<td class="table dark">닉네임</td>
+								<td>${member.nickName}</td>
 							</tr>
 
 							<tr>
@@ -108,11 +112,12 @@
 								<td class="table dark">이메일</td>
 								<td>${member.email}</td>
 							</tr>
-							
+
 						</table>
 					</div>
-					<button class="btn btn-hover"><a href="update">수정하기</a></button>
-					
+
+					<button class="btn btn-hover">수정하기</button>
+
 					<!-- Main content goes here -->
 				</div>
 			</div>

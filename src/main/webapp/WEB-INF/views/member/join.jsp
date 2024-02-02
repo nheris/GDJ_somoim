@@ -47,7 +47,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="passwordCheck">비밀번호 확인</label>
-                                <input name="password" id="passwordCheck" type="password">
+                                <input id="passwordCheck" type="password">
                                 <div id="passwordCheckResult"></div>
                             </div>
                             <div id="passwordCheckReulst"></div>

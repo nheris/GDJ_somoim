@@ -62,13 +62,5 @@ public class MemberController {
 		session.setAttribute("member",null);
 		return "redirect:../";
 	}
-	
-	@GetMapping("mypage")
-	public void getProfile(MemberDTO memberDTO)throws Exception{
-		
-	}
-	
-	
-	
-	
+
 }	
