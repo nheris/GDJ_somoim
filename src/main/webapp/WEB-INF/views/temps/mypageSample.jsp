@@ -26,9 +26,9 @@
 					<div class="user-image mb-3">
 						<table class="mx-auto text-center" style="width: 90%">
 							<tr>
-								<td rowspan="3"><img
+								<td rowspan="3" style="text-align: left;"><img
 									src="/resources/assets/images/Yuree.jpg" alt="#" class="m-1"
-									style="width: 90%; height: 90%; border-radius: 10px"></td>
+									style="width: 85%; height: 90%; border-radius: 10px"></td>
 								<td rowspan="2" colspan="2">Steve Aldridge</td>
 							</tr>
 							<tr>
@@ -72,8 +72,8 @@
 				<div class="col-lg-9 col-md-7 col-12 bg-white" style="border-radius: 10px">
 					<div class="row">
 						<!-- 안에 내용 수정해서 사용하세요 -->
-						<div class="col-lg-6">dddd</div>
-						<div class="col-lg-6">dddddddd</div>
+						<div class="col-6">dddd</div>
+						<div class="col-6">dddddddd</div>
 					</div>
 					<!-- Main content goes here -->
 				</div>
