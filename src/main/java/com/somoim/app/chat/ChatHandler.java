@@ -10,23 +10,22 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 public class ChatHandler extends TextWebSocketHandler{
 
-	private List<WebSocketSession> sessionList = new ArrayList<WebSocketSession>();
+	private static List<WebSocketSession> list = new ArrayList<WebSocketSession>();	
 	
 	// 연결후에 실행되는 메서드
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
-		sessionList.add(session);
+		list.add(session);
 		System.out.println("연결");
-		System.out.println(session.getPrincipal().getName()+"입장");
 	}
 
 	//메세지를 다루는 메서드
 	@Override
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
-//		System.out.println(session.getId()+" : "+message);
-		System.out.println(message);
-		for(WebSocketSession s : sessionList) {
-			s.sendMessage(new TextMessage(session.getPrincipal().getName() ));
+	// 전송된 메시지를 List의 모든 세션에 전송
+	String msg = message.getPayload();
+	for (WebSocketSession s : list) {
+		s.sendMessage(new TextMessage(session.getAcceptedProtocol()+":"+msg));
 		}
 	}
 
@@ -34,7 +33,7 @@ public class ChatHandler extends TextWebSocketHandler{
 	@Override
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
 		System.out.println("연결헤제");
-		sessionList.remove(session);
+//		sessionList.remove(session);
 	}
 
 	
