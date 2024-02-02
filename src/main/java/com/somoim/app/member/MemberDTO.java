@@ -1,5 +1,7 @@
 package com.somoim.app.member;
 
+import java.util.List;
+
 public class MemberDTO {
 	
 	private String userName;
@@ -10,6 +12,16 @@ public class MemberDTO {
 	private String address;
 	private String phone;
 	private String email;
+	
+	private List<ProfileDTO> profiles;
+	
+	
+	public List<ProfileDTO> getProfiles() {
+		return profiles;
+	}
+	public void setProfiles(List<ProfileDTO> profiles) {
+		this.profiles = profiles;
+	}
 	
 	
 	public String getUserName() {

@@ -20,7 +20,7 @@ public class MemberDAO {
 		return sqlSession.insert(namespace+"setProfileJoin", profileDTO);
 	}
 	
-	public List<MemberDTO> getDetail(ProfileDTO memberDTO)throws Exception{
-		return sqlSession.selectList(namespace+"getDetail", memberDTO);
+	public MemberDTO getDetail(MemberDTO memberDTO)throws Exception{
+		return sqlSession.selectOne(namespace+"getDetail", memberDTO);
 	}
 }
