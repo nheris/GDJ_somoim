@@ -15,13 +15,6 @@
 	</properties>
 	<dependencies>
 	
-		<!-- spring-websocket -->
-		<dependency>
-		    <groupId>org.springframework</groupId>
-		    <artifactId>spring-websocket</artifactId>
-		    <version>${org.springframework-version}</version>
-		</dependency>
-	
 		<!-- jackson-databind -->
 		<dependency>
 		    <groupId>com.fasterxml.jackson.core</groupId>

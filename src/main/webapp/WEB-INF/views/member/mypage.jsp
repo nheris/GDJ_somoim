@@ -1,33 +1,41 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+<meta charset="utf-8" />
+<meta http-equiv="x-ua-compatible" content="ie=edge" />
+<title>Somoim</title>
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- CSS 임포트 -->
+<c:import url="../temps/head_css.jsp"></c:import>
+<!-- 내비게이터 import -->
+<c:import url="../temps/header.jsp"></c:import>
 </head>
 <body>
-	<section class="dashboard section bg-light">
-		<div class="container mx-7">
+	<div class="items-grid section">
+		<div class="container mx-5">
 			<div class="row">
 				<!-- Sidebar -->
 				<nav id="sidebar"
-					class="col-lg-2 col-md-4 col-12 py-3 bg-white dashboard-sidebar"
+					class="col-lg-2 col-md-4 col-12 py-3 bg-white sidebar"
 					style="border-radius: 10px">
 					<div class="user-image mb-3">
 						<table class="mx-auto text-center" style="width: 90%">
 							<tr>
-								<td rowspan="3" style="text-align: left;"><img
+								<td rowspan="3"><img
 									src="/resources/assets/images/Yuree.jpg" alt="#" class="m-1"
-									style="width: 85%; height: 90%; border-radius: 10px"></td>
+									style="width: 90%; height: 90%; border-radius: 10px"></td>
 								<td rowspan="2" colspan="2">Steve Aldridge</td>
 							</tr>
 							<tr>
-
+	
 							</tr>
 							<tr>
-								<td colspan="2"><span><a href="javascript:void(0)">@username</a></span></td>
+								<td colspan="2"><span><a href="javascript:void(0)">${member.userName}</a></span></td>
 							</tr>
 						</table>
 					</div>
@@ -55,29 +63,52 @@
 									결제 하기</a></li>
 						</ul>
 						<div class="text-center">
-							<button class="btn btn-danger mt-5" href="javascript:void(0)">회원탈퇴</button>
+						<button class="btn btn-danger mt-5" href="javascript:void(0)">회원탈퇴</button>
 						</div>
 					</div>
 				</nav>
 				<div class="col-lg-1 col-md-1"></div>
 				<!-- Main content -->
-				<div class="col-lg-9 col-md-7 col-12 bg-white"
-					style="border-radius: 10px">
-					<div class="row main-content">
-						<!-- 안에 내용 수정해서 사용하세요 -->
-						<div class="col-12 p-2">
-							<div class="section-title">
-								<h2 class="wow fadeInUp" data-wow-delay=".4s" style="font-size: 22px;">구독 플랜</h2>
-								<p class="wow fadeInUp" data-wow-delay=".6s" style="font-size: 12px;">서비스를 구독하고 모임개설을 해보세요!</p>
+				<div class="col-lg-9 col-md-7 col-12 bg-white" style="border-radius: 10px">
+					<div class="row">
+						<h2>Profile Settings</h2>
+						<div>
+							<img class="rounded float-left" scr="../resources/upload/member/${member.profile.filename} alt="...">
 						</div>
-						</div>
-						<button type="button" id="paymentBtn">구독 결제하기</button>
+						<table class="table table-hover">
+							<tr>
+								<td class="table dark">닉네임</td>
+								<td>${member.nickName}</td>
+							</tr>
+
+							<tr>
+								<td class="table dark">이름</td>
+								<td>${member.name}</td>
+							</tr>
+
+							<tr>
+								<td class="table dark">주소</td>
+								<td>${member.address}</td>
+							</tr>
+
+							<tr>
+								<td class="table dark">전화번호</td>
+								<td>${member.nickName}</td>
+							</tr>
+
+							<tr>
+								<td class="table dark">이메일</td>
+								<td>${member.email}</td>
+							</tr>
+							
+						</table>
 					</div>
 					<!-- Main content goes here -->
 				</div>
 			</div>
 		</div>
-	</section>
+	</div>
+
 
 	<!-- ========================= scroll-top ========================= -->
 	<a href="#" class="scroll-top btn-hover"> <i
@@ -86,7 +117,6 @@
 
 	<!-- ========================= JS improt ========================= -->
 	<c:import url="../temps/footer.jsp"></c:import>
-	<script src="https://cdn.iamport.kr/v1/iamport.js"></script>
-	<script src="/resources/js/payment.js"></script>
 </body>
+
 </html>

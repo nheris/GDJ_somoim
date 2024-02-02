@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <!-- mapper namespace는 비우면 에러 -->
+  <mapper namespace="com.somoim.app.member.MemberDAO">
+  	<insert id="setJoin" parameterType="MemberDTO">
+  		INSERT INTO MEMBER
+  		VALUES
+  		(#{userName},#{password},#{nickName},#{name},#{residentNum},#{address},#{phone},#{email})
+  	</insert>
+  	
+  	<insert id="setProfileJoin" parameterType="ProfileDTO">
+  		INSERT INTO PROFILEJOIN
+  		VALUES
+  		(MEMBER_SEQ.NEXTVAL,#{userNaem},#{fileName},#{oriName})
+  	</insert>
+  	
+  	<select id="getDetail" parameterType="MemberDTO" resultMap="getDetailResult">
+  		SELECT * FROM MEMBER
+  			LEFT JOIN PROFILE
+  			USING(USERNAME)
+  			WHERE USERNAME=#{userName}  		
+  	</select>
+  	
+  	<resultMap type="MemberDTO" id="getDetailResult">
+  		<id column="USERNAME" property="userName"/>
+  		<result column="PASSWORD" property="password"/>
+  		<result column="NICKNAME" property="nickName"/>
+  		<result column="NAME" property="name"/>
+  		<result column="RESIDENTINUM" property="residentnum"/>
+  		<result column="ADDRESS" property="address"/>
+ 		<result column="PHONE" property="phone"/>
+  		<result column="EMAIL" property="email"/>
+  			<association property="profiles" javaType="ProfileDTO" >
+  		 		<id column="FILENUM" property=""/>
+  		 		<result column="FILENAME" property="fileName"/>
+  		 		<result column="ORINAME" property="oriName"/>
+  		 	</association>
+  	</resultMap>
+  	
+  	
+  </mapper>

@@ -39,13 +39,13 @@
 						<!-- navbar collapse -->
 						<div class="login-button">
 							<ul>
-								<c:if test="${member ne null}">
+								<c:if test="${member eq null}">
 									<li><a href="/member/login"><i class="lni lni-enter"></i>
 											로그인</a></li>
 									<li><a href="/member/join"><i class="lni lni-user"></i>
 											회원가입</a></li>
 								</c:if>
-								<c:if test="${member eq null}">
+								<c:if test="${member ne null}">
 									<li><a href="/mypage"><i class="lni lni-user"></i>
 											마이페이지</a></li>
 									<li><a href="/member/logout"><i class="lni lni-ban"></i>

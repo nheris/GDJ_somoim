@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <!-- mapper namespace는 비우면 에러 -->
+  <mapper namespace="com.somoim.app.board.notice.NoticeDAO">
+  
+ 	<sql id="search2">
+		WHERE
+		<choose>
+			<when test="searchFind=='searchFind1'">
+				boardTitle like '%'||#{search}||'%'
+			</when>
+			<when test="searchFind=='searchFind2'">
+				boardWriter like '%'||#{search}||'%'
+			</when>
+			<when test="searchFind=='searchFind3'">
+				boardContents like '%'||#{search}||'%'
+			</when>
+			<otherwise>
+				boardNum like '%'||#{search}||'%'
+			</otherwise>
+		</choose>
+	</sql>
+  
+  	<sql id="search">
+		WHERE boardTitle LIKE '%'||#{search}||'%'
+	</sql> 
+  
+  <resultMap type="NoticeDTO" id="getDetailResult">
+  <id column="BOARDNUM" property="boardNum"/>
+  <result column="BOARDTITLE" property="boardTitle"/>
+  <result column="BOARDTEXT" property="boardText"/>
+  <result column="BOARDWRITER" property="boardWriter"/>
+  <result column="BOARDDATE" property="boardDate"/>
+  <result column="USERNAME" property="userName"/>
+  
+  
+  <collection property="fileDTOs" javaType="List" ofType="BoardFileDTO">
+ 	<id column="FILENUM" property="fileNum"></id>
+ 	<result column="ORINAME" property="oriName"/>
+ 	<result column="FILENAME" property="fileName"/> 
+  
+  </collection>
+  </resultMap>
+  
+  
+  <!-- Delete -->
+  <delete id="setDelete" parameterType="MemberDTO">
+  DELETE NOTICEBOARD where BOARDNUM=#{boardNum}
+  </delete>
+  
+  
+  <insert id="setAdd" parameterType="BoardDTO">
+  	<selectKey keyProperty="boardNum" resultType="Long" order="BEFORE">
+			SELECT notice_seq.NEXTVAL FROM DUAL
+	</selectKey>
+  	INSERT INTO NOTICEBOARD  
+	VALUES(
+	#{boardNum}, #{userName}, #{boardTitle}, #{boardText}, #{boardWriter}, SYSDATE
+	)
+  </insert>
+  
+  
+  
+  	<select id="getList" parameterType="Pager" resultType="NoticeDTO">
+	SELECT * FROM 
+	(SELECT ROWNUM R, N.* FROM
+		(SELECT * FROM NOTICEBOARD
+			<include refid="search2"></include>
+				ORDER BY boardNum DESC
+		)
+	N)
+	WHERE R BETWEEN  #{startRow} AND #{lastRow}
+  	</select>
+  
+  
+   	
+	<select id="getTotalCount" resultType="Long">
+	SELECT COUNT(boardNum) FROM NOTICEBOARD
+	 <include refid="search2"></include>
+	</select> 
+	
+  
+  	<!-- Detail -->
+  	<select id="getDetail" parameterType="BoardDTO" resultMap="getDetailResult">	
+  	SELECT * FROM NOTICEBOARD N 
+		LEFT JOIN 
+			NOTICEBOARDFILE NF 
+		USING (BOARDNUM) 
+	WHERE BOARDNUM =21;
+  	</select>
+  
+  
+  
+	<update id="setUpdate" parameterType="BoardDTO">
+		UPDATE NOTICE
+		<set>
+			<if test="boardTitle != null and boardTitle !=''">
+				BOARDTITLE=#{boardTitle},
+			</if>
+			<if test="boardContents != null">
+				BOARDCONTENTS=#{boardContents}
+			</if>
+		</set>
+		WHERE BOARDNUM=#{boardNum}
+	</update>
+  
+  <!-- file List -->
+	<select id="getFileList" parameterType="BoardDTO"
+		resultType="BoardFileDTO">
+		SELECT FILENAME FROM NOTICEBOARDFILE WHERE BOARDNUM=#{boardNum}
+	</select>
+
+	<!-- FileAdd -->
+	<insert id="setFileAdd" parameterType="BoardFileDTO">
+		INSERT INTO NOTICEBOARDFILE
+		VALUES(
+		noticeboardfile_seq.nextval, #{boardNum}, #{userName}, #{fileName}, #{oriName}
+		)
+		
+	</insert>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  </mapper>
