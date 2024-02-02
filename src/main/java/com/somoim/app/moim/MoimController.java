@@ -20,6 +20,7 @@ public class MoimController {
 	
 	@GetMapping("list")
 	public void getList(Model model) {
+		//ajax로
 		//MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
 		//임시---------
 		MemberDTO memberDTO= new MemberDTO();
@@ -28,6 +29,5 @@ public class MoimController {
 		List<MoimDTO> ar = moimService.getList(memberDTO);
 		model.addAttribute("list", ar);
 	}
-	
 	
 }

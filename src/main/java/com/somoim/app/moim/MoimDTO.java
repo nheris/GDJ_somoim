@@ -1,18 +1,34 @@
 package com.somoim.app.moim;
 
+import java.util.Date;
+
+import com.somoim.app.moim.member.MoimMemberDTO;
+
 public class MoimDTO {
-	private Long moinMum;
+	private Long moimNum;
 	private String moimName;
 	private String moimHead;
 	private String moimRegion;
 	private String moimCategory;
+	private Long moimMemCount;
+	private Date moimDate;
+	private MoimMemberDTO moimMemberDTO;
 	
 	
-	public Long getMoinMum() {
-		return moinMum;
+	public MoimMemberDTO getMoimMemberDTO() {
+		return moimMemberDTO;
 	}
-	public void setMoinMum(Long moinMum) {
-		this.moinMum = moinMum;
+	public void setMoimMemberDTO(MoimMemberDTO moimMemberDTO) {
+		this.moimMemberDTO = moimMemberDTO;
+	}
+	
+	
+	
+	public Long getMoimNum() {
+		return moimNum;
+	}
+	public void setMoimNum(Long moimNum) {
+		this.moimNum = moimNum;
 	}
 	public String getMoimName() {
 		return moimName;
@@ -37,6 +53,18 @@ public class MoimDTO {
 	}
 	public void setMoimCategory(String moimCategory) {
 		this.moimCategory = moimCategory;
+	}
+	public Long getMoimMemCount() {
+		return moimMemCount;
+	}
+	public void setMoimMemCount(Long moimMemCount) {
+		this.moimMemCount = moimMemCount;
+	}
+	public Date getMoimDate() {
+		return moimDate;
+	}
+	public void setMoimDate(Date moimDate) {
+		this.moimDate = moimDate;
 	}
 	
 }
