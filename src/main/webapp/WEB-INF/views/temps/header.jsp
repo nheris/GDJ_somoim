@@ -1,13 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	<!-- Preloader -->
+	<div class="preloader">
+		<div class="preloader-inner">
+			<div class="preloader-icon">
+				<span></span> <span></span>
+			</div>
+		</div>
+	</div>
 <header class="header navbar-area">
 	<div class="container">
 		<div class="row align-items-center">
 			<div class="col-lg-12">
 				<div class="nav-inner">
 					<nav class="navbar navbar-expand-lg">
-						<a class="navbar-brand" href="index.html"> <img
+						<a class="navbar-brand" href="/"> <img
 							src="/resources/assets/images/logo/logo.png" alt="Logo">
 						</a>
 						<button class="navbar-toggler mobile-menu-btn" type="button"
