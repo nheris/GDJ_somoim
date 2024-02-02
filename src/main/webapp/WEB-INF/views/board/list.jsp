@@ -22,13 +22,43 @@
 		class="lni lni-chevron-up"></i>
 	</a>
 
-	<div class="d-grid gap-3">
+	<div class="d-grid gap-3 mb-2">
 		<div class="p-5"></div>
 		<div class="p-3 mx-auto">
 			<h3>${board}</h3>
 		</div>
 	</div>
+<!--  -->
 
+<div class="container mb-4">
+<ul class="list-group list-group-horizontal d-flex justify-content-center">
+<li class="px-2" id="totalpage"><a href="./list">전체</a></li>
+<li class="px-2" id="notice"><a href="./list">공지</a></li>
+<li class="px-2" id="path"><a href="/board/list/notice">패치</a></li>
+<li class="px-2" id="etc"><a href="/board/list/notice">기타</a></li>
+</ul>
+</div>
+<script src="/resources/assets/board/kategorie.js"></script>
+
+
+
+
+<!-- 관리자만 보이게 할꺼임 -->
+<!--  <li><a href="/board/write/update">글쓰기</a></li>  -->	
+
+
+</ul>
+</div>
+<!-- <div class="container mb-4">
+<table>
+<tr>
+<th class="px-2"><button type="button" class="btn btn-outline-dark">패치</button></th>
+<th class="px-2"><button type="button" class="btn btn-outline-dark">공지</button></th>
+<th class="px-2"><button type="button" class="btn btn-outline-dark">기타</button></th>
+</tr>
+</table>
+</div> -->
+<!--  -->
 	<div class="container">
 		<div class="row row-cols-auto">
 			<div class="col">
@@ -127,6 +157,7 @@
 
 
 	<!-- ========================= JS improt ========================= -->
+	
 	<c:import url="../temps/footer.jsp"></c:import>
 </body>
 </html>

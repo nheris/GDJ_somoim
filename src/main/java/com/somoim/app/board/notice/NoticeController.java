@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.somoim.app.board.BoardDTO;
-
+import com.somoim.app.member.MemberDTO;
 import com.somoim.app.util.Pager;
 
 
@@ -45,8 +45,8 @@ public class NoticeController {
 	@PostMapping("add")
 	public String setAdd(BoardDTO boardDTO, MultipartFile [] attachs, HttpSession session)throws Exception{
 		/// 로그인했을때 세션에서 작성자 받아오기
-	//	MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
-	//	boardDTO.setBoardWriter(memberDTO.getUserName());
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		boardDTO.setBoardWriter(memberDTO.getUserName());
 		
 		int reulst = noticeService.setAdd(boardDTO, attachs);
 		return "redirect:./list";
