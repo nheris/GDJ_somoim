@@ -80,43 +80,55 @@
 									<c:if test="${empty member.profiles}">
 										<img class="rounded float-left"
 											src="/resources/img/profile/profile.jpg" alt="..." style="width: 80px; height: 80px;">
+											<td><input type="hidden" value="변경하기" class="profiles"></td>
 									</c:if> 
 									<c:if test="${not empty member.profiles}">
 										<img class="rounded float-left"
 											src="../resources/upload/member/${member.profiles.filename} alt="...">
+											<td><input type="hidden" value="변경하기" class="profiles"></td>
 									</c:if>
 								</td>
 							</tr>
 							
 							<tr>
 								<td class="table dark">닉네임</td>
-								<td>${member.nickName}</td>
+								<td class="del">${member.nickName}									
+								</td>
+								<td><input type="hidden" value="${member.nickName}" id="nickName"></td>
 							</tr>
 
 							<tr>
 								<td class="table dark">이름</td>
-								<td>${member.name}</td>
+								<td class="del">
+									${member.name}
+								</td>
+								<td><input type="hidden" value="${member.name}" id="name"></td>
 							</tr>
 
 							<tr>
 								<td class="table dark">주소</td>
-								<td>${member.address}</td>
+								<td class="del">${member.address}</td>
+								<td><input type="hidden" value="${member.address}" id="address"></td>
 							</tr>
 
 							<tr>
 								<td class="table dark">전화번호</td>
-								<td>${member.phone}</td>
+								<td class="del">${member.phone}</td>
+								<td><input type="hidden" value="${member.phone}" id="phone"></td>
 							</tr>
 
 							<tr>
 								<td class="table dark">이메일</td>
-								<td>${member.email}</td>
+								<td class="del">${member.email}</td>
+								<td><input type="hidden" value="${member.email}" id="email"></td>
 							</tr>
 
 						</table>
 					</div>
 
-					<button class="btn btn-hover">수정하기</button>
+					<button id="btn1" class="btn btn-hover">수정하기</button>
+					
+					<form action="./update" method="get"></form>
 
 					<!-- Main content goes here -->
 				</div>
