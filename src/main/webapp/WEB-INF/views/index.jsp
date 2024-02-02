@@ -22,8 +22,7 @@
         your experience and security.
       </p>
     <![endif]-->
-	<!-- 내비게이터 import -->
-	<c:import url="./temps/header.jsp"></c:import>
+
 	<!-- Preloader -->
 	<div class="preloader">
 		<div class="preloader-inner">
@@ -32,6 +31,8 @@
 			</div>
 		</div>
 	</div>
+		<!-- 내비게이터 import -->
+		<c:import url="./temps/header.jsp"></c:import>
 	<section class="hero-area overlay">
 		<div class="container">
 			<div class="row">

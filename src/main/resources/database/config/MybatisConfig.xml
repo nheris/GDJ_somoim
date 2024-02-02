@@ -7,5 +7,7 @@
   		<typeAlias type="com.somoim.app.member.MemberDTO" alias="MemberDTO"/>
   		<typeAlias type="com.somoim.app.moim.MoimDTO" alias="MoimDTO"/>
   		<typeAlias type="com.somoim.app.moim.member.MoimMemberDTO" alias="MoimMemberDTO"/>
+  		<typeAlias type="com.somoim.app.member.ProfileDTO" alias="ProfileDTO"/>
+
   	</typeAliases>
   </configuration>
