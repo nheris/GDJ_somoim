@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.somoim.app.board.BoardDAO;
 import com.somoim.app.board.BoardDTO;
+import com.somoim.app.board.BoardFileDTO;
 import com.somoim.app.util.Pager;
 
 @Repository
@@ -53,5 +54,14 @@ public class NoticeDAO  implements BoardDAO{
 		// TODO Auto-generated method stub
 		return  sqlSession.delete(namespace+"setDelete", boardDTO);
 	}
+	
+	public int setFileAdd(BoardFileDTO boardFileDTO)throws Exception{
+		return sqlSession.insert(namespace+"setFileAdd", boardFileDTO);
+	}
+	
+	public List<BoardFileDTO> getFileList(BoardDTO boardDTO)throws Exception{
+		return sqlSession.selectList(namespace+"getFileList", boardDTO);
+	}
+	
 
 }

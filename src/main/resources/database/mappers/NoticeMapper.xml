@@ -5,7 +5,7 @@
   <!-- mapper namespace는 비우면 에러 -->
   <mapper namespace="com.somoim.app.board.notice.NoticeDAO">
   
-<!-- 	<sql id="search2">
+ 	<sql id="search2">
 		WHERE
 		<choose>
 			<when test="searchFind=='searchFind1'">
@@ -18,49 +18,108 @@
 				boardContents like '%'||#{search}||'%'
 			</when>
 			<otherwise>
-				noticeNum like '%'||#{search}||'%'
+				boardNum like '%'||#{search}||'%'
 			</otherwise>
 		</choose>
 	</sql>
   
   	<sql id="search">
 		WHERE boardTitle LIKE '%'||#{search}||'%'
-	</sql> -->
+	</sql> 
+  
+  <resultMap type="NoticeDTO" id="getDetailResult">
+  <id column="BOARDNUM" property="boardNum"/>
+  <result column="BOARDTITLE" property="boardTitle"/>
+  <result column="BOARDTEXT" property="boardText"/>
+  <result column="BOARDWRITER" property="boardWriter"/>
+  <result column="BOARDDATE" property="boardDate"/>
+  <result column="USERNAME" property="userName"/>
+  
+  
+  <collection property="fileDTOs" javaType="List" ofType="BoardFileDTO">
+ 	<id column="FILENUM" property="fileNum"></id>
+ 	<result column="ORINAME" property="oriName"/>
+ 	<result column="FILENAME" property="fileName"/> 
+  
+  </collection>
+  </resultMap>
+  
+  
+  <!-- Delete -->
+  <delete id="setDelete" parameterType="MemberDTO">
+  DELETE NOTICEBOARD where BOARDNUM=#{boardNum}
+  </delete>
   
   
   <insert id="setAdd" parameterType="BoardDTO">
-  	<selectKey keyProperty="noticeNum" resultType="Long" order="BEFORE">
+  	<selectKey keyProperty="boardNum" resultType="Long" order="BEFORE">
 			SELECT notice_seq.NEXTVAL FROM DUAL
 	</selectKey>
   	INSERT INTO NOTICEBOARD  
 	VALUES(
-	#{noticeNum}, #{userName}, #{noticeTitle}, #{noticeContents}, #{noticeWriter}, SYSDATE
+	#{boardNum}, #{userName}, #{boardTitle}, #{boardText}, #{boardWriter}, SYSDATE
 	)
   </insert>
   
   
   
-  	<select id="getList" parameterType="BoardDTO" resultType="BoardDTO">
- 		SELECT *
-		FROM NOTICEBOARD
-		WHERE noticeNum IN 
-			 (SELECT noticeNum
-	   		 FROM MEMBER
-	   		 WHERE USERNAME = ${userName});
-  		
+  	<select id="getList" parameterType="Pager" resultType="NoticeDTO">
+	SELECT * FROM 
+	(SELECT ROWNUM R, N.* FROM
+		(SELECT * FROM NOTICEBOARD
+			<include refid="search2"></include>
+				ORDER BY boardNum DESC
+		)
+	N)
+	WHERE R BETWEEN  #{startRow} AND #{lastRow}
   	</select>
   
   
-<!--   		getTotal
+   	
 	<select id="getTotalCount" resultType="Long">
-	SELECT COUNT(noticeNum) FROM NOTICEBOARD
+	SELECT COUNT(boardNum) FROM NOTICEBOARD
 	 <include refid="search2"></include>
-	</select> -->
+	</select> 
 	
   
+  	<!-- Detail -->
+  	<select id="getDetail" parameterType="BoardDTO" resultMap="getDetailResult">	
+  	SELECT * FROM NOTICEBOARD N 
+		LEFT JOIN 
+			NOTICEBOARDFILE NF 
+		USING (BOARDNUM) 
+	WHERE BOARDNUM =21;
+  	</select>
   
   
   
+	<update id="setUpdate" parameterType="BoardDTO">
+		UPDATE NOTICE
+		<set>
+			<if test="boardTitle != null and boardTitle !=''">
+				BOARDTITLE=#{boardTitle},
+			</if>
+			<if test="boardContents != null">
+				BOARDCONTENTS=#{boardContents}
+			</if>
+		</set>
+		WHERE BOARDNUM=#{boardNum}
+	</update>
+  
+  <!-- file List -->
+	<select id="getFileList" parameterType="BoardDTO"
+		resultType="BoardFileDTO">
+		SELECT FILENAME FROM NOTICEBOARDFILE WHERE BOARDNUM=#{boardNum}
+	</select>
+
+	<!-- FileAdd -->
+	<insert id="setFileAdd" parameterType="BoardFileDTO">
+		INSERT INTO NOTICEBOARDFILE
+		VALUES(
+		noticeboardfile_seq.nextval, #{boardNum}, #{userName}, #{fileName}, #{oriName}
+		)
+		
+	</insert>
   
   
   

@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.somoim.app.board.BoardDTO;
-import com.somoim.app.board.MemberDTO;
+
 import com.somoim.app.util.Pager;
 
 
@@ -25,12 +25,15 @@ public class NoticeController {
 	@Autowired
 	private NoticeService noticeService;
 	
-//	@ModelAttribute("board")
-//	public String getBoard() {
-//		return "notice";
-//	}
+	@ModelAttribute("board")
+	public String getBoard() {
+		return "공지게시판";
+	}
 		
-	
+	@ModelAttribute("boardKind")
+	public Integer getKind() {
+		return 0;
+	}
 	
 	// 등록
 	@GetMapping("add")
@@ -42,8 +45,8 @@ public class NoticeController {
 	@PostMapping("add")
 	public String setAdd(BoardDTO boardDTO, MultipartFile [] attachs, HttpSession session)throws Exception{
 		/// 로그인했을때 세션에서 작성자 받아오기
-		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
-		boardDTO.setBoardWriter(memberDTO.getUserName());
+	//	MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+	//	boardDTO.setBoardWriter(memberDTO.getUserName());
 		
 		int reulst = noticeService.setAdd(boardDTO, attachs);
 		return "redirect:./list";
@@ -52,8 +55,8 @@ public class NoticeController {
 	//리스트
 	@GetMapping("list")
 	public String getList(Pager pager, Model model)throws Exception{
-//		List<BoardDTO> ar = noticeService.getList(pager);
-//		model.addAttribute("list", ar);	
+		List<BoardDTO> ar = noticeService.getList(pager);
+		model.addAttribute("list", ar);	
 		return "board/list";
 	}
 
