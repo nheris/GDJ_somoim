@@ -4,7 +4,7 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
-### My Ignore ###
+### My Ignore Add ###
 
 GDJ_somoimPJ.properties
 
