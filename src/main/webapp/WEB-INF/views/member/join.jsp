@@ -1,12 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+<meta charset="utf-8" />
+<meta http-equiv="x-ua-compatible" content="ie=edge" />
+<title>Somoim</title>
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- CSS 임포트 -->
+<c:import url="../temps/head_css.jsp"></c:import>
 </head>
 <body>
+<!-- 내비게이터 import -->
+	<c:import url="../temps/header.jsp"></c:import>
     <!-- start Registration section -->
     <section class="login registration section">
         <div class="container">
@@ -28,50 +37,45 @@
                                 <span>Or</span>
                             </div>
                             <div class="form-group">
-                                <label>아이디</label>
-                                <input name="userName" type="text">
+                                <label for="userName">아이디</label>
+                                <input name="userName" id="userName" type="text">
                             </div>
                             <div class="form-group">
-                                <label>피밀번호</label>
-                                <input name="password" type="password">
+                                <label for="password">비밀번호</label>
+                                <input name="password" id="password" type="password">
                             </div>
                             <div class="form-group">
-                                <label>비밀번호 확인</label>
-                                <input name="password" type="password">
+                                <label for="passwordCheck">비밀번호 확인</label>
+                                <input name="password" id="passwordCheck" type="password">
                             </div>
                             <div class="form-group">
-                                <label>별명</label>
-                                <input name="nickName" type="text">
+                                <label for="nickName">별명</label>
+                                <input name="nickName" id="nickName" type="text">
                             </div>
                             <div class="form-group">
-                                <label>이름</label>
-                                <input name="name" type="text">
+                                <label for="name">이름</label>
+                                <input name="name" id="name" type="text">
                             </div>
                             <div class="form-group">
-                                <label>주민번호</label>
-                                <input name="name" type="text">
+                                <label for="residentNum">주민번호</label>
+                                <input name="residentNum" id="residentNum" type="text">
                             </div>
                             <div class="form-group">
-                                <label>주소</label>
-                                <input name="address" type="text">
+                                <label for="address">주소</label>
+                                <input name="address" id="address" type="text">
                             </div>
                             <div class="form-group">
-                                <label>전화번호</label>
-                                <input name="phone" type="text">
+                                <label for="phone">전화번호</label>
+                                <input name="phone" id="phone" type="text">
                             </div>
                             <div class="form-group">
-                                <label>이메일</label>
-                                <input name="email" type="email">
+                                <label for="email">이메일</label>
+                                <input name="email" id="email" type="email">
                             </div>
                             <div class="form-group">
-                                <label>사진첨부</label>
-                                <input name="attachs" type="file">
+                                <label for="attachs">사진첨부</label>
+                                <input name="attachs" id="attachs" type="file">
                             </div>
-
-
-
-
-
 
 
                             <div class="check-and-pass">
@@ -80,8 +84,7 @@
                                         <div class="form-check">
                                             <input type="checkbox" class="form-check-input width-auto"
                                                 id="exampleCheck1">
-                                            <label class="form-check-label">Agree to our <a href="javascript:void(0)">Terms and
-                                                    Conditions</a></label>
+                                            <label class="form-check-label">개인정보 이용동의</label>
                                         </div>
                                     </div>
                                 </div>
@@ -97,5 +100,7 @@
             </div>
         </div>
     </section>
+    	<!-- ========================= JS improt ========================= -->
+	<c:import url="../temps/footer.jsp"></c:import>
 </body>
 </html>

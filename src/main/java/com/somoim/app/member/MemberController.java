@@ -28,10 +28,12 @@ public class MemberController {
 		
 		if(result>0) {
 			msg = "가입 성공";
+			path = "../";
 		}
 		
 		model.addAttribute("msg", msg);
-		model.addAttribute("pass", path);
+		System.out.println("path");
+		model.addAttribute("path", path);
 		
 		return "member/result";
 	}
