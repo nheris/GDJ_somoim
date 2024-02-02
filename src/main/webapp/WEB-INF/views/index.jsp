@@ -23,14 +23,7 @@
       </p>
     <![endif]-->
 
-	<!-- Preloader -->
-	<div class="preloader">
-		<div class="preloader-inner">
-			<div class="preloader-icon">
-				<span></span> <span></span>
-			</div>
-		</div>
-	</div>
+
 		<!-- 내비게이터 import -->
 		<c:import url="./temps/header.jsp"></c:import>
 	<section class="hero-area overlay">
