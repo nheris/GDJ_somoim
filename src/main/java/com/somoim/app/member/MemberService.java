@@ -33,8 +33,18 @@ public class MemberService {
 		
 		result = memberDAO.setProfileJoin(profileDTO);
 		
-		return result;
+		return result;		
+	}
+	public MemberDTO getLogin(MemberDTO memberDTO)throws Exception{
+		MemberDTO dto = memberDAO.getDetail(memberDTO);
 		
-		
+		if(dto!=null) {
+			if(dto.getPassword().equals(memberDTO.getPassword())) {
+				return memberDTO; 
+			}else {
+				dto=null;
+			}
+		}
+		return dto;
 	}
 }

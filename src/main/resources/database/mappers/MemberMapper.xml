@@ -32,7 +32,7 @@
   		<result column="ADDRESS" property="address"/>
  		<result column="PHONE" property="phone"/>
   		<result column="EMAIL" property="email"/>
-  			<association property="profile" javaType="ProfileDTO" >
+  			<association property="profiles" javaType="ProfileDTO" >
   		 		<id column="FILENUM" property=""/>
   		 		<result column="FILENAME" property="fileName"/>
   		 		<result column="ORINAME" property="oriName"/>

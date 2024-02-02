@@ -23,7 +23,7 @@
                 <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-12">
                     <div class="form-head">
                         <h4 class="title">Registration</h4>
-                        <form action="./join" method="post" enctype="multipart/form-data">
+                        <form id="frm" action="./join" method="post" enctype="multipart/form-data">
                             <div class="socila-login">
                                 <ul>
                                     <li><a href="javascript:void(0)" class="facebook"><i class="lni lni-facebook-original"></i>Import
@@ -43,11 +43,14 @@
                             <div class="form-group">
                                 <label for="password">비밀번호</label>
                                 <input name="password" id="password" type="password">
+                                <div id="passwordResult"></div>
                             </div>
                             <div class="form-group">
                                 <label for="passwordCheck">비밀번호 확인</label>
                                 <input name="password" id="passwordCheck" type="password">
+                                <div id="passwordCheckResult"></div>
                             </div>
+                            <div id="passwordCheckReulst"></div>
                             <div class="form-group">
                                 <label for="nickName">별명</label>
                                 <input name="nickName" id="nickName" type="text">
@@ -90,9 +93,9 @@
                                 </div>
                             </div>
                             <div class="button">
-                                <button type="submit" class="btn">Registration</button>
+                                <button type="submit" id="btn">Registration</button>
                             </div>
-                            <p class="outer-link">Already have an account? <a href="login.html"> Login Now</a>
+                            <p class="outer-link">Already have an account? <a href="/login"> Login Now</a>
                             </p>
                         </form>
                     </div>
@@ -102,5 +105,7 @@
     </section>
     	<!-- ========================= JS improt ========================= -->
 	<c:import url="../temps/footer.jsp"></c:import>
+	<script src="../resources/assets/js/member/joinCheck.js"></script>
+	
 </body>
 </html>

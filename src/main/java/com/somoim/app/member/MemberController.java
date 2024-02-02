@@ -1,5 +1,7 @@
 package com.somoim.app.member;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,4 +39,31 @@ public class MemberController {
 		
 		return "member/result";
 	}
+	@GetMapping("login")
+	public void getLogin(MemberDTO memberDTO)throws Exception{
+		
+	}
+	
+	@PostMapping("login")
+	public String getLogin(MemberDTO memberDTO,HttpSession session,Model model)throws Exception{
+		memberDTO= memberService.getLogin(memberDTO);
+		String msg = "아이디 또는 비밀번호 확인";
+		String path = "/member/login";
+		if(memberDTO==null) {
+			model.addAttribute("msg", msg);
+			model.addAttribute("path", path);
+			return "member/result"; 
+		}		
+		session.setAttribute("member", memberDTO);
+		return "redirect:../";		
+	}
+	@GetMapping("logout")
+	public String getLogout(HttpSession session)throws Exception{
+		session.setAttribute("member",null);
+		return "redirect:../";
+	}
+	
+	
+	
+	
 }	
