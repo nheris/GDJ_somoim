@@ -7,8 +7,10 @@
 	<title>Insert</title>
 	<!-- sockJs 사용 -->
 	<script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+	<c:import url="../temps/head_css.jsp"></c:import>
 </head>
 <body>
+	<c:import url="../temps/header.jsp"></c:import>
 	<input type="text" id="msg">
 	<div class="input-group-append">
 		<div id="msgArea">
@@ -17,5 +19,6 @@
 		<button type="button" id="sendBtn">전송</button>
 	</div>
 	<script src="../resources/assets/js/chat/chat.js"></script>
+	<c:import url="../temps/footer.jsp"></c:import>
 </body>
 </html>

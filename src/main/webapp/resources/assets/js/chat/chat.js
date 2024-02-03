@@ -19,42 +19,19 @@ sock.onmessage = onMessage;
 sock.onOpen = onOpen;
 sock.onclose = onClose;
 
-
-
- function sendMessage(){
- 	console.log('sendMessage');
-    sock.send(msg.value);
- }
-
- // 서버에서 메시지를 받았을 때
- function onMessage(msg){
-	console.log("onMessage");
-    console.log(msg);
-    let data = msg.data;
-    let sessionId = null;       // 보낸사람
-    let message = null;
-    let ar = data.split(":");
-
-    for(let i=0;i<ar.length;i++){
-        console.log('ar['+ i +']: '+ar[i]);
-    }
-
-    let cur_session = '${userId}';
-    console.log(cur_session);
-
-    sessionId = ar[0];
-    message = ar[1];
-	
-    let str = "<div>" + message + "</div>"
-
-    msgArea.append(str);
-    
- }
-
-function onClose(){
-
+sock.onOpen = e =>{
+    msgArea.innerHTML = '';
 }
 
-function onOpen(){
+sock.onmessage = e =>{
+    const chat = document.createElement('span');
+    chat.innerText = e.data;
+    msgArea.appendChild(chat);
+}
 
+
+
+function sendMessage(){
+    console.log('sendMessage');
+    sock.send(msg.value);
 }
