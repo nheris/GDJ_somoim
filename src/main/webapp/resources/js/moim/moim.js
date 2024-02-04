@@ -1,1 +1,0 @@
-let moimnum = document.getElementById('')

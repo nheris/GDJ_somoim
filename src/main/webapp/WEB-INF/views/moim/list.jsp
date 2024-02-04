@@ -62,8 +62,8 @@
 								href="delete-account.html"><i class="lni lni-trash"></i> 구독
 									결제 하기</a></li>
 						</ul>
-						<div class="button">
-							<a class="btn" href="javascript:void(0)">Logout</a>
+						<div class="button text-center">
+						<button class="btn mt-5" href="javascript:void(0)">Logout</button>
 						</div>
 					</div>
 				</nav>
@@ -79,16 +79,36 @@
 
 					<div class="row">
 						<!-- 안에 내용 수정해서 사용하세요 -->
-						<div class="col-lg-6">
-							<li class="list-group-item d-flex justify-content-between align-items-start">
-								<div class="ms-2 me-auto">
-									<div class="fw-bold">Subheading</div>
-									Content for list item
-								</div> <span class="badge bg-primary rounded-pill">14</span>
-							</li>
+						
+						<!-- 정모채팅목록 -->
+						<div class="col-lg-6 mt-4 mb-5">
+							<ol class="list-group list-group-numbered">
+								<button type="button" class="btn btn-light position-relative">
+									<div class="ms-2 me-auto">
+										<div class="fw-bold">Subheading</div>
+										Content for list item
+									</div>
+									<span
+										class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+										99+ <span class="visually-hidden">unread messages</span>
+									</span>
+								</button>
+							</ol>
 						</div>
-						<div class="col-lg-6">dddddddd</div>
-
+						<div class="col-lg-6 mt-4 mb-5">
+							<ol class="list-group list-group-numbered">
+								<button type="button" class="btn btn-light position-relative">
+									<div class="ms-2 me-auto">
+										<div class="fw-bold">Subheading</div>
+										Content for list item
+									</div>
+									<span
+										class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+										99+ <span class="visually-hidden">unread messages</span>
+									</span>
+								</button>
+							</ol>
+						</div>
 
 
 
@@ -192,36 +212,11 @@
 
 
 						<!-- 모임 개설 -->
-						<!-- 사이트 이동? -->
-						<a href="./add" class="btn btn-outline-secondary">모임 개설하기</a>
-						<!-- 모달 창? -->
-						<button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">모임 개설하기</button>
 						
-						<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-						  <div class="modal-dialog">
-						    <div class="modal-content">
-						      <div class="modal-header">
-						        <h1 class="modal-title fs-5" id="exampleModalLabel">모임 개설</h1>
-						        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-						      </div>
-						      <div class="modal-body">
-						        <form>
-						          <div class="mb-3">
-						            <label for="recipient-name" class="col-form-label">Recipient:</label>
-						            <input type="text" class="form-control" id="recipient-name">
-						          </div>
-						          <div class="mb-3">
-						            <label for="message-text" class="col-form-label">Message:</label>
-						            <textarea class="form-control" id="message-text"></textarea>
-						          </div>
-						        </form>
-						      </div>
-						      <div class="modal-footer">
-						        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-						        <button type="button" class="btn btn-primary">Send message</button>
-						      </div>
-						    </div>
-						  </div>
+						<a href="./add" class="btn btn-outline-secondary my-2" >모임 개설하기</a>
+						
+						<div class="button text-center">
+						<a href="./add" class="btn my-3" >모임 개설하기</a>
 						</div>
 						
 						
@@ -231,7 +226,7 @@
 						
 						
 						<!-- 페이징 -->
-						<div class="pagination left">
+						<!-- <div class="pagination left ">
 							<ul class="pagination-list">
 								<li><a href="javascript:void(0)">1</a></li>
 								<li class="active"><a href="javascript:void(0)">2</a></li>
@@ -240,7 +235,7 @@
 								<li><a href="javascript:void(0)"><i
 										class="lni lni-chevron-right"></i></a></li>
 							</ul>
-						</div>
+						</div> -->
 
 
 					</div>

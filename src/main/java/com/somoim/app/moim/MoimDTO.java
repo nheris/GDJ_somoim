@@ -12,7 +12,9 @@ public class MoimDTO {
 	private String moimCategory;
 	private Long moimMemCount;
 	private Date moimDate;
+	private String moimText;
 	private MoimMemberDTO moimMemberDTO;
+	
 	
 	
 	public MoimMemberDTO getMoimMemberDTO() {
@@ -24,6 +26,12 @@ public class MoimDTO {
 	
 	
 	
+	public String getMoimText() {
+		return moimText;
+	}
+	public void setMoimText(String moimText) {
+		this.moimText = moimText;
+	}
 	public Long getMoimNum() {
 		return moimNum;
 	}

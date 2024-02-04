@@ -40,4 +40,9 @@ public class MoimController {
 	@PostMapping("add")public void add(MoimDTO moimDTO) throws Exception{
 		
 	}
+	
+	@GetMapping("test")
+	public void test() throws Exception{
+		
+	}
 }
