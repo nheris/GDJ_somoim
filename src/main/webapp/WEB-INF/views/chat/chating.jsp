@@ -46,7 +46,7 @@
 									<a href="javascript:void(0);" data-toggle="modal" data-target="#view_info">
 										<img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="avatar">
 									</a>
-										<h6 class="m-b-0">login user</h6>
+										<h6 class="m-b-0">${user.nickName}</h6>
 									</div>
 								</div>
 								<!-- 사진 추가 아이콘 -->
