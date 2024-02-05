@@ -4,7 +4,9 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <!-- mapper namespace는 비우면 에러 -->
   <mapper namespace="com.somoim.app.moim.MoimDAO">
-  	<select id="getList" parameterType="MemberDTO" resultType="MoimDTO">
+  
+  	<!-- list -->
+  	<!-- <select id="getList" parameterType="MemberDTO" resultType="MoimDTO">
   	
   		SELECT *
 		FROM MOIM
@@ -13,7 +15,106 @@
 	  		FROM MOIMMEMBER
 	   		WHERE USERNAME = #{userName})
 	   
+  	</select> -->
+  	<select id="getList" parameterType="MemberDTO" resultMap="listReault">
+  		SELECT *
+		FROM MOIM 
+		 	 LEFT JOIN MOIMFILE m 
+		 	 USING (MOIMNUM)
+		 	 LEFT JOIN MOIMMEMBER
+		 	 USING (MOIMNUM)
+		WHERE USERNAME = #{userName};
   	</select>
+  	<resultMap type="MemberDTO" id="listReault">
+  		<id column="MOIMNUM" property=""/>
+  		<result column="MOIMNAME" property=""/>
+  		<result column="MOIMREGION" property=""/>
+  		<result column="MOIMCATEGORY" property=""/>
+  		<result column="MOIMDATE" property=""/>
+  		<result column="MOIMTEXT" property=""/>
+  		<result column="MOIMMEMCOUNT" property=""/>
+  		<result column="MOIMHEAD" property=""/>
+  		<association property="">
+  			<id/>
+  			<result column="" property=""/>
+	  		<result column="" property=""/>
+	  		<result column="" property=""/>
+	  		<result column="" property=""/>
+	  		<result column="" property=""/>
+	  		<result column="" property=""/>
+  		</association>
+  		<association property="">
+  			<id/>
+  			<result column="" property=""/>
+	  		<result column="" property=""/>
+	  		<result column="" property=""/>
+	  		<result column="" property=""/>
+	  		<result column="" property=""/>
+	  		<result column="" property=""/>
+  		</association>
+  	</resultMap>
+  	
+  	
+  	<select id="getDetail" parameterType="MemberDTO" resultMap="getDetailResult">
+		SELECT *
+		FROM MEMBER
+			 LEFT JOIN AVATAR
+			 USING (USERNAME)
+			 
+			 INNER JOIN MEMBERROLE MR
+			 USING (USERNAME)
+			 INNER JOIN
+			 ROLE R
+			 USING (ROLENUM)
+		WHERE USERNAME=#{userName}
+	</select>
+	<resultMap type="MemberDTO" id="getDetailResult">
+		<id column="USERNAME" property="userName"/>
+		<result column="PASSWORD" property="password"/>
+		<result column="NAME" property="name"/>
+		<result column="EMAIL" property="email"/>
+		<result column="PHONE" property="phone"/>
+		<result column="ADDRESS" property="address"/>
+		<!-- association 다음 collection 와야함 반대는 에러 -->
+		<association property="avatarDTO" javaType="AvatarDTO">
+			<id column="FILENUM" property="fileNum"/>
+			<result column="FILENAME" property="fileName"/>
+			<result column="ORINAME" property="oriName"/>
+		</association>
+		<collection property="roleDTOs" javaType="List" ofType="RoleDTO">
+			<id column="ROLENUM" property="roleNum"/>	
+			<result column="ROLENAME" property="roleName"/>
+		</collection>
+	</resultMap>
+  	
+	
+	<!-- add -->
+  	<insert id="add" parameterType="MoimDTO">
+  		<selectKey keyProperty="moimNum" order="BEFORE" resultType="Long">
+  			SELECT MOIM_SEQ.NEXTVAL FROM DUAL
+  		</selectKey>
+  	
+  		INSERT INTO MOIM
+  		VALUES (#{moimNum}, #{moimName}, #{moimRegion}, #{moimCategory}, SYSDATE, #{moimText}, #{moimMemCount}, #{moimHead})
+  		
+  	</insert>
+  	<insert id="fileAdd" parameterType="MoimFileDTO">
+  		INSERT INTO MOIMFILE
+  		VALUES (MOIMFILE_SEQ.NEXTVAL, #{moimNum},#{fileName},#{oriName})
+  	</insert>
+  	<insert id="moimHeadAdd" parameterType="MoimDTO">
+  		INSERT INTO MOIMMEMBER
+  		VALUES (#{moimHead}, 1, #{moimNum}, SYSDATE)
+  	</insert>
+  	
+  	
+  	
 
+
+  
+  
+  
+  
+  
   
   </mapper>

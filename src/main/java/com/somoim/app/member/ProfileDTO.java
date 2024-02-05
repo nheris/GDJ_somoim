@@ -4,9 +4,16 @@ public class ProfileDTO {
 	private Long fileNum;
 	private String userName;
 	private String fileName;
-	private String oirName;
+	private String oriName;
 	
 	
+	
+	public String getOriName() {
+		return oriName;
+	}
+	public void setOriName(String oriName) {
+		this.oriName = oriName;
+	}
 	public Long getFileNum() {
 		return fileNum;
 	}
@@ -25,10 +32,5 @@ public class ProfileDTO {
 	public void setFileName(String fileName) {
 		this.fileName = fileName;
 	}
-	public String getOirName() {
-		return oirName;
-	}
-	public void setOirName(String oirName) {
-		this.oirName = oirName;
-	}
+	
 }

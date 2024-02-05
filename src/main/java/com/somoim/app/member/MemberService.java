@@ -28,7 +28,7 @@ public class MemberService {
 		String fileName = fileManager.fileSave(path, attachs);
 		ProfileDTO profileDTO = new ProfileDTO();
 		profileDTO.setFileName(fileName);
-		profileDTO.setOirName(attachs.getOriginalFilename());
+		profileDTO.setOriName(attachs.getOriginalFilename());
 		profileDTO.setUserName(memberDTO.getUserName());
 		
 		result = memberDAO.setProfileJoin(profileDTO);

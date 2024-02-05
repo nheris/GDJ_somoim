@@ -1,5 +1,7 @@
 package com.somoim.app.moim;
 
+import java.lang.ProcessBuilder.Redirect;
+import java.lang.reflect.Member;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -10,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.somoim.app.member.MemberDTO;
 
@@ -21,28 +24,29 @@ public class MoimController {
 	
 	//모임 리스트
 	@GetMapping("list")
-	public void getList(Model model) throws Exception{
-		//리로드로
-		//MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
-		//임시---------
-		MemberDTO memberDTO= new MemberDTO();
-		memberDTO.setUserName("user1");
-		//-------------
+	public void getList(HttpSession session, Model model) throws Exception{
+		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+
 		List<MoimDTO> ar = moimService.getList(memberDTO);
 		model.addAttribute("list", ar);
 	}
 	
 	//모임 개설
 	@GetMapping("add")
-	public void add() throws Exception{
+	public void add()  {
 		
 	}
-	@PostMapping("add")public void add(MoimDTO moimDTO) throws Exception{
+	@PostMapping("add")
+	public String add(MoimDTO moimDTO, MultipartFile file, HttpSession session) throws Exception{
+		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+		moimDTO.setMoimHead(memberDTO.getUserName());
+		
+		
+		moimService.add(moimDTO, file);
+		
+		return "redirect:./list";
 		
 	}
 	
-	@GetMapping("test")
-	public void test() throws Exception{
-		
-	}
+
 }

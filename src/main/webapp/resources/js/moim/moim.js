@@ -10,7 +10,9 @@ $_SELECT_PICKER.selectpicker();
 let cityResult = '';
 let remainList = '';
 
-let moimCategory = document.getElementById("moimCategory");
+
+let moimRegion = document.getElementById("moimRegion");
+
 function city(e){
     //console.log(e.value);
     cityResult = e.value;
@@ -72,18 +74,38 @@ function city(e){
 
 
 const save = document.getElementById("save");
+let moimName = document.getElementById("moimName");
+let moimText = document.getElementById("moimText");
+let moimMemCount = document.getElementById("moimMemCount");
+
 save.addEventListener("click",()=>{
 
 
     remainList = document.getElementById("remainList").value;
     //console.log(remainList);
 
-    let moimCategory = document.getElementById("moimCategory");
-    moimCategory.setAttribute("value",cityResult+" "+remainList)
-    //console.log(moimCategory.value);
+    if(remainList=='세종특별자치시'){
+        remainList='';
+    }
 
-    document.getElementById("regionShow").innerText = moimCategory.value;
+    let moimRegion = document.getElementById("moimRegion");
+    moimRegion.setAttribute("value",cityResult+" "+remainList)
+    //console.log(moimRegion.value);
 
+    document.getElementById("regionShow").innerText = moimRegion.value;
+	
+
+    console.log(moimMemCount.value);
+
+	// if(moimName ==""){
+    //     alert("모임명을 입력해주세요.")
+    // }
+    // if(moimText ==""){
+    //     alert("모임내용을 입력해주세요.")
+    // }
+	// if(moimMemCount<10 && 300<moimMemCount){
+    //     alert("정원을 다시 입력해주세요.")
+    // }
 
     document.getElementById("close").click();
 })

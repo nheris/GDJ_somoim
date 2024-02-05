@@ -96,19 +96,19 @@
 				                <!-- 카테고리설정 -->
 								<div class="mb-3">
 				                <label for="cateForm" class="form-label">관심사 &emsp;</label>
-								<select class="my-image-selectpicker" id="cateForm">
-								    <option data-thumbnail="/resources/assets/images/categories/travel.svg' width=16" value="1">아웃도어/여행</option>
-								    <option data-thumbnail="/resources/assets/images/categories/controller.svg' width=16" value="2">게임/오락</option>
-								    <option data-thumbnail="/resources/assets/images/categories/jobs.svg' width=16" value="3">업종/직무</option>
-								    <option data-thumbnail="/resources/assets/images/categories/tshirt.svg' width=16" value="4">운동/스포츠</option>
-								    <option data-thumbnail="/resources/assets/images/categories/matrimony.svg' width=16" value="5">사교/인맥</option>
-								    <option data-thumbnail="/resources/assets/images/categories/education.svg' width=16" value="6">인문학</option>
-								    <option data-thumbnail="/resources/assets/images/categories/furniture.svg' width=16" value="7">공예/만들기</option>
-								    <option data-thumbnail="/resources/assets/images/categories/hospital.svg' width=16" value="8">봉사활동</option>
-								    <option data-thumbnail="/resources/assets/images/categories/laptop.svg' width=16" value="9">외국/언어</option>
-								    <option data-thumbnail="/resources/assets/images/categories/car.svg' width=16" value="10">문화생활</option>
-								    <option data-thumbnail="/resources/assets/images/categories/watch.svg' width=16" value="11">요리/제조</option>
-								    <option data-thumbnail="/resources/assets/images/categories/real-estate.svg' width=16" value="12">자유주제</option>
+								<select class="my-image-selectpicker" id="moimCategory" name="moimCategory">
+								    <option data-thumbnail="/resources/assets/images/categories/travel.svg' width=16" value="travel">아웃도어/여행</option>
+								    <option data-thumbnail="/resources/assets/images/categories/controller.svg' width=16" value="game">게임/오락</option>
+								    <option data-thumbnail="/resources/assets/images/categories/jobs.svg' width=16" value="jobs">업종/직무</option>
+								    <option data-thumbnail="/resources/assets/images/categories/tshirt.svg' width=16" value="tshirt">운동/스포츠</option>
+								    <option data-thumbnail="/resources/assets/images/categories/matrimony.svg' width=16" value="heart">사교/인맥</option>
+								    <option data-thumbnail="/resources/assets/images/categories/education.svg' width=16" value="education">인문학</option>
+								    <option data-thumbnail="/resources/assets/images/categories/furniture.svg' width=16" value="furniture">공예/만들기</option>
+								    <option data-thumbnail="/resources/assets/images/categories/hospital.svg' width=16" value="hospital">봉사활동</option>
+								    <option data-thumbnail="/resources/assets/images/categories/laptop.svg' width=16" value="laptop">외국/언어</option>
+								    <option data-thumbnail="/resources/assets/images/categories/car.svg' width=16" value="car">문화/공연/음악</option>
+								    <option data-thumbnail="/resources/assets/images/categories/watch.svg' width=16" value="cook">요리/제조</option>
+								    <option data-thumbnail="/resources/assets/images/categories/real-estate.svg' width=16" value="free">자유주제</option>
 								</select>
 								</div>
 								
@@ -117,8 +117,8 @@
 								<!-- 지역설정 -->
 								<div class="mb-3">
 									<label for="regionbutton" class="form-label">모임 지역&nbsp;</label>
-									<button type="button" class="btn btn-light" id="regionbutton"data-bs-toggle="modal" data-bs-target="#exampleModal">
-											<div id="regionShow">&nbsp;&nbsp;&nbsp;지역 찾기&nbsp;&nbsp;&nbsp;</div>
+									<button type="button" class="btn btn-light col-4" id="regionbutton"data-bs-toggle="modal" data-bs-target="#exampleModal">
+											<div id="regionShow">지역 찾기</div>
 									</button>
 
 									<!-- Modal -->
@@ -161,7 +161,7 @@
 													</select>
 
 												
-													<input type="hidden" name="moimCategory" id="moimCategory">
+													<input type="hidden" name="moimRegion" id="moimRegion">
 													
 
 													<!-- ... -->
@@ -192,14 +192,17 @@
 								<div class="mb-3">
 									<label for="exampleFormControlTextarea1" class="form-label">모임 대표 이미지</label>
 									<div class="input-group mb-3">
-									  <input type="file" class="form-control" id="inputGroupFile02">
+									  <input type="file" class="form-control" name="file">
 									</div>
-									
+								</div>
+								<div class="mb-3">
+									<label for="moimName" class="form-label">모임 정원(10~300명)</label>
+									<input type="number" class="form-control" id="moimMemCount" name="moimMemCount">
 								</div>
 								
 								<!-- 제출 -->
 								<div class="button text-center">
-									<button class="btn mt-3" id="submitButton" type="submit">모임 만들기</button>
+									<button class="btn my-3" id="submitButton" type="submit">모임 만들기</button>
 								</div>
 	
 							</div>
@@ -235,7 +238,7 @@
 	<script src="https://unpkg.com/jquery@3.3.1/dist/jquery.slim.min.js"></script>
 	<script src="https://unpkg.com/bootstrap@4.3.1/dist/js/bootstrap.bundle.min.js" data-src="https://unpkg.com/bootstrap@4.3.1/dist/js/bootstrap.min.js" ></script>
 	<script src="https://unpkg.com/bootstrap-select@1.13.8/dist/js/bootstrap-select.min.js"></script>
-	<script src="/resources/assets/js/moim/moim.js"></script>
+	<script src="/resources/js/moim/moim.js"></script>
 </body>
 
 </html>
