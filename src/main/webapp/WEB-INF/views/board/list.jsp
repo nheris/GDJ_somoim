@@ -33,12 +33,10 @@
 
 
 <div class="container mb-4" name="categorySelect">
-  <ul class="nav nav-pills list-group-horizontal d-flex justify-content-center">
-    <li class="nav-item px-2"><a class="nav-link" href="/notice/list">전체</a></li>
-    <li class="nav-item px-2"><a class="nav-link" href="/notice/list" name="category0">공지</a></li>
-    <li class="nav-item px-2"><a class="nav-link" href="/notice/list" name="category1">패치</a></li>
-    <li class="nav-item px-2"><a class="nav-link" href="/notice/list" name="category2">기타</a></li>
-  </ul>
+ <button class="btn btn-outline-primary BOARDCATEGORY">전체</button>
+ <button class="btn btn-outline-primary BOARDCATEGORY" name="category0">공지</button>
+  <button class="btn btn-outline-primary BOARDCATEGORY" name="category1">패치</button>
+  <button class="btn btn-outline-primary BOARDCATEGORY" name="category2">기타</button>
 </div>
 
 	<!--  -->

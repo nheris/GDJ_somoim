@@ -1,36 +1,62 @@
-const noticeList = document.getElementById("noticeList");
+const notcieList = document.getElementById("noticeList");
+const noticeadd = document.getElementById("noticeadd");
 
-// 카테고리
-$(".nav-link").on("click", function () {
-    //$('.nav-link').removeClass('active');
-    $(this).addClass("active");
-    console.log("gd");
-});
 
-// NoticeList 조회
-function makeList(r) {
-    noticeList.getAttribute("data-user");
-    r = r.datas;
+// list 가져 오는 함수
+function getnoticeList(page, num){
+	fetch("../notice/list?page="+page+"&boardtNum="+num, {
+		method:"GET"
+	})
+	.then(r => r.json())
+	.then(r => {
+		makeList(r);
+	})
+	;
 
-    for (let i = 0; i < r.length; i++) {
-        let tr = document.createElement("tr");
-        let td = document.createElement("td");
+}
 
-        // 제목만들때 id넣기 몇번째 제목인지 확인하기 위해서
-        td.setAttribute("id", "baordTitle" + r[i].boardNum);
-        td.innerHTML = r[i].boardTitle;
-        tr.append(td);
+// List table 생성
+function makeList(r){
+	let userName = notcieList.getAttribute("data-user");
+	r=r.datas;
+	for(let i=0;i<r.length;i++){
+		let tr = document.createElement("tr");
 
-        td = document.createElement("td");
-        td.innerHTML = r[i].userName;
-        tr.append(td);
+    let td = document.createElement("td");
+		td.innerHTML=r[i].boardNum;
+		tr.append(td);
 
-        td = document.createElement("td");
-        td.innerHTML = r[i].boardWriter;
-        tr.append(td);
+		td = document.createElement("td");
+		td.innerHTML=r[i].boardTitle;
+		tr.append(td);
 
-        td = document.createElement("td");
-        td.innerHTML = r[i].boardDate;
-        tr.append(td);
+		td = document.createElement("td");
+		td.innerHTML=r[i].userName;
+		tr.append(td);
+
+		td = document.createElement("td");
+		td.innerHTML=r[i].boardDate;
+		tr.append(td);
+
+    notcieList.appendChild(tr);
+
+    // 버튼 활성화
+    updateCategoryButtons(r);
     }
+	
+}
+function updateCategoryButtons(data) {
+  let boardCategoryButtons = document.querySelectorAll('.BOARDCATEGORY');
+
+  for (let j = 0; j < boardCategoryButtons.length; j++) {
+    let categoryButton = boardCategoryButtons[j];
+
+    let Actives = data.some(item => item.BOARDCATEGORY === j);
+
+    if (Actives) {
+      categoryButton.classList.add('active');
+    } else {
+      categoryButton.classList.remove('active');
+    }
+  }
 }

@@ -67,7 +67,6 @@ public class NoticeController {
 	@ResponseBody
 	public String getList(Pager pager, Model model)throws Exception{
 		List<BoardDTO> ar = noticeService.getList(pager);
-		Integer category = 0; 
 		model.addAttribute("list", ar);	
 		return "board/list";
 	}
