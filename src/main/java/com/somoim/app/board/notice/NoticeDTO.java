@@ -20,6 +20,4 @@ public class NoticeDTO  extends BoardDTO{
 		this.fileDTOs = fileDTOs;
 	}
 	
-	
-	
 }

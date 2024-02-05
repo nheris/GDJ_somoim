@@ -59,6 +59,7 @@ public class NoticeDAO  implements BoardDAO{
 		return sqlSession.insert(namespace+"setFileAdd", boardFileDTO);
 	}
 	
+	
 	public List<BoardFileDTO> getFileList(BoardDTO boardDTO)throws Exception{
 		return sqlSession.selectList(namespace+"getFileList", boardDTO);
 	}

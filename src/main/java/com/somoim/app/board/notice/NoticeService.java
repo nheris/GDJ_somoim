@@ -1,5 +1,6 @@
 package com.somoim.app.board.notice;
 
+import java.io.File;
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -12,6 +13,7 @@ import com.somoim.app.board.BoardDAO;
 import com.somoim.app.board.BoardDTO;
 import com.somoim.app.board.BoardFileDTO;
 import com.somoim.app.board.BoardService;
+import com.somoim.app.member.MemberDTO;
 import com.somoim.app.util.FileManager;
 import com.somoim.app.util.Pager;
 
@@ -44,28 +46,34 @@ public class NoticeService implements BoardService{
 	}
 
 	@Override
-	public int setAdd(BoardDTO boardDTO, MultipartFile[] attchs) throws Exception {
-		//  글등록 (글번호 조회용)
-		int result = noticeDAO.setAdd(boardDTO);
+	public int setAdd(BoardDTO boardDTO, MultipartFile [] attachs) throws Exception {
+		//1. 글을 등록 - 글번호를 알아오기 위해서
+		int result = noticeDAO.setAdd(boardDTO);	
 		
-		// 파일저장
+		//2. 파일을 HDD에 저장
+		//2-1 저장할 폴더의 실제 경로 구하기
 		String path = servletContext.getRealPath("/resources/upload/notice");
+		System.out.println(path);
+		//2-2 HDD에 저장하고 파일명 받아오기
 		
-		//HDD 저장 파일명 받기
-		for(MultipartFile file: attchs) {
-			if(file.isEmpty()) {
+		
+		System.out.println("attachs size: " + attachs.length);
+		for(MultipartFile f: attachs) {
+			System.out.println(f);
+			if(f.isEmpty()) {
 				continue;
 			}
-		
-		String fileName = fileManager.fileSave(path, file);
-	
-		// db저장
-		BoardFileDTO boardFileDTO = new BoardFileDTO();
-		boardFileDTO.setFileName(fileName);
-		boardFileDTO.setOriName(file.getOriginalFilename());
-		boardFileDTO.setBoardNum(boardDTO.getBoardNum());
-		result = noticeDAO.setFileAdd(boardFileDTO);
+			
+			String fileName = fileManager.fileSave(path, f);
+		//2-3 DB에 파일 정보 저장하기
+			BoardFileDTO boardFileDTO = new BoardFileDTO();
+			boardFileDTO.setUserName(boardDTO.getUserName());
+			boardFileDTO.setFileName(fileName);
+			boardFileDTO.setOriName(f.getOriginalFilename());
+			boardFileDTO.setBoardNum(boardDTO.getBoardNum());
+			result = noticeDAO.setFileAdd(boardFileDTO);
 		}
+		
 		return result;
 	}
 

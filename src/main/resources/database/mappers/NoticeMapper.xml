@@ -5,6 +5,10 @@
   <!-- mapper namespace는 비우면 에러 -->
   <mapper namespace="com.somoim.app.board.notice.NoticeDAO">
   
+    	<sql id="search">
+		WHERE boardTitle LIKE '%'||#{search}||'%'
+	</sql> 
+  
  	<sql id="search2">
 		WHERE
 		<choose>
@@ -15,7 +19,7 @@
 				boardWriter like '%'||#{search}||'%'
 			</when>
 			<when test="searchFind=='searchFind3'">
-				boardContents like '%'||#{search}||'%'
+				boardText like '%'||#{search}||'%'
 			</when>
 			<otherwise>
 				boardNum like '%'||#{search}||'%'
@@ -23,9 +27,25 @@
 		</choose>
 	</sql>
   
-  	<sql id="search">
-		WHERE boardTitle LIKE '%'||#{search}||'%'
-	</sql> 
+   	<sql id="boardCategorys">
+		WHERE
+		<choose>
+			<when test="categorySelect=='category0'">
+				BOARDCATEGORY = 0
+			</when>
+			<when test="categorySelect=='category1'">
+				BOARDCATEGORY = 1
+			</when>
+			<when test="categorySelect=='category2'">
+				BOARDCATEGORY = 2
+			</when>
+			<otherwise>
+				BOARDCATEGORY IN (0,1,2)
+			</otherwise>
+		</choose>
+	</sql>
+  
+
   
   <resultMap type="NoticeDTO" id="getDetailResult">
   <id column="BOARDNUM" property="boardNum"/>
@@ -34,14 +54,16 @@
   <result column="BOARDWRITER" property="boardWriter"/>
   <result column="BOARDDATE" property="boardDate"/>
   <result column="USERNAME" property="userName"/>
+  <result column="BOARDCATEGORY" property="boardCategory"/>
   
   
-  <collection property="fileDTOs" javaType="List" ofType="BoardFileDTO">
- 	<id column="FILENUM" property="fileNum"></id>
- 	<result column="ORINAME" property="oriName"/>
- 	<result column="FILENAME" property="fileName"/> 
-  
-  </collection>
+		<collection property="fileDTOs" javaType="List"
+			ofType="BoardFileDTO">
+			<id property="fileNum" column="FILENUM" />
+			<result property="fileName" column="FILENAME" />
+			<result property="oriName" column="ORINAME" />
+			
+		</collection>
   </resultMap>
   
   
@@ -57,7 +79,7 @@
 	</selectKey>
   	INSERT INTO NOTICEBOARD  
 	VALUES(
-	#{boardNum}, #{userName}, #{boardTitle}, #{boardText}, #{boardWriter}, SYSDATE
+	#{boardNum}, #{userName}, #{boardTitle}, #{boardText}, #{boardWriter}, SYSDATE, #{boardCategory}
 	)
   </insert>
   
@@ -66,10 +88,13 @@
   	<select id="getList" parameterType="Pager" resultType="NoticeDTO">
 	SELECT * FROM 
 	(SELECT ROWNUM R, N.* FROM
+		(select * from 
 		(SELECT * FROM NOTICEBOARD
-			<include refid="search2"></include>
+			 <include refid="boardCategorys"></include> 
+			 
 				ORDER BY boardNum DESC
 		)
+		<include refid="search2"></include>)  
 	N)
 	WHERE R BETWEEN  #{startRow} AND #{lastRow}
   	</select>
@@ -88,7 +113,7 @@
 		LEFT JOIN 
 			NOTICEBOARDFILE NF 
 		USING (BOARDNUM) 
-	WHERE BOARDNUM =21;
+	WHERE BOARDNUM =${boardNum}
   	</select>
   
   
@@ -106,7 +131,7 @@
 		WHERE BOARDNUM=#{boardNum}
 	</update>
   
-  <!-- file List -->
+	<!-- file List -->
 	<select id="getFileList" parameterType="BoardDTO"
 		resultType="BoardFileDTO">
 		SELECT FILENAME FROM NOTICEBOARDFILE WHERE BOARDNUM=#{boardNum}
@@ -115,17 +140,9 @@
 	<!-- FileAdd -->
 	<insert id="setFileAdd" parameterType="BoardFileDTO">
 		INSERT INTO NOTICEBOARDFILE
-		VALUES(
-		noticeboardfile_seq.nextval, #{boardNum}, #{userName}, #{fileName}, #{oriName}
-		)
-		
+		VALUES
+		(NOTICEBOARDFILE_SEQ.NEXTVAL, #{boardNum}, #{userName},#{fileName}, #{oriName})
 	</insert>
-  
-  
-  
-  
-  
-  
   
   
   
