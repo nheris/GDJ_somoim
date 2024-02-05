@@ -103,3 +103,11 @@ function otherSend(msg){
 }
 
 });
+
+
+messageForm.onsubmit = e => {
+    e.preventDefault();
+    webSocket.send(messageForm['message'].value);
+    messageForm['message'].value = '';
+    messageForm['message'].focus();
+};

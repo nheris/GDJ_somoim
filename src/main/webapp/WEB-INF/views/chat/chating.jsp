@@ -101,6 +101,20 @@
 			</div>
 		</div>
 	</div>
+	
+<!-- 	    <form class="message-form" id="messageForm">
+        <label class="message-container">
+            <span hidden>메세지</span>
+            <input class="message-input" maxlength="100" name="message" placeholder="메세지를 입력하세요." type="text">
+        </label>
+        <input class="send-button" type="submit" value="전송">
+    </form> 
+    https://hyeooona825.tistory.com/89
+https://velog.io/@bagt/Spring%EC%97%90%EC%84%9C-%EC%9B%B9-%EC%86%8C%EC%BC%93WebSocket-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0#handletextmessage---%EC%96%91%EB%B0%A9%ED%96%A5-%ED%86%B5%EC%8B%A0-%EB%A1%9C%EC%A7%81
+    
+    -->
+	
+	
 	<c:import url="../temps/footer.jsp"></c:import>
 	<script src="/resources/js/chat.js"></script>
 	<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
