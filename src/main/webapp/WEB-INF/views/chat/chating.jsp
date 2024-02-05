@@ -9,8 +9,9 @@
 	<title>chat</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet">
-	<link rel="stylesheet" href="/resources/assets/css/chat.css">
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+	<link rel="stylesheet" href="/resources/assets/css/chat.css">
+	<script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
 	<c:import url="../temps/head_css.jsp"></c:import>
 </head>
 
@@ -58,7 +59,8 @@
 						</div>
 						<!-- 채팅기록 -->
 						<div class="chat-history">
-							<ul class="m-b-0">
+							<ul class="m-b-0" id="chat_record">
+								<!-- 상대방 (.text-right, float-right) -->
 								<li class="clearfix">
 									<div class="message-data text-right">
 										<span class="message-data-time">10:10 AM, Today</span>
@@ -75,6 +77,7 @@
 									<div class="message my-message">Are we meeting today?</div>
 								</li>
 								<li class="clearfix">
+									<input type="hidden" id="userCh" value="${user.nickName}">
 									<div class="message-data">
 										<span class="message-data-time">10:15 AM, Today</span>
 									</div>
@@ -90,7 +93,7 @@
 								<div class="input-group-prepend">
 									<span class="input-group-text"><i class="fa fa-send"></i></span>
 								</div>
-								<input type="text" class="form-control" placeholder="Enter text here...">
+								<input type="text" id="sendMsg" class="form-control" placeholder="Enter text here...">
 							</div>
 						</div>
 					</div>
@@ -99,6 +102,7 @@
 		</div>
 	</div>
 	<c:import url="../temps/footer.jsp"></c:import>
+	<script src="/resources/js/chat.js"></script>
 	<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
 	<script type="text/javascript"></script>
