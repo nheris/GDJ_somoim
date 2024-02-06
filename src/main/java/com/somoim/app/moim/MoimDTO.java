@@ -16,9 +16,15 @@ public class MoimDTO {
 	
 	
 	private MoimFileDTO moimFileDTO;
+	private MoimMemberDTO moimMemberDTO;
 	
 	
-	
+	public MoimMemberDTO getMoimMemberDTO() {
+		return moimMemberDTO;
+	}
+	public void setMoimMemberDTO(MoimMemberDTO moimMemberDTO) {
+		this.moimMemberDTO = moimMemberDTO;
+	}
 	public MoimFileDTO getMoimFileDTO() {
 		return moimFileDTO;
 	}

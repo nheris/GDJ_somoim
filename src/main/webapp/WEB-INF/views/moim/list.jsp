@@ -125,10 +125,10 @@
 													<p>Title</p>
 												</div>
 												<div class="col-lg-2 col-md-2 col-12">
-													<p>Members</p>
+													<p>Category</p>
 												</div>
 												<div class="col-lg-2 col-md-2 col-12">
-													<p>Join</p>
+													<p>Join Date</p>
 												</div>
 												<div class="col-lg-3 col-md-3 col-12 align-right">
 													<p>Action</p>
@@ -148,26 +148,33 @@
 												<div class="single-item-list">
 													<div class="row align-items-center">
 														<div class="col-lg-5 col-md-5 col-12">
-															<div class="item-image">
-																<img src="assets/images/my-items/my-item1.png" alt="#">
+															<div class="item-image mx-3">
 																<div class="content">
+																	<a type="text" class="btn btn-white position-relative">
+																		<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success">${dto.moimRegion}</span>
+																	</a>
+																</div>
+																<img src="/resources/upload/moim/${dto.moimFileDTO.fileName}" style="width: 100px; height: 100px; border-radius: 50px;" alt="...">
+																<!-- <div class="content"> -->
+																<span class="content mx-5">
 																	<h5 class="title">
-																		<a href="./detail" id="moimname"
+																		<a href="./detail" id="moimName"
 																			data-moim-num="${dto.moimNum}">${dto.moimName}</a>
 																	</h5>
-																	<span class="moimHead"> 모임장 ${dto.moimHead}</span>
-																</div>
+																	<span class="moimHead">${dto.moimHead}</span>
+																</span>
+																<!-- </div> -->
 															</div>
 														</div>
 
 
 														<div class="col-lg-2 col-md-2 col-12">
-															<p>멤버수</p>
+															<p>${dto.moimCategory}</p>
 														</div>
 
 
 														<div class="col-lg-2 col-md-2 col-12">
-															<p>가입일? 개설일?</p>
+															<p>${dto.moimMemberDTO.joinDate}</p>
 														</div>
 
 
@@ -182,7 +189,7 @@
 																	<i class="lni lni-eye"></i></a>
 																</li>
 																<li>
-																	<a href="javascript:void(0)" id="deleteBtn${dto.moimNum}" data-moim-num="${dto.moimNum}">
+																	<a href="javascript:void(0)" class="del" data-moim-num="${dto.moimNum}">
 																	<i class="lni lni-trash del" ></i></a>
 																</li>
 															</ul>

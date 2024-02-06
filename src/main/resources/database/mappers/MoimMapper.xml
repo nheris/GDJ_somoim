@@ -6,7 +6,7 @@
   <mapper namespace="com.somoim.app.moim.MoimDAO">
   
   	<!-- list -->
-  	<select id="getList" parameterType="MemberDTO" resultType="MoimDTO">
+<!--   	<select id="getList" parameterType="MemberDTO" resultType="MoimDTO">
   	
   		SELECT *
 		FROM MOIM
@@ -15,78 +15,38 @@
 	  		FROM MOIMMEMBER
 	   		WHERE USERNAME = #{userName})
 	   
-  	</select>
-<!--   	<select id="getList" parameterType="MemberDTO" resultMap="listReault">
-  		SELECT *
-		FROM MOIM 
-		 	 LEFT JOIN MOIMFILE m 
-		 	 USING (MOIMNUM)
-		 	 LEFT JOIN MOIMMEMBER
-		 	 USING (MOIMNUM)
-		WHERE USERNAME = #{userName};
-  	</select>
-  	<resultMap type="MemberDTO" id="listReault">
-  		<id column="MOIMNUM" property=""/>
-  		<result column="MOIMNAME" property=""/>
-  		<result column="MOIMREGION" property=""/>
-  		<result column="MOIMCATEGORY" property=""/>
-  		<result column="MOIMDATE" property=""/>
-  		<result column="MOIMTEXT" property=""/>
-  		<result column="MOIMMEMCOUNT" property=""/>
-  		<result column="MOIMHEAD" property=""/>
-  		<association property="">
-  			<id/>
-  			<result column="" property=""/>
-	  		<result column="" property=""/>
-	  		<result column="" property=""/>
-	  		<result column="" property=""/>
-	  		<result column="" property=""/>
-	  		<result column="" property=""/>
-  		</association>
-  		<association property="">
-  			<id/>
-  			<result column="" property=""/>
-	  		<result column="" property=""/>
-	  		<result column="" property=""/>
-	  		<result column="" property=""/>
-	  		<result column="" property=""/>
-	  		<result column="" property=""/>
-  		</association>
-  	</resultMap>
-  	
-  	
-  	<select id="getDetail" parameterType="MemberDTO" resultMap="getDetailResult">
-		SELECT *
-		FROM MEMBER
-			 LEFT JOIN AVATAR
-			 USING (USERNAME)
-			 
-			 INNER JOIN MEMBERROLE MR
-			 USING (USERNAME)
-			 INNER JOIN
-			 ROLE R
-			 USING (ROLENUM)
-		WHERE USERNAME=#{userName}
+  	</select> -->
+	<select id="getList" parameterType="MoimDTO" resultMap="listReault">
+	  		SELECT *
+			FROM MOIM 
+			 	 LEFT JOIN MOIMFILE m 
+			 	 USING (MOIMNUM)
+			 	 LEFT JOIN MOIMMEMBER
+			 	 USING (MOIMNUM)
+			WHERE USERNAME = #{userName}
 	</select>
-	<resultMap type="MemberDTO" id="getDetailResult">
-		<id column="USERNAME" property="userName"/>
-		<result column="PASSWORD" property="password"/>
-		<result column="NAME" property="name"/>
-		<result column="EMAIL" property="email"/>
-		<result column="PHONE" property="phone"/>
-		<result column="ADDRESS" property="address"/>
-		association 다음 collection 와야함 반대는 에러
-		<association property="avatarDTO" javaType="AvatarDTO">
-			<id column="FILENUM" property="fileNum"/>
-			<result column="FILENAME" property="fileName"/>
-			<result column="ORINAME" property="oriName"/>
-		</association>
-		<collection property="roleDTOs" javaType="List" ofType="RoleDTO">
-			<id column="ROLENUM" property="roleNum"/>	
-			<result column="ROLENAME" property="roleName"/>
-		</collection>
-	</resultMap> -->
-  	
+	
+	
+	<resultMap type="MoimDTO" id="listReault">
+	  		<id column="MOIMNUM" property="moimNum"/>
+	  		<result column="MOIMNAME" property="moimName"/>
+	  		<result column="MOIMREGION" property="moimRegion"/>
+	  		<result column="MOIMCATEGORY" property="moimCategory"/>
+	  		<result column="MOIMDATE" property="moimDate"/>
+	  		<result column="MOIMTEXT" property="moimText"/>
+	  		<result column="MOIMMEMCOUNT" property="moimMemCount"/>
+	  		<result column="MOIMHEAD" property="moimHead"/>
+	  		<association property="moimFileDTO" javaType="MoimFileDTO">
+	  			<id column="FILENUM" property="fileNum"/>
+		  		<result column="FILENAME" property="fileName"/>
+		  		<result column="ORINAME" property="oriName"/>
+	  		</association>
+			<association property="moimMemberDTO" javaType="MoimMemberDTO">
+	  			<result column="USERNAME" property="userName"/>
+		  		<result column="MOIMROLENUM" property="moimRoleNum"/>
+		  		<result column="JOINDATE" property="joinDate"/>
+	  		</association>
+  	</resultMap>
 	
 	<!-- add -->
   	<insert id="add" parameterType="MoimDTO">
@@ -95,7 +55,7 @@
   		</selectKey>
   	
   		INSERT INTO MOIM
-  		VALUES (#{moimNum}, #{moimName}, #{moimRegion}, #{moimCategory}, SYSDATE, #{moimText}, #{moimMemCount}, #{moimHead})
+  		VALUES (#{moimNum}, #{moimName}, #{moimRegion}, #{moimCategory}, TO_CHAR(SYSDATE, 'YYYYMMDD'), #{moimText}, #{moimMemCount}, #{moimHead})
   		
   	</insert>
   	<insert id="fileAdd" parameterType="MoimFileDTO">

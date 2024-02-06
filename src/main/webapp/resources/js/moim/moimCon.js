@@ -1,7 +1,7 @@
 //delete
 // const deleteBtn = document.getElementById("deleteBtn");
 let moimName = document.getElementById("moimName");
-// let moimNum = moimName.getAttribute("data-moim-num");
+let moimNum = moimName.getAttribute("data-moim-num");
 const listTbody = document.getElementById("listTbody");
 
 // deleteBtn.addEventListener("click",()=>{
@@ -10,7 +10,7 @@ listTbody.addEventListener("click",function(e){
     if(e.target.classList.contains("del")){
         //console.log(this);
         let num = e.target.parentNode.getAttribute("data-moim-num");
-        console.log(num);
+        //console.log(num);
 
         fetch("./delete",{
             method: "post",

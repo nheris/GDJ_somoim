@@ -97,18 +97,18 @@
 								<div class="mb-3">
 				                <label for="cateForm" class="form-label">관심사 &emsp;</label>
 								<select class="my-image-selectpicker" id="moimCategory" name="moimCategory">
-								    <option data-thumbnail="/resources/assets/images/categories/travel.svg' width=16" value="travel">아웃도어/여행</option>
-								    <option data-thumbnail="/resources/assets/images/categories/controller.svg' width=16" value="game">게임/오락</option>
-								    <option data-thumbnail="/resources/assets/images/categories/jobs.svg' width=16" value="jobs">업종/직무</option>
-								    <option data-thumbnail="/resources/assets/images/categories/tshirt.svg' width=16" value="tshirt">운동/스포츠</option>
-								    <option data-thumbnail="/resources/assets/images/categories/matrimony.svg' width=16" value="heart">사교/인맥</option>
-								    <option data-thumbnail="/resources/assets/images/categories/education.svg' width=16" value="education">인문학</option>
-								    <option data-thumbnail="/resources/assets/images/categories/furniture.svg' width=16" value="furniture">공예/만들기</option>
-								    <option data-thumbnail="/resources/assets/images/categories/hospital.svg' width=16" value="hospital">봉사활동</option>
-								    <option data-thumbnail="/resources/assets/images/categories/laptop.svg' width=16" value="laptop">외국/언어</option>
-								    <option data-thumbnail="/resources/assets/images/categories/car.svg' width=16" value="car">문화/공연/음악</option>
-								    <option data-thumbnail="/resources/assets/images/categories/watch.svg' width=16" value="cook">요리/제조</option>
-								    <option data-thumbnail="/resources/assets/images/categories/real-estate.svg' width=16" value="free">자유주제</option>
+								    <option data-thumbnail="/resources/assets/images/categories/travel.svg' width=16" value="아웃도어/여행">아웃도어/여행</option>
+								    <option data-thumbnail="/resources/assets/images/categories/controller.svg' width=16" value="게임/오락">게임/오락</option>
+								    <option data-thumbnail="/resources/assets/images/categories/jobs.svg' width=16" value="업종/직무">업종/직무</option>
+								    <option data-thumbnail="/resources/assets/images/categories/tshirt.svg' width=16" value="운동/스포츠">운동/스포츠</option>
+								    <option data-thumbnail="/resources/assets/images/categories/matrimony.svg' width=16" value="사교/인맥">사교/인맥</option>
+								    <option data-thumbnail="/resources/assets/images/categories/education.svg' width=16" value="인문학">인문학</option>
+								    <option data-thumbnail="/resources/assets/images/categories/furniture.svg' width=16" value="공예/만들기">공예/만들기</option>
+								    <option data-thumbnail="/resources/assets/images/categories/hospital.svg' width=16" value="봉사활동">봉사활동</option>
+								    <option data-thumbnail="/resources/assets/images/categories/laptop.svg' width=16" value="외국/언어">외국/언어</option>
+								    <option data-thumbnail="/resources/assets/images/categories/car.svg' width=16" value="문화/공연/음악">문화/공연/음악</option>
+								    <option data-thumbnail="/resources/assets/images/categories/watch.svg' width=16" value="요리/제조">요리/제조</option>
+								    <option data-thumbnail="/resources/assets/images/categories/real-estate.svg' width=16" value="자유">자유주제</option>
 								</select>
 								</div>
 								

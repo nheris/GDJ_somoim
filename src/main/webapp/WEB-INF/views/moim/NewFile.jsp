@@ -18,13 +18,12 @@
 <body>
 	<div class="items-details section">
 		
-		<!-- <div class="container mx-5"> -->
-			<!-- <div class="row bg-light"> -->
+		<div class="container mx-5">
+			<div class="row bg-light">
 						
 	
 						
 						<div class="col-6">dddd</div>
-				<div class="container mx-5">
 						<div class="post-thumbnils">
                             <img src="assets/images/blog/blog-single.jpg" alt="#">
                         </div>
@@ -255,7 +254,6 @@
                                 </form>
                             </div>
                         </div>
-                </div>
 						
 						
 						
@@ -501,9 +499,9 @@
         </div>
     </section>
     <!--  -->
-					<!-- </div> -->
+					</div>
 					
-				<!-- </div> -->
+				</div>
 			</div>
 		</div>
 	</div>
