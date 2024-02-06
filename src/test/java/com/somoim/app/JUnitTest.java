@@ -32,6 +32,6 @@ public class JUnitTest extends MyTest {
 	}
 	
 	public void detail_test() throws Exception{
-		List<MemberDTO> ar = memberDAO.getDetail(null);
+//		List<MemberDTO> ar = memberDAO.getDetail(null);
 	}
 }

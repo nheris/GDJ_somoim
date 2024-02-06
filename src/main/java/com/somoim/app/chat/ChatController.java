@@ -13,21 +13,25 @@ import com.somoim.app.member.MemberDTO;
 import com.somoim.app.member.MemberService;
 
 @Controller
-@RequestMapping("/chat/*")
+//@RequestMapping("/chat/*")
 public class ChatController {
 
 	@Autowired
 	private MemberService memberService;
 	
-	@GetMapping("chating")
+	@GetMapping("/chat")
 	public ModelAndView chat(HttpSession session, MemberDTO memberDTO, ModelAndView mv) throws Exception{
 		if(session.getAttribute("member") == null) {
 			mv.setViewName("/member/login");
 			return mv;
 		}
+		
+		System.out.println("controller session id : "+session.getId());
+		
 		memberDTO = (MemberDTO)session.getAttribute("member");
 		MemberDTO dto = memberService.getLogin(memberDTO);
 		
+		System.out.println(dto.getNickName());
 		mv.addObject("user",dto);
 		
 		mv.setViewName("/chat/chating");

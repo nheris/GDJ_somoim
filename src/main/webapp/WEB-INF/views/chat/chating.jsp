@@ -70,6 +70,7 @@
 										project coming along? 
 									</div>
 								</li>
+								
 								<li class="clearfix">
 									<div class="message-data">
 										<span class="message-data-time">10:12 AM, Today</span>
@@ -88,38 +89,26 @@
 						</div>
 						
 						<!-- 채팅입력 -->
+						
 						<div class="chat-message clearfix">
 							<div class="input-group mb-0">
 								<div class="input-group-prepend">
 									<span class="input-group-text"><i class="fa fa-send"></i></span>
 								</div>
-								<input type="text" id="sendMsg" class="form-control" placeholder="Enter text here...">
+								<input type="text" name="message" id="sendMsg" class="form-control" placeholder="Enter text here...">
 							</div>
 						</div>
+						
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 	
-<!-- 	    <form class="message-form" id="messageForm">
-        <label class="message-container">
-            <span hidden>메세지</span>
-            <input class="message-input" maxlength="100" name="message" placeholder="메세지를 입력하세요." type="text">
-        </label>
-        <input class="send-button" type="submit" value="전송">
-    </form> 
-    https://hyeooona825.tistory.com/89
-https://velog.io/@bagt/Spring%EC%97%90%EC%84%9C-%EC%9B%B9-%EC%86%8C%EC%BC%93WebSocket-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0#handletextmessage---%EC%96%91%EB%B0%A9%ED%96%A5-%ED%86%B5%EC%8B%A0-%EB%A1%9C%EC%A7%81
-    
-    -->
-	
-	
 	<c:import url="../temps/footer.jsp"></c:import>
 	<script src="/resources/js/chat.js"></script>
 	<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
-	<script type="text/javascript"></script>
 </body>
 
 </html>

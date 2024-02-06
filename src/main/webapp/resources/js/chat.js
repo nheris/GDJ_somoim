@@ -4,54 +4,66 @@
 // msg input
 
 console.log('js');
-document.addEventListener("DOMContentLoaded",function(){
-
 
 const sendMsg = document.getElementById('sendMsg');
 
 const chat_record = document.getElementById('chat_record');
 const userCh = document.getElementById('userCh');
+const msgForm = document.getElementById('msgForm');
+
+let sock = new SockJS("http://localhost:80/chat");
 
 
-let sock = new SockJS("http://localhost/chat");
 
-sock.onopen = onOpen;
-sock.onmessage = onMessage;
-sock.onclose = onClose;
+
 
 sendMsg.addEventListener('keyup',(e) => {
 	if(sendMsg.value != ""){
         if(e.key == 'Enter' || e.keyCode == '13'){
-            console.log("enter : "+sendMsg.value);
-            sock.send(sendMsg.value);
-			
-            
+            sock.send(userCh.value+":"+sendMsg.value);
 
             // fetch
-            
-            mySend(userCh.value +" : "+sendMsg.value);
+			
+            // mySend(userCh.value +" : "+sendMsg.value);
 
-            
         	sendMsg.value = '';
         }
 	}
 });
 
-function onOpen(){
+sock.onopen = function(){
     console.log('연결');
-    sendMsg.innerHTML = '';
+    sendMsg.innerHTML = 'con';
 }
 
-function onMessage(e){
+sock.onmessage =  function (e){
     console.log(e);
-    let msg = e.data;
-    console.log("onMessage : "+msg);
+    let data = e.data;
+    let ar = data.split(":");
+
+    let sessionid = null;
+    let smsg = null;
+
+    console.log(ar[0]);
+    console.log(ar[1]);
+
+    if(ar[0] == userCh.value){
+        mySend(ar[1]);
+    }else{
+        otherSend(ar[1]);
+    }
+
+    console.log("onMessage : "+data);
 }
 
-function onClose(){
-    console.log('onClose');
-
+sock.onerror = function(){
+    console.log('error');
 }
+
+// sock.onclose = function(){
+//     console.log('onClose');
+//     }
+// }
 
 function mySend(msg){
     // 채팅형태로 Element 추가
@@ -84,7 +96,7 @@ function otherSend(msg){
     let div = document.createElement('div');
     div.classList.add('message-data');
     div.classList.add('text-right');
-    let span = documeng.createElement('span');
+    let span = document.createElement('span');
     span.classList.add('message-data-time');
     span.innerText = '날짜';
     
@@ -95,19 +107,10 @@ function otherSend(msg){
 
     div = document.createElement('div');
     
-    li.append('div');
+    li.append(div);
     div.classList.add('message');
     div.classList.add('other-message');
     div.classList.add('float-right');
     div.innerText = msg;
 }
 
-});
-
-
-messageForm.onsubmit = e => {
-    e.preventDefault();
-    webSocket.send(messageForm['message'].value);
-    messageForm['message'].value = '';
-    messageForm['message'].focus();
-};
