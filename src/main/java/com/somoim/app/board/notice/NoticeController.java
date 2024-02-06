@@ -63,21 +63,20 @@ public class NoticeController {
 	}
 	
 	//리스트
-//	@GetMapping("list")
-//	public String getList(Pager pager, Model model) throws Exception {
-//	    List<BoardDTO> ar = noticeService.getList(pager);
-//	    model.addAttribute("list", ar);	
-//	    return "board/list";
-//	}
-//	
+	@GetMapping("list")
+	public String getList(Pager pager, Model model) throws Exception {
+	    List<BoardDTO> ar = noticeService.getList(pager);
+	    model.addAttribute("list", ar);	
+	    return "board/list";
+	}
+	
 
-    @GetMapping("list")
-    @ResponseBody
-    public List<BoardDTO> getList(Pager pager, Model model) throws Exception {
-        List<BoardDTO> ar = noticeService.getList(pager);
-        model.addAttribute("list", ar);
-        return ar;
-    }
+	@GetMapping("noticeList")
+	@ResponseBody
+	public List<BoardDTO> getListJson(Pager pager) throws Exception {
+	    List<BoardDTO> ar = noticeService.getList(pager);
+	    return ar; // JSON 데이터를 반환
+	}
 
 	
 	

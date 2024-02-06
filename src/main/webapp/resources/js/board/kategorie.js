@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
+    getNoticeList();
     const navLinks = document.querySelectorAll('.BOARDCATEGORY');
 
     navLinks.forEach(link => {
@@ -17,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 function getNoticeList() {
-    fetch("/notice/list", {
+    fetch("noticeList", {
         method: "GET",
     })
     .then((response) => response.json())
@@ -25,12 +26,20 @@ function getNoticeList() {
         const noticeList = document.getElementById("noticeList");
         noticeList.innerHTML = ""; // 테이블 초기화하는 부분
         data.forEach((item) => {
+            const boardDate = new Date(item.boardDate);
+            //numeric -> 숫자년도
+            // 2-digit -> 월2자리
+            // 2-digit -> 일2자리
+            const formattedDate = boardDate.toLocaleDateString('ko-KR', { year: 'numeric', month: '2-digit', day: '2-digit' });
+            // 파싱하는 작업 formattedDate를 사용하면 제일 뒤에 .이 붙어어서 나옴
+            const lastDotIndex = formattedDate.lastIndexOf('.');
+            const boardDates = formattedDate.substring(0, lastDotIndex);
             const row = document.createElement("tr");
             row.innerHTML = `
                 <td>${item.boardNum}</td>
-                <td><a href="/notice/detail?productNum=${item.boardNum}">${item.boardTitle}</a></td>
+                <td><a href="/notice/detail?boardNum=${item.boardNum}">${item.boardTitle}</a></td>
                 <td>${item.boardWriter}</td>
-                <td>${item.boardDate}</td>
+                <td>${boardDates}</td>
             `;
             noticeList.appendChild(row);
         });
