@@ -26,8 +26,6 @@ import com.somoim.app.util.Pager;
 @RequestMapping("/notice/*")
 public class NoticeController {
 
-	private static final int HashMap = 0;
-	private static final int String = 0;
 	@Autowired
 	private NoticeService noticeService;
 	
@@ -65,24 +63,22 @@ public class NoticeController {
 	}
 	
 	//리스트
-	@GetMapping("list")
-	public String getList(Pager pager, Model model)throws Exception{
-		List<BoardDTO> ar = noticeService.getList(pager);
-		model.addAttribute("list", ar);	
-		return "board/list";
-	}
-	
-
-
 //	@GetMapping("list")
-//	@ResponseBody
-//	public Map<String, Object> getList(Pager pager, Model model, NoticeDTO noticeDTO)throws Exception{
-//		List<BoardDTO> ar = noticeService.getList(pager, noticeDTO);
-//		Map<String, Object> map = new HashMap<String, Object>();
-//		map.put("datas", ar);
-//		map.put("pager", pager);
-//		return map;
+//	public String getList(Pager pager, Model model) throws Exception {
+//	    List<BoardDTO> ar = noticeService.getList(pager);
+//	    model.addAttribute("list", ar);	
+//	    return "board/list";
 //	}
+//	
+
+    @GetMapping("list")
+    @ResponseBody
+    public List<BoardDTO> getList(Pager pager, Model model) throws Exception {
+        List<BoardDTO> ar = noticeService.getList(pager);
+        model.addAttribute("list", ar);
+        return ar;
+    }
+
 	
 	
 	//디테일

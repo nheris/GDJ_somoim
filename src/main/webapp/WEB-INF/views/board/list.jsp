@@ -9,7 +9,7 @@
 <title>Somoim</title>
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <!-- CSS 임포트 -->
 <c:import url="../temps/head_css.jsp"></c:import>
 </head>
@@ -31,17 +31,12 @@
 	</div>
 	<!--  -->
 	<div class="container mb-4" name="categorySelect">
-		<ul
-			class="nav nav-pills list-group-horizontal d-flex justify-content-center">
-			<li class="nav-item px-2"><a class="nav-link active BOARDCATEGORY"
-				href="../notice/list">전체</a></li>
-			<li class="nav-item px-2" name="category0" id="category0"><a class="nav-link BOARDCATEGORY" 
-				href="../notice/list">공지</a></li>
-			<li class="nav-item px-2" name="category1" id="category1"><a class="nav-link BOARDCATEGORY"
-				href="../notice/list">패치</a></li>
-			<li class="nav-item px-2" name="category2" id="category2"><a class="nav-link BOARDCATEGORY"
-				href="../notice/list">기타</a></li>
-		</ul>
+<ul class="nav nav-pills list-group-horizontal d-flex justify-content-center">
+    <li class="nav-item px-2"><a class="nav-link active BOARDCATEGORY" href="#" data-category="all">전체</a></li>
+    <li class="nav-item px-2" name="category0" id="category0"><a class="nav-link BOARDCATEGORY" href="#" data-category="category0">공지</a></li>
+    <li class="nav-item px-2" name="category1" id="category1"><a class="nav-link BOARDCATEGORY" href="#" data-category="category1">패치</a></li>
+    <li class="nav-item px-2" name="category2" id="category2"><a class="nav-link BOARDCATEGORY" href="#" data-category="category2">기타</a></li>
+</ul>
 	</div>
 	<!--  -->
 	<div class="container">
@@ -80,11 +75,9 @@
 				<th scope="col">작성날짜</th>
 			</tr>
 		</thead>
-		<tbody id="notcieList" data-user="${member.userName}">
+<tbody id="noticeList" data-user="${member.userName}">
 
-
-
-		</tbody>
+</tbody>
 	</table>
 	
 	<div class="col-auto d-flex justify-content-center">
