@@ -48,5 +48,27 @@ public class MoimController {
 		
 	}
 	
+	//delete
+	@PostMapping("delete")
+	public String delete(MoimDTO moimDTO, HttpSession session, Model model) throws Exception {
 
+		int result = moimService.delete(moimDTO);
+		
+		//다시 조회
+		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+
+		List<MoimDTO> ar = moimService.getList(memberDTO);
+		model.addAttribute("list", ar);
+		
+		return "moim/ajaxList";
+		
+	}
+	
+	
+	//update
+	//detail
+	@GetMapping("detail")
+	public void detail() {
+		
+	}
 }

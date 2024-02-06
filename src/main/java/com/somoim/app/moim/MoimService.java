@@ -46,6 +46,16 @@ public class MoimService {
 		return result;
 		
 	}
+
+	public int delete(MoimDTO moimDTO) throws Exception {
+		//모임사진 삭제
+		MoimFileDTO moimFileDTO = moimDAO.file(moimDTO);
+		String path = servletContext.getRealPath("/resources/upload/moim");
+		fileManager.fileDelete(path, moimFileDTO.getFileName());
+		
+		//모임삭제
+		return moimDAO.delete(moimDTO);
+	}
 	
 	
 	

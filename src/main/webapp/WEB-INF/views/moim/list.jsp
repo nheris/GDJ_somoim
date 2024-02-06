@@ -63,7 +63,7 @@
 									결제 하기</a></li>
 						</ul>
 						<div class="button text-center">
-						<button class="btn mt-5" href="javascript:void(0)">Logout</button>
+							<button class="btn mt-5" href="javascript:void(0)">Logout</button>
 						</div>
 					</div>
 				</nav>
@@ -79,7 +79,7 @@
 
 					<div class="row">
 						<!-- 안에 내용 수정해서 사용하세요 -->
-						
+
 						<!-- 정모채팅목록 -->
 						<div class="col-lg-6 mt-4 mb-5">
 							<ol class="list-group list-group-numbered">
@@ -140,7 +140,7 @@
 								</tr>
 							</thead>
 
-							<tbody class="table-group-divider">
+							<tbody class="table-group-divider" id="listTbody">
 								<c:forEach items="${list}" var="dto">
 									<tr>
 										<td>
@@ -152,7 +152,8 @@
 																<img src="assets/images/my-items/my-item1.png" alt="#">
 																<div class="content">
 																	<h5 class="title">
-																		<a href="javascript:void(0)" id="moimname" data-moim-num="${dto.moimNum}">${dto.moimName}</a>
+																		<a href="./detail" id="moimname"
+																			data-moim-num="${dto.moimNum}">${dto.moimName}</a>
 																	</h5>
 																	<span class="moimHead"> 모임장 ${dto.moimHead}</span>
 																</div>
@@ -172,12 +173,18 @@
 
 														<div class="col-lg-3 col-md-3 col-12 align-right">
 															<ul class="action-btn">
-																<li><a href="javascript:void(0)"><i
-																		class="lni lni-pencil"></i></a></li>
-																<li><a href="javascript:void(0)"><i
-																		class="lni lni-eye"></i></a></li>
-																<li><a href="javascript:void(0)"><i
-																		class="lni lni-trash"></i></a></li>
+																<li>
+																	<a href="javascript:void(0)">
+																	<i class="lni lni-pencil"></i></a>
+																</li>
+																<li>
+																	<a href="javascript:void(0)">
+																	<i class="lni lni-eye"></i></a>
+																</li>
+																<li>
+																	<a href="javascript:void(0)" id="deleteBtn${dto.moimNum}" data-moim-num="${dto.moimNum}">
+																	<i class="lni lni-trash del" ></i></a>
+																</li>
 															</ul>
 														</div>
 
@@ -188,7 +195,7 @@
 										</td>
 									</tr>
 								</c:forEach>
-								
+
 							</tbody>
 						</table>
 
@@ -212,19 +219,16 @@
 
 
 						<!-- 모임 개설 -->
-						
-						<a href="./add" class="btn btn-outline-secondary my-2" >모임 개설하기</a>
-						
 						<div class="button text-center">
-						<a href="./add" class="btn my-3" >모임 개설하기</a>
+							<a href="./add" class="btn my-3" id="addBtn">모임 개설하기</a>
 						</div>
-						
-						
-						
-						
-						
-						
-						
+
+
+
+
+
+
+
 						<!-- 페이징 -->
 						<!-- <div class="pagination left ">
 							<ul class="pagination-list">
@@ -253,6 +257,7 @@
 
 	<!-- ========================= JS improt ========================= -->
 	<c:import url="../temps/footer.jsp"></c:import>
+	<script src="/resources/js/moim/moimCon.js"></script>
 </body>
 
 </html>

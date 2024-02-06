@@ -19,20 +19,33 @@ public class MoimDAO {
 		return sqlSession.selectList(NAMESPACE+"getList", memberDTO);
 	}
 	
+	
 	//add
-	//모임 개설
+		//모임 개설
 	public int add(MoimDTO moimDTO) {
 		return sqlSession.insert(NAMESPACE+"add", moimDTO);
 	}
-	//모임이미지 저장
+		//모임이미지 저장
 	public int fileAdd(MoimFileDTO moimFileDTO) {
 		return sqlSession.insert(NAMESPACE+"fileAdd", moimFileDTO);
 	}
-	//모임장 추가
+		//모임장 추가
 	public int moimHeadAdd(MoimDTO moimDTO) {
 		return sqlSession.insert(NAMESPACE+"moimHeadAdd", moimDTO);
 	}
 	
+	
+	//delete
+		//모임사진 삭제
+	public MoimFileDTO file(MoimDTO moimDTO) {
+		return sqlSession.selectOne(NAMESPACE+"file", moimDTO);
+	}
+		//모임 삭제
+	public int delete(MoimDTO moimDTO) {
+		return sqlSession.delete(NAMESPACE+"delete", moimDTO);
+	}
+
+
 	
 	//모임 멤버 가입
 //	public int moimMemAdd(MoimDTO moimDTO) {

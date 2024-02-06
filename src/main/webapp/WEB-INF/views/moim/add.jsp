@@ -89,7 +89,7 @@
 							</div>
 						</div>
 
-						<!-- 폼 -->  
+						<!-- 폼  -->  
 						<form id="addForm" action="./add" method="post" enctype="multipart/form-data">
 			                <div class="col-12 mx-3 px-5 bg-white" style="border-radius: 10px; width: 99%">
 			                
@@ -200,9 +200,10 @@
 									<input type="number" class="form-control" id="moimMemCount" name="moimMemCount">
 								</div>
 								
+								
 								<!-- 제출 -->
 								<div class="button text-center">
-									<button class="btn my-3" id="submitButton" type="submit">모임 만들기</button>
+									<button class="btn my-3" id="submitBtn" type="submit">모임 만들기</button>
 								</div>
 	
 							</div>

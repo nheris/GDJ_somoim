@@ -1,3 +1,26 @@
+
+//모임 개설
+const submitBtn = document.getElementById("submitBtn");
+let addForm = document.getElementById("addForm");
+submitBtn.addEventListener("click",()=>{
+    let form = new FormData(addForm);
+    //console.log(form)
+    fetch("./add",{
+        method:"post",
+        headers:{
+            "Content-type":"application/x-www-form-urlencoded"
+        },
+        body: form
+    })
+    .then(res=>res.text)
+    .then(r=>{
+        console.log(r);
+    })
+})
+
+
+
+//카테고리
 const $_SELECT_PICKER = $('.my-image-selectpicker');
 $_SELECT_PICKER.find('option').each((idx, elem) => {
     const $OPTION = $(elem);
@@ -11,6 +34,7 @@ let cityResult = '';
 let remainList = '';
 
 
+//지역
 let moimRegion = document.getElementById("moimRegion");
 
 function city(e){
@@ -71,7 +95,6 @@ function city(e){
 
 
 }
-
 
 const save = document.getElementById("save");
 let moimName = document.getElementById("moimName");
