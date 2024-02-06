@@ -34,49 +34,47 @@
 	<div class="container mb-4">
 		<ul
 			class="nav nav-pills list-group-horizontal d-flex justify-content-center">
-			<li class="nav-item px-2"><a class="nav-link active" href="/">전체</a>
-			</li>
-			<li class="nav-item px-2"><a class="nav-link" href="./list">공지</a>
-			</li>
-			<li class="nav-item px-2"><a class="nav-link" href="#">패치</a></li>
-			<li class="nav-item px-2"><a class="nav-link" href="#">기타</a></li>
+			<li class="nav-item px-2"><a class="nav-link active"
+				href="../notice/list">전체</a></li>
+			<li class="nav-item px-2"><a class="nav-link"
+				href="../notice/list">공지</a></li>
+			<li class="nav-item px-2"><a class="nav-link"
+				href="../notice/list">패치</a></li>
+			<li class="nav-item px-2"><a class="nav-link"
+				href="../notice/list">기타</a></li>
 		</ul>
 	</div>
 
 	<!--  -->
 	<div class="container">
+		<div class="card overflow-hidden shadow rounded-4 border-0 mb-5">
+			<div class="card-body p-0">
+				<div class="d-flex align-items-center">
+					<div class="p-5">
+						<h2 class="fw-bolder">${detail.boardTitle}</h2>
+						<div>${detail.boardText}</div>
 
-
-	<table class="table">
-		<thead>
-			<tr>
-				<th scope="col">글번호</th>
-				<th scope="col">제목</th>
-				<th scope="col">작성자</th>
-				<th scope="col">작성날짜</th>
-			</tr>
-		</thead>
-		<tbody>
-
-			<c:forEach items="${list}" var="dto">
-				<c:set var="f" value="0"></c:set>
-				<tr>
-					<td>${dto.boardNum}</td>
-					<td>{dto.boardNum}"></td>
-					<td>${dto.boardWriter}</td>
-					<td>${dto.boardDate}</td>
-				</tr>
-
-			</c:forEach>
-		</tbody>
-
-		</tbody>
-	</table>
+						<div>
+							<c:forEach items="${detail.fileDTOs}" var="f">
+								<a href="../resources/upload/notice/${f.fileName}">${f.oriName}</a>
+							</c:forEach>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div>
+			<%-- <c:if test="${detail.boardWriter eq member.userName}"> --%>
+				<a id="update" class="btn btn-outline-dark mb-3" href="#">Update</a>
+				<a id="delete" class="btn btn-outline-dark mb-3" href="#">Delete</a>
+			<%-- </c:if> --%>
+			<form id="frm" action="./update" method="get">
+				<input type="hidden" name="boardNum" value="${detail.boardNum}">
+			</form>
+		</div>
 	</div>
-
-
 	<!-- ========================= JS improt ========================= -->
-
+	<script src="/resources/js/board/boardDetail.js"></script>
 	<c:import url="../temps/footer.jsp"></c:import>
 </body>
 </html>

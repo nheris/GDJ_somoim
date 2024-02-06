@@ -10,6 +10,8 @@ import com.somoim.app.board.BoardFileDTO;
 public class NoticeDTO  extends BoardDTO{
 
 	
+	
+	
 	private List<BoardFileDTO> fileDTOs;
 
 	public List<BoardFileDTO> getFileDTOs() {

@@ -30,15 +30,19 @@
 		</div>
 	</div>
 	<!--  -->
-
-
-<div class="container mb-4" name="categorySelect">
- <button class="btn btn-outline-primary BOARDCATEGORY">전체</button>
- <button class="btn btn-outline-primary BOARDCATEGORY" name="category0">공지</button>
-  <button class="btn btn-outline-primary BOARDCATEGORY" name="category1">패치</button>
-  <button class="btn btn-outline-primary BOARDCATEGORY" name="category2">기타</button>
-</div>
-
+	<div class="container mb-4" name="categorySelect">
+		<ul
+			class="nav nav-pills list-group-horizontal d-flex justify-content-center">
+			<li class="nav-item px-2"><a class="nav-link active BOARDCATEGORY"
+				href="../notice/list">전체</a></li>
+			<li class="nav-item px-2" name="category0" id="category0"><a class="nav-link BOARDCATEGORY" 
+				href="../notice/list">공지</a></li>
+			<li class="nav-item px-2" name="category1" id="category1"><a class="nav-link BOARDCATEGORY"
+				href="../notice/list">패치</a></li>
+			<li class="nav-item px-2" name="category2" id="category2"><a class="nav-link BOARDCATEGORY"
+				href="../notice/list">기타</a></li>
+		</ul>
+	</div>
 	<!--  -->
 	<div class="container">
 		<form>
@@ -81,9 +85,8 @@
 
 
 		</tbody>
-
-		</tbody>
 	</table>
+	
 	<div class="col-auto d-flex justify-content-center">
 		<div class="col-12 mb-3">
 			<nav aria-label="Page navigation example">
@@ -125,7 +128,8 @@
 
 
 	<!-- ========================= JS improt ========================= -->
-<script src="/resources/js/board/kategorie.js"></script>
+	<script src="/resources/js/board/kategorie.js"></script>
 	<c:import url="../temps/footer.jsp"></c:import>
+	
 </body>
 </html>

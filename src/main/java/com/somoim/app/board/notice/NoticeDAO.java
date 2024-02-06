@@ -1,6 +1,7 @@
 package com.somoim.app.board.notice;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,9 @@ public class NoticeDAO  implements BoardDAO{
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(namespace+"getList", pager);
 	}
+	
+	
+	
 
 	@Override
 	public BoardDTO getDetail(BoardDTO boardDTO) throws Exception {
@@ -63,6 +67,7 @@ public class NoticeDAO  implements BoardDAO{
 	public List<BoardFileDTO> getFileList(BoardDTO boardDTO)throws Exception{
 		return sqlSession.selectList(namespace+"getFileList", boardDTO);
 	}
-	
+
+
 
 }

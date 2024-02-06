@@ -99,7 +99,6 @@
 	WHERE R BETWEEN  #{startRow} AND #{lastRow}
   	</select>
   
-  
    	
 	<select id="getTotalCount" resultType="Long">
 	SELECT COUNT(boardNum) FROM NOTICEBOARD
@@ -119,13 +118,16 @@
   
   
 	<update id="setUpdate" parameterType="BoardDTO">
-		UPDATE NOTICE
+		UPDATE NOTICEBOARD
 		<set>
 			<if test="boardTitle != null and boardTitle !=''">
 				BOARDTITLE=#{boardTitle},
 			</if>
-			<if test="boardContents != null">
-				BOARDCONTENTS=#{boardContents}
+			<if test="boardText != null">
+				BOARDTEXT=#{boardText},
+			</if>
+			<if test="boardCategory != null">
+				boardCategory=${boardCategory}
 			</if>
 		</set>
 		WHERE BOARDNUM=#{boardNum}

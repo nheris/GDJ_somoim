@@ -1,6 +1,8 @@
 package com.somoim.app.board.notice;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -20,10 +22,12 @@ import com.somoim.app.member.MemberDTO;
 import com.somoim.app.util.Pager;
 
 
-@RestController
+@Controller
 @RequestMapping("/notice/*")
 public class NoticeController {
 
+	private static final int HashMap = 0;
+	private static final int String = 0;
 	@Autowired
 	private NoticeService noticeService;
 	
@@ -44,14 +48,12 @@ public class NoticeController {
 	
 	// 등록
 	@GetMapping("add")
-	
 	public String setAdd()throws Exception{
 		return "board/add";
 	}
 	
 	// 등록
 	@PostMapping("add")
-	@ResponseBody
 	public String setAdd(BoardDTO boardDTO, MultipartFile [] attachs, HttpSession session)throws Exception{
 		// write 작성 안하고 session에서 받아오게 설정
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
@@ -64,16 +66,27 @@ public class NoticeController {
 	
 	//리스트
 	@GetMapping("list")
-	@ResponseBody
 	public String getList(Pager pager, Model model)throws Exception{
 		List<BoardDTO> ar = noticeService.getList(pager);
 		model.addAttribute("list", ar);	
 		return "board/list";
 	}
+	
 
+
+//	@GetMapping("list")
+//	@ResponseBody
+//	public Map<String, Object> getList(Pager pager, Model model, NoticeDTO noticeDTO)throws Exception{
+//		List<BoardDTO> ar = noticeService.getList(pager, noticeDTO);
+//		Map<String, Object> map = new HashMap<String, Object>();
+//		map.put("datas", ar);
+//		map.put("pager", pager);
+//		return map;
+//	}
+	
+	
 	//디테일
 	@GetMapping("detail")
-	@ResponseBody
 	public String getDetail(BoardDTO boardDTO, Model model)throws Exception{
 	boardDTO = noticeService.getDetail(boardDTO);
 	model.addAttribute("detail", boardDTO);
@@ -83,7 +96,6 @@ public class NoticeController {
 	
 	//업데이트
 	@PostMapping("update")
-	@ResponseBody
 	public String setUpdate(BoardDTO boardDTO , MultipartFile [] attachs)throws Exception{
 	int result = noticeService.setUpdate(boardDTO, attachs);
 	return "redirect:./list";
@@ -92,7 +104,6 @@ public class NoticeController {
 	
 	//업데이트
 	@GetMapping("update")
-	@ResponseBody
 	public String setUpdate(BoardDTO boardDTO , Model model)throws Exception{
 	boardDTO = noticeService.getDetail(boardDTO);
 	model.addAttribute("DTO", boardDTO);
@@ -101,7 +112,6 @@ public class NoticeController {
 	}
 	
 	@PostMapping("delete")
-	@ResponseBody
 	public String setDelete(BoardDTO boardDTO)throws Exception{
 		int result = noticeService.setDelete(boardDTO);
 		return "redirect:./list";

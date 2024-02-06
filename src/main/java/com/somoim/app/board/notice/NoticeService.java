@@ -1,7 +1,9 @@
 package com.somoim.app.board.notice;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletContext;
 
@@ -39,6 +41,7 @@ public class NoticeService implements BoardService{
 		List<BoardDTO>ar = this.noticeDAO.getList(pager);
 		return ar;
 	}
+
 
 	@Override
 	public BoardDTO getDetail(BoardDTO boardDTO) throws Exception {		
@@ -94,5 +97,16 @@ public class NoticeService implements BoardService{
 		int result = noticeDAO.setDelete(boardDTO);
 		return result; 
 	}
+
+
+
+//	public List<BoardDTO> getList(Pager pager, NoticeDTO noticeDTO) throws Exception{
+//		pager.makeRow();
+//		pager.makeNum(noticeDAO.getTotalCount(pager));
+//		Map<String, Object> map = new HashMap<String, Object>();
+//		map.put("pager", pager);
+//		map.put("NoticeDTO", noticeDTO);
+//		return noticeDAO.getList(map);
+//	}
 
 }
