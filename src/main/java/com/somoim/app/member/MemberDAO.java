@@ -12,6 +12,14 @@ public class MemberDAO {
 	private SqlSession sqlSession;
 	private final String namespace="com.somoim.app.member.MemberDAO.";
 	
+	public int setPasswordUpdate(MemberDTO memberDTO)throws Exception{
+		return sqlSession.update(namespace+"setPasswordUpdate", memberDTO);
+	}
+	
+	public int setUpdate(MemberDTO memberDTO)throws Exception{
+		return sqlSession.update(namespace+"setUpdate", memberDTO);
+	}
+	
 	public int setJoin(MemberDTO memberDTO)throws Exception{
 		return sqlSession.insert(namespace+"setJoin", memberDTO);
 	}

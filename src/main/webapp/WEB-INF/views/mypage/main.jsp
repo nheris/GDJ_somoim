@@ -5,7 +5,7 @@
 <html lang="en">
 
 <head>
-<meta charset="utf-8" />
+<meta charset="UTF-8" />
 <meta http-equiv="x-ua-compatible" content="ie=edge" />
 <title>Somoim</title>
 <meta name="description" content="" />
@@ -73,69 +73,95 @@
 					style="border-radius: 10px">
 					<div class="row">
 						<h2 class="mb-4">Profile Settings</h2>
-						<div></div>
-						<table class="table table-hover">
+						
+						<form id="frm" action="./update" method="post" accept-charset="UTF-8" enctype="multipart/form-data">
+						<table class="table table-hover" id="del_td">
 							<tr>
-								<td colspan="2">
-									<c:if test="${empty member.profiles}">
+								<td colspan="5">
+									<c:if test="${empty member.profile}">
 										<img class="rounded float-left"
 											src="/resources/img/profile/profile.jpg" alt="..." style="width: 80px; height: 80px;">
-											<td><input type="hidden" value="변경하기" class="profiles"></td>
+											
 									</c:if> 
-									<c:if test="${not empty member.profiles}">
+									<c:if test="${not empty member.profile.fileName}">
 										<img class="rounded float-left"
-											src="../resources/upload/member/${member.profiles.filename} alt="...">
-											<td><input type="hidden" value="변경하기" class="profiles"></td>
+											src="../resources/upload/member/${member.profile.fileName}" alt="..." style="width: 80px; height: 80px;">
+											
 									</c:if>
 								</td>
 							</tr>
-							
+							<tr id="show_profile" style="display: none;">
+								<td>프로필 사진 변경</td>
+								<td><input class="profile" name="attachs" type="file"></td>
+							</tr>
 							<tr>
 								<td class="table dark">닉네임</td>
 								<td class="del">${member.nickName}									
-								</td>
-								<td><input type="hidden" value="${member.nickName}" id="nickName"></td>
+								</td>								
+								<td><input type="hidden" name="nickName" value="${member.nickName}" class="show"></td>
 							</tr>
 
 							<tr>
 								<td class="table dark">이름</td>
-								<td class="del">
+								<td>
 									${member.name}
-								</td>
-								<td><input type="hidden" value="${member.name}" id="name"></td>
+								</td>								
 							</tr>
 
 							<tr>
 								<td class="table dark">주소</td>
 								<td class="del">${member.address}</td>
-								<td><input type="hidden" value="${member.address}" id="address"></td>
+								<td><input type="hidden" name="address" value="${member.address}" class="show"></td>
 							</tr>
 
 							<tr>
 								<td class="table dark">전화번호</td>
 								<td class="del">${member.phone}</td>
-								<td><input type="hidden" value="${member.phone}" id="phone"></td>
+								<td><input type="hidden" name="phone" value="${member.phone}" class="show"></td>
 							</tr>
 
 							<tr>
 								<td class="table dark">이메일</td>
 								<td class="del">${member.email}</td>
-								<td><input type="hidden" value="${member.email}" id="email"></td>
+								<td><input type="hidden" name="email" value="${member.email}" class="show"></td>
 							</tr>
 
 						</table>
+					</form>
+					<span>
+						<button id="btn1" class="btn btn-hover">수정하기</button>
+						<button id="btn2" hidden class="btn btn-hover">수정완료</button>
+					</span>
+					<br><br><br><br>
+					<h2>비밀번호 변경</h2>
+					<table class="table table-hover" id="del_td">
+						<tr>
+							<td class="table dark">비밀번호</td>
+							<td><input type="password" name="password" id = "password"></td>
+						</tr>
+						<tr>
+							<td class="table dark">비밀번호변경</td>
+							<td><input type="password" id = "passwordCheck"></td>
+						</tr>
+						
+					</table>
+						<button id="btn3">비밀번호 수정</button>
 					</div>
 
-					<button id="btn1" class="btn btn-hover">수정하기</button>
 					
-					<form action="./update" method="get"></form>
+					
+					
+					
+					
 
 					<!-- Main content goes here -->
 				</div>
+				
 			</div>
 		</div>
 	</div>
-
+	<div>
+	</div>
 
 	<!-- ========================= scroll-top ========================= -->
 	<a href="#" class="scroll-top btn-hover"> <i
@@ -144,6 +170,7 @@
 
 	<!-- ========================= JS improt ========================= -->
 	<c:import url="../temps/footer.jsp"></c:import>
+	<script src="../resources/js/mypage/main.js"></script>
 </body>
 
 </html>

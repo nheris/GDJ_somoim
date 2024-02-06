@@ -55,7 +55,7 @@ public class MemberController {
 			return "member/result"; 
 		}		
 		session.setAttribute("member", memberDTO);
-		return "redirect:../";		
+		return "redirect:../";
 	}
 	@GetMapping("logout")
 	public String getLogout(HttpSession session)throws Exception{

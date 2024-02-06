@@ -105,7 +105,7 @@
     </section>
     	<!-- ========================= JS improt ========================= -->
 	<c:import url="../temps/footer.jsp"></c:import>
-	<script src="../resources/assets/js/member/joinCheck.js"></script>
+	<script src="../resources/js/member/joinCheck.js"></script>
 	
 </body>
 </html>

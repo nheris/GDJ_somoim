@@ -15,8 +15,7 @@ password.addEventListener("keyup",()=>{
     if(p.length>7){
         passwordResult.innerHTML=""
         p1=true;
-    }else{
-        console.log("8자리이상");
+    }else{        
         passwordResult.innerHTML="비밀번호는 8자리 이상"
         p1=false;
     }
@@ -24,7 +23,7 @@ password.addEventListener("keyup",()=>{
 passwordCheck.addEventListener("keyup",()=>{
     
     if(password.value==passwordCheck.value){
-        passwordCheckResult.innerHTML="일치"
+        passwordCheckResult.innerHTML=""
         p2=true;
     }else{
         passwordCheckResult.innerHTML="비밀번호가 불일치"
