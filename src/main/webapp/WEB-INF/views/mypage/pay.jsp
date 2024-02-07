@@ -2,8 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%><%@ taglib
-	prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -98,7 +98,7 @@
 									<div class="col">
 										<!-- Single Table -->
 										<div class="single-table wow fadeInUp mx-auto"
-											data-wow-delay=".${loop.index+2}s" style="width: 290px;">
+											data-wow-delay=".${loop.index+2}s" style="width: 285px;">
 											<!-- Table Head -->
 											<div class="table-head">
 												<div class="price">
@@ -119,12 +119,23 @@
 												<li>기본적인 요금제</li>
 												<li>모임개설 가능</li>
 												<li>가입가능한 모임 수 증가</li>
-												<li>할인 없는 기본 요금</li>
+												<li><c:choose>
+														<c:when test="${paymentType[0].pTypePrice ne type.pTypePrice}">
+															<c:set var="perStr" value="${fn:substringBefore(type.pTypePer, '개월')}"/>
+															<c:set var="perInt" value="${Integer.parseInt(perStr)}"/>
+															<c:set var="discountRate" value="${(1-(type.pTypePrice / (paymentType[0].pTypePrice* perInt))) * 100}" />
+															<fmt:formatNumber value="${discountRate}" pattern="#.#"/>%
+								                            할인 요금
+								                        </c:when>
+														<c:otherwise>
+								                            할인 없는 기본 요금
+								                        </c:otherwise>
+													</c:choose></li>
 											</ul>
 											<!-- End Table List -->
 											<!-- Table Bottom -->
 											<div class="button">
-												<a class="btn paymentBtn">${fn:substringBefore(type.pTypeName, '요금제')}
+												<a class="btn paymentBtn" data-type="${type.pTypeNum}">${fn:substringBefore(type.pTypeName, '요금제')}
 													구독결제</a>
 											</div>
 											<!-- End Table Bottom -->

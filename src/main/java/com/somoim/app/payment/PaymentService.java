@@ -11,7 +11,11 @@ public class PaymentService {
 	@Autowired
 	private PaymentDAO paymentDAO;
 	
-	public List<PaymentTypeDTO> getPaymentType() throws Exception{
-		return paymentDAO.getPaymentType();
+	public List<PaymentTypeDTO> getPaymentTypeList() throws Exception{
+		return paymentDAO.getPaymentTypeList();
+	}
+	
+	public PaymentTypeDTO getPaymentType(PaymentTypeDTO pTypeDTO)throws Exception{
+		return paymentDAO.getPaymentType(pTypeDTO);
 	}
 }

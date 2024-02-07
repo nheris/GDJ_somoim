@@ -13,7 +13,11 @@ public class PaymentDAO {
 	private SqlSession sqlSession;
 	final String NAMESPACE = "com.somoim.app.payment.PaymentDAO.";
 	
-	public List<PaymentTypeDTO> getPaymentType() throws Exception{
-		return sqlSession.selectList(NAMESPACE+"getPaymentType");
+	public List<PaymentTypeDTO> getPaymentTypeList() throws Exception{
+		return sqlSession.selectList(NAMESPACE+"getPaymentTypeList");
+	}
+	
+	public PaymentTypeDTO getPaymentType(PaymentTypeDTO pTypeDTO) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"getPaymentType", pTypeDTO);
 	}
 }

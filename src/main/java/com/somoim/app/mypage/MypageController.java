@@ -25,9 +25,8 @@ public class MypageController {
 
 	@GetMapping("pay")
 	public String setPaymentType(HttpSession session, Model model)throws Exception {
-		List<PaymentTypeDTO> ar = paymentService.getPaymentType();
+		List<PaymentTypeDTO> ar = paymentService.getPaymentTypeList();
 		model.addAttribute("paymentType",ar);
-		session.setAttribute("test", "!!!!!!");
 		return "./mypage/pay";
 	}
 }
