@@ -14,6 +14,7 @@
 			 	 LEFT JOIN MOIMMEMBER
 			 	 USING (MOIMNUM)
 			WHERE USERNAME = #{userName}
+			ORDER BY MOIMNUM DESC
 	</select>
 	
 	
@@ -69,6 +70,7 @@
   	</delete>
   	
   	<!-- update -->
+  	<!-- GET -->
   	<!-- moimNum대한 모임 전체 정보와 사진 조회 -->
   	<select id="update" parameterType="MoimDTO" resultMap="updateResult">
   		<!-- SELECT *
@@ -96,10 +98,22 @@
 	  		<result column="ORINAME" property="oriName"/>
   		</association>
   	</resultMap>
-  	
-  	
-  	
-
+ 
+	<!-- POST -->
+	<!-- 모임 내용,사진 수정 -->
+  	<update id="updatePost" parameterType="MoimDTO">
+  		UPDATE MOIM SET
+  		MOIMNAME = #{moimName},
+  		MOIMTEXT = #{moimText},
+  		MOIMMEMCOUNT = #{moimMemCount}
+  		WHERE MOIMNUM = #{moimNum}
+  	</update>
+	<update id="fileUpdate" parameterType="MoimFileDTO">
+		UPDATE MOIMFILE SET
+		FILENAME = #{fileName},
+		ORINAME = #{oriName}
+		WHERE MOIMNUM = #{moimNum}
+	</update>
 
   
   

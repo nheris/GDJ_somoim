@@ -90,7 +90,7 @@
 						</div>
 
 						<!-- 폼  -->  
-						<form id="addForm" action="./add" method="post" enctype="multipart/form-data">
+						<form id="updateForm" action="./update" method="post" enctype="multipart/form-data">
 			                <div class="col-12 mx-3 px-5 bg-white" style="border-radius: 10px; width: 99%">
 			                
 								<!-- 모임설정 -->
@@ -104,9 +104,9 @@
 								</div>
 								<div class="mb-3">
 									<label for="exampleFormControlTextarea1" class="form-label">모임 대표 이미지</label>
-									<div class="mb-1"><img src="/resources/upload/moim/${dto.moimFileDTO.fileName}" style="width: 100px; height: 100px; border-radius: 50px;" alt="..."></div>
+									<div class="mb-3"><img src="/resources/upload/moim/${dto.moimFileDTO.fileName}" id="preview" style="width: 100px; height: 100px; border-radius: 50px;" alt="..."></div>
 									<div class="input-group mb-3">
-									  <input type="file" class="form-control" name="file">
+									  <input type="file" class="form-control" name="file" onchange="readImg(this);">
 									</div>
 								</div>
 								<div class="mb-3">
@@ -114,10 +114,11 @@
 									<input type="number" class="form-control" id="moimMemCount" name="moimMemCount" value="${dto.moimMemCount}">
 								</div>
 								
-								
+								<input type="hidden" name="moimNum" value="${dto.moimNum}">
+
 								<!-- 제출 -->
 								<div class="button text-center">
-									<button class="btn my-3" id="submitBtn" type="submit">모임 만들기</button>
+									<button class="btn my-3" id="submitBtn" type="submit">Upate</button>
 								</div>
 	
 							</div>

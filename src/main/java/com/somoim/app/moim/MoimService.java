@@ -58,8 +58,25 @@ public class MoimService {
 	}
 	
 	//update
-	public MoimDTO update(MoimDTO moimDTO) {
+	public MoimDTO update(MoimDTO moimDTO) throws Exception {
 		return moimDAO.update(moimDTO);
+	}
+
+	public int updatePost(MoimDTO moimDTO, MultipartFile file) throws Exception {
+		int result = moimDAO.updatePost(moimDTO);
+		
+		String path = servletContext.getRealPath("/resources/upload/moim");
+		
+		String fileName = fileManager.fileSave(path, file);
+		
+		MoimFileDTO moimFileDTO = new MoimFileDTO();
+		moimFileDTO.setFileName(fileName);
+		moimFileDTO.setOriName(file.getOriginalFilename());
+		moimFileDTO.setMoimNum(moimDTO.getMoimNum());
+		
+		result = moimDAO.fileUpdate(moimFileDTO);
+		
+		return result;
 	}
 	
 	

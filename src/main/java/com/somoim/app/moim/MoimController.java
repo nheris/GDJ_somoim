@@ -66,20 +66,22 @@ public class MoimController {
 	
 	//update 모임수정
 	@GetMapping("update")
-	public void update(MoimDTO moimDTO, Model model) {
+	public void update(MoimDTO moimDTO, Model model) throws Exception {
 		moimDTO = moimService.update(moimDTO);
 		model.addAttribute("dto", moimDTO);
 	}
-//	@PostMapping("update")
-//	public void update() {
-//		
-//	}
+	@PostMapping("update")
+	public String update(MoimDTO moimDTO, MultipartFile file) throws Exception {
+		int result = moimService.updatePost(moimDTO, file);
+		
+		return "redirect:./list";
+	}
 	
 	
 	
 	//home
 	@GetMapping("home")
-	public void detail() {
+	public void detail() throws Exception {
 		
 	}
 }

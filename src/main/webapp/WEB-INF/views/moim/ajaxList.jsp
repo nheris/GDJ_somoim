@@ -18,7 +18,7 @@
 								<!-- <div class="content"> -->
 								<span class="content mx-5">
 									<h5 class="title">
-										<a href="./detail" id="moimName"
+										<a href="./home" id="moimName"
 											data-moim-num="${dto.moimNum}">${dto.moimName}</a>
 									</h5>
 									<span class="moimHead">${dto.moimHead}</span>
@@ -41,11 +41,11 @@
 						<div class="col-lg-3 col-md-3 col-12 align-right">
 							<ul class="action-btn">
 								<li>
-									<a href="javascript:void(0)">
-									<i class="lni lni-pencil"></i></a>
+									<a href="#" data-moim-num="${dto.moimNum}">
+									<i class="lni lni-pencil update"></i></a>
 								</li>
 								<li>
-									<a href="javascript:void(0)">
+									<a href="./home">
 									<i class="lni lni-eye"></i></a>
 								</li>
 								<li>
@@ -53,10 +53,11 @@
 									<i class="lni lni-trash del" ></i></a>
 								</li>
 							</ul>
-															
-							<form id="frm" action="./update" method="get">
-                                   <input type="hidden" name="moimNum" id="moimNumHidden" value="${dto.moimNum}">
-                               </form>
+							
+							<!-- value="${dto.moimNum}" -->
+							<form id="${dto.moimNum}" class="update" action="./update" method="get">
+								<input type="hidden" name="moimNum" id="moimNumHidden" value="${dto.moimNum}">
+							</form>
 						</div>
 
 
