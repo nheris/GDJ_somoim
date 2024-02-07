@@ -13,5 +13,7 @@
         <typeAlias type="com.somoim.app.board.BoardDTO" alias="BoardDTO"/>
         <typeAlias type="com.somoim.app.board.BoardFileDTO" alias="BoardFileDTO"/>
         <typeAlias type="com.somoim.app.util.Pager" alias="Pager"/>
+        
+        <typeAlias type="java.util.Map" alias="Map"/>
   	</typeAliases>
   </configuration>

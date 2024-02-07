@@ -5,10 +5,8 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.somoim.app.member.MemberDAO;
 import com.somoim.app.member.MemberDTO;
 import com.somoim.app.member.MemberService;
 
@@ -18,6 +16,9 @@ public class ChatController {
 
 	@Autowired
 	private MemberService memberService;
+	
+	@Autowired
+	private ChatMessageService chatMessageService;
 	
 	@GetMapping("/chat")
 	public ModelAndView chat(HttpSession session, MemberDTO memberDTO, ModelAndView mv) throws Exception{
@@ -37,4 +38,6 @@ public class ChatController {
 		mv.setViewName("/chat/chating");
 		return mv;
 	}
+	
+	
 }
