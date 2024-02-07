@@ -1,50 +1,54 @@
-document.addEventListener('DOMContentLoaded', function() {
-    getNoticeList();
-    const navLinks = document.querySelectorAll('.BOARDCATEGORY');
-
-    navLinks.forEach(link => {
-        link.addEventListener('click', function(event) {
-            // 기본 동작 방지(이거 안하면 a태그때메 리로딩댐)
-            event.preventDefault();
-            const category = this.getAttribute('data-category');
-            getNoticeList(category);
-            // 모든 카테고리에서 active 클래스 제거
-            navLinks.forEach(navLink => navLink.classList.remove('active'));
-            // 클릭된 카테고리에 active 클래스 추가
-            this.classList.add('active');
-        });
+const navLinks = document.querySelectorAll(".BOARDCATEGORY");
+navLinks.forEach((link) => {
+    link.addEventListener("click", function (event) {
+        // 기본 동작 방지(이거 안하면 a태그때메 리로딩댐)
+        event.preventDefault();
+        const category = this.getAttribute("data-category");
+        // 모든 카테고리에서 active 클래스 제거
+        navLinks.forEach((navLink) => navLink.classList.remove("active"));
+        // 클릭된 카테고리에 active 클래스 추가
+        this.classList.add("active");
     });
-});     
+});
+getNoticeList("", "", ""); // 매개변수를 전달하지 않고 호출
 
-
-function getNoticeList() {
-    fetch("noticeList", {
+let tbody = document.getElementById("noticeList");
+tbody.addEventListener("click", function (e) {
+    //contains -> 문자열 포함 확인
+    if (e.target.classList.contains("page-link")) {
+        //data-pageNum -> page startNum, lastNum 담아놓은 사용자 변수
+        let page = e.target.getAttribute("data-pageNum");
+        console.log(page);
+        getNoticeList("", page, "");
+    }
+});
+// noticeList,page 호출
+function getNoticeList(search, page, searchFind) {
+    let url =
+        "noticeList?page=" +
+        page +
+        "&search=" +
+        search +
+        "&searchFind=" +
+        searchFind;
+    fetch(url, {
         method: "GET",
     })
-    .then((response) => response.json())
-    .then((data) => {
-        const noticeList = document.getElementById("noticeList");
-        noticeList.innerHTML = ""; // 테이블 초기화하는 부분
-        data.forEach((item) => {
-            const boardDate = new Date(item.boardDate);
-            //numeric -> 숫자년도
-            // 2-digit -> 월2자리
-            // 2-digit -> 일2자리
-            const formattedDate = boardDate.toLocaleDateString('ko-KR', { year: 'numeric', month: '2-digit', day: '2-digit' });
-            // 파싱하는 작업 formattedDate를 사용하면 제일 뒤에 .이 붙어어서 나옴
-            const lastDotIndex = formattedDate.lastIndexOf('.');
-            const boardDates = formattedDate.substring(0, lastDotIndex);
-            const row = document.createElement("tr");
-            row.innerHTML = `
-                <td>${item.boardNum}</td>
-                <td><a href="/notice/detail?boardNum=${item.boardNum}">${item.boardTitle}</a></td>
-                <td>${item.boardWriter}</td>
-                <td>${boardDates}</td>
-            `;
-            noticeList.appendChild(row);
+        .then((response) => response.text())
+        .then((r) => {
+            document.getElementById("noticeList").innerHTML = r;
         });
-    })
-    .catch((error) => {
-        console.error('Error:', error);
-    });
 }
+// 검색
+let searchbtn = document.getElementById("searchbtn");
+let listsear = document.getElementById("search");
+searchbtn.addEventListener("click", function (e) {
+    e.preventDefault();
+    console.log(listsear.value);
+});
+
+let searchFind = document.getElementById("searchFind");
+//let searchFind = querySelectorAll("#searchFind");
+searchFind.addEventListener("click", (e) => {
+    console.log(searchFind.value);
+});

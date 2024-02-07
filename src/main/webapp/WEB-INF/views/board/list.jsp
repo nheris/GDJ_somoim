@@ -40,10 +40,10 @@
 	</div>
 	<!--  -->
 	<div class="container">
-		<form>
+		<form id="searchform">
 			<div class="row row-cols-auto">
 				<div class="col">
-					<select class="form-select" name="searchFind" aria-label="Default select example">
+					<select class="form-select" name="searchFind"  id="searchFind" aria-label="Default select example">
 						<option value="searchFind1">제목</option>
 						<option value="searchFind2">작성자</option>
 						<option value="searchFind3">내용</option>
@@ -60,7 +60,7 @@
 							type="text" name="search" class="form-control" id="search">
 					</div>
 					<div class="col-auto">
-						<button type="submit" class="btn btn-outline-dark">검색</button>
+						<button type="submit" class="btn btn-outline-dark" id="searchbtn">검색</button>
 					</div>
 		</form>
 	</div>
@@ -77,34 +77,15 @@
 		</thead>
 <tbody id="noticeList" data-user="${member.userName}">
 
+
+	
 </tbody>
 	</table>
 	
 	<div class="col-auto d-flex justify-content-center">
 		<div class="col-12 mb-3">
 			<nav aria-label="Page navigation example">
-				<ul
-					class="list-group list-group-horizontal d-flex justify-content-center">
-					<c:if test="${!pager.start}">
-						<li class="page-item"><a class="page-link"
-							href="./list?page=${pager.startNum-1}&search=${pager.search}&searchFind=${pager.searchFind}"
-							aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
-						</a></li>
-					</c:if>
 
-					<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
-						<li class="page-item"><a class="page-link"
-							href="./list?page=${i}">${i}</a></li>
-					</c:forEach>
-
-					<c:if test="${!pager.last}">
-						<li class="page-item"><a class="page-link"
-							href="./list?page=${pager.lastNum+1}&search=${pager.search}&searchFind=${pager.searchFind}"
-							aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-						</a></li>
-					</c:if>
-				</ul>
-			</nav>
 			<div class="col-auto d-flex justify-content-end">
 			
 								<c:if test="${not empty member}">

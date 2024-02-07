@@ -1,5 +1,6 @@
 package com.somoim.app.board.notice;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -19,7 +20,7 @@ public class NoticeDAO  implements BoardDAO{
 	private SqlSession sqlSession;
 	
 	private final String namespace="com.somoim.app.board.notice.NoticeDAO.";
-	
+
 	@Override
 	public Long getTotalCount(Pager pager) throws Exception {
 		// TODO Auto-generated method stub
@@ -31,8 +32,6 @@ public class NoticeDAO  implements BoardDAO{
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(namespace+"getList", pager);
 	}
-	
-	
 	
 
 	@Override
@@ -68,6 +67,9 @@ public class NoticeDAO  implements BoardDAO{
 		return sqlSession.selectList(namespace+"getFileList", boardDTO);
 	}
 
+	public List<BoardDTO> getListJson(Map<String, Object> map) throws Exception{
+		return sqlSession.selectList(namespace+"getListJson", map);
+	}
 
 
 }

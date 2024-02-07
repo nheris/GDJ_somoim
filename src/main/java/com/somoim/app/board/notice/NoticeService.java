@@ -99,14 +99,14 @@ public class NoticeService implements BoardService{
 	}
 
 
-
-//	public List<BoardDTO> getList(Pager pager, NoticeDTO noticeDTO) throws Exception{
-//		pager.makeRow();
-//		pager.makeNum(noticeDAO.getTotalCount(pager));
-//		Map<String, Object> map = new HashMap<String, Object>();
-//		map.put("pager", pager);
-//		map.put("NoticeDTO", noticeDTO);
-//		return noticeDAO.getList(map);
-//	}
+	public List<BoardDTO> getListJson(Pager pager, BoardDTO boardDTO) throws Exception{
+		pager.makeRow();
+		pager.makeNum(noticeDAO.getTotalCount(pager));
+		System.out.println(pager.getSearch());
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("pager", pager);
+		map.put("BoardDTO", boardDTO);
+		return noticeDAO.getListJson(map);
+	}
 
 }

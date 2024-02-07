@@ -1,5 +1,6 @@
 package com.somoim.app.board.notice;
 
+import java.io.Console;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -64,18 +65,26 @@ public class NoticeController {
 	
 	//리스트
 	@GetMapping("list")
-	public String getList(Pager pager, Model model) throws Exception {
-	    List<BoardDTO> ar = noticeService.getList(pager);
-	    model.addAttribute("list", ar);	
+	public String getList() throws Exception {
 	    return "board/list";
 	}
 	
 
+//	@GetMapping("noticeList")
+//	@ResponseBody
+//	public List<BoardDTO> getListJson(Pager pager) throws Exception {
+//	    List<BoardDTO> ar = noticeService.getList(pager);   
+//	    return ar; // JSON 데이터를 반환
+//	}
 	@GetMapping("noticeList")
-	@ResponseBody
-	public List<BoardDTO> getListJson(Pager pager) throws Exception {
-	    List<BoardDTO> ar = noticeService.getList(pager);
-	    return ar; // JSON 데이터를 반환
+
+	public String getListJson(Pager pager, BoardDTO boardDTO, Model model) throws Exception {
+	    List<BoardDTO> ar = noticeService.getListJson(pager, boardDTO);   
+	    model.addAttribute("data", ar);
+	    model.addAttribute("pager", pager);
+	    //return map; // JSON 데이터를 반환
+	    
+	    return "board/noticeList";
 	}
 
 	

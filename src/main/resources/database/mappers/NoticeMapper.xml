@@ -5,47 +5,6 @@
   <!-- mapper namespace는 비우면 에러 -->
   <mapper namespace="com.somoim.app.board.notice.NoticeDAO">
   
-    	<sql id="search">
-		WHERE boardTitle LIKE '%'||#{search}||'%'
-	</sql> 
-  
- 	<sql id="search2">
-		WHERE
-		<choose>
-			<when test="searchFind=='searchFind1'">
-				boardTitle like '%'||#{search}||'%'
-			</when>
-			<when test="searchFind=='searchFind2'">
-				boardWriter like '%'||#{search}||'%'
-			</when>
-			<when test="searchFind=='searchFind3'">
-				boardText like '%'||#{search}||'%'
-			</when>
-			<otherwise>
-				boardNum like '%'||#{search}||'%'
-			</otherwise>
-		</choose>
-	</sql>
-  
-   	<sql id="boardCategorys">
-		WHERE
-		<choose>
-			<when test="categorySelect=='category0'">
-				BOARDCATEGORY = 0
-			</when>
-			<when test="categorySelect=='category1'">
-				BOARDCATEGORY = 1
-			</when>
-			<when test="categorySelect=='category2'">
-				BOARDCATEGORY = 2
-			</when>
-			<otherwise>
-				BOARDCATEGORY IN (0,1,2)
-			</otherwise>
-		</choose>
-	</sql>
-  
-
   
   <resultMap type="NoticeDTO" id="getDetailResult">
   <id column="BOARDNUM" property="boardNum"/>
@@ -85,7 +44,25 @@
   
   
   
-  	<select id="getList" parameterType="Pager" resultType="NoticeDTO">
+   	<select id="getList" parameterType="Pager" resultType="NoticeDTO">
+	SELECT * FROM 
+	(SELECT ROWNUM R, N.* FROM
+		(select * from 
+		(SELECT * FROM NOTICEBOARD
+			 <include refid="boardCategorys">
+			 <property name="search" value="#{search}"/>
+			 </include> 
+			 
+				ORDER BY boardNum DESC
+		)
+		<include refid="search2"></include>)  
+	N)
+	WHERE R BETWEEN  #{startRow} AND #{lastRow}
+  	</select>
+  	
+  	
+  	<!--  --> 
+     	<select id="getListJson" parameterType="Map" resultType="BoardDTO">
 	SELECT * FROM 
 	(SELECT ROWNUM R, N.* FROM
 		(select * from 
@@ -94,15 +71,62 @@
 			 
 				ORDER BY boardNum DESC
 		)
-		<include refid="search2"></include>)  
+		<include refid="search2">
+			<property name="search" value="#{pager.search}"/>
+		</include>)  
 	N)
-	WHERE R BETWEEN  #{startRow} AND #{lastRow}
+	WHERE R BETWEEN  #{pager.startRow} AND #{pager.lastRow}
   	</select>
+  	
+  	
+  		<sql id="search2">
+		WHERE
+		<choose>
+			<when test="searchFind=='searchFind1'">
+				boardTitle like '%'||${search}||'%'
+			</when>
+			<when test="searchFind=='searchFind2'">
+				boardWriter like '%'||${search}||'%'
+			</when>
+			<when test="searchFind=='searchFind3'">
+				boardText like '%'||${search}||'%'
+			</when>
+			<otherwise>
+				boardNum like '%'||${search}||'%'
+			</otherwise>
+		</choose>
+	</sql>
+  
+   	<sql id="boardCategorys">
+		WHERE
+		<choose>
+			<when test="categorySelect=='category0'">
+				BOARDCATEGORY = 0
+			</when>
+			<when test="categorySelect=='category1'">
+				BOARDCATEGORY = 1
+			</when>
+			<when test="categorySelect=='category2'">
+				BOARDCATEGORY = 2
+			</when>
+			<otherwise>
+				BOARDCATEGORY IN (0,1,2)
+			</otherwise>
+		</choose>
+	</sql> 	
+  <!--  -->
+  
+  
+  
+  
+  
   
    	
-	<select id="getTotalCount" resultType="Long">
+	<select id="getTotalCount" parameterType="Pager" resultType="Long">
 	SELECT COUNT(boardNum) FROM NOTICEBOARD
-	 <include refid="search2"></include>
+	 <include refid="search2">
+	 <property name="search" value="#{search}"/>
+	 </include>
 	</select> 
 	
   
