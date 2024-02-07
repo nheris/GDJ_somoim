@@ -45,10 +45,13 @@ let listsear = document.getElementById("search");
 searchbtn.addEventListener("click", function (e) {
     e.preventDefault();
     console.log(listsear.value);
+    let searchFind = document.getElementById("searchFind").value;
+    console.log(searchFind);
+    getNoticeList(listsear.value, "", searchFind);
 });
 
 let searchFind = document.getElementById("searchFind");
-//let searchFind = querySelectorAll("#searchFind");
-searchFind.addEventListener("click", (e) => {
+// let searchFind = querySelectorAll("#searchFind");
+searchFind.addEventListener("change", (e) => {
     console.log(searchFind.value);
 });
