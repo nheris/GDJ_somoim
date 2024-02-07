@@ -45,6 +45,12 @@ public class MoimDAO {
 		return sqlSession.delete(NAMESPACE+"delete", moimDTO);
 	}
 
+	
+	//update
+	public MoimDTO update(MoimDTO moimDTO) {
+		return sqlSession.selectOne(NAMESPACE+"update", moimDTO);
+	}
+
 
 	
 	//모임 멤버 가입

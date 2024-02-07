@@ -16,17 +16,39 @@
 <c:import url="../temps/header.jsp"></c:import>
 </head>
 <body>
+	<!-- 모임 홈 헤더 -->
+	<div class="breadcrumbs">
+		<div class="container">
+			<div class="row align-items-center">
+				<div class="col-lg-6 col-md-6 col-12">
+					<div class="breadcrumbs-content">
+						<h1 class="page-title">모임이름</h1>
+					</div>
+				</div>
+				<div class="col-lg-6 col-md-6 col-12">
+					<ul class="nav justify-content-end">
+						<li class="nav-item"><a class="nav-link" href="#"
+							style="color: white">Home</a></li>
+						<li class="nav-item"><a class="nav-link" href="#"
+							style="color: white">게시판</a></li>
+						<li class="nav-item"><a class="nav-link" href="#"
+							style="color: white">정모</a></li>
+						<li class="nav-item"><a class="nav-link" href="#"
+							style="color: white">채팅</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	
 	<div class="items-details section">
 		
 		<!-- <div class="container mx-5"> -->
 			<!-- <div class="row bg-light"> -->
-						
-	
-						
-						<div class="col-6">dddd</div>
+
 				<div class="container mx-5">
 						<div class="post-thumbnils">
-                            <img src="assets/images/blog/blog-single.jpg" alt="#">
+                            <img src="assets/images/blog/blog-single.jpg" alt="모임 대표 사진">
                         </div>
 						<div class="post-details">
                             <div class="detail-inner">
@@ -263,23 +285,7 @@
 						
 						<div class="col-6">dddddddd</div>
 						
-						<div class="breadcrumbs">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6 col-md-6 col-12">
-                    <div class="breadcrumbs-content">
-                        <h1 class="page-title">Ad Details</h1>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6 col-12">
-                    <ul class="breadcrumb-nav">
-                        <li><a href="index.html">Home</a></li>
-                        <li>Ad Details</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
+						
     
     <section class="item-details section">
         <div class="container">

@@ -57,6 +57,11 @@ public class MoimService {
 		return moimDAO.delete(moimDTO);
 	}
 	
+	//update
+	public MoimDTO update(MoimDTO moimDTO) {
+		return moimDAO.update(moimDTO);
+	}
+	
 	
 	
 }

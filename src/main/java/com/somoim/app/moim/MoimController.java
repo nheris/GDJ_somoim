@@ -64,10 +64,21 @@ public class MoimController {
 		
 	}
 	
+	//update 모임수정
+	@GetMapping("update")
+	public void update(MoimDTO moimDTO, Model model) {
+		moimDTO = moimService.update(moimDTO);
+		model.addAttribute("dto", moimDTO);
+	}
+//	@PostMapping("update")
+//	public void update() {
+//		
+//	}
 	
-	//update
-	//detail
-	@GetMapping("detail")
+	
+	
+	//home
+	@GetMapping("home")
 	public void detail() {
 		
 	}

@@ -53,6 +53,10 @@
 									<i class="lni lni-trash del" ></i></a>
 								</li>
 							</ul>
+															
+							<form id="frm" action="./update" method="get">
+                                   <input type="hidden" name="moimNum" id="moimNumHidden" value="${dto.moimNum}">
+                               </form>
 						</div>
 
 

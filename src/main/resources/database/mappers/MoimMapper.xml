@@ -6,16 +6,6 @@
   <mapper namespace="com.somoim.app.moim.MoimDAO">
   
   	<!-- list -->
-<!--   	<select id="getList" parameterType="MemberDTO" resultType="MoimDTO">
-  	
-  		SELECT *
-		FROM MOIM
-		WHERE MOIMNUM IN (
-			SELECT MOIMNUM
-	  		FROM MOIMMEMBER
-	   		WHERE USERNAME = #{userName})
-	   
-  	</select> -->
 	<select id="getList" parameterType="MoimDTO" resultMap="listReault">
 	  		SELECT *
 			FROM MOIM 
@@ -55,7 +45,7 @@
   		</selectKey>
   	
   		INSERT INTO MOIM
-  		VALUES (#{moimNum}, #{moimName}, #{moimRegion}, #{moimCategory}, TO_CHAR(SYSDATE, 'YYYYMMDD'), #{moimText}, #{moimMemCount}, #{moimHead})
+  		VALUES (#{moimNum}, #{moimName}, #{moimRegion}, #{moimCategory}, SYSDATE, #{moimText}, #{moimMemCount}, #{moimHead})
   		
   	</insert>
   	<insert id="fileAdd" parameterType="MoimFileDTO">
@@ -77,6 +67,35 @@
   		DELETE MOIM
   		WHERE MOIMNUM = #{moimNum}
   	</delete>
+  	
+  	<!-- update -->
+  	<!-- moimNum대한 모임 전체 정보와 사진 조회 -->
+  	<select id="update" parameterType="MoimDTO" resultMap="updateResult">
+  		<!-- SELECT *
+		FROM MOIM m 
+		WHERE MOIMNUM = #{moimNum} -->
+		SELECT *
+		FROM MOIM 
+			 LEFT JOIN
+			 MOIMFILE
+			 USING (MOIMNUM)
+		WHERE MOIMNUM = #{moimNum}
+  	</select>
+  	<resultMap type="MoimDTO" id="updateResult">
+  		<id column="MOIMNUM" property="moimNum"/>
+  		<result column="MOIMNAME" property="moimName"/>
+  		<result column="MOIMREGION" property="moimRegion"/>
+  		<result column="MOIMCATEGORY" property="moimCategory"/>
+  		<result column="MOIMDATE" property="moimDate"/>
+  		<result column="MOIMTEXT" property="moimText"/>
+  		<result column="MOIMMEMCOUNT" property="moimMemCount"/>
+  		<result column="MOIMHEAD" property="moimHead"/>
+  		<association property="moimFileDTO" javaType="MoimFileDTO">
+  			<id column="FILENUM" property="fileNum"/>
+	  		<result column="FILENAME" property="fileName"/>
+	  		<result column="ORINAME" property="oriName"/>
+  		</association>
+  	</resultMap>
   	
   	
   	
