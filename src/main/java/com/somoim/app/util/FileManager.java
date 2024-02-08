@@ -49,7 +49,9 @@ public class FileManager {
 		//b. MultipartFile의 transferTo 메서드 사용
 		file.transferTo(files);
 		
+		files= new File(files,fileName);
 		
+		file.transferTo(files);
 		return fileName;
 		
 	}
