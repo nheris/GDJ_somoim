@@ -87,15 +87,7 @@ let id1 = false;
      		error:function(data) {																									
      		}																														
      	});																		
-   }															
-
-	  
-	    	
-
-
-
-
-
+   }	
 
 $("#checkId").click(function(){
     fetch("./idCheck?userName="+$("#userName").val(),{
