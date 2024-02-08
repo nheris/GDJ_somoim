@@ -87,15 +87,7 @@ let id1 = false;
      		error:function(data) {																									
      		}																														
      	});																		
-   }															
-
-	  
-	    	<div id="chart" style="width: 100%; height: 500px"></div>	
-
-
-
-
-
+   }	
 
 $("#checkId").click(function(){
     fetch("./idCheck?userName="+$("#userName").val(),{
