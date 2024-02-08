@@ -1,4 +1,4 @@
-package com.somoim.app.subscription;
+package com.somoim.app.payment;
 
 public class PaymentTypeDTO {
 	

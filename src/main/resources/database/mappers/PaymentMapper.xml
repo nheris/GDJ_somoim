@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <!-- mapper namespace는 비우면 에러 -->
+  <mapper namespace="com.somoim.app.payment.PaymentDAO">
+	
+	<!-- 페이먼트 타입 리스트 -->
+	<select id="getPaymentTypeList" resultType="PaymentTypeDTO">
+  		SELECT * FROM PAYMENTTYPE
+  	</select>
+  	
+  	<!-- 페이먼트 타입 디테일 -->
+  	<select id="getPaymentType" resultType="PaymentTypeDTO" parameterType="PaymentTypeDTO">
+  		SELECT * FROM PAYMENTTYPE WHERE PTYPENUM=#{pTypeNum}
+  	</select>
+  </mapper>

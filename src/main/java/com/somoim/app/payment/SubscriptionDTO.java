@@ -1,4 +1,4 @@
-package com.somoim.app.subscription;
+package com.somoim.app.payment;
 
 import java.sql.Date;
 
