@@ -125,7 +125,6 @@ let newChatBtn = document.getElementById('newChatBtn');
 function scroller(){
     if(scrollToBottom){
         chatHistory.scrollTo(0, chatHistory.scrollHeight);
-        
         newChatBtn.classList.add('visually-hidden');
     }
 }

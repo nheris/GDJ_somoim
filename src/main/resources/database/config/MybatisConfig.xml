@@ -14,5 +14,7 @@
   		<typeAlias type="com.somoim.app.moim.MoimFileDTO" alias="MoimFileDTO"/>
   		<typeAlias type="com.somoim.app.moim.member.MoimMemberDTO" alias="MoimMemberDTO"/>
         <typeAlias type="com.somoim.app.payment.PaymentTypeDTO" alias="PaymentTypeDTO"/>
+        
+        <typeAlias type="java.util.Map" alias="Map"/>
   	</typeAliases>
   </configuration>
