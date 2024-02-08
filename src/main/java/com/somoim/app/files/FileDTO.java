@@ -1,7 +1,7 @@
 package com.somoim.app.files;
 
-public class FileDTO{
-
+public class FileDTO {
+	
 	private Long fileNum;
 	private String fileName;
 	private String oriName;

@@ -19,9 +19,17 @@ public class Pager {
 	//검색
 	private String search;
 	private String searchFind;
+	private String categorySelect;
 	
 	
-	
+	public String getCategorySelect() {
+		return categorySelect;
+	}
+
+	public void setCategorySelect(String categorySelect) {
+		this.categorySelect = categorySelect;
+	}
+
 	public String getSearch() {
 		if(this.search == null) {
 			this.search="";
