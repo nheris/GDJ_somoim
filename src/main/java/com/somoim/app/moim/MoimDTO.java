@@ -7,11 +7,15 @@ import com.somoim.app.moim.member.MoimMemberDTO;
 public class MoimDTO {
 	private Long moimNum;
 	private String moimName;
-	private String moimHead;
 	private String moimRegion;
 	private String moimCategory;
-	private Long moimMemCount;
 	private Date moimDate;
+	private String moimText;
+	private Long moimMemCount;
+	private String moimHead;
+	
+	
+	private MoimFileDTO moimFileDTO;
 	private MoimMemberDTO moimMemberDTO;
 	
 	
@@ -21,9 +25,18 @@ public class MoimDTO {
 	public void setMoimMemberDTO(MoimMemberDTO moimMemberDTO) {
 		this.moimMemberDTO = moimMemberDTO;
 	}
-	
-	
-	
+	public MoimFileDTO getMoimFileDTO() {
+		return moimFileDTO;
+	}
+	public void setMoimFileDTO(MoimFileDTO moimFileDTO) {
+		this.moimFileDTO = moimFileDTO;
+	}
+	public String getMoimText() {
+		return moimText;
+	}
+	public void setMoimText(String moimText) {
+		this.moimText = moimText;
+	}
 	public Long getMoimNum() {
 		return moimNum;
 	}
@@ -36,6 +49,7 @@ public class MoimDTO {
 	public void setMoimName(String moimName) {
 		this.moimName = moimName;
 	}
+
 	public String getMoimHead() {
 		return moimHead;
 	}

@@ -19,7 +19,7 @@ public class FileManager {
 	//파일 저장 하는 메소드
 	public String fileSave(String path, MultipartFile file)throws Exception{
 		File files = new File(path);
-		
+		System.out.println("filesave : "+files);
 		// 경로에 파일이 있는지 없는지 비교
 		if(files.isFile()) {
 			// 강제로 예외처리 시키기 

@@ -31,7 +31,5 @@ public class JUnitTest extends MyTest {
 		assertNotEquals(0, result);
 	}
 	
-	public void detail_test() throws Exception{
-//		List<MemberDTO> ar = memberDAO.getDetail(null);
-	}
+
 }
