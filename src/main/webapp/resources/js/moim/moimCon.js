@@ -1,7 +1,24 @@
+//summernote
+$('#moimText').summernote({
+  placeholder: '모임에 대한 설명이나 목표를 적어주세요.',
+  tabsize: 2,
+  height: 250,
+  toolbar: [
+    ['style', ['style']],
+    ['font', ['bold', 'underline', 'clear']],
+    ['color', ['color']],
+    ['para', ['ul', 'ol', 'paragraph']],
+    ['table', ['table']],
+    ['insert', ['link', 'picture', 'video']],
+    ['view', ['fullscreen', 'codeview', 'help']]
+  ]
+});
+      
+      
 //delete
 // const deleteBtn = document.getElementById("deleteBtn");
 let moimName = document.getElementById("moimName");
-let moimNum = moimName.getAttribute("data-moim-num");
+//let moimNum = moimName.getAttribute("data-moim-num");
 const listTbody = document.getElementById("listTbody");
 
 // deleteBtn.addEventListener("click",()=>{
@@ -43,7 +60,7 @@ listTbody.addEventListener("click",function(e){
         frm.submit();
     }
 })
-//     ////수정 POST
+//     ////수정 POST 모달안할거라..필요x
 // const submitBtn = document.getElementById('submitBtn');
 // let updateForm = document.getElementById('updateForm');
 // submitBtn.addEventListener("click",()=>{
@@ -78,3 +95,18 @@ function readImg(input) {
       document.getElementById('preview').src = "";
     }
   }
+  
+
+//home 파라미터
+// listTbody.addEventListener("click",function(e){
+//   if(e.target.classList.contains("home")){
+//       console.log('연결');
+//       let num = e.target.getAttribute("data-moim-num");
+//       // let frm = document.getElementById(num);
+//        console.log(num);
+
+//       // frm.submit();
+//   }
+// })
+
+

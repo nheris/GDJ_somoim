@@ -14,9 +14,10 @@
 <c:import url="../temps/head_css.jsp"></c:import>
 <!-- 내비게이터 import -->
 <c:import url="../temps/header.jsp"></c:import>
+<!-- summernote -->
+<c:import url="../temps/summernote.jsp"></c:import>
 <!-- 카테고리 -->
 <link rel=stylesheet href="https://unpkg.com/bootstrap-select@1.13.8/dist/css/bootstrap-select.css" />
-<style> body { margin: 1rem; background-color: dimgray; } </style>
 </head>
 <body>
 	<div class="items-grid section">
@@ -118,7 +119,7 @@
 
 								<!-- 제출 -->
 								<div class="button text-center">
-									<button class="btn my-3" id="submitBtn" type="submit">Upate</button>
+									<button class="btn my-3" id="submitBtn" type="submit">Update</button>
 								</div>
 	
 							</div>
@@ -150,8 +151,6 @@
 
 	<!-- ========================= JS improt ========================= -->
 	<c:import url="../temps/footer.jsp"></c:import>
-	
-	<script src="https://unpkg.com/jquery@3.3.1/dist/jquery.slim.min.js"></script>
 	<script src="https://unpkg.com/bootstrap@4.3.1/dist/js/bootstrap.bundle.min.js" data-src="https://unpkg.com/bootstrap@4.3.1/dist/js/bootstrap.min.js" ></script>
 	<script src="https://unpkg.com/bootstrap-select@1.13.8/dist/js/bootstrap-select.min.js"></script>
 	<script src="/resources/js/moim/moimCon.js"></script>

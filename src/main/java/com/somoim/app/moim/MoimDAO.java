@@ -58,6 +58,11 @@ public class MoimDAO {
 	}
 
 
+	public MoimDTO getInfo(MoimDTO moimDTO) throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"update", moimDTO);
+	}
+
+
 	
 	//모임 멤버 가입
 //	public int moimMemAdd(MoimDTO moimDTO) {

@@ -81,7 +81,21 @@ public class MoimController {
 	
 	//home
 	@GetMapping("home")
-	public void detail() throws Exception {
+	public void detail(MoimDTO moimDTO, Model model) throws Exception {
+		moimDTO = moimService.getInfo(moimDTO);
+		model.addAttribute("dto", moimDTO);
+		
+	}
+	
+	//board 게시판
+	@GetMapping("board")
+	public void board() throws Exception {
+		
+	}
+	
+	//together 정모
+	@GetMapping("together")
+	public void together() throws Exception {
 		
 	}
 }

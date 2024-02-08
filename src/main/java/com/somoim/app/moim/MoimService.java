@@ -78,6 +78,10 @@ public class MoimService {
 		
 		return result;
 	}
+
+	public MoimDTO getInfo(MoimDTO moimDTO) throws Exception {
+		return moimDAO.getInfo(moimDTO);
+	}
 	
 	
 	

@@ -114,7 +114,12 @@
 		ORINAME = #{oriName}
 		WHERE MOIMNUM = #{moimNum}
 	</update>
-
+	
+	<!-- 모임 멤버 수 -->
+	
+	<!-- SELECT count(*)
+	FROM MOIMMEMBER
+	WHERE MOIMNUM =#{moimNum} -->
   
   
   

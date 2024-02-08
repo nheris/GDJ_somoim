@@ -1,3 +1,19 @@
+//summernote
+$('#moimText').summernote({
+        placeholder: '모임에 대한 설명이나 목표를 적어주세요.',
+        tabsize: 2,
+        height: 250,
+        toolbar: [
+          ['style', ['style']],
+          ['font', ['bold', 'underline', 'clear']],
+          ['color', ['color']],
+          ['para', ['ul', 'ol', 'paragraph']],
+          ['table', ['table']],
+          ['insert', ['link', 'picture', 'video']],
+          ['view', ['fullscreen', 'codeview', 'help']]
+        ]
+      });
+
 
 //모임 개설
 const submitBtn = document.getElementById("submitBtn");

@@ -22,16 +22,16 @@
 			<div class="row align-items-center">
 				<div class="col-lg-6 col-md-6 col-12">
 					<div class="breadcrumbs-content">
-						<h1 class="page-title">모임이름</h1>
+						<h1 class="page-title">${dto.moimName}</h1>
 					</div>
 				</div>
 				<div class="col-lg-6 col-md-6 col-12">
 					<ul class="nav justify-content-end">
-						<li class="nav-item"><a class="nav-link" href="#"
-							style="color: white">Home</a></li>
-						<li class="nav-item"><a class="nav-link" href="#"
+						<li class="nav-item"><a class="nav-link" href="./home"
+							style="color: white; font-weight: bold;">Home</a></li>
+						<li class="nav-item"><a class="nav-link" href="./board"
 							style="color: white">게시판</a></li>
-						<li class="nav-item"><a class="nav-link" href="#"
+						<li class="nav-item"><a class="nav-link" href="./together"
 							style="color: white">정모</a></li>
 						<li class="nav-item"><a class="nav-link" href="#"
 							style="color: white">채팅</a></li>
@@ -48,51 +48,21 @@
 
 				<div class="container mx-5">
 						<div class="post-thumbnils">
-                            <img src="assets/images/blog/blog-single.jpg" alt="모임 대표 사진">
+                            <img src="/resources/upload/moim/${dto.moimFileDTO.fileName}" style="width: 80%; height: 500px;" alt="모임 대표 사진">
+                            <!-- <img src="/resources/upload/moim/${dto.moimFileDTO.fileName}" style="width: 100px; height: 100px; border-radius: 50px;" alt="..."> -->
                         </div>
 						<div class="post-details">
                             <div class="detail-inner">
-                                <h2 class="post-title">
-                                    <a href="blog-single.html">10 Things Successful Mompreneurs Do Different</a>
-                                </h2>
+                                <h3 class="post-title">
+                                    Welcome
+                                </h3>
                                 <!-- post meta -->
-                                <ul class="custom-flex post-meta">
-                                    <li>
-                                        <a href="javascript:void(0)">
-                                            <i class="lni lni-calendar"></i>
-                                            20th March 2023
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:void(0)">
-                                            <i class="lni lni-comments"></i>
-                                            35 Comments
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:void(0)">
-                                            <i class="lni lni-eye"></i>
-                                            55 View
-                                        </a>
-                                    </li>
-                                </ul>
-                                <p>We denounce with righteous indige nation and dislike men who are so beguiled and demo
-                                    realized by the charms of pleasure of the moment, so blinded by desire, that they
-                                    cannot
-                                    foresee the pain and trouble that are bound to ensue; and equal blame belongs to
-                                    those
-                                    who fail in their duty through weakness of will, which is the same as saying through
-                                    shrinking from toil and pain. These cases are perfectly simple and easy to
-                                    distinguish.
-                                    In a free hour, when our power of choice is untrammelled and when nothing prevents
-                                    our
-                                    being able to do what we like best, every pleasure is to be welcomed and every pain
-                                    avoided.</p>
+                                <p>${dto.moimText}</p>
                                 <!-- post image -->
                                 <div class="post-image">
                                     <div class="row align-items-center">
                                         <div class="col-lg-6 col-md-6 col-12">
-                                            <h3>Two Most-Cited Reason</h3>
+                                            <h3></h3>
                                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                                                 tempor
                                                 incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -119,10 +89,8 @@
                                     <div class="icon">
                                         <i class="lni lni-quotation"></i>
                                     </div>
-                                    <h4>"Don't demand that things happen as you wish, but wish that they happen as they
-                                        do
-                                        happen, and you will go on well."</h4>
-                                    <span>Epictetus, The Enchiridion</span>
+                                    <h4>asdfasdfasdfasdfasdfasdfasdfasdfasdf</h4>
+                                    <span>${dto.moimHead}</span>
                                 </blockquote>
                                 <h3>Setting the mood with incense</h3>
                                 <p>Remove aversion, then, from all things that are not in our control, and transfer it

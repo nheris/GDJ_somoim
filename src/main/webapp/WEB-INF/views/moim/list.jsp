@@ -14,6 +14,8 @@
 <c:import url="../temps/head_css.jsp"></c:import>
 <!-- 내비게이터 import -->
 <c:import url="../temps/header.jsp"></c:import>
+<!-- summernote -->
+<c:import url="../temps/summernote.jsp"></c:import>
 </head>
 <body>
 	<div class="items-grid section">
@@ -158,7 +160,7 @@
 																<!-- <div class="content"> -->
 																<span class="content mx-5">
 																	<h5 class="title">
-																		<a href="./home" id="moimName"
+																		<a href="./home?moimNum=${dto.moimNum}" id="moimName"
 																			data-moim-num="${dto.moimNum}">${dto.moimName}</a>
 																	</h5>
 																	<span class="moimHead">${dto.moimHead}</span>
