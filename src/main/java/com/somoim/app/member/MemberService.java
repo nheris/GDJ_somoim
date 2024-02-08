@@ -69,11 +69,13 @@ public class MemberService {
 		
 		if(dto!=null) {
 			if(dto.getPassword().equals(memberDTO.getPassword())) {
+
 				
 				memberDTO.setNickName(dto.getNickName());
 				memberDTO.setProfile(dto.getProfile());
 				
 				return memberDTO;
+
 			}else {
 				dto=null;
 			}

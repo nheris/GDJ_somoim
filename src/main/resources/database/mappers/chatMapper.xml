@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <!-- mapper namespace는 비우면 에러 -->
+  <mapper namespace="com.somoim.app.chat.ChatMessageDAO">
+  	
+  	<insert id="addChatRoom">
+  		INSERT INTO CHATROOM (CHATROOMNUM) VALUES (CHATROOM_SEQ.NEXTVAL)
+  	</insert>
+  	
+  	
+  	<!-- parameter member(userName), chatRoom(chatRoomNum) -->
+  	<insert id="addChat" parameterType="Map">
+  		INSERT INTO CHATMESSAGE 
+			(MESSAGENUM, CHATROOMNUM, USERNAME, CHATTEXT, CHATTIMESTAMP)
+		VALUES
+			(MESSAGE_SEQ.NEXTVAL, #{room.chatRoomNum}, #{member.userName}, #{chatText}, SYSDATE)
+  	</insert>
+  	
+  	<select id="chatRoomCh" resultType="Long">
+  		SELECT DISTINCT CHATROOMNUM FROM CHATROOM
+  	</select>
+  </mapper>
