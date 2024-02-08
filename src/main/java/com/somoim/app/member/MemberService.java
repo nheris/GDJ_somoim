@@ -40,7 +40,7 @@ public class MemberService {
 		
 		if(dto!=null) {
 			if(dto.getPassword().equals(memberDTO.getPassword())) {
-				return memberDTO; 
+				return dto; 
 			}else {
 				dto=null;
 			}
