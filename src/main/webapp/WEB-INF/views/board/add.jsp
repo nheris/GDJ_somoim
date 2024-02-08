@@ -65,7 +65,7 @@
 
 
 	<!-- ========================= JS improt ========================= -->
-
+	<script src="/resources/js/board/fileDelete.js"></script>
 	<c:import url="../temps/footer.jsp"></c:import>
 </body>
 </html>
