@@ -105,6 +105,15 @@ body {
 	<script src="/resources/assets/js/glightbox.min.js"></script>
 	<script src="https://cdn.iamport.kr/v1/iamport.js"></script>
 	<script src="/resources/js/payment.js"></script>
+	<script>
+		let payment = document.getElementById("payment");
+		
+		payment.addEventListener("click", function() {
+			window.parent.postMessage("paymentSelect", "*");
+			window.close();
+		});
+	
+	</script>
 </body>
 
 </html>

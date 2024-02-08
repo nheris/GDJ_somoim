@@ -17,6 +17,8 @@
 <c:import url="../temps/head_css.jsp"></c:import>
 <!-- 내비게이터 import -->
 <c:import url="../temps/header.jsp"></c:import>
+<script src="https://js.tosspayments.com/v1/payment-widget"></script>
+
 <style>
 .single-table {
 	background-color: black;
@@ -157,7 +159,6 @@
 
 	<!-- ========================= JS improt ========================= -->
 	<c:import url="../temps/footer.jsp"></c:import>
-	<script src="https://cdn.iamport.kr/v1/iamport.js"></script>
 	<script src="/resources/js/payment.js"></script>
 </body>
 </html>
