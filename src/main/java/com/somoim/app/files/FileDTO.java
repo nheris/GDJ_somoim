@@ -1,13 +1,7 @@
 package com.somoim.app.files;
 
 public class FileDTO {
-	private Long number;
-	public Long getNumber() {
-		return number;
-	}
-	public void setNumber(Long number) {
-		this.number = number;
-	}
+	
 	private Long fileNum;
 	private String fileName;
 	private String oriName;

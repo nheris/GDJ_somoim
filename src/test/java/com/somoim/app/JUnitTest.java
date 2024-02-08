@@ -30,5 +30,6 @@ public class JUnitTest extends MyTest {
 		
 		assertNotEquals(0, result);
 	}
+	
 
 }

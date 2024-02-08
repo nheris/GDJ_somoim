@@ -10,6 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+@Controller("/mypage/*")
+public class MypageController {
 import com.somoim.app.payment.PaymentService;
 import com.somoim.app.payment.PaymentTypeDTO;
 
