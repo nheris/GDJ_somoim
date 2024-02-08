@@ -60,7 +60,7 @@
 						<!-- 채팅기록 -->
 						<div class="chat-history" id="chat-history" style="overflow-y: scroll; height: 450px;">
 							<!-- visually-hidden -->
-							<span class="position-fixed visually-hidden">
+							<span class="position-fixed" id="bBtn">
 								<button style="transform:translateX(500%) !important" class="btn btn-light">Count</button>
 							</span>
 							<ul class="m-b-0" id="chat_record">

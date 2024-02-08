@@ -119,12 +119,10 @@ function otherSend(msg){
 let chatHistory = document.getElementById('chat-history');
 let newMsgCount = 0;
 let scrollToBottom = chatHistory.scrollHeight - chatHistory.scrollTop === chatHistory.clientHeight;
-let newChatBtn = document.getElementById('newChatBtn');
 
 // scroll 밑에 고정
 function scroller(){
     if(scrollToBottom){
         chatHistory.scrollTo(0, chatHistory.scrollHeight);
-        newChatBtn.classList.add('visually-hidden');
     }
 }
