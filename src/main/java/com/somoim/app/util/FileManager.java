@@ -25,8 +25,8 @@ public class FileManager {
 			throw new Exception();
 		}
 		
-		if(!f.exists()) {
-			f.mkdirs();
+		if(!files.exists()) {
+			files.mkdirs();
 		}
 		
 		Calendar ca = Calendar.getInstance();
@@ -34,9 +34,9 @@ public class FileManager {
 		
 		fileName=UUID.randomUUID().toString()+"_"+file.getOriginalFilename();
 		
-		f= new File(f,fileName);
+		files= new File(files,fileName);
 		
-		file.transferTo(f);
+		file.transferTo(files);
 		return fileName;
 	}
 }
