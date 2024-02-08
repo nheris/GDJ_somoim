@@ -44,14 +44,16 @@ sock.onmessage =  function (e){
     let sessionid = null;
     let smsg = null;
 
-    console.log(ar[0]);
-    console.log(ar[1]);
+    console.log(ar[0])+" : "+ar[1];
+
 
     if(ar[0] == userCh.value){
         mySend(ar[1]);
     }else{
         otherSend(ar[1]);
     }
+    
+    scroller();
 
     console.log("onMessage : "+data);
 }
@@ -83,7 +85,7 @@ function mySend(msg){
 
     // msg 를 담을 div
     div = document.createElement('div');
-
+    
     li.append(div);
     div.classList.add('message');
     div.classList.add('my-message');
@@ -114,4 +116,16 @@ function otherSend(msg){
     div.innerText = msg;
 }
 
+let chatHistory = document.getElementById('chat-history');
+let newMsgCount = 0;
+let scrollToBottom = chatHistory.scrollHeight - chatHistory.scrollTop === chatHistory.clientHeight;
+let newChatBtn = document.getElementById('newChatBtn');
 
+// scroll 밑에 고정
+function scroller(){
+    if(scrollToBottom){
+        chatHistory.scrollTo(0, chatHistory.scrollHeight);
+        
+        newChatBtn.classList.add('visually-hidden');
+    }
+}

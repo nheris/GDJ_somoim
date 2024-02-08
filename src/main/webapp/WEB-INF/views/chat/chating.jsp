@@ -58,7 +58,11 @@
 							</div>
 						</div>
 						<!-- 채팅기록 -->
-						<div class="chat-history">
+						<div class="chat-history" id="chat-history" style="overflow-y: scroll; height: 450px;">
+							<!-- visually-hidden -->
+							<span class="position-fixed visually-hidden">
+								<button style="transform:translateX(500%) !important" class="btn btn-light">Count</button>
+							</span>
 							<ul class="m-b-0" id="chat_record">
 								<!-- 상대방 (.text-right, float-right) -->
 								<li class="clearfix">
@@ -86,6 +90,7 @@
 										to show you.</div>
 								</li>
 							</ul>
+							
 						</div>
 						
 						<!-- 채팅입력 -->
