@@ -1,6 +1,7 @@
 package com.somoim.app.mypage;
 
 import java.net.http.HttpRequest;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -27,6 +28,9 @@ public class MypageController {
 	
 	@Autowired
 	private MemberService memberService;
+	
+	@Autowired
+	private PaymentService paymentService;
 	
 	@GetMapping("main")
 	public String getMypage(HttpSession session,Model model)throws Exception{
@@ -60,5 +64,12 @@ public class MypageController {
 		memberService.setPasswordUpdate(memberDTO);
 		
 		return "redirect:./main";
+	}
+	
+	@GetMapping("pay")
+	public String getPaymentTypeList(PaymentTypeDTO pTypeDTO, Model model) throws Exception{
+		List<PaymentTypeDTO> ar = paymentService.getPaymentTypeList();
+		model.addAttribute("paymentType",ar);
+		return "mypage/pay";
 	}
 }
