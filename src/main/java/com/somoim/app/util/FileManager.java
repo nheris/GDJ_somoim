@@ -9,10 +9,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Component
 public class FileManager {
-
-	// 파일 삭제 하는 메소드
-	public Boolean fileDelete(String path, String fileName)throws Exception{
-		File file = new File(path, fileName);
+	//파일삭제
+	public boolean fileDelete(String path,String fileName)throws Exception{
+		File file = new File(path,fileName);
 		return file.delete();
 	}
 	
@@ -26,24 +25,18 @@ public class FileManager {
 			throw new Exception();
 		}
 		
-		// 경로에 디렉터리/파일이 있는지 조회
-		if(!files.exists()) {
-			// 없을경우 만듬
-			files.mkdirs();
+		if(!f.exists()) {
+			f.mkdirs();
 		}
-				
-		// 파일 명칭 정하기
-		// UUID 사용
-		String fileName=UUID.randomUUID().toString()+"_"+file.getOriginalFilename();
-		System.out.println(fileName);
 		
-		files = new File(files, fileName);
+		Calendar ca = Calendar.getInstance();
+		String fileName = ca.getTimeInMillis()+"_"+file.getOriginalFilename();
 		
-		// MultipartFile의 transferTo메소드 사용 다중파일 업로드 가능하게 설정
-		file.transferTo(files);
+		fileName=UUID.randomUUID().toString()+"_"+file.getOriginalFilename();
 		
+		f= new File(f,fileName);
+		
+		file.transferTo(f);
 		return fileName;
 	}
-	
-	
 }

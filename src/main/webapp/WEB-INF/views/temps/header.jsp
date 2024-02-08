@@ -46,7 +46,7 @@
 											회원가입</a></li>
 								</c:if>
 								<c:if test="${member ne null}">
-									<li><a href="/mypage"><i class="lni lni-user"></i>
+									<li><a href="/mypage/main"><i class="lni lni-user"></i>
 											마이페이지</a></li>
 									<li><a href="/member/logout"><i class="lni lni-ban"></i>
 											로그아웃</a></li>

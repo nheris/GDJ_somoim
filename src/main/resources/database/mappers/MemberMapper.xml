@@ -4,23 +4,50 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <!-- mapper namespace는 비우면 에러 -->
   <mapper namespace="com.somoim.app.member.MemberDAO">
+  	<update id="setPasswordUpdate" parameterType="MemberDTO">
+  		UPDATE MEMBER
+  		SET 
+  			PASSWORD = #{password}
+  		WHERE USERNAME = #{userName}
+  	</update>
+  	
+  	<update id="setUpdate" parameterType="MemberDTO">
+  		UPDATE MEMBER
+  		SET			
+	 		NICKNAME=#{nickName},
+	  		ADDRESS=#{address},
+	  		PHONE=#{phone},
+	  		EMAIL=#{email}
+  		WHERE USERNAME=#{userName}
+  	</update>
+  
   	<insert id="setJoin" parameterType="MemberDTO">
   		INSERT INTO MEMBER
   		VALUES
-  		(#{userName},#{password},#{nickName},#{name},#{residentNum},#{address},#{phone},#{email})
+  		(#{userName},#{password},#{nickName},#{name},#{userBirth},#{address},#{phone},#{email})
   	</insert>
   	
   	<insert id="setProfileJoin" parameterType="ProfileDTO">
-  		INSERT INTO PROFILEJOIN
+  		INSERT INTO PROFILE
   		VALUES
-  		(MEMBER_SEQ.NEXTVAL,#{userNaem},#{fileName},#{oriName})
+  		(MEMBER_SEQ.NEXTVAL,#{userName},#{fileName},#{oriName})
+  	</insert>
+  	
+  	<insert id="setMemberRole" parameterType="MemberDTO">
+  		INSERT INTO MEMBERROLE
+  		VALUES
+  		(#{userName},(SELECT ROLENUM FROM ROLE WHERE ROLENAME = '일반회원'))
   	</insert>
   	
   	<select id="getDetail" parameterType="MemberDTO" resultMap="getDetailResult">
   		SELECT * FROM MEMBER
   			LEFT JOIN PROFILE
   			USING(USERNAME)
-  			WHERE USERNAME=#{userName}  		
+  			INNER JOIN MEMBERROLE
+  			USING(USERNAME)
+  			INNER JOIN ROLE
+  			USING(ROLENUM)
+  			WHERE USERNAME =#{userName}	
   	</select>
   	
   	<resultMap type="MemberDTO" id="getDetailResult">
@@ -28,15 +55,19 @@
   		<result column="PASSWORD" property="password"/>
   		<result column="NICKNAME" property="nickName"/>
   		<result column="NAME" property="name"/>
-  		<result column="RESIDENTINUM" property="residentnum"/>
+  		<result column="USERBIRTH" property="userBirth"/>
   		<result column="ADDRESS" property="address"/>
  		<result column="PHONE" property="phone"/>
   		<result column="EMAIL" property="email"/>
-  			<association property="profile" javaType="ProfileDTO" >
+  			<association property="profile" javaType="ProfileDTO">
   		 		<id column="FILENUM" property="fileNum"/>
   		 		<result column="FILENAME" property="fileName"/>
   		 		<result column="ORINAME" property="oriName"/>
   		 	</association>
+  		 	<collection property="roleDTO" javaType="List" ofType="RoleDTO">
+  		 		<result column="ROLENUM" property="roleNum"/>
+  		 		<result column="ROLENAME" property="roleName"/>
+  		 	</collection>
   	</resultMap>
   	
   	
