@@ -10,6 +10,13 @@ private String boardTitle;
 private String boardText;
 private String boardWriter;
 private Date boardDate;
+private Long boardCategory;
+public Long getBoardCategory() {
+	return boardCategory;
+}
+public void setBoardCategory(Long boardCategory) {
+	this.boardCategory = boardCategory;
+}
 public Long getBoardNum() {
 	return boardNum;
 }
