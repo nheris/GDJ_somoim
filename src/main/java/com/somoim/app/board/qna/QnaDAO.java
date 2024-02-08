@@ -1,6 +1,7 @@
 package com.somoim.app.board.qna;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,7 @@ public class QnaDAO implements BoardDAO{
 	private final String namespace="com.somoim.app.board.qnass.QnaDAO.";
 	
 	@Override
-	public Long getTotalCount(Pager pager) throws Exception {
+	public Long getTotalCount(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
