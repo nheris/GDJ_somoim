@@ -6,6 +6,16 @@ public class BoardFileDTO extends FileDTO {
 	
 	private Long boardNum;
 
+	private String userName;
+	
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
 	public Long getBoardNum() {
 		return boardNum;
 	}
@@ -14,6 +24,7 @@ public class BoardFileDTO extends FileDTO {
 		this.boardNum = boardNum;
 	}
 	
+
 	
 
 }
