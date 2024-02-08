@@ -13,8 +13,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
+
+import com.somoim.app.payment.PaymentService;
+import com.somoim.app.payment.PaymentTypeDTO;
+
 import com.somoim.app.member.MemberDTO;
 import com.somoim.app.member.MemberService;
+
 
 @Controller
 @RequestMapping("/mypage/*")
