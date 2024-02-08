@@ -39,6 +39,7 @@
                             <div class="form-group">
                                 <label for="userName">아이디</label>
                                 <input name="userName" id="userName" type="text">
+                                <button id="checkId" type="button">중복검사</button>
                             </div>
                             <div class="form-group">
                                 <label for="password">비밀번호</label>
@@ -60,8 +61,28 @@
                                 <input name="name" id="name" type="text">
                             </div>
                             <div class="form-group">
-                                <label for="residentNum">주민번호</label>
-                                <input name="residentNum" id="residentNum" type="text">
+                                <label for="userBirth">생년월일</label>
+                                <select id="year">
+                                    <option value="">-- 선택 --</option>
+                                    <!-- 생년월일에서 연도를 선택하는 옵션들 -->
+                                    <!-- 이 부분은 생략하고 필요한 범위의 연도 옵션을 추가하세요 -->
+                                </select>
+                                    <label for="year">년</label>
+                            
+                                <select id="month">
+                                    <option value="">-- 선택 --</option>
+                                    <!-- 생년월일에서 월을 선택하는 옵션들 -->
+                                    <!-- 이 부분은 생략하고 1월부터 12월까지의 옵션을 추가하세요 -->
+                                </select>
+                                    <label for="month">월</label>
+                            
+                                <select id="day">
+                                    <option value="">-- 선택 --</option>
+                                    <!-- 생년월일에서 일을 선택하는 옵션들 -->
+                                    <!-- 이 부분은 생략하고 필요한 범위의 일 옵션을 추가하세요 -->
+                                </select>                            
+                                    <label for="day">일</label>
+                                <input name="userBirth" id="userBirth" type="hidden" maxlength="10">
                             </div>
                             <div class="form-group">
                                 <label for="address">주소</label>
@@ -86,8 +107,8 @@
                                     <div class="col-12">
                                         <div class="form-check">
                                             <input type="checkbox" class="form-check-input width-auto"
-                                                id="exampleCheck1">
-                                            <label class="form-check-label">개인정보 이용동의</label>
+                                                id="check1">
+                                            <label for="check1"class="form-check-label">개인정보 이용동의</label>
                                         </div>
                                     </div>
                                 </div>
@@ -105,7 +126,10 @@
     </section>
     	<!-- ========================= JS improt ========================= -->
 	<c:import url="../temps/footer.jsp"></c:import>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="../resources/js/member/joinCheck.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>	
 	
 </body>
 </html>

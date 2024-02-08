@@ -34,7 +34,7 @@ public class MypageController {
 	}
 	
 	@PostMapping("update")
-	public String setUpdate(MultipartFile attachs,HttpSession session,MemberDTO memberDTO,Model model)throws Exception{
+	public String setUpdate(MultipartFile attachs,HttpSession session,MemberDTO memberDTO)throws Exception{
 		
 		
 		MemberDTO m = (MemberDTO)session.getAttribute("member");
@@ -48,6 +48,7 @@ public class MypageController {
 	}
 	@PostMapping("password")
 	public String setPasswordUpdate(HttpSession session,MemberDTO memberDTO)throws Exception{
+		
 		MemberDTO m = (MemberDTO)session.getAttribute("member");
 		memberDTO.setUserName(m.getUserName());
 		

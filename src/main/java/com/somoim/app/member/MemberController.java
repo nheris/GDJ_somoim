@@ -3,6 +3,7 @@ package com.somoim.app.member;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +16,21 @@ import org.springframework.web.multipart.MultipartFile;
 public class MemberController {
 	@Autowired
 	private MemberService memberService;
+	
+	@GetMapping("idCheck")
+	public String getIdCheck(MemberDTO memberDTO,Model model)throws Exception{
+		int result = 0;		
+		
+		memberDTO = memberService.getMypage(memberDTO);
+		if(memberDTO == null) {
+			result = 1;
+		}
+		
+		model.addAttribute("result",result);
+		
+		return "member/id";
+		
+	}
 	
 	@GetMapping("join")
 	public void setJoin(MemberDTO memberDTO)throws Exception{

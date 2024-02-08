@@ -9,6 +9,7 @@ let btn1 = document.getElementById("btn1");
 let btn2 = document.getElementById("btn2");
 let btn3 = document.getElementById("btn3");
 let frm = document.querySelector("#frm");
+let frm2 = document.querySelector("#frm2");
 
 btn1.addEventListener("click",()=>{
     console.log("클릭")
@@ -55,9 +56,8 @@ btn3.addEventListener("click",(e)=>{
     
         if(pwd==pwdCheck){
             if(strongPassword(pwd)){
-                e.preventDefault();
-                frm.setAttribute("action","./password");
-                frm.submit();
+                e.preventDefault();                
+                frm2.submit();
                 alert("변경되었습니다");
                 }else{
                     alert("비밀번호는 8글자 이상,영문,숫자,특수문자가 들어가야합니다")

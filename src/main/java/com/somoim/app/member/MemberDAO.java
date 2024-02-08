@@ -6,11 +6,17 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.somoim.app.member.role.RoleDTO;
+
 @Repository
 public class MemberDAO {
 	@Autowired
 	private SqlSession sqlSession;
 	private final String namespace="com.somoim.app.member.MemberDAO.";
+	
+	public int setMemberRole(MemberDTO memberDTO)throws Exception{
+		return sqlSession.insert(namespace+"setMemberRole", memberDTO);
+	}
 	
 	public int setPasswordUpdate(MemberDTO memberDTO)throws Exception{
 		return sqlSession.update(namespace+"setPasswordUpdate", memberDTO);

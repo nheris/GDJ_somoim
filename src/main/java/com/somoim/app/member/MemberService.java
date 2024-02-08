@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.somoim.app.member.role.RoleDTO;
 import com.somoim.app.util.FileManager;
 
 @Service
@@ -18,7 +19,8 @@ public class MemberService {
 	private FileManager fileManager;
 	
 	public int setPasswordUpdate(MemberDTO memberDTO)throws Exception{
-		int result = memberDAO.setPasswordUpdate(memberDTO);
+		int result = 0;
+		result = memberDAO.setPasswordUpdate(memberDTO);
 		return result;
 	}
 	
@@ -46,6 +48,7 @@ public class MemberService {
 	public int setjoin(MemberDTO memberDTO,MultipartFile attachs)throws Exception {
 		int result = 0 ;
 		result = memberDAO.setJoin(memberDTO);
+		result = memberDAO.setMemberRole(memberDTO);
 		if(attachs.isEmpty()) {
 			return result;
 		}
@@ -66,7 +69,11 @@ public class MemberService {
 		
 		if(dto!=null) {
 			if(dto.getPassword().equals(memberDTO.getPassword())) {
-				return memberDTO; 
+				
+				memberDTO.setNickName(dto.getNickName());
+				memberDTO.setProfile(dto.getProfile());
+				
+				return memberDTO;
 			}else {
 				dto=null;
 			}
