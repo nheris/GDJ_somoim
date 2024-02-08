@@ -22,9 +22,9 @@ public class NoticeDAO  implements BoardDAO{
 	private final String namespace="com.somoim.app.board.notice.NoticeDAO.";
 
 	@Override
-	public Long getTotalCount(Pager pager) throws Exception {
+	public Long getTotalCount(Map<String, Object>map) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne(namespace+"getTotalCount", pager);
+		return sqlSession.selectOne(namespace+"getTotalCount", map);
 	}
 
 	@Override

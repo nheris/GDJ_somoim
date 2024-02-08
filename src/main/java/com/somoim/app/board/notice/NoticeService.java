@@ -35,9 +35,8 @@ public class NoticeService implements BoardService{
 	// List
 	@Override
 	public List<BoardDTO> getList(Pager pager) throws Exception {
-		pager.makeRow();
-		Long totalcount = noticeDAO.getTotalCount(pager);
-		pager.makeNum(totalcount);
+		
+		
 		List<BoardDTO>ar = this.noticeDAO.getList(pager);
 		return ar;
 	}
@@ -100,12 +99,16 @@ public class NoticeService implements BoardService{
 
 
 	public List<BoardDTO> getListJson(Pager pager, BoardDTO boardDTO) throws Exception{
-		pager.makeRow();
-		pager.makeNum(noticeDAO.getTotalCount(pager));
-		System.out.println(pager.getSearch());
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("pager", pager);
 		map.put("BoardDTO", boardDTO);
+		pager.makeRow();
+		pager.makeNum(noticeDAO.getTotalCount(map));
+		//================================================
+		
+		System.out.println(pager.getStartNum());
+		System.out.println(pager.getLastNum());
+		System.out.println(pager.getSearch());
 		return noticeDAO.getListJson(map);
 	}
 

@@ -40,8 +40,7 @@
 						<option value="2">기타</option>
 					</select>
 				</div>
-		<div class="row gx-5 justify-content-center">
-			<div class="col-lg-11 col-xl-9 col-xxl-8">
+			<div >
 				
 					<input type="hidden" name="boardNum" value="${boardDTO.boardNum}" id="boardNum">
 					<input type="hidden" value="${member.userName}" id="userName" name="userName">
@@ -56,13 +55,13 @@
 					name="boardText">${boardDTO.boardText}</textarea>
 			</div>
 			<input class="form-control" type="file" id="formFileMultiple" multiple data-file-count="0" data-file-max="5" name="attachs" accept="image/jpg, image/jpeg, image/png, image/gif">
-		</div>
-		<div class="col-auto d-flex justify-content-end mt-3 mb-3">
+					<div class="col-auto d-flex justify-content-end mt-3 mb-3">
 			<button class="btn btn-outline-dark" id="fileAdd">등록</button>
 		</div>
-	</div>
-	</form>
+		</div>
 
+	</form>	
+</div>
 
 
 	<!-- ========================= JS improt ========================= -->
