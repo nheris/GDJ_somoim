@@ -1,6 +1,7 @@
 package com.somoim.app.board;
 
 import java.util.List;
+import java.util.Map;
 
 import com.somoim.app.util.Pager;
 
@@ -8,7 +9,7 @@ import com.somoim.app.util.Pager;
 public interface BoardDAO {
 	
 	//totalCount 매개변수 page로 넘겨줘야함
-	public Long getTotalCount(Pager pager)throws Exception;
+	public Long getTotalCount(Map<String, Object> map)throws Exception;
 
 	//list 매개변수 page로 넘겨줘야함
 	public List<BoardDTO> getList(Pager pager)throws Exception;

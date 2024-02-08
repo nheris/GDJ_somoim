@@ -6,6 +6,7 @@ public class FileDTO {
 	private String fileName;
 	private String oriName;
 	
+	
 	public Long getFileNum() {
 		return fileNum;
 	}
