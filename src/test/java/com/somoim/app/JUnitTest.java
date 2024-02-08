@@ -22,7 +22,7 @@ public class JUnitTest extends MyTest {
 		memberDTO.setPassword("1234a");
 		memberDTO.setNickName("a");
 		memberDTO.setName("a");
-		memberDTO.setResidentNum("1234a");
+		memberDTO.setUserBirth("1234a");
 		memberDTO.setAddress("asdf");
 		memberDTO.setPhone("1234a");
 		memberDTO.setEmail("set");
@@ -31,7 +31,4 @@ public class JUnitTest extends MyTest {
 		assertNotEquals(0, result);
 	}
 	
-	public void detail_test() throws Exception{
-		List<MemberDTO> ar = memberDAO.getDetail(memb);
-	}
 }
