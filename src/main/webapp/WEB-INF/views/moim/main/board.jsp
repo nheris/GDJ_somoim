@@ -11,9 +11,9 @@
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <!-- CSS 임포트 -->
-<c:import url="../temps/head_css.jsp"></c:import>
+<c:import url="../../temps/head_css.jsp"></c:import>
 <!-- 내비게이터 import -->
-<c:import url="../temps/header.jsp"></c:import>
+<c:import url="../../temps/header.jsp"></c:import>
 </head>
 <body>
 	<!-- 모임 홈 헤더 -->
@@ -58,40 +58,94 @@
 
             <div class="tab-content" id="nav-tabContent">
                 <div class="tab-pane fade show active" id="nav-grid" role="tabpanel" aria-labelledby="nav-grid-tab">
+                
                     <!-- 자유게시판 -->
+                	<table class="table">
+						<thead>
+							<tr>
+								<th scope="col">
+
+
+									<div class="item-list-title">
+										<div class="row align-items-center">
+											<div class="col-lg-2 col-md-2 col-12 text-center">
+												<p>No.</p>
+											</div>
+											<div class="col-lg-5 col-md-5 col-12 text-center">
+												<p>제목</p>
+											</div>
+											<div class="col-lg-1 col-md-1 col-12 text-center">
+												<p>작성자</p>
+											</div>
+											<div class="col-lg-2 col-md-2 col-12 text-center">
+												<p>작성일</p>
+											</div>
+											<div class="col-lg-1 col-md-1 col-12 text-center">
+												<p>조회</p>
+											</div>
+											<div class="col-lg-1 col-md-1 col-12 text-center align-right">
+												<p>좋아요</p>
+											</div>
+										</div>
+									</div>
+
+								</th>
+							</tr>
+						</thead>
+
+						<tbody class="table-group-divider" id="listTbody">
+							<c:forEach items="${list}" var="dto">
+								<tr>
+									<td>
+										<div class="card-body">
+											<div class="single-item-list">
+												<div class="row align-items-center">
+													<div class="col-lg-2 col-md-2 col-12">
+														<p>${dto.moimMemberDTO.joinDate}</p>
+													</div>
+
+
+													<div class="col-lg-5 col-md-5 col-12">
+														<p>${dto.moimCategory}</p>
+													</div>
+
+
+													<div class="col-lg-1 col-md-1 col-12">
+														<p>${dto.moimMemberDTO.joinDate}</p>
+													</div>
+
+
+													<div class="col-lg-2 col-md-2 col-12">
+														<p>${dto.moimMemberDTO.joinDate}</p>
+													</div>
+													
+													<div class="col-lg-1 col-md-1 col-12">
+														<p>${dto.moimMemberDTO.joinDate}</p>
+													</div>
+													
+													<div class="col-lg-1 col-md-1 col-12">
+														<p>${dto.moimMemberDTO.joinDate}</p>
+													</div>
+
+
+												</div>
+											</div>
+										</div>
+									</td>
+								</tr>
+							</c:forEach>
+
+						</tbody>
+					</table>
+
+
+					<!-- 글쓰기 -->
                     <div class="row">
-
-                        <div class="col-lg-12 col-md-12 col-12">
-                            <div class="single-item-grid">
-                                <div class="row align-items-center">
-                                    <div class="col-lg-5 col-md-7 col-12">
-                                        <div class="image">
-                                            <a href="item-details.html"><img src="assets/images/items-tab/item-2.jpg" alt="#"></a>
-                                            <i class=" cross-badge lni lni-bolt"></i>
-                                            <span class="flat-badge sale">Sale</span>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-7 col-md-5 col-12">
-                                        <div class="content">
-                                            <a href="javascript:void(0)" class="tag">Others</a>
-                                            <h3 class="title">
-                                                <a href="item-details.html">Travel Kit</a>
-                                            </h3>
-                                            <p class="location"><a href="javascript:void(0)"><i class="lni lni-map-marker">
-                                                    </i>San Francisco</a></p>
-                                            <ul class="info">
-                                                <li class="price">$580.00</li>
-                                                <li class="like"><a href="javascript:void(0)"><i class="lni lni-heart"></i></a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
+	                    <div class="button">
+							<a href="./add" class="btn my-3" id="addBtn">글쓰기</a>
+						</div>
                     </div>
-
+                    
                     <!-- 페이징 -->
                     <div class="row">
                         <div class="col-12">
@@ -109,6 +163,8 @@
                         </div>
                     </div>
                 </div>
+                
+                
                 <div class="tab-pane fade" id="nav-list" role="tabpanel" aria-labelledby="nav-list-tab">
                     <!-- 공지 게시판 -->
                     <div class="row ">
@@ -139,6 +195,8 @@
                             <!--/ End Pagination -->
                         </div>
                     </div>
+                    
+                    
                 </div>
             </div>
 			
@@ -151,7 +209,7 @@
 	</a>
 
 	<!-- ========================= JS improt ========================= -->
-	<c:import url="../temps/footer.jsp"></c:import>
+	<c:import url="../../temps/footer.jsp"></c:import>
 </body>
 
 </html>

@@ -18,7 +18,7 @@
 								<!-- <div class="content"> -->
 								<span class="content mx-5">
 									<h5 class="title">
-										<a href="./home" id="moimName"
+										<a href="./main/home?moimNum=${dto.moimNum}" id="moimName"
 											data-moim-num="${dto.moimNum}">${dto.moimName}</a>
 									</h5>
 									<span class="moimHead">${dto.moimHead}</span>

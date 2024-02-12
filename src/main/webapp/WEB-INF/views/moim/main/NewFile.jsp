@@ -11,9 +11,9 @@
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <!-- CSS 임포트 -->
-<c:import url="../temps/head_css.jsp"></c:import>
+<c:import url="../../temps/head_css.jsp"></c:import>
 <!-- 내비게이터 import -->
-<c:import url="../temps/header.jsp"></c:import>
+<c:import url="../../temps/header.jsp"></c:import>
 </head>
 <body>
 	<!-- 모임 홈 헤더 -->
@@ -155,7 +155,7 @@
 	</a>
 
 	<!-- ========================= JS improt ========================= -->
-	<c:import url="../temps/footer.jsp"></c:import>
+	<c:import url="../../temps/footer.jsp"></c:import>
 </body>
 
 </html>
