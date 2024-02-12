@@ -30,44 +30,10 @@ uri="http://java.sun.com/jsp/jstl/core"%>
         </div>
         <!--  -->
 
-        <div class="container mb-4" name="categorySelect">
-            <ul
-                class="nav nav-pills list-group-horizontal d-flex justify-content-center"
-                name="categorySelect"
-            >
-                <li class="nav-item px-2">
-                    <a
-                        class="nav-link BOARDCATEGORY"
-                        href="/notice/list"
-                        data-category="all"
-                        >전체</a
-                    >
-                </li>
-                <li class="nav-item px-2" name="category0" id="category0">
-                    <a
-                        class="nav-link BOARDCATEGORY"
-                        href="/notice/list"
-                        data-category="category0"
-                        >공지</a
-                    >
-                </li>
-                <li class="nav-item px-2" name="category1" id="category1">
-                    <a
-                        class="nav-link BOARDCATEGORY"
-                        href="/notice/list"
-                        data-category="category1"
-                        >패치</a
-                    >
-                </li>
-                <li class="nav-item px-2" name="category2" id="category2">
-                    <a
-                        class="nav-link BOARDCATEGORY"
-                        href="/notice/list"
-                        data-category="category2"
-                        >기타</a
-                    >
-                </li>
-            </ul>
+        <div class="container mb-4">
+		<div class="col-auto d-flex justify-content-end mb-3">
+			<a href="./list" class="btn btn-outline-dark">목록</a>
+		</div>
         </div>
 
         <!--  -->
@@ -81,10 +47,13 @@ uri="http://java.sun.com/jsp/jstl/core"%>
 
                             <div>
                                 <c:forEach items="${detail.fileDTOs}" var="f">
-                                    <a
-                                        href="../resources/upload/notice/${f.fileName}"
-                                        >${f.oriName}</a
-                                    >
+                                <c:if test="${board eq '문의게시판'}">
+                                    <a href="../resources/upload/qna/${f.fileName}">${f.oriName}</a>
+                                 </c:if>
+                                  <c:if test="${board eq '공지게시판'}">
+                                    <a href="../resources/upload/notice/${f.fileName}">${f.oriName}</a>
+                                 </c:if>
+                                    
                                 </c:forEach>
                             </div>
                         </div>

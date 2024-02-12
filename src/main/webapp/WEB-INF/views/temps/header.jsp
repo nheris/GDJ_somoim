@@ -34,6 +34,8 @@
 									aria-label="Toggle navigation">내 모임리스트</a></li>
 								<li class="nav-item"><a href="/">모임만들기</a></li>
 								<li class="nav-item"><a href="/notice/list">공지사항</a></li>
+								<li class="nav-item"><a href="/qna/list">QNA</a></li>
+								<li class="nav-item"><a href="/qna/fnq">FNQ</a></li>
 							</ul>
 						</div>
 						<!-- navbar collapse -->

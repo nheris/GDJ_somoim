@@ -7,11 +7,19 @@ uri="http://java.sun.com/jsp/jstl/core"%>
 <c:forEach items="${data}" var="data">
     <tr class="something">
         <td class="col-md-2">${data.boardNum}</td>
-        <td class="col-md-4">
-            <a href="/notice/detail?boardNum=${data.boardNum}"
-                >${data.boardTitle}</a
-            >
-        </td>
+        <c:if test="${board eq '문의게시판'}">
+        <c:choose>
+        <c:when test="${data.boardSecret eq 1}">
+        <td class="col-md-4"><a href="/qna/detail?boardNum=${data.boardNum}">비밀글입니다.</a></td>
+         </c:when>
+         <c:otherwise>
+        <td class="col-md-4"><a href="/qna/detail?boardNum=${data.boardNum}">${data.boardTitle}</a></td>
+        </c:otherwise>
+        </c:choose>
+        </c:if>
+        <c:if test="${board eq '공지게시판'}">
+        <td class="col-md-4"><a href="/notice/detail?boardNum=${data.boardNum}">${data.boardTitle}</a></td>
+        </c:if>
         <td class="col-md-4">${data.boardWriter}</td>
         <td class="col-md-4">${data.boardDate}</td>
     </tr>
