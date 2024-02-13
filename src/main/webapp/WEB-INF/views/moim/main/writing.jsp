@@ -47,71 +47,32 @@
 		<div class="col-12 mx-3 bg-white" style="border-radius: 10px; width: 99%">
 			<div class="section-title" style="margin-bottom: 40px">
 				<h2 class="wow fadeInUp" data-wow-delay=".4s"
-					style="font-size: 22px; padding-bottom: 10px; margin-top: 20px; margin-bottom: 8px; height: 45px"></h2>
+					style="font-size: 22px; padding-bottom: 10px; margin-top: 20px; margin-bottom: 8px; height: 45px">게시판 글쓰기</h2>
 				
 			</div>
 		</div>
 						
 						
 		<div class="comment-form">
-            <h3 class="comment-reply-title"><span style="font-weight: bold;">정모 만들기</span></h3>
+            <h3 class="comment-reply-title"><span style="font-weight: bold;">Writing</span></h3>
             
-            <form action="./add" method="POST">
+            <form action="./writing" method="POST">
                 <div class="row">
-	
+
                     <div class="mb-3">
-                    	<label for="meetName" class="form-label">정모 이름</label>
-						<input type="text" class="form-control" id="meetName" name="meetName" placeholder="정모 이름">
+						<input type="text" class="form-control" id="boardTitle" name="boardTitle" placeholder="제목을 입력해 주세요.">
 					</div>
 					<div class="mb-3">
-						<label for="meetDate" class="form-label">정모 날짜</label>
-						<input type="text" class="form-control" id="meetDate" name="meetDate">
+						<textarea class="form-control" id="boardText" name="boardText" rows="8" placeholder="내용을 입력하세요."></textarea>
 					</div>
 					<div class="mb-3">
-						<label for="meetPlace" class="form-label">위치</label>
-						<input type="text" class="form-control" id="meetPlace" name="meetPlace">
-						
-						<div class="single-block ">
-                           <div class="mapouter">
-                               <div class="gmap_canvas"><iframe width="100%" height="300" id="gmap_canvas" src="https://maps.google.com/maps?q=2880%20Broadway,%20New%20York&amp;t=&amp;z=13&amp;ie=UTF8&amp;iwloc=&amp;output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://putlocker-is.org"></a><br>
-                                   <style>
-                                       .mapouter {
-                                           position: relative;
-                                           text-align: right;
-                                           height: 300px;
-                                           width: 100%;
-                                       }
-                                   </style><a href="https://www.embedgooglemap.net">google map code for website</a>
-                                   <style>
-                                       .gmap_canvas {
-                                           overflow: hidden;
-                                           background: none !important;
-                                           height: 300px;
-                                           width: 100%;
-                                       }
-                                   </style>
-                               </div>
-                           </div>
-                       </div>
-                       
-					</div>
-					<div class="mb-3">
-						<label for="meetCost" class="form-label">참가비</label>
-						<input type="number" class="form-control" id="meetCost" name="meetCost" placeholder="15000">
-					</div>
-					<div class="mb-3">
-						<label for="meetCount" class="form-label">정원(5~300명)</label>
-						<input type="number" class="form-control" id="meetCount" name="meetCount" placeholder="정원을 지정해 주세요.">
-					</div>
-					<div class="mb-3">
-						<label for="exampleFormControlTextarea1" class="form-label">정모 사진 등록</label>
+						<label for="exampleFormControlTextarea1" class="form-label">파일 첨부</label>
 						<div class="input-group mb-3">
 						  <input type="file" class="form-control" name="file">
-						
+						  <input type="file" class="form-control" name="file">
+						  <input type="file" class="form-control" name="file">
 						</div>
 					</div>
-					
-					<input type="hidden" name="moimNum" id="moimNumHidden" value="${dto.moimNum}">
 							
 								
                     <div class="col-12">

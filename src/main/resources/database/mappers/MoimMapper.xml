@@ -122,8 +122,10 @@
 	WHERE MOIMNUM =#{moimNum} -->
   
   
-  
-  
+  	<!-- 게시판 글쓰기 -->
+  	
+  		
+  		
   
   
   </mapper>

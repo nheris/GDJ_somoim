@@ -187,7 +187,7 @@
 									<input type="text" class="form-control" id="moimName" name="moimName" placeholder="모임 이름">
 								</div>
 								<div class="mb-3">
-									<label for="exampleFormControlTextarea1" class="form-label">모임 설명</label>
+									<label for="moimText" class="form-label">모임 설명</label>
 									<textarea class="form-control" id="moimText" name="moimText" rows="8" placeholder="모임에 대한 설명이나 목표를 적어주세요."></textarea>
 								</div>
 								<div class="mb-3">

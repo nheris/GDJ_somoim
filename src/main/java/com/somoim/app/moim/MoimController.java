@@ -89,22 +89,37 @@ public class MoimController {
 		
 	}
 	
+	//together 정모
+	//정모 리스트
+	@GetMapping("main/together")
+	public void together(MoimDTO moimDTO, Model model) throws Exception {
+		model.addAttribute("dto", moimDTO);
+	}
+	//정모 만들기
+	@GetMapping("main/add")
+	public void mainAdd(MoimDTO moimDTO, Model model) throws Exception {
+		
+	}
+	@PostMapping("main/add")
+	public void mainAdd(MoimDTO moimDTO) throws Exception {
+		
+	}
+	
+	
 	//board 게시판
 	@GetMapping("main/board")
 	public void board() throws Exception {
 		
 	}
-	@GetMapping("main/add")
-	public void mainAdd() throws Exception {
+	@GetMapping("main/writing")
+	public void mainWrite() throws Exception {
 		
 	}
-	
+	@PostMapping("main/writing")
+	public void mainWrite(HttpSession session, MoimBoardDTO moimBoardDTO) throws Exception {
+		
+	}
 
 
 	
-	//together 정모
-	@GetMapping("main/together")
-	public void together() throws Exception {
-		
-	}
 }

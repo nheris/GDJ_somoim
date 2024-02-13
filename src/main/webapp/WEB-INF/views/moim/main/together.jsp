@@ -47,7 +47,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="section-title">
-                        <h2 class="wow fadeInUp" data-wow-delay=".4s" style="visibility: visible; animation-delay: 0.4s; animation-name: fadeInUp;">Latest Products</h2>
+                        <h2 class="wow fadeInUp" data-wow-delay=".4s" style="visibility: visible; animation-delay: 0.4s; animation-name: fadeInUp;">정모</h2>
                         <p class="wow fadeInUp" data-wow-delay=".6s" style="visibility: visible; animation-delay: 0.6s; animation-name: fadeInUp;">There are many variations of passages of Lorem
                             Ipsum available, but the majority have suffered alteration in some form.</p>
                     </div>
@@ -91,7 +91,7 @@
                                 </div>
                                 <div class="bottom-content">
                                     <p class="price">Start From: <span>$200.00</span></p>
-                                    <a href="javascript:void(0)" class="like"><i class="lni lni-heart"></i></a>
+                                    <a href="javascript:void(0)" class="like">참여</a>
                                 </div>
                             </div>
                         </div>
@@ -100,6 +100,15 @@
 
                     
                 </div>
+
+                <!-- 정모 생성 -->
+                <div class="row mt-5">
+                    <div class="button text-center">
+						<a href="./add?moimNum=${dto.moimNum}" class="btn my-3" id="addBtn">정모 만들기</a>
+					</div>
+                </div>
+
+
             </div>
         </div>
     </section>
