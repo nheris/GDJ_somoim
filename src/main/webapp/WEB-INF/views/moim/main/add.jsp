@@ -14,8 +14,13 @@
 <c:import url="../../temps/head_css.jsp"></c:import>
 <!-- 내비게이터 import -->
 <c:import url="../../temps/header.jsp"></c:import>
-<!-- summernote -->
-<c:import url="../../temps/summernote.jsp"></c:import>
+<!-- datepicker -->
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=s6s3pnbbrh&submodules=geocoder"></script>
+
 </head>
 <body>
 	<!-- 모임 홈 헤더 -->
@@ -65,34 +70,35 @@
 					</div>
 					<div class="mb-3">
 						<label for="meetDate" class="form-label">정모 날짜</label>
-						<input type="text" class="form-control" id="meetDate" name="meetDate">
+						<input type="text" class="form-control" id="meetDate" name="meetDate" style="width: 300px;">
 					</div>
 					<div class="mb-3">
 						<label for="meetPlace" class="form-label">위치</label>
 						<input type="text" class="form-control" id="meetPlace" name="meetPlace">
 						
-						<div class="single-block ">
-                           <div class="mapouter">
-                               <div class="gmap_canvas"><iframe width="100%" height="300" id="gmap_canvas" src="https://maps.google.com/maps?q=2880%20Broadway,%20New%20York&amp;t=&amp;z=13&amp;ie=UTF8&amp;iwloc=&amp;output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://putlocker-is.org"></a><br>
-                                   <style>
-                                       .mapouter {
-                                           position: relative;
-                                           text-align: right;
-                                           height: 300px;
-                                           width: 100%;
-                                       }
-                                   </style><a href="https://www.embedgooglemap.net">google map code for website</a>
-                                   <style>
-                                       .gmap_canvas {
-                                           overflow: hidden;
-                                           background: none !important;
-                                           height: 300px;
-                                           width: 100%;
-                                       }
-                                   </style>
-                               </div>
-                           </div>
-                       </div>
+						<!-- 위치 -->
+						<div class="search">
+							<input id="address" type="text" placeholder="검색할 주소">
+							<input id="submit" type="button" value="주소검색">
+						</div>
+						<div id="map" style="width:1000px;height:500px;"></div>
+						<div>
+							<table>
+								<thead>
+									<tr>
+										<th>주소</th>
+										<th>위도</th>
+										<th>경도</th>
+									</tr>	
+								</thead>
+								<tbody id="mapList"></tbody>
+							</table>
+						</div>
+						
+						
+						
+						
+						
                        
 					</div>
 					<div class="mb-3">
@@ -135,7 +141,7 @@
 	<c:import url="../../temps/footer.jsp"></c:import>
 	<script src="https://unpkg.com/bootstrap@4.3.1/dist/js/bootstrap.bundle.min.js" data-src="https://unpkg.com/bootstrap@4.3.1/dist/js/bootstrap.min.js" ></script>
 	<script src="https://unpkg.com/bootstrap-select@1.13.8/dist/js/bootstrap-select.min.js"></script>
-	<script src="/resources/js/moim/main.js"></script>
+	<script src="/resources/js/moim/meet.js"></script>
 </body>
 
 </html>
