@@ -1,6 +1,4 @@
 
-console.log("js파일 진입");
-
 const userName = document.getElementById("userName");
 const password = document.getElementById("password");
 const passwordResult = document.getElementById("passwordResult");
@@ -9,6 +7,7 @@ const passwordCheckResult = document.getElementById("passwordCheckResult");
 const nickName = document.getElementById("nickName");
 const realName = document.getElementById("name");
 const userBirth = document.getElementById("userBirth");
+const adrs_in = document.getElementById("adrs_in");
 const phone = document.getElementById("phone");
 const email = document.getElementById("email");
 
@@ -16,6 +15,7 @@ const btn = document.getElementById("btn");
 const frn = document.querySelector("#frm");
 const person_chk = document.getElementById("check1");
 const birthday = document.getElementById("userBirth").value;
+const btn_area = document.getElementById("btn_area");
 
 const checkId = document.getElementById("checkId");
 
@@ -29,66 +29,30 @@ let p2 = false;
 let id1 = false;
 
 
-     let accessTaken = 'none';													
-		let errCnt=0;						
-     getAccessToken();												
-     function getAccessToken(){												
-     	jQuery.ajax({																												
-     		type:'GET', 																											
-     		url: 'https://sgisapi.kostat.go.kr/OpenAPI3/auth/authentication.json',													
-     		data:{																													
-     		consumer_key : '[consumer_key 입력]',																					
-     		consumer_secret : '[consumer_secret 입력]',																				
-     		},																														
-     		success:function(data){																									
-     			errCnt = 0;																									
-     			accessToken = data.result.accessToken														
-     			alert(accessToken);												
-     			geoCoe();												
-     		},																													
-     		error:function(data) {																									
-     		}																														
-     	});																		
-     }												
-     function geoCoe(){												
-     	var address = '대전광역시 서구 청사로 189';												
-     	address = encodeURIComponent(address);												
-     	var pagenum = '0';												
-     	var resultcount = '5';												
-     	jQuery.ajax({															
-     		type:'GET', 																											
-     		url: 'https://sgisapi.kostat.go.kr/OpenAPI3/addr/geocode.json',														
-     		data:{															
-     			accessToken : accessToken,												
-     			address : address,																					
-     			pagenum : pagenum,													
-     			resultcount : resultcount,													
-     		},																														
-     		success:function(data){																									
-     			switch (parseInt(data.errCd)){																					
-     					case 0:																					
-     						var totalcount = data.result.totalcount;																				
-     						for(var i=0; i<data.result.resultdata.length; i++){;																				
-     							var resultdata = data.result.resultdata[i];																				
-     							var x = resultdata.x;																				
-     							var y = resultdata.y;																				
-     						};																				
-     					break;																					
-     					case -401:																						
-                         errCnt ++;	
-                         if(errCnt<200){	
-     						getAccessToken();																					
-     						}																					
-     					break;																					
-     					case -100:																					
-     					break;																					
-     			}																					
-     		},																														
-     		error:function(data) {																									
-     		}																														
-     	});																		
-   }	
+let accessToken;													
+   //토근 가져오기
+    var errCnt=0;						
+    getAccessToken();												
+    function getAccessToken(){												
+    jQuery.ajax({																												
+        type:'GET', 																											
+        url: 'https://sgisapi.kostat.go.kr/OpenAPI3/auth/authentication.json',													
+        data:{																													
+        consumer_key : 'ef9b5bab0a4e4ed492be',																					
+        consumer_secret : '9f793743e64e4f0b90aa',																				
+        },																														
+        success:function(data){																									
+            errCnt = 0;																									
+            accessToken = data.result.accessToken														
+        },																													
+        error:function(data) {																									
+        }																														
+    });																		
+    }
 
+
+
+//아이디 중복검사
 $("#checkId").click(function(){
     fetch("./idCheck?userName="+$("#userName").val(),{
         method:"GET",
@@ -105,8 +69,7 @@ $("#checkId").click(function(){
     })
 })
 
-
-
+//비밀번호 유효성검사
 function strongPassword (str) {
     return /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/.test(str);
 }
@@ -122,7 +85,7 @@ password.addEventListener("keyup",()=>{
     }
 })
 
-    
+//비밀번호 일치검사
 passwordCheck.addEventListener("keyup",()=>{
     
     if(password.value==passwordCheck.value){
@@ -207,9 +170,99 @@ selectDay.addEventListener("click",()=>{
     getDaysInMonth(year,month);
 })
 
+//시,도,광역시,특별시
+getLocation.addEventListener("click", function() {
+    let area_detail = document.getElementById("area_detail");
+    
+    // AJAX 요청
+    jQuery.ajax({
+        type: "GET",
+        url: "https://sgisapi.kostat.go.kr/OpenAPI3/addr/stage.json",
+        data: {
+            accessToken: accessToken,
+            pg_yn: 0
+        },
+        success: function(data) {
+            errCnt = 0;
+            area.innerHTML='';
+            for (let i = 0; i < data.result.length; i++) {
 
-const pattern = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-za-z0-9\-]+/;
+                let addr_name = data.result[i].addr_name;
+                let cd = data.result[i].cd;
+                    
+                    let sel = document.createElement("option");
+                    sel.setAttribute("value", cd);
+                    sel.innerHTML = addr_name;
+                    area.append(sel);                
+                }
+            },
+        error: function(data) {
+            // 에러 처리
+        }
+    });
+});
+
+//군,구 처리
+function changeList(){
+
+    let selected = area.options[area.selectedIndex];
+
+    let area_detail = document.getElementById("area_detail");
+
+   
+    // 여기서 result_item을 resultItem으로 수정
+
+    jQuery.ajax({
+        type:"GET",
+        url: "https://sgisapi.kostat.go.kr/OpenAPI3/addr/stage.json",
+        data:{
+            accessToken:accessToken,
+            cd:selected.value,
+            pg_yn:0
+        },
+        success: function(data){
+
+            console.log(selected.value);
+            area_detail.innerHTML = "";
+            for(let i = 0;i<data.result.length;i++){
+                let addr_name = data.result[i].addr_name;
+                let cd = data.result[i].cd;
+                console.log(addr_name);
+                console.log(cd)
+                
+                let sel = document.createElement("option");
+                sel.setAttribute("value",cd);
+                sel.innerHTML = addr_name;
+                area_detail.append(sel);
+            }
+        },
+        error: function(data){
+            //에러 처리   
+        }
+
+    });
+}
+btn_area.addEventListener("click",()=>{
+    const btn_close = document.getElementById("btn_close");
+    const adrs_in = document.getElementById("adrs_in");
+
+    const area = document.getElementById("area"); // area 요소 가져오기
+    const area_detail = document.getElementById("area_detail"); // area_detail 요소 가져오기
+    
+    console.log(area_detail.value);
+
+    if(area.value !=="" && area_detail.value !=="" && area_detail.value !=='0'){
+        adrs_in.value = '';
+        adrs_in.value +=area.options[area.selectedIndex].innerHTML+" ";
+        adrs_in.value +=area_detail.options[area_detail.selectedIndex].innerHTML;
+        btn_close.click();
+    }else{
+        alert("지역 또는 세부지역을 확인해주세요");
+    }  
+})
+
 const p_pattern =/^[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}/;
+const e_pattern = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-za-z0-9\-]+/;
 
 
 
@@ -222,7 +275,7 @@ btn.addEventListener("click",(e)=>{
     let date = selectDay.value;
     
     //개인정보 이용 동의검사
-
+    
     if(!id1){
         alert("아이디중복검사는 필수입니다");
         return false;
@@ -288,20 +341,24 @@ btn.addEventListener("click",(e)=>{
         nickName.focus();
         return false;
     }
-
+    
     if(year > 2014||year === ''){
         alert("2014년생 부터 가입가능");
         return false;
     }
-
+    
     if(month == '' || date ==''){
         alert("월 또는 일을 확인")
         return false;
     }
-
+    
     userBirth.value=year+"."+month+"."+date;
     
-
+    if(adrs_in.value ==''){      
+        alert("주소를 입력해주세요");
+        return false;
+    }
+    
     
     if (!p_pattern.test(phone.value)) {
         alert("전화번호가 올바르지 않습니다")
@@ -309,24 +366,24 @@ btn.addEventListener("click",(e)=>{
         return false;
     }
     
-    if(pattern.test(email.value)===false){
+    if(e_pattern.test(email.value)===false){
         alert('올바른 이메일 주소를 입력해주세요.')     
         email.focus();   
         return false;
     }
-
-
+    
+    
     if(!person_chk.checked){
         alert("개인정보 이용동의는 필수입니다");
         return false;
     }
     
-
-
-    frm.submit();
-
     
-
+    
+    frm.submit();
+    
+    
+    
 })
 
 
