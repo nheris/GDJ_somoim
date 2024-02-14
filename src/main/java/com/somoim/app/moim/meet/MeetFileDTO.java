@@ -5,13 +5,15 @@ import com.somoim.app.files.FileDTO;
 public class MeetFileDTO extends FileDTO{
 	private Long meetNum;
 
-	public Long getMoimNum() {
+	public Long getMeetNum() {
 		return meetNum;
 	}
 
-	public void setMoimNum(Long moimNum) {
-		this.meetNum = moimNum;
+	public void setMeetNum(Long meetNum) {
+		this.meetNum = meetNum;
 	}
+
+	
 
 	
 }

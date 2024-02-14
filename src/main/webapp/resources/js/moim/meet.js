@@ -100,9 +100,9 @@ $('#submit').on('click', function(e) {
 function insertAddress(address1, address2, address3,longitude, latitude) {
 	
     var mapList = "";
-	mapList += "<div>" + address1 + "</div>"
-	mapList += "<div>" + address2 + "</div>"
-	mapList += "<div>" + address3 + "</div>"
+	mapList += "<div>"+ '[도로명 주소] ' + address1 + "</div>"
+	mapList += "<div>"+ '[지번 주소] ' + address2 + "</div>"
+	mapList += "<div>"+ '[영문명 주소] ' + address3 + "</div>"
 
     let meetX = document.getElementById("meetX");
     let meetY = document.getElementById("meetY");
@@ -151,20 +151,20 @@ function moveMap(len, lat) {
 
 
 //정모 개설
-const submitBtn = document.getElementById("submitBtn");
-let addForm = document.getElementById("addForm");
-submitBtn.addEventListener("click",()=>{
-    let form = new FormData(addForm);
+// const submitBtn = document.getElementById("submitBtn");
+// let addForm = document.getElementById("addForm");
+// submitBtn.addEventListener("click",()=>{
+//     let form = new FormData(addForm);
 
-    fetch("./add",{
-        method:"post",
-        headers:{
-            "Content-type":"application/x-www-form-urlencoded"
-        },
-        body: form
-    })
-    .then(res=>res.text)
-    .then(r=>{
-        console.log(r);
-    })
-})
+//     fetch("./add",{
+//         method:"post",
+//         headers:{
+//             "Content-type":"application/x-www-form-urlencoded"
+//         },
+//         body: form
+//     })
+//     .then(res=>res.text)
+//     .then(r=>{
+//         console.log(r);
+//     })
+// })

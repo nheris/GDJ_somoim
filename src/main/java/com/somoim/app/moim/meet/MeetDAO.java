@@ -1,8 +1,13 @@
 package com.somoim.app.moim.meet;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import com.somoim.app.member.MemberDTO;
+
 
 @Repository
 public class MeetDAO {
@@ -10,6 +15,10 @@ public class MeetDAO {
 	private SqlSession sqlSession;
 	private final String NAMESPACE = "com.somoim.app.moim.meet.MeetDAO.";
 	
+	//list
+	public List<MeetDTO> getList(MeetDTO meetDTO) throws Exception {
+		return sqlSession.selectList(NAMESPACE+"getList", meetDTO);
+	}
 	
 	//add
 		//정모 개설

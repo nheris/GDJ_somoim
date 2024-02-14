@@ -1,5 +1,7 @@
 package com.somoim.app.moim.meet;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,8 +21,11 @@ public class MeetController {
 	
 	//정모 list
 	@GetMapping("together")
-	public void together(MoimDTO moimDTO, Model model) throws Exception {
-		model.addAttribute("list", moimDTO);
+	public void together(MoimDTO moimDTO, MeetDTO meetDTO, Model model) throws Exception {
+		
+		List<MeetDTO> ar = meetService.getList(meetDTO);
+		model.addAttribute("moimDTO", moimDTO);
+		model.addAttribute("list", ar);
 	}
 	
 	//add
@@ -29,14 +34,13 @@ public class MeetController {
 		model.addAttribute("dto",moimDTO);
 	}
 	@PostMapping("add")
-	public int mainAdd(MeetDTO meetDTO, MultipartFile file) throws Exception {
+	public String mainAdd(MeetDTO meetDTO, MultipartFile file) throws Exception {
 //		System.out.println(meetDTO);
 //		System.out.println(file);
 //		return 0;
 		int result = meetService.add(meetDTO, file);
 		
-		return result;
-		//return "redirect:./together";
+		return "redirect:./together";
 		
 	}
 }

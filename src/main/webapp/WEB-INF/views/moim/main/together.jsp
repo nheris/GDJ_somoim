@@ -14,6 +14,8 @@
 <c:import url="../../temps/head_css.jsp"></c:import>
 <!-- 내비게이터 import -->
 <c:import url="../../temps/header.jsp"></c:import>
+
+<script type="text/javascript" src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=s6s3pnbbrh"></script>
 </head>
 <body>
 	<!-- 모임 홈 헤더 -->
@@ -27,11 +29,11 @@
 				</div>
 				<div class="col-lg-6 col-md-6 col-12">
 					<ul class="nav justify-content-end">
-						<li class="nav-item"><a class="nav-link" href="./home"
+						<li class="nav-item"><a class="nav-link" href="./home?moimNum=${moimDTO.moimNum}"
 							style="color: white">Home</a></li>
-						<li class="nav-item"><a class="nav-link" href="./board"
+						<li class="nav-item"><a class="nav-link" href="./board?moimNum=${moimDTO.moimNum}"
 							style="color: white;">게시판</a></li>
-						<li class="nav-item"><a class="nav-link" href="./together"
+						<li class="nav-item"><a class="nav-link" href="./together?moimNum=${moimDTO.moimNum}"
 							style="color: white; font-weight: bold;">정모</a></li>
 						<li class="nav-item"><a class="nav-link" href="#"
 							style="color: white">채팅</a></li>
@@ -48,63 +50,95 @@
                 <div class="col-12">
                     <div class="section-title">
                         <h2 class="wow fadeInUp" data-wow-delay=".4s" style="visibility: visible; animation-delay: 0.4s; animation-name: fadeInUp;">정모</h2>
-                        <p class="wow fadeInUp" data-wow-delay=".6s" style="visibility: visible; animation-delay: 0.6s; animation-name: fadeInUp;">There are many variations of passages of Lorem
-                            Ipsum available, but the majority have suffered alteration in some form.</p>
+                        <p class="wow fadeInUp" data-wow-delay=".6s" style="visibility: visible; animation-delay: 0.6s; animation-name: fadeInUp;">정모에 참여해 보세요!</p>
                     </div>
                 </div>
             </div>
             <div class="single-head">
-                <div class="row">
-                    <!-- Start Single Grid -->
-                    <div class="col-lg-4 col-md-6 col-12">
-                        <div class="single-grid wow fadeInUp" data-wow-delay=".2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
-                            <div class="image">
-                                <a href="item-details.html" class="thumbnail"><img src="assets/images/items-grid/img1.jpg" alt="#"></a>
-                                <div class="author">
-                                    <div class="author-image">
-                                        <a href="javascript:void(0)"><img src="assets/images/items-grid/author-1.jpg" alt="#">
-                                            <span>Smith jeko</span></a>
+                <div class="row" id="listBody">
+                    <c:forEach items="${list}" var="dto">
+                        <!-- Start Single Grid -->
+                        <div class="col-lg-4 col-md-6 col-12">
+                            <div class="single-grid wow fadeInUp" data-wow-delay=".2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
+                                <div class="image">
+                                    <a href="item-details.html" class="thumbnail"><img src="/resources/upload/meet/${dto.meetFileDTO.fileName}" alt="#"></a>
+                                    <!-- <div class="author">
+                                        <div class="author-image">
+                                            <a href="javascript:void(0)"><img src="assets/images/items-grid/author-1.jpg" alt="#">
+                                                <span>Smith jeko</span></a>
+                                        </div>
+                                        <p class="sale">For Sale</p>
+                                    </div> -->
+                                    <p class="item-position"><i class="lni lni-bolt"></i> 모집 중</p>
+                                </div>
+                                <div class="content">
+                                    <div class="top-content">
+                                        <a href="javascript:void(0)" class="tag"><i class="lni lni-pencil update"></i></a>
+                                        <a href="javascript:void(0)" class="tag"><i class="lni lni-trash del" ></i></a>
+                                        
+                                        <h3 class="title">
+                                            <a href="item-details.html">${dto.meetName}</a>
+                                        </h3>
+                                        <p class="update-time">모집 인원 : ${dto.meetCount}</p>
+                                        <p class="update-time">참가비 : ${dto.meetCost}</p>
+                                        <ul class="info-list">
+                                            <!-- <li><i class="lni lni-star-filled"></i></li>
+                                            <li><i class="lni lni-star-filled"></i></li>
+                                            <li><i class="lni lni-star-filled"></i></li>
+                                            <li><i class="lni lni-star-filled"></i></li>
+                                            <li><i class="lni lni-star-filled"></i></li>
+                                            <li><a href="javascript:void(0)">(35)</a></li> -->
+                                            <li><a href="javascript:void(0)"><i class="lni lni-timer"></i>${dto.meetDate}</a></li>
+                                            
+                                        </ul>
+                                        <ul class="rating">
+                                            <li><a href="javascript:void(0)"><i class="lni lni-map-marker"></i>${dto.meetPlace}</a></li>
+                                            
+                                            <input type="hidden" name="meetX" class="meetX" value="${dto.meetX}">
+                                           	<input type="hidden" name="meetY" class="meetY" value="${dto.meetY}">
+
+                                            <!-- 클릭 시 지도 보이게 -->
+                                            <!-- Button trigger modal -->
+                                            <a class="btn btn-white" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                            	
+                                                위치 확인
+                                            </a>
+                                            
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">위치 확인</h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div id="map" style="width:800px;height:400px;"></div>
+                                                    </div>
+                                                </div>
+                                                </div>
+                                            </div>
+
+
+                                            
+                                        </ul>
                                     </div>
-                                    <p class="sale">For Sale</p>
-                                </div>
-                                <p class="item-position"><i class="lni lni-bolt"></i> Featured</p>
-                            </div>
-                            <div class="content">
-                                <div class="top-content">
-                                    <a href="javascript:void(0)" class="tag">Mobile Phones</a>
-                                    <h3 class="title">
-                                        <a href="item-details.html">Apple Iphone X</a>
-                                    </h3>
-                                    <p class="update-time">Last Updated: 1 hours ago</p>
-                                    <ul class="rating">
-                                        <li><i class="lni lni-star-filled"></i></li>
-                                        <li><i class="lni lni-star-filled"></i></li>
-                                        <li><i class="lni lni-star-filled"></i></li>
-                                        <li><i class="lni lni-star-filled"></i></li>
-                                        <li><i class="lni lni-star-filled"></i></li>
-                                        <li><a href="javascript:void(0)">(35)</a></li>
-                                    </ul>
-                                    <ul class="info-list">
-                                        <li><a href="javascript:void(0)"><i class="lni lni-map-marker"></i> New York, US</a></li>
-                                        <li><a href="javascript:void(0)"><i class="lni lni-timer"></i> Feb 18, 2023</a></li>
-                                    </ul>
-                                </div>
-                                <div class="bottom-content">
-                                    <p class="price">Start From: <span>$200.00</span></p>
-                                    <a href="javascript:void(0)" class="like">참여</a>
+                                    <div class="bottom-content">
+                                        <p class="price">참여 인원 : <span>/${dto.meetCount}</span></p>
+                                        <a href="javascript:void(0)" class="like">참여</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <!-- End Single Grid -->
-
+                        <!-- End Single Grid -->
+                    </c:forEach>
                     
                 </div>
 
                 <!-- 정모 생성 -->
                 <div class="row mt-5">
                     <div class="button text-center">
-						<a href="./add?moimNum=${dto.moimNum}" class="btn my-3" id="addBtn">정모 만들기</a>
+						<a href="./add?moimNum=${moimDTO.moimNum}" class="btn my-3" id="addBtn">정모 만들기</a>
 					</div>
                 </div>
 
@@ -115,98 +149,7 @@
 
 
 
-	<div class="items-details section">
-				<div class="container mx-5">
-						
-                            <!-- Comments -->
-                            <div class="post-comments">
-                                <h3 class="comment-title"><span>3 comments on this post</span></h3>
-                                <ul class="comments-list">
-                                    <li>
-                                        <div class="comment-img">
-                                            <img src="assets/images/blog/comment1.jpg" class="rounded-circle" alt="img">
-                                        </div>
-                                        <div class="comment-desc">
-                                            <div class="desc-top">
-                                                <h6>Arista Williamson</h6>
-                                                <span class="date">19th May 2023</span>
-                                                <a href="javascript:void(0)" class="reply-link"><i class="lni lni-reply"></i>Reply</a>
-                                            </div>
-                                            <p>
-                                                Donec aliquam ex ut odio dictum, ut consequat leo interdum. Aenean nunc
-                                                ipsum, blandit eu enim sed, facilisis convallis orci. Etiam commodo
-                                                lectus
-                                                quis vulputate tincidunt. Mauris tristique velit eu magna maximus
-                                                condimentum.
-                                            </p>
-                                        </div>
-                                    </li>
-                                    <li class="children">
-                                        <div class="comment-img">
-                                            <img src="assets/images/blog/comment2.jpg" class="rounded-circle" alt="img">
-                                        </div>
-                                        <div class="comment-desc">
-                                            <div class="desc-top">
-                                                <h6>Rosalina Kelian <span class="saved"><i class="lni lni-bookmark"></i></span></h6>
-                                                <span class="date">15th May 2023</span>
-                                                <a href="javascript:void(0)" class="reply-link"><i class="lni lni-reply"></i>Reply</a>
-                                            </div>
-                                            <p>
-                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                                tempor incididunt ut labore et dolore magna aliqua. Ut enim.
-                                            </p>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="comment-img">
-                                            <img src="assets/images/blog/comment3.jpg" class="rounded-circle" alt="img">
-                                        </div>
-                                        <div class="comment-desc">
-                                            <div class="desc-top">
-                                                <h6>Alex Jemmi</h6>
-                                                <span class="date">12th May 2023</span>
-                                                <a href="javascript:void(0)" class="reply-link"><i class="lni lni-reply"></i>Reply</a>
-                                            </div>
-                                            <p>
-                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-                                                veniam.
-                                            </p>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="comment-form">
-                                <h3 class="comment-reply-title"><span>Leave a comment</span></h3>
-                                <form action="#" method="POST">
-                                    <div class="row">
-                                        <div class="col-lg-6 col-12">
-                                            <div class="form-box form-group">
-                                                <input type="text" name="name" class="form-control form-control-custom" placeholder="Your Name">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6 col-12">
-                                            <div class="form-box form-group">
-                                                <input type="email" name="email" class="form-control form-control-custom" placeholder="Your Email">
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="form-box form-group">
-                                                <textarea name="#" class="form-control form-control-custom" placeholder="Your Comments"></textarea>
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="button">
-                                                <button type="submit" class="btn">Post Comment</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                       
-                </div>
-			
-	</div>
+	
 
 
 	<!-- ========================= scroll-top ========================= -->
@@ -216,6 +159,7 @@
 
 	<!-- ========================= JS improt ========================= -->
 	<c:import url="../../temps/footer.jsp"></c:import>
+    <script src="/resources/js/moim/together.js"></script>
 </body>
 
 </html>

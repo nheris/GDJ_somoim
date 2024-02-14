@@ -27,9 +27,9 @@
 				</div>
 				<div class="col-lg-6 col-md-6 col-12">
 					<ul class="nav justify-content-end">
-						<li class="nav-item"><a class="nav-link" href="./home"
+						<li class="nav-item"><a class="nav-link" href="./home?moimNum=${dto.moimNum}"
 							style="color: white; font-weight: bold;">Home</a></li>
-						<li class="nav-item"><a class="nav-link" href="./board"
+						<li class="nav-item"><a class="nav-link" href="./board?moimNum=${dto.moimNum}"
 							style="color: white">게시판</a></li>
 						<li class="nav-item"><a class="nav-link" href="./together?moimNum=${dto.moimNum}"
 							style="color: white">정모</a></li>

@@ -4,8 +4,31 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <!-- mapper namespace는 비우면 에러 -->
   <mapper namespace="com.somoim.app.moim.meet.MeetDAO">
-  
-  
+  	<!-- list -->
+  	<select id="getList" parameterType="MeetDTO" resultMap="listReault">
+	  		SELECT *
+			FROM MEETING m 
+				 LEFT JOIN MEETFILE m2 
+				 USING (MEETNUM)
+			WHERE MOIMNUM = #{moimNum}
+			ORDER BY MEETDATE DESC
+	</select>
+	<resultMap type="MeetDTO" id="listReault">
+	  		<id column="MEETNUM" property="meetNum"/>
+	  		<result column="MOIMNUM" property="moimNum"/>
+	  		<result column="MEETNAME" property="meetName"/>
+	  		<result column="MEETDATE" property="meetDate"/>
+	  		<result column="MEETPLACE" property="meetPlace"/>
+	  		<result column="MEETCOST" property="meetCost"/>
+	  		<result column="MEETCOUNT" property="meetCount"/>
+	  		<result column="MEETX" property="meetX"/>
+	  		<result column="MEETY" property="meetY"/>
+	  		<association property="meetFileDTO" javaType="MeetFileDTO">
+	  			<id column="FILENUM" property="fileNum"/>
+		  		<result column="FILENAME" property="fileName"/>
+		  		<result column="ORINAME" property="oriName"/>
+	  		</association>
+  	</resultMap>
   
   	<!-- add -->
   	<insert id="add" parameterType="MeetDTO">

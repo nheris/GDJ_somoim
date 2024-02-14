@@ -1,12 +1,14 @@
 package com.somoim.app.moim.meet;
 
+import java.util.List;
+
 import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.somoim.app.moim.MoimFileDTO;
+import com.somoim.app.member.MemberDTO;
 import com.somoim.app.util.FileManager;
 
 @Service
@@ -19,6 +21,10 @@ public class MeetService {
 	private ServletContext servletContext;
 	
 	//list
+	public List<MeetDTO> getList(MeetDTO meetDTO) throws Exception {
+		return meetDAO.getList(meetDTO);
+		
+	}
 	
 	//add
 	public int add(MeetDTO meetDTO, MultipartFile file) throws Exception {
@@ -31,7 +37,7 @@ public class MeetService {
 		MeetFileDTO meetFileDTO = new MeetFileDTO();
 		meetFileDTO.setFileName(fileName);
 		meetFileDTO.setOriName(file.getOriginalFilename());
-		meetFileDTO.setMoimNum(meetDTO.getMoimNum());
+		meetFileDTO.setMeetNum(meetDTO.getMeetNum());
 		
 		result = meetDAO.fileAdd(meetFileDTO);
 		
