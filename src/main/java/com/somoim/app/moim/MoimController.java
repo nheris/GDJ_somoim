@@ -95,8 +95,9 @@ public class MoimController {
 	
 	//board 게시판
 	@GetMapping("main/board")
-	public void board() throws Exception {
-		
+	public void board(MoimDTO moimDTO, Model model) throws Exception {
+		moimDTO = moimService.getInfo(moimDTO);
+		model.addAttribute("dto", moimDTO);
 	}
 	@GetMapping("main/writing")
 	public void mainWrite() throws Exception {
