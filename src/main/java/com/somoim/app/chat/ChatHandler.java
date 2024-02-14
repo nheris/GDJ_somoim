@@ -11,7 +11,7 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 public class ChatHandler extends TextWebSocketHandler{
 
-	private static HashMap<String, WebSocketSession> sessions = new HashMap<>();	
+	private static HashMap<String, WebSocketSession> sessions = new HashMap<>(2);	
 	
 	 // group( 정모, 모임, 1:1 )에 따른 Map 나누기 
 	private static List<HashMap<String,WebSocketSession>> list = new ArrayList<>(); 
@@ -21,7 +21,8 @@ public class ChatHandler extends TextWebSocketHandler{
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
 		// 세션 아이디를 키로 사용, session을 값으로
 		sessions.put(session.getId(), session);
-
+		System.out.println(sessions.size());
+		System.out.println("cookie : "+session.getHandshakeHeaders().COOKIE);
 	}
 
 	//메세지를 다루는 메서드

@@ -37,8 +37,18 @@ sock.onopen = function(){
 }
 
 sock.onmessage =  function (e){
-    console.log(e);
+    const week = new Array('SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT');
+    let today = new Date(e.timeStamp);
+    console.log(today.getHours()+":"+today.getMinutes());
+
+    const dayName = week[today.getDay()];
+    const hours = today.getHours() % 12 ? today.getHours() % 12 : 12;
+    const minutes = today.getMinutes() < 10 ? '0' + today.getMinutes() : today.getMinutes();
+    const ampm = today.getHours() >= 12 ? 'PM' : 'AM';
+    const date = `${hours}:${minutes} ${ampm}, ${dayName}`;
+
     let data = e.data;
+    
     let ar = data.split(":");
 
     let sessionid = null;
@@ -48,9 +58,9 @@ sock.onmessage =  function (e){
 
 
     if(ar[0] == userCh.value){
-        mySend(ar[1]);
+        mySend(ar[1], date);
     }else{
-        otherSend(ar[1]);
+        otherSend(ar[1], date);
     }
     
     scroller();
@@ -67,7 +77,13 @@ sock.onerror = function(){
 //     }
 // }
 
-function mySend(msg){
+{/* 
+<div class="message-data">
+    <span class="message-data-time">10:12 AM, Today</span>
+</div> 
+*/}
+
+function mySend(msg, date){
     // 채팅형태로 Element 추가
     // chat-record add
     let li = document.createElement("li");
@@ -76,7 +92,7 @@ function mySend(msg){
     div.classList.add('message-data')
     let span = document.createElement("span");
     span.classList.add('message-data-time');
-    span.innerText = '날짜';
+    span.innerText = date;
 
     // 날짜와 프로필사진 (my 는 profile 사진이 위에 있음)
     chat_record.append(li);
@@ -92,7 +108,7 @@ function mySend(msg){
     div.innerText = msg;
 }
 
-function otherSend(msg){
+function otherSend(msg, date){
     let li = document.createElement("li");
     li.classList.add('clearfix');
     let div = document.createElement('div');
@@ -100,7 +116,8 @@ function otherSend(msg){
     div.classList.add('text-right');
     let span = document.createElement('span');
     span.classList.add('message-data-time');
-    span.innerText = '날짜';
+    
+    span.innerText = date;
     
     // 날짜, 프로필사진 
     chat_record.append(li);
@@ -118,11 +135,13 @@ function otherSend(msg){
 
 let chatHistory = document.getElementById('chat-history');
 let newMsgCount = 0;
+const newCntBtn = document.querySelector('#bBtn > div');
 let scrollToBottom = chatHistory.scrollHeight - chatHistory.scrollTop === chatHistory.clientHeight;
 
 // scroll 밑에 고정
 function scroller(){
     if(scrollToBottom){
+    	console.log('visible');
         chatHistory.scrollTo(0, chatHistory.scrollHeight);
     }
 }
