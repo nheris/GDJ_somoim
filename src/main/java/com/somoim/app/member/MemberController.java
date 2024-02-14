@@ -17,6 +17,7 @@ public class MemberController {
 	@Autowired
 	private MemberService memberService;
 	
+	
 	@GetMapping("idCheck")
 	public String getIdCheck(MemberDTO memberDTO,Model model)throws Exception{
 		int result = 0;		

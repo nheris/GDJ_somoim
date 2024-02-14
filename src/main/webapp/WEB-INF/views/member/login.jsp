@@ -15,6 +15,7 @@
 </head>
 
 <body>
+    
 	<!-- 내비게이터 import -->
 	<c:import url="../temps/header.jsp"></c:import>
  <!-- start login section -->
@@ -57,8 +58,13 @@
                                 <ul>
                                     <li><a href="javascript:void(0)" class="facebook"><i class="lni lni-facebook-original"></i>Login With
                                             Facebook</a></li>
-                                    <li><a href="javascript:void(0)" class="google"><i class="lni lni-google"></i>Login With Google
-                                            Plus</a>
+                                    <li>
+										<div id="g_id_onload" data-client_id="412327098082-jo918jh8s5gmuiifhgsimmn6m4cgcif6.apps.googleusercontent.com"
+                                        data-callback="handleCredentialResponse">
+                                        </div>
+										<div class="g_id_signin" data-type="standard" data size="large"
+										  data-theme="outline" data-text="sign_in_with" data-shape="rectangular" data-logo_alignment="left">
+										</div>
                                     </li>
                                 </ul>
                             </div>
@@ -77,6 +83,8 @@
 	<a href="#" class="scroll-top btn-hover"> <i
 		class="lni lni-chevron-up"></i>
 	</a>
+    <script src="../resources/js/member/google.js"></script>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
 
 	<!-- ========================= JS improt ========================= -->
 	<c:import url="../temps/footer.jsp"></c:import>
