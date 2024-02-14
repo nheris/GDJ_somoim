@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <!-- mapper namespace는 비우면 에러 -->
+  <mapper namespace="com.somoim.app.moim.meet.MeetDAO">
+  
+  
+  
+  	<!-- add -->
+  	<insert id="add" parameterType="MeetDTO">
+  		<selectKey keyProperty="meetNum" order="BEFORE" resultType="Long">
+  			SELECT MEET_SEQ.NEXTVAL FROM DUAL
+  		</selectKey>
+  	
+  		INSERT INTO MEETING
+  		VALUES (#{meetNum}, #{moimNum}, #{meetName}, #{meetDate}, #{meetPlace}, #{meetCost}, #{meetCount}, #{meetX}, #{meetY})
+  		
+  	</insert>
+  	<insert id="fileAdd" parameterType="MeetFileDTO">
+  		INSERT INTO MEETFILE
+  		VALUES (MEETFILE_SEQ.NEXTVAL, #{meetNum},#{fileName},#{oriName})
+  	</insert>
+
+  
+  
+  
+  </mapper>

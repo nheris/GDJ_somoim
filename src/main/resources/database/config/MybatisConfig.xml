@@ -14,6 +14,8 @@
   		<typeAlias type="com.somoim.app.moim.MoimFileDTO" alias="MoimFileDTO"/>
   		<typeAlias type="com.somoim.app.moim.member.MoimMemberDTO" alias="MoimMemberDTO"/>
         <typeAlias type="com.somoim.app.payment.PaymentTypeDTO" alias="PaymentTypeDTO"/>
-  		<typeAlias type="com.somoim.app.member.role.RoleDTO" alias="RoleDTO"/>  	
+  		<typeAlias type="com.somoim.app.member.role.RoleDTO" alias="RoleDTO"/>
+  		<typeAlias type="com.somoim.app.moim.meet.MeetDTO" alias="MeetDTO"/>
+  		<typeAlias type="com.somoim.app.moim.meet.MeetFileDTO" alias="MeetFileDTO"/>
   	</typeAliases>
   </configuration>

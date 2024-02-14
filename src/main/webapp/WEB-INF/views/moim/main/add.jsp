@@ -29,7 +29,7 @@
 			<div class="row align-items-center">
 				<div class="col-lg-6 col-md-6 col-12">
 					<div class="breadcrumbs-content">
-						<h1 class="page-title">${dto.moimName}</h1>
+						<%-- <h1 class="page-title">${dto.moimName}</h1> --%>
 					</div>
 				</div>
 				<div class="col-lg-6 col-md-6 col-12">
@@ -61,46 +61,40 @@
 		<div class="comment-form">
             <h3 class="comment-reply-title"><span style="font-weight: bold;">정모 만들기</span></h3>
             
-            <form action="./add" method="POST">
+            <form id="addForm" action="./add" method="POST" enctype="multipart/form-data">
                 <div class="row">
 	
                     <div class="mb-3">
                     	<label for="meetName" class="form-label">정모 이름</label>
 						<input type="text" class="form-control" id="meetName" name="meetName" placeholder="정모 이름">
 					</div>
+					
+					
 					<div class="mb-3">
 						<label for="meetDate" class="form-label">정모 날짜</label>
-						<input type="text" class="form-control" id="meetDate" name="meetDate" style="width: 300px;">
+						<input type="text" class="form-control " id="meetDate" name="meetDate" style="width: 300px;">
 					</div>
-					<div class="mb-3">
+					
+					<div class="mb-4">
 						<label for="meetPlace" class="form-label">위치</label>
-						<input type="text" class="form-control" id="meetPlace" name="meetPlace">
 						
-						<!-- 위치 -->
-						<div class="search">
-							<input id="address" type="text" placeholder="검색할 주소">
-							<input id="submit" type="button" value="주소검색">
-						</div>
-						<div id="map" style="width:1000px;height:500px;"></div>
-						<div>
-							<table>
-								<thead>
-									<tr>
-										<th>주소</th>
-										<th>위도</th>
-										<th>경도</th>
-									</tr>	
-								</thead>
-								<tbody id="mapList"></tbody>
-							</table>
+						<div class="search row mb-3" style="padding-left: 12px">
+							<input class="col-2" id="address" type="text" class="form-control" placeholder="검색할 주소" style="width: 300px">
+							<input class="col-1" id="submit" type="button" value="주소검색" style="width: 100px">
 						</div>
 						
+						<div id="map" style="width:800px;height:400px;"></div>
 						
+						<div id="mapList">
+							
+						</div>
+						<input type="hidden" name="meetX" id="meetX">
+						<input type="hidden" name="meetY" id="meetY">
+						<input type="hidden" name="meetPlace" id="meetPlace">
 						
-						
-						
-                       
+		
 					</div>
+		
 					<div class="mb-3">
 						<label for="meetCost" class="form-label">참가비</label>
 						<input type="number" class="form-control" id="meetCost" name="meetCost" placeholder="15000">
@@ -117,12 +111,12 @@
 						</div>
 					</div>
 					
-					<input type="hidden" name="moimNum" id="moimNumHidden" value="${dto.moimNum}">
+					<input type="hidden" name="moimNum" id="moimNum" value="${dto.moimNum}">
 							
 								
                     <div class="col-12">
                         <div class="button text-center">
-                            <button type="submit" class="btn" id="submit">등록</button>
+                            <button type="submit" class="btn" id="submitBtn">등록</button>
                         </div>
                     </div>
                 </div>

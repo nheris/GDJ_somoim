@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.somoim.app.member.MemberDTO;
+import com.somoim.app.moim.meet.MeetDTO;
 
 @Controller
 @RequestMapping("/moim/*")
@@ -89,21 +90,7 @@ public class MoimController {
 		
 	}
 	
-	//together 정모
-	//정모 리스트
-	@GetMapping("main/together")
-	public void together(MoimDTO moimDTO, Model model) throws Exception {
-		model.addAttribute("dto", moimDTO);
-	}
-	//정모 만들기
-	@GetMapping("main/add")
-	public void mainAdd(MoimDTO moimDTO, Model model) throws Exception {
-		
-	}
-	@PostMapping("main/add")
-	public void mainAdd(MoimDTO moimDTO) throws Exception {
-		
-	}
+
 	
 	
 	//board 게시판
