@@ -1,17 +1,13 @@
 package com.somoim.app.moim.member;
 
 import java.util.Date;
-import java.util.List;
-
-import com.somoim.app.moim.MoimDTO;
-import com.somoim.app.moim.member.role.MoimRoleDTO;
 
 public class MoimMemberDTO {
 	private String userName;
 	private Long moimRoleNum;
 	private Long moimNum;
 	private Date joinDate;
-	
+
 
 	public String getUserName() {
 		return userName;
@@ -38,6 +34,6 @@ public class MoimMemberDTO {
 		this.moimNum = moimNum;
 	}
 
-	
-	
+
+
 }
