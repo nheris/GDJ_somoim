@@ -27,7 +27,17 @@ public class MeetDAO {
 	}
 		//정모이미지 저장
 	public int fileAdd(MeetFileDTO meetFileDTO) throws Exception {
-		return sqlSession.insert(NAMESPACE+"fileAdd", meetFileDTO);
+		return sqlSession.selectOne(NAMESPACE+"fileAdd", meetFileDTO);
+	}
+	
+	//delete
+		//정모 사진 삭제
+	public MeetFileDTO file(MeetDTO meetDTO) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"file", meetDTO);
+	}
+		//정모 삭제
+	public int delete(MeetDTO meetDTO) throws Exception{
+		return sqlSession.delete(NAMESPACE+"delete", meetDTO);
 	}
 	
 	

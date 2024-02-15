@@ -46,7 +46,8 @@ public class MoimService {
 		return result;
 		
 	}
-
+	
+	//delete
 	public int delete(MoimDTO moimDTO) throws Exception {
 		//모임사진 삭제
 		MoimFileDTO moimFileDTO = moimDAO.file(moimDTO);

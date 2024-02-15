@@ -45,10 +45,6 @@
 									<i class="lni lni-pencil update"></i></a>
 								</li>
 								<li>
-									<a href="./home">
-									<i class="lni lni-eye"></i></a>
-								</li>
-								<li>
 									<a href="javascript:void(0)" class="del" data-moim-num="${dto.moimNum}">
 									<i class="lni lni-trash del" ></i></a>
 								</li>

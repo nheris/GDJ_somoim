@@ -44,7 +44,7 @@
 	</div>
 	
 
-    <section class="items-grid section custom-padding">
+    <section class="items-grid section custom-padding pt-5">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -62,19 +62,13 @@
                             <div class="single-grid wow fadeInUp" data-wow-delay=".2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
                                 <div class="image">
                                     <a href="item-details.html" class="thumbnail"><img src="/resources/upload/meet/${dto.meetFileDTO.fileName}" alt="#"></a>
-                                    <!-- <div class="author">
-                                        <div class="author-image">
-                                            <a href="javascript:void(0)"><img src="assets/images/items-grid/author-1.jpg" alt="#">
-                                                <span>Smith jeko</span></a>
-                                        </div>
-                                        <p class="sale">For Sale</p>
-                                    </div> -->
+                                    
                                     <p class="item-position"><i class="lni lni-bolt"></i> 모집 중</p>
                                 </div>
                                 <div class="content">
                                     <div class="top-content">
-                                        <a href="javascript:void(0)" class="tag"><i class="lni lni-pencil update"></i></a>
-                                        <a href="javascript:void(0)" class="tag"><i class="lni lni-trash del" ></i></a>
+                                        <a href="javascript:void(0)" class="tag" data-meet-num="${dto.meetNum}" data-moim-num="${dto.moimNum}"><i class="lni lni-pencil update"></i></a>
+                                        <a href="javascript:void(0)" class="tag" data-meet-num="${dto.meetNum}" data-moim-num="${dto.moimNum}"><i class="lni lni-trash del" ></i></a>
                                         
                                         <h3 class="title">
                                             <a href="item-details.html">${dto.meetName}</a>
@@ -82,12 +76,7 @@
                                         <p class="update-time">모집 인원 : ${dto.meetCount}</p>
                                         <p class="update-time">참가비 : ${dto.meetCost}</p>
                                         <ul class="info-list">
-                                            <!-- <li><i class="lni lni-star-filled"></i></li>
-                                            <li><i class="lni lni-star-filled"></i></li>
-                                            <li><i class="lni lni-star-filled"></i></li>
-                                            <li><i class="lni lni-star-filled"></i></li>
-                                            <li><i class="lni lni-star-filled"></i></li>
-                                            <li><a href="javascript:void(0)">(35)</a></li> -->
+                                 
                                             <li><a href="javascript:void(0)"><i class="lni lni-timer"></i>${dto.meetDate}</a></li>
                                             
                                         </ul>
@@ -96,10 +85,11 @@
                                             
                                             <input type="hidden" name="meetX" class="meetX" value="${dto.meetX}">
                                            	<input type="hidden" name="meetY" class="meetY" value="${dto.meetY}">
+                                     
 
                                             <!-- 클릭 시 지도 보이게 -->
                                             <!-- Button trigger modal -->
-                                            <a class="btn btn-white" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                            <a class="btn btn-light" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                             	
                                                 위치 확인
                                             </a>

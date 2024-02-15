@@ -45,7 +45,16 @@
   		VALUES (MEETFILE_SEQ.NEXTVAL, #{meetNum},#{fileName},#{oriName})
   	</insert>
 
-  
+    <!-- delete -->
+    <select id="file" parameterType="meetDTO" resultType="MeetFileDTO">
+  		SELECT FILENAME
+		FROM MEETFILE
+		WHERE MEETNUM = #{meetNum}
+  	</select>
+  	<delete id="delete" parameterType="meetDTO">
+  		DELETE MEETING
+  		WHERE MEETNUM = #{meetNum}
+  	</delete>
   
   
   </mapper>

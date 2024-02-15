@@ -45,5 +45,16 @@ public class MeetService {
 		return result;
 	}
 	
+	//delete
+	public int delete(MeetDTO meetDTO) throws Exception {
+		//정모 사진 삭제
+		MeetFileDTO meetFileDTO = meetDAO.file(meetDTO);
+		String path = servletContext.getRealPath("/resources/upload/meet");
+		fileManager.fileDelete(path, meetFileDTO.getFileName());
+		
+		//정모 삭제
+		return meetDAO.delete(meetDTO);
+	}
+	
 	
 }

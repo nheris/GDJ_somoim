@@ -35,12 +35,27 @@ public class MeetController {
 	}
 	@PostMapping("add")
 	public String mainAdd(MeetDTO meetDTO, MultipartFile file) throws Exception {
-//		System.out.println(meetDTO);
-//		System.out.println(file);
-//		return 0;
+
 		int result = meetService.add(meetDTO, file);
 		
 		return "redirect:./together";
 		
 	}
+	
+	//delete
+	@PostMapping("delete")
+	public String delete(MeetDTO meetDTO, Model model) throws Exception{
+		
+		int result = meetService.delete(meetDTO);
+		
+		//다시조회
+		List<MeetDTO> ar = meetService.getList(meetDTO);
+		
+		model.addAttribute("list", ar);
+		
+		return "main/ajaxList";
+		
+	}
+	
+	
 }
