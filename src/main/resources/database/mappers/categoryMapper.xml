@@ -9,42 +9,39 @@
 		WHERE
 		<choose>
 			<when test="pager.categorySelect=='category0'">
-				BOARDCATEGORY = '인문학/책/글'
-			</when>
-			<when test="pager.categorySelect=='category1'">
-				BOARDCATEGORY = '운동/스포츠'
-			</when>
-			<when test="pager.categorySelect=='category2'">
-				BOARDCATEGORY = '외국/언어'
-			</when>
-			<when test="pager.categorySelect=='category3'">
-				BOARDCATEGORY = '음악/악기'
-			</when>
-			<when test="pager.categorySelect=='category4'">
-				BOARDCATEGORY = '댄스/무용'
-			</when>
-			<when test="pager.categorySelect=='category5'">
-				BOARDCATEGORY = '사교/인맥'
-			</when>
-			<when test="pager.categorySelect=='category6'">
-				BOARDCATEGORY = '사진/영상'
-			</when>
-			<when test="pager.categorySelect=='category7'">
-				BOARDCATEGORY = '게임/오락'
-			</when>
-			<when test="pager.categorySelect=='category8'">
-				BOARDCATEGORY = '반려동물'
-			</when>
-			<when test="pager.categorySelect=='category9'">
 				BOARDCATEGORY = '아웃도어/여행'
 			</when>
-			<when test="pager.categorySelect=='category10'">
-				BOARDCATEGORY = '공예/만들기'
+			<when test="pager.categorySelect=='category1'">
+				BOARDCATEGORY = '게임/오락'
 			</when>
-			<when test="pager.categorySelect=='category11'">
+			<when test="pager.categorySelect=='category2'">
 				BOARDCATEGORY = '업종/직무'
 			</when>
-			<when test="pager.categorySelect=='category12'">
+			<when test="pager.categorySelect=='category3'">
+				BOARDCATEGORY = '운동/스포츠'
+			</when>
+			<when test="pager.categorySelect=='category4'">
+				BOARDCATEGORY = '사교/인맥'
+			</when>
+			<when test="pager.categorySelect=='category5'">
+				BOARDCATEGORY = '인문학'
+			</when>
+			<when test="pager.categorySelect=='category6'">
+				BOARDCATEGORY = '공예/만들기'
+			</when>
+			<when test="pager.categorySelect=='category7'">
+				BOARDCATEGORY = '봉사활동'
+			</when>
+			<when test="pager.categorySelect=='category8'">
+				BOARDCATEGORY = '외국/언어'
+			</when>
+			<when test="pager.categorySelect=='category9'">
+				BOARDCATEGORY = '문화/공연/음악'
+			</when>
+			<when test="pager.categorySelect=='category10'">
+				BOARDCATEGORY = '요리/제조'
+			</when>
+			<when test="pager.categorySelect=='category11'">
 				BOARDCATEGORY = '자유주제'
 			</when>
 			<otherwise>

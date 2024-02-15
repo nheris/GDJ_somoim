@@ -83,31 +83,29 @@
 										class="nav-link active BOARDCATEGORY" href="#"
 										data-category="all">전체</a></li>
 									<li class="nav-item px-2" name="category0" id="category0">
-									<a class="nav-link BOARDCATEGORY" href="#" data-category="category0">인문학/책/글</a></li>
+									<a class="nav-link BOARDCATEGORY" href="#" data-category="category0">아웃도어/여행</a></li>
 									<li class="nav-item px-2" name="category1" id="category1">
-									<a class="nav-link BOARDCATEGORY" href="#" data-category="category1">운동/스포츠</a></li>
+									<a class="nav-link BOARDCATEGORY" href="#" data-category="category1">게임/오락</a></li>
 									<li class="nav-item px-2" name="category2" id="category2">
-									<a class="nav-link BOARDCATEGORY" href="#" data-category="category2">외국/언어</a></li>
+									<a class="nav-link BOARDCATEGORY" href="#" data-category="category2">업종/직무</a></li>
 									<li class="nav-item px-2" name="category3" id="category3">
-									<a class="nav-link BOARDCATEGORY" href="#" data-category="category3">음악/악기</a></li>
+									<a class="nav-link BOARDCATEGORY" href="#" data-category="category3">운동/스포츠</a></li>
 									<li class="nav-item px-2" name="category4" id="category4">
-									<a class="nav-link BOARDCATEGORY" href="#" data-category="category4">댄스/무용</a></li>
+									<a class="nav-link BOARDCATEGORY" href="#" data-category="category4">사교/인맥</a></li>
 									<li class="nav-item px-2" name="category5" id="category5">
-									<a class="nav-link BOARDCATEGORY" href="#" data-category="category5">사교/인맥</a></li>
+									<a class="nav-link BOARDCATEGORY" href="#" data-category="category5">인문학</a></li>
 									<li class="nav-item px-2" name="category6" id="category6">
-									<a class="nav-link BOARDCATEGORY" href="#" data-category="category6">사진/영상</a></li>
+									<a class="nav-link BOARDCATEGORY" href="#" data-category="category6">공예/만들기</a></li>
 									<li class="nav-item px-2" name="category7" id="category7">
-									<a class="nav-link BOARDCATEGORY" href="#" data-category="category7">게임/오락</a></li>
+									<a class="nav-link BOARDCATEGORY" href="#" data-category="category7">봉사활동</a></li>
 									<li class="nav-item px-2" name="category8" id="category8">
-									<a class="nav-link BOARDCATEGORY" href="#" data-category="category8">반려동물</a></li>
+									<a class="nav-link BOARDCATEGORY" href="#" data-category="category8">외국/언어</a></li>
 									<li class="nav-item px-2" name="category9" id="category9">
-									<a class="nav-link BOARDCATEGORY" href="#" data-category="category9">아웃도어/여행</a></li>
+									<a class="nav-link BOARDCATEGORY" href="#" data-category="category9">문화/공연/음악</a></li>
 									<li class="nav-item px-2" name="category10" id="category10">
-									<a class="nav-link BOARDCATEGORY" href="#" data-category="category10">공예/만들기</a></li>
+									<a class="nav-link BOARDCATEGORY" href="#" data-category="category10">요리/제조</a></li>
 									<li class="nav-item px-2" name="category11" id="category11">
-									<a class="nav-link BOARDCATEGORY" href="#" data-category="category11">업종/직무</a></li>
-									<li class="nav-item px-2" name="category12" id="category12">
-									<a class="nav-link BOARDCATEGORY" href="#" data-category="category12">자유주제</a></li>
+									<a class="nav-link BOARDCATEGORY" href="#" data-category="category11">자유주제</a></li>
 								</ul>
 							</div>
 						</div>

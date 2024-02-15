@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.somoim.app.board.BoardDTO;
 import com.somoim.app.member.MemberDTO;
+import com.somoim.app.member.role.RoleDTO;
 import com.somoim.app.util.Pager;
 
 @Controller
@@ -74,7 +75,7 @@ public class QnaController {
 	}
 	
 	@GetMapping("noticeList")
-	public String getListqna(Pager pager, QnaDTO boardDTO, Model model)throws Exception{
+	public String getListqna(Pager pager, QnaDTO boardDTO, Model model, HttpSession session)throws Exception{
 		List<QnaDTO> ar = qnaService.getListQna(pager, boardDTO);
 		model.addAttribute("data", ar);
 		model.addAttribute("pager", pager);
