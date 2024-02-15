@@ -10,7 +10,7 @@ uri="http://java.sun.com/jsp/jstl/core"%>
         <c:if test="${board eq '문의게시판'}">
         <c:choose>
         <c:when test="${data.boardSecret eq 1}">
-        <td class="col-md-4"><a href="/qna/detail?boardNum=${data.boardNum}">비밀글입니다.</a></td>
+        <td class="col-md-4"><a href="/qna/detail?boardNum=${data.boardNum}"><img src="/resources/img/board/file-lock.svg" > 비밀글입니다.</a></td>
          </c:when>
          <c:otherwise>
         <td class="col-md-4"><a href="/qna/detail?boardNum=${data.boardNum}">${data.boardTitle}</a></td>

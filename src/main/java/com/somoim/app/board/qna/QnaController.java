@@ -100,5 +100,12 @@ public class QnaController {
 		return "redirect:./list";
 	}
 	
+	@GetMapping("fnq")
+	public String fnq(Model model)throws Exception{
+		model.addAttribute("board", "자주하는질문");	
+		return "board/fnq";
+	}
+	
+	
 	
 }
