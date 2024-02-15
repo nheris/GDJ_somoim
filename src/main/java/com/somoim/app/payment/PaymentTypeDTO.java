@@ -1,12 +1,12 @@
 package com.somoim.app.payment;
 
 public class PaymentTypeDTO {
-	
+
 	private Long pTypeNum;
 	private String pTypeName;
 	private Integer pTypePrice;
 	private String pTypePer;
-	
+
 	public Long getpTypeNum() {
 		return pTypeNum;
 	}
@@ -31,5 +31,5 @@ public class PaymentTypeDTO {
 	public void setpTypePer(String pTypePer) {
 		this.pTypePer = pTypePer;
 	}
-	
+
 }

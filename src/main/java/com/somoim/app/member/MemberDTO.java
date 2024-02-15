@@ -1,11 +1,12 @@
 package com.somoim.app.member;
 
 import java.util.List;
+import java.util.UUID;
 
 import com.somoim.app.member.role.RoleDTO;
 
 public class MemberDTO {
-	
+
 	private String userName;
 	private String password;
 	private String nickName;
@@ -14,13 +15,28 @@ public class MemberDTO {
 	private String address;
 	private String phone;
 	private String email;
+	private String customerKey;
 	private Long loginNum;
 	
 	
 	private ProfileDTO profile;
 	private List<RoleDTO> roleDTO;
+
+	public String creatCustomerKey() {
+		UUID uuid = UUID.randomUUID();
+		String uuidString = uuid.toString();
+		String[] arr = uuidString.split("-");
+		return arr[0]+"-"+arr[1];
+	}
 	
 	
+	public String getCustomerKey() {
+		return customerKey;
+	}
+	public void setCustomerKey(String customerKey) {	
+		this.customerKey = customerKey;
+	}
+
 	public List<RoleDTO> getRoleDTO() {
 		return roleDTO;
 	}
@@ -33,7 +49,7 @@ public class MemberDTO {
 	public void setUserBirth(String userBirth) {
 		this.userBirth = userBirth;
 	}
-	
+
 	public ProfileDTO getProfile() {
 		return profile;
 	}
@@ -64,7 +80,7 @@ public class MemberDTO {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
 	public String getAddress() {
 		return address;
 	}

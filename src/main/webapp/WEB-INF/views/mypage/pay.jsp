@@ -91,7 +91,7 @@
 											플랜</h2>
 										<p class="wow fadeInUp" data-wow-delay=".6s"
 											style="font-size: 12px;">서비스를 구독하고 모임개설을 해보세요!</p>
-									</div">
+									</div>
 
 								</div>
 							</div>
@@ -122,11 +122,14 @@
 												<li>모임개설 가능</li>
 												<li>가입가능한 모임 수 증가</li>
 												<li><c:choose>
-														<c:when test="${paymentType[0].pTypePrice ne type.pTypePrice}">
-															<c:set var="perStr" value="${fn:substringBefore(type.pTypePer, '개월')}"/>
-															<c:set var="perInt" value="${Integer.parseInt(perStr)}"/>
-															<c:set var="discountRate" value="${(1-(type.pTypePrice / (paymentType[0].pTypePrice* perInt))) * 100}" />
-															<fmt:formatNumber value="${discountRate}" pattern="#.#"/>%
+														<c:when
+															test="${paymentType[0].pTypePrice ne type.pTypePrice}">
+															<c:set var="perStr"
+																value="${fn:substringBefore(type.pTypePer, '개월')}" />
+															<c:set var="perInt" value="${Integer.parseInt(perStr)}" />
+															<c:set var="discountRate"
+																value="${(1-(type.pTypePrice / (paymentType[0].pTypePrice* perInt))) * 100}" />
+															<fmt:formatNumber value="${discountRate}" pattern="#.#" />%
 								                            할인 요금
 								                        </c:when>
 														<c:otherwise>
@@ -159,6 +162,6 @@
 
 	<!-- ========================= JS improt ========================= -->
 	<c:import url="../temps/footer.jsp"></c:import>
-	<script src="/resources/js/payment.js"></script>
+	<script src="/resources/js/payment/payment.js"></script>
 </body>
 </html>

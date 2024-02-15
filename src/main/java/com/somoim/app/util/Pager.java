@@ -20,8 +20,8 @@ public class Pager {
 	private String search;
 	private String searchFind;
 	private String categorySelect;
-	
-	
+
+
 	public String getCategorySelect() {
 		return categorySelect;
 	}
@@ -39,7 +39,7 @@ public class Pager {
 	}
 
 	public void setSearch(String search) {
-		
+
 		this.search = search;
 	}
 
@@ -55,7 +55,7 @@ public class Pager {
 	public void makeRow() {
 		//현재 페이지번호 * 몇개씩 조회 할건지
 		this.lastRow = this.getPage() * this.getPerPage();
-		// (현재 페이지번호-1) * 몇개씩 조회할건지+1 
+		// (현재 페이지번호-1) * 몇개씩 조회할건지+1
 		this.startRow = (this.getPage() - 1) * this.getPerPage() + 1;
 	}
 
@@ -64,7 +64,7 @@ public class Pager {
 			totalCount=1L;
 			// 0일경우 1로 값을줘서 첫번째 페이지가 보여지게끔 설정
 		}
-		
+
 		Long totalPage = 0L;
 		// 0L / 10 = 0L
 		totalPage = totalCount / this.getPerPage();
@@ -77,7 +77,7 @@ public class Pager {
 		this.setTotalPage(totalPage);
 
 		// 2. 총블럭의 수 구하기
-		Long perBlock = 5L;// 블럭당 번호의 갯수
+		long perBlock = 5L;// 블럭당 번호의 갯수
 		Long totalBlock = 0L;
 		totalBlock = totalPage / perBlock;
 		if (totalPage % perBlock != 0) {

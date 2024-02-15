@@ -14,4 +14,14 @@
   	<select id="getPaymentType" resultType="PaymentTypeDTO" parameterType="PaymentTypeDTO">
   		SELECT * FROM PAYMENTTYPE WHERE PTYPENUM=#{pTypeNum}
   	</select>
+  	
+  	<!-- user의 CustomerKey를 가져옴 -->
+  	<select id="getCustomerKey" resultType="MemberDTO" parameterType="MemberDTO">
+  		SELECT CUSTOMERKEY FROM MEMBER WHERE USERNAME=#{userName}
+  	</select>
+  	
+  	<!-- 결제수단의 클라이언트키를 가져옴 -->
+  	<select id="getClientKey" resultType="ClientDTO" parameterType="ClientDTO">
+  		SELECT KEYID FROM CLIENTKEY WHERE KEYNAME=#{keyName}
+  	</select>
   </mapper>
