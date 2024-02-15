@@ -19,6 +19,10 @@ public class MeetDAO {
 	public List<MeetDTO> getList(MeetDTO meetDTO) throws Exception {
 		return sqlSession.selectList(NAMESPACE+"getList", meetDTO);
 	}
+		//참여인원
+	public List<Integer> partiNum(List<MeetDTO> ar) throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"partiNum", ar);
+	}
 	
 	//add
 		//정모 개설
@@ -27,7 +31,7 @@ public class MeetDAO {
 	}
 		//정모이미지 저장
 	public int fileAdd(MeetFileDTO meetFileDTO) throws Exception {
-		return sqlSession.selectOne(NAMESPACE+"fileAdd", meetFileDTO);
+		return sqlSession.insert(NAMESPACE+"fileAdd", meetFileDTO);
 	}
 	
 	//delete

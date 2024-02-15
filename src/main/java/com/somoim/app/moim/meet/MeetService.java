@@ -25,6 +25,10 @@ public class MeetService {
 		return meetDAO.getList(meetDTO);
 		
 	}
+	public List<Integer> partiNum(List<MeetDTO> ar) throws Exception {
+		return meetDAO.partiNum(ar);
+	}
+	
 	
 	//add
 	public int add(MeetDTO meetDTO, MultipartFile file) throws Exception {
@@ -55,6 +59,7 @@ public class MeetService {
 		//정모 삭제
 		return meetDAO.delete(meetDTO);
 	}
+
 	
 	
 }

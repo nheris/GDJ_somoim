@@ -83,27 +83,27 @@
                                         <ul class="rating">
                                             <li><a href="javascript:void(0)"><i class="lni lni-map-marker"></i>${dto.meetPlace}</a></li>
                                             
-                                            <input type="hidden" name="meetX" class="meetX" value="${dto.meetX}">
-                                           	<input type="hidden" name="meetY" class="meetY" value="${dto.meetY}">
+                                            
                                      
 
                                             <!-- 클릭 시 지도 보이게 -->
                                             <!-- Button trigger modal -->
-                                            <a class="btn btn-light" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                            	
+                                            <a class="btn btn-light meetXY" data-bs-toggle="modal" data-bs-target="#exampleModal" data-meet-x="${dto.meetX}" data-meet-y="${dto.meetY}">
+                                            	<%-- <input type="hidden" name="meetX" class="meetX" value="${dto.meetX}">
+                                           		<input type="hidden" name="meetY" class="meetY" value="${dto.meetY}"> --%>
                                                 위치 확인
                                             </a>
                                             
                                             <!-- Modal -->
                                             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog">
-                                                <div class="modal-content">
+                                                <div class="modal-content" style="width:800px;">
                                                     <div class="modal-header">
                                                     <h1 class="modal-title fs-5" id="exampleModalLabel">위치 확인</h1>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <div id="map" style="width:800px;height:400px;"></div>
+                                                        <div id="map" style="width:765px;height:400px;"></div>
                                                     </div>
                                                 </div>
                                                 </div>

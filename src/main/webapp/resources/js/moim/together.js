@@ -7,19 +7,19 @@ listBody.addEventListener("click", function(e){
     	//console.log('확인');
         let meetNum = e.target.parentNode.getAttribute("data-meet-num");
         let moimNum = e.target.parentNode.getAttribute("data-moim-num");
-        console.log(meetNum);
-        console.log(moimNum);
+        //console.log(meetNum);
+        //console.log(moimNum);
         fetch("./delete",{
             method: "post",
             headers:{
                 "Content-type":"application/x-www-form-urlencoded"
             },
-            body: "meetNum="+meetNum +"&moimNum"+moimNum
+            body: "meetNum="+meetNum +"&moimNum="+moimNum
         })
         .then(res=>res.text())
         .then(r=>{
-            console.log(r);
-            //listBody.innerHTML=r;
+            //console.log(r);
+            listBody.innerHTML=r;
         })
     }
 
@@ -29,24 +29,29 @@ listBody.addEventListener("click", function(e){
 
 
 //위치 확인
-// let meetX = document.getElementById("meetX").value;
-// let meetY = document.getElementById("meetY").value;
-
-// let meetX = '';
-// let meetY = '';
-
-
-// listBody.addEventListener("click",function(e){
-//     console.log('meetX');
-//     console.log(e.target.previousSibling);
-//     // if(e.target.previousSibling.classList.contains("meetY")){
-//     // 	console.log('meetY');
-//     //     meetY = e.target.previousSibling.getAttribute("value");
-//     //     console.log(meetY);
-
+let meetX = 0;
+let meetY = 0;
+listBody.addEventListener("click",function(e){
+    //console.log('연결');
+    //console.log(e.target);
+    if(e.target.classList.contains("meetXY")){
+    	//console.log('meetY');
+        meetX = e.target.getAttribute("data-meet-x");
+        meetY = e.target.getAttribute("data-meet-y");
         
-//     // }
-// })
+        //console.log(meetX);
+        //console.log(meetY);
+
+        var map = new naver.maps.Map('map', {
+            center: new naver.maps.LatLng(meetY, meetX),
+            zoom: 16
+        });
+        var marker = new naver.maps.Marker({
+            map: map,
+            position: new naver.maps.LatLng(meetY, meetX),
+        });
+    }
+})
 
 
 
@@ -58,11 +63,3 @@ var mapOptions = {
 var map = new naver.maps.Map('map', mapOptions);
 
 
-var map = new naver.maps.Map('map', {
-	    center: new naver.maps.LatLng(meetY, meetX),
-	    zoom: 14
-	});
-    var marker = new naver.maps.Marker({
-        map: map,
-        position: new naver.maps.LatLng(meetY, meetX),
-    });

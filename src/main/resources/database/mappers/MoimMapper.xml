@@ -46,7 +46,7 @@
   		</selectKey>
   	
   		INSERT INTO MOIM
-  		VALUES (#{moimNum}, #{moimName}, #{moimRegion}, #{moimCategory}, SYSDATE, #{moimText}, #{moimMemCount}, #{moimHead})
+  		VALUES (#{moimNum}, #{moimName}, #{moimRegion}, #{moimCategory}, current_date, #{moimText}, #{moimMemCount}, #{moimHead})
   		
   	</insert>
   	<insert id="fileAdd" parameterType="MoimFileDTO">

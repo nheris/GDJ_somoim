@@ -24,6 +24,11 @@ public class MeetController {
 	public void together(MoimDTO moimDTO, MeetDTO meetDTO, Model model) throws Exception {
 		
 		List<MeetDTO> ar = meetService.getList(meetDTO);
+		
+//		List<Integer> partiNum = meetService.partiNum(ar);
+//		
+//		model.addAttribute("num",partiNum);
+		
 		model.addAttribute("moimDTO", moimDTO);
 		model.addAttribute("list", ar);
 	}
@@ -38,8 +43,8 @@ public class MeetController {
 
 		int result = meetService.add(meetDTO, file);
 		
-		return "redirect:./together";
-		
+		String path = "redirect:./together?moimNum="+meetDTO.getMoimNum();
+		return path;
 	}
 	
 	//delete
@@ -53,7 +58,7 @@ public class MeetController {
 		
 		model.addAttribute("list", ar);
 		
-		return "main/ajaxList";
+		return "moim/main/ajaxList";
 		
 	}
 	

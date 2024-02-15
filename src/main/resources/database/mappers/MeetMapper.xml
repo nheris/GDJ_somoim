@@ -29,6 +29,15 @@
 		  		<result column="ORINAME" property="oriName"/>
 	  		</association>
   	</resultMap>
+  		<!-- 참여인원 -->
+  	<!-- <select id="partiNum" parameterType="java.util.List" resultType="java.util.List">
+  		<foreach collection="list" item="item" separator=" ">
+  		SELECT count(*)
+		FROM MEETMEMBER m 
+		WHERE MEETNUM = #{item.meetNum}
+  		</foreach>
+  	</select> -->
+  	
   
   	<!-- add -->
   	<insert id="add" parameterType="MeetDTO">
