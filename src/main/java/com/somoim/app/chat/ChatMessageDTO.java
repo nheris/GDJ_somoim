@@ -3,14 +3,14 @@ package com.somoim.app.chat;
 import java.sql.Date;
 
 public class ChatMessageDTO {
-	
+
 	private Long messageNum;
 	private Long chatRoomNum;
 	private String userName;
 	private String chatText;
 	private Date chatMessageStamp;
-	
-	
+
+
 	public Long getMessageNum() {
 		return messageNum;
 	}
@@ -41,6 +41,6 @@ public class ChatMessageDTO {
 	public void setChatMessageStamp(Date chatMessageStamp) {
 		this.chatMessageStamp = chatMessageStamp;
 	}
-	
-	
+
+
 }

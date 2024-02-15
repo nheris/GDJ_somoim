@@ -16,28 +16,28 @@ public class ChatController {
 
 	@Autowired
 	private MemberService memberService;
-	
+
 	@Autowired
 	private ChatMessageService chatMessageService;
-	
+
 	@GetMapping("/chat")
 	public ModelAndView chat(HttpSession session, MemberDTO memberDTO, ModelAndView mv) throws Exception{
 		if(session.getAttribute("member") == null) {
 			mv.setViewName("/member/login");
 			return mv;
 		}
-		
+
 		System.out.println("controller session id : "+session.getId());
-		
+
 		memberDTO = (MemberDTO)session.getAttribute("member");
 		MemberDTO dto = memberService.getLogin(memberDTO);
-		
+
 		System.out.println(dto.getNickName());
 		mv.addObject("user",dto);
-		
+
 		mv.setViewName("/chat/chating");
 		return mv;
 	}
-	
-	
+
+
 }

@@ -91,7 +91,7 @@
 											플랜</h2>
 										<p class="wow fadeInUp" data-wow-delay=".6s"
 											style="font-size: 12px;">서비스를 구독하고 모임개설을 해보세요!</p>
-									</div">
+									</div>
 
 								</div>
 							</div>
@@ -162,6 +162,6 @@
 
 	<!-- ========================= JS improt ========================= -->
 	<c:import url="../temps/footer.jsp"></c:import>
-	<script src="/resources/js/payment.js"></script>
+	<script src="/resources/js/payment/payment.js"></script>
 </body>
 </html>

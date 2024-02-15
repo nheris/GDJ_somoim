@@ -19,32 +19,32 @@ public class MoimService {
 	private FileManager fileManager;
 	@Autowired
 	private ServletContext servletContext;
-	
+
 	//list
 	public List<MoimDTO> getList(MemberDTO memberDTO) throws Exception {
 		return moimDAO.getList(memberDTO);
-		
+
 	}
 
 	//add
 	public int add(MoimDTO moimDTO, MultipartFile file) throws Exception {
 		int result = moimDAO.add(moimDTO);
 		result = moimDAO.moimHeadAdd(moimDTO);
-		
+
 		String path = servletContext.getRealPath("/resources/upload/moim");
-			
+
 		String fileName = fileManager.fileSave(path, file);
-		
+
 		MoimFileDTO moimFileDTO = new MoimFileDTO();
 		moimFileDTO.setFileName(fileName);
 		moimFileDTO.setOriName(file.getOriginalFilename());
 		moimFileDTO.setMoimNum(moimDTO.getMoimNum());
-		
+
 		result = moimDAO.fileAdd(moimFileDTO);
-		
+
 
 		return result;
-		
+
 	}
 
 	public int delete(MoimDTO moimDTO) throws Exception {
@@ -52,11 +52,11 @@ public class MoimService {
 		MoimFileDTO moimFileDTO = moimDAO.file(moimDTO);
 		String path = servletContext.getRealPath("/resources/upload/moim");
 		fileManager.fileDelete(path, moimFileDTO.getFileName());
-		
+
 		//모임삭제
 		return moimDAO.delete(moimDTO);
 	}
-	
+
 	//update
 	public MoimDTO update(MoimDTO moimDTO) throws Exception {
 		return moimDAO.update(moimDTO);
@@ -64,25 +64,25 @@ public class MoimService {
 
 	public int updatePost(MoimDTO moimDTO, MultipartFile file) throws Exception {
 		int result = moimDAO.updatePost(moimDTO);
-		
+
 		String path = servletContext.getRealPath("/resources/upload/moim");
-		
+
 		String fileName = fileManager.fileSave(path, file);
-		
+
 		MoimFileDTO moimFileDTO = new MoimFileDTO();
 		moimFileDTO.setFileName(fileName);
 		moimFileDTO.setOriName(file.getOriginalFilename());
 		moimFileDTO.setMoimNum(moimDTO.getMoimNum());
-		
+
 		result = moimDAO.fileUpdate(moimFileDTO);
-		
+
 		return result;
 	}
 
 	public MoimDTO getInfo(MoimDTO moimDTO) throws Exception {
 		return moimDAO.getInfo(moimDTO);
 	}
-	
-	
-	
+
+
+
 }
