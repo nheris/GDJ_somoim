@@ -1,5 +1,7 @@
 package com.somoim.app.board.qna;
 
+import java.sql.Date;
+
 import oracle.sql.DATE;
 
 public class ReplyDTO {
@@ -7,8 +9,8 @@ public class ReplyDTO {
 	private Long boardReplyNum;
 	private String userName;
 	private Long boardNum;
-	private Long boardReplyText;
-	private DATE boardReplyDate;
+	private String boardReplyText;
+	private Date boardReplyDate;
 	public Long getBoardReplyNum() {
 		return boardReplyNum;
 	}
@@ -27,16 +29,16 @@ public class ReplyDTO {
 	public void setBoardNum(Long boardNum) {
 		this.boardNum = boardNum;
 	}
-	public Long getBoardReplyText() {
+	public String getBoardReplyText() {
 		return boardReplyText;
 	}
-	public void setBoardReplyText(Long boardReplyText) {
+	public void setBoardReplyText(String boardReplyText) {
 		this.boardReplyText = boardReplyText;
 	}
-	public DATE getBoardReplyDate() {
+	public Date getBoardReplyDate() {
 		return boardReplyDate;
 	}
-	public void setBoardReplyDate(DATE boardReplyDate) {
+	public void setBoardReplyDate(Date boardReplyDate) {
 		this.boardReplyDate = boardReplyDate;
 	}
 	

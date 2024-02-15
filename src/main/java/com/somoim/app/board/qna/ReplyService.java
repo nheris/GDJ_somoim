@@ -10,6 +10,8 @@ import org.springframework.ui.Model;
 
 import com.somoim.app.util.Pager;
 
+
+
 @Service
 public class ReplyService {
 
@@ -17,28 +19,27 @@ public class ReplyService {
 	private ReplyDAO replyDAO;
 	
 	
-	public List<ReplyDTO> getList(Pager pager, ReplyDTO replyDTO)throws Exception{
+	public int setDelete(ReplyDTO replyDTO)throws Exception{
+		return replyDAO.setDelete(replyDTO);
+	}
+	
+	
+	public int setReply(ReplyDTO replyDTO)throws Exception{
+		return replyDAO.setReply(replyDTO);
+	}
+	
+	public List<ReplyDTO> getList(Pager pager,ReplyDTO replyDTO)throws Exception{
+		pager.setPerPage(5L);
 		pager.makeRow();
+		
 		pager.makeNum(replyDAO.getTotalCount(replyDTO));
-		Map<String, Object>map = new HashMap<String, Object>();
+		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("pager", pager);
-		map.put("ReplyDTO", replyDTO);
+		map.put("replyDTO", replyDTO);
+			
 		
 		return replyDAO.getList(map);
 	}
-
-	public int setUpdate (ReplyDTO replyDTO)throws Exception{
-		return 0;
-	}
-	
-	public int setReply (ReplyDTO replyDTO)throws Exception{
-		return 0;	
-	}
-	
-	public int setDelete(ReplyDTO replyDTO)throws Exception{
-		return 0;
-	}
-
 
 		
 	

@@ -20,6 +20,6 @@
         <typeAlias type="com.somoim.app.payment.ClientDTO" alias="ClientDTO"/>
   		<typeAlias type="com.somoim.app.member.role.RoleDTO" alias="RoleDTO"/>  	
   		<typeAlias type="com.somoim.app.board.qna.ReplyDTO" alias="ReplyDTO"/>
-  		<typeAlias type="com.somoim.app.category.CategoryDTO" alias="CategoryDTO"/>
+
   	</typeAliases>
   </configuration>
