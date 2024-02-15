@@ -21,8 +21,8 @@ public class ChatMessageDAO {
 	}
 	
 	// chating 칠때 마다 insert
-	public int addChat(Map<String,Object> map) {
-		return sqlSession.insert(NAMESPACE+"addChat",map);
+	public int addChat(ChatMessageDTO chatMessageDTO) {
+		return sqlSession.insert(NAMESPACE+"addChat",chatMessageDTO);
 	}
 	
 	// chatMessage 테이블의 방번호와 chatRoom 테이블의 번호를 비교하기위해

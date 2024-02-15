@@ -11,11 +11,11 @@
   	
   	
   	<!-- parameter member(userName), chatRoom(chatRoomNum) -->
-  	<insert id="addChat" parameterType="Map">
+  	<insert id="addChat" parameterType="ChatMessageDTO">
   		INSERT INTO CHATMESSAGE 
 			(MESSAGENUM, CHATROOMNUM, USERNAME, CHATTEXT, CHATTIMESTAMP)
 		VALUES
-			(MESSAGE_SEQ.NEXTVAL, #{room.chatRoomNum}, #{member.userName}, #{chatText}, SYSDATE)
+			(MESSAGE_SEQ.NEXTVAL, 1, #{userName}, #{chatText}, SYSDATE)
   	</insert>
   	
   	<select id="chatRoomCh" resultType="Long">

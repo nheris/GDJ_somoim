@@ -27,12 +27,10 @@ public class ChatController {
 			return mv;
 		}
 		
-		System.out.println("controller session id : "+session.getId());
 		
 		memberDTO = (MemberDTO)session.getAttribute("member");
 		MemberDTO dto = memberService.getLogin(memberDTO);
 		
-		System.out.println(dto.getNickName());
 		mv.addObject("user",dto);
 		
 		mv.setViewName("/chat/chating");

@@ -15,21 +15,18 @@ public class ChatMessageService {
 	@Autowired
 	private ChatMessageDAO chatMessageDAO;
 	
-	public void addChat(Long chatRoomNum, MemberDTO memberDTO) {
+	public int addChat(ChatMessageDTO chatMessageDTO) {
 		Map<String, Object> map = new HashMap<>();
 		
 		List<Long> roomList = chatMessageDAO.chatRoomCh();
 		
 		// 방이 없다면 (방번호로 찾기)
-		if(!roomList.contains(chatRoomNum)){
+		if(!roomList.contains(chatMessageDTO.getChatRoomNum())){
 			// 방 생성
 			chatMessageDAO.addChatRoom();			
 		}
 		
 		// 채팅
-		map.put("roomNum", chatRoomNum);
-		map.put("member", memberDTO);
-		chatMessageDAO.addChat(map);
-		
+		return chatMessageDAO.addChat(chatMessageDTO);
 	}
 }

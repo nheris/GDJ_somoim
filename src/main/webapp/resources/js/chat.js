@@ -13,15 +13,32 @@ const msgForm = document.getElementById('msgForm');
 
 let sock = new SockJS("http://localhost:80/chat");
 
-
+const messageNum = "${chatMessageNum}";
+const chatRoomNum = "${chatRoomNum}";
+const userName = "${userName}";
+const chatText = "${chatText}";
+const chatMessageStamp = "${chatMessageStamp}";
 
 
 
 sendMsg.addEventListener('keyup',(e) => {
 	if(sendMsg.value != ""){
         if(e.key == 'Enter' || e.keyCode == '13'){
-            sock.send(userCh.value+":"+sendMsg.value);
 
+            const chatMessage = {
+                "userName" : userName,
+                "chatText" : chatText,
+                "chatRoomNum" : 1
+            };
+            chatMessage.userName = userCh.value;
+            console.log(chatMessage.userName);
+            chatMessage.chatText = sendMsg.value;
+
+            
+
+            // sock.send(userCh.value+":"+sendMsg.value);
+            sock.send(JSON.stringify(chatMessage));
+            
             // fetch
 			
             // mySend(userCh.value +" : "+sendMsg.value);
@@ -33,13 +50,11 @@ sendMsg.addEventListener('keyup',(e) => {
 
 sock.onopen = function(){
     console.log('연결');
-    sendMsg.innerHTML = 'con';
 }
 
 sock.onmessage =  function (e){
     const week = new Array('SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT');
     let today = new Date(e.timeStamp);
-    console.log(today.getHours()+":"+today.getMinutes());
 
     const dayName = week[today.getDay()];
     const hours = today.getHours() % 12 ? today.getHours() % 12 : 12;
@@ -48,19 +63,18 @@ sock.onmessage =  function (e){
     const date = `${hours}:${minutes} ${ampm}, ${dayName}`;
 
     let data = e.data;
-    
-    let ar = data.split(":");
+    console.log(data);
+    let ar = data.split(",");
+    // {"userName":"user2"
+    let user = ar[0].trim().substring(13,ar[0].length-1);
+    let str = ar[1].trim().substring(12,ar[1].length-1);
 
-    let sessionid = null;
-    let smsg = null;
-
-    console.log(ar[0])+" : "+ar[1];
-
-
-    if(ar[0] == userCh.value){
-        mySend(ar[1], date);
+    console.log(user);
+    console.log(userCh.value);
+    if(user === userCh.value){
+        mySend(str, date);
     }else{
-        otherSend(ar[1], date);
+        otherSend(str, date);
     }
     
     scroller();
@@ -74,7 +88,7 @@ sock.onerror = function(){
 
 // sock.onclose = function(){
 //     console.log('onClose');
-//     }
+    
 // }
 
 {/* 
@@ -141,7 +155,6 @@ let scrollToBottom = chatHistory.scrollHeight - chatHistory.scrollTop === chatHi
 // scroll 밑에 고정
 function scroller(){
     if(scrollToBottom){
-    	console.log('visible');
         chatHistory.scrollTo(0, chatHistory.scrollHeight);
     }
 }
