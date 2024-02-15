@@ -49,7 +49,7 @@
 					<div class="col-12 p-0">
 						<div class="category-slider">
 							<!-- Start Single Category -->
-							<a href="category.html" class="single-cat">
+							<a href="category/main" class="single-cat">
 								<div class="icon">
 									<img src="/resources/assets/images/categories/car.svg" alt="#">
 								</div>
@@ -58,7 +58,7 @@
 							</a>
 							<!-- End Single Category -->
 							<!-- Start Single Category -->
-							<a href="category.html" class="single-cat">
+							<a href="category/main" class="single-cat">
 								<div class="icon">
 									<img src="/resources/assets/images/categories/laptop.svg"
 										alt="#">
@@ -68,7 +68,7 @@
 							</a>
 							<!-- End Single Category -->
 							<!-- Start Single Category -->
-							<a href="category.html" class="single-cat">
+							<a href="category/main" class="single-cat">
 								<div class="icon">
 									<img src="/resources/assets/images/categories/matrimony.svg"
 										alt="#">
@@ -78,7 +78,7 @@
 							</a>
 							<!-- End Single Category -->
 							<!-- Start Single Category -->
-							<a href="category.html" class="single-cat">
+							<a href="category/main" class="single-cat">
 								<div class="icon">
 									<img src="/resources/assets/images/categories/furniture.svg"
 										alt="#">
@@ -88,7 +88,7 @@
 							</a>
 							<!-- End Single Category -->
 							<!-- Start Single Category -->
-							<a href="category.html" class="single-cat">
+							<a href="category/main" class="single-cat">
 								<div class="icon">
 									<img src="/resources/assets/images/categories/jobs.svg" alt="#">
 								</div>
@@ -97,7 +97,7 @@
 							</a>
 							<!-- End Single Category -->
 							<!-- Start Single Category -->
-							<a href="category.html" class="single-cat">
+							<a href="category/main" class="single-cat">
 								<div class="icon">
 									<img src="/resources/assets/images/categories/real-estate.svg"
 										alt="#">
@@ -107,7 +107,7 @@
 							</a>
 							<!-- End Single Category -->
 							<!-- Start Single Category -->
-							<a href="category.html" class="single-cat">
+							<a href="category/main" class="single-cat">
 								<div class="icon">
 									<img src="/resources/assets/images/categories/laptop.svg"
 										alt="#">
@@ -117,7 +117,7 @@
 							</a>
 							<!-- End Single Category -->
 							<!-- Start Single Category -->
-							<a href="category.html" class="single-cat">
+							<a href="category/main" class="single-cat">
 								<div class="icon">
 									<img src="/resources/assets/images/categories/hospital.svg"
 										alt="#">
@@ -127,7 +127,7 @@
 							</a>
 							<!-- End Single Category -->
 							<!-- Start Single Category -->
-							<a href="category.html" class="single-cat">
+							<a href="category/main" class="single-cat">
 								<div class="icon">
 									<img src="/resources/assets/images/categories/tshirt.svg"
 										alt="#">
@@ -137,7 +137,7 @@
 							</a>
 							<!-- End Single Category -->
 							<!-- Start Single Category -->
-							<a href="category.html" class="single-cat">
+							<a href="category/main" class="single-cat">
 								<div class="icon">
 									<img src="/resources/assets/images/categories/education.svg"
 										alt="#">

@@ -47,16 +47,21 @@ public class NoticeService implements BoardService{
 	@Override
 	public int setAdd(BoardDTO boardDTO, MultipartFile [] attachs) throws Exception {
 		//1. 글을 등록 - 글번호를 알아오기 위해서
-		int result = noticeDAO.setAdd(boardDTO);
-
+		int result = noticeDAO.setAdd(boardDTO);	
+		System.out.println("글번호 알아오기"+result);
+		
 		//2. 파일을 HDD에 저장
 		//2-1 저장할 폴더의 실제 경로 구하기
 		String path = servletContext.getRealPath("/resources/upload/notice");
-		System.out.println(path);
+		System.out.println("실제경로"+path);
 		//2-2 HDD에 저장하고 파일명 받아오기
 
 
 		System.out.println("attachs size: " + attachs.length);
+		if(attachs.length==6) {
+			System.out.println("5개까지만 가능하다.");
+			
+		}
 		for(MultipartFile f: attachs) {
 			System.out.println(f);
 			if(f.isEmpty()) {
