@@ -20,7 +20,7 @@ public class ChatHandler extends TextWebSocketHandler{
 	
 	private MemberDTO memberDTO;
 	
-	private static HashMap<String, WebSocketSession> sessions = new HashMap<>(2);	
+	private static HashMap<String, WebSocketSession> sessions = new HashMap<>();	
 	
 	 // group( 정모, 모임, 1:1 )에 따른 Map 나누기 
 	private static List<HashMap<String,WebSocketSession>> list = new ArrayList<>(); 
