@@ -11,25 +11,25 @@ import com.somoim.app.member.MemberDTO;
 
 @Service
 public class ChatMessageService {
-	
+
 	@Autowired
 	private ChatMessageDAO chatMessageDAO;
-	
+
 	public void addChat(Long chatRoomNum, MemberDTO memberDTO) {
 		Map<String, Object> map = new HashMap<>();
-		
+
 		List<Long> roomList = chatMessageDAO.chatRoomCh();
-		
+
 		// 방이 없다면 (방번호로 찾기)
 		if(!roomList.contains(chatRoomNum)){
 			// 방 생성
-			chatMessageDAO.addChatRoom();			
+			chatMessageDAO.addChatRoom();
 		}
-		
+
 		// 채팅
 		map.put("roomNum", chatRoomNum);
 		map.put("member", memberDTO);
 		chatMessageDAO.addChat(map);
-		
+
 	}
 }

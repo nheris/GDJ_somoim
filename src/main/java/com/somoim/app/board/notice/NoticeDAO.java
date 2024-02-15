@@ -1,6 +1,5 @@
 package com.somoim.app.board.notice;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -18,7 +17,7 @@ public class NoticeDAO  implements BoardDAO{
 
 	@Autowired
 	private SqlSession sqlSession;
-	
+
 	private final String namespace="com.somoim.app.board.notice.NoticeDAO.";
 
 	@Override
@@ -32,7 +31,7 @@ public class NoticeDAO  implements BoardDAO{
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(namespace+"getList", pager);
 	}
-	
+
 
 	@Override
 	public BoardDTO getDetail(BoardDTO boardDTO) throws Exception {
@@ -57,12 +56,12 @@ public class NoticeDAO  implements BoardDAO{
 		// TODO Auto-generated method stub
 		return  sqlSession.delete(namespace+"setDelete", boardDTO);
 	}
-	
+
 	public int setFileAdd(BoardFileDTO boardFileDTO)throws Exception{
 		return sqlSession.insert(namespace+"setFileAdd", boardFileDTO);
 	}
-	
-	
+
+
 	public List<BoardFileDTO> getFileList(BoardDTO boardDTO)throws Exception{
 		return sqlSession.selectList(namespace+"getFileList", boardDTO);
 	}

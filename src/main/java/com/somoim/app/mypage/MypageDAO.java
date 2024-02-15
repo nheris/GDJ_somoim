@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class MypageDAO {
 
-	
+
 	@Autowired
 	private SqlSession sqlSession;
 	final String NAMESPACE = "com.somoim.app.mypage.MypageDAO.";

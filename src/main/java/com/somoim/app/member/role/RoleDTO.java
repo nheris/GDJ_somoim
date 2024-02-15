@@ -3,8 +3,8 @@ package com.somoim.app.member.role;
 public class RoleDTO {
 	private Long roleNum;
 	private String roleName;
-	
-	
+
+
 	public Long getRoleNum() {
 		return roleNum;
 	}
@@ -17,6 +17,6 @@ public class RoleDTO {
 	public void setRoleName(String roleName) {
 		this.roleName = roleName;
 	}
-	
-	
+
+
 }

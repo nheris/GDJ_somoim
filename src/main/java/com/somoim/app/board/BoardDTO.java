@@ -61,7 +61,7 @@ public void setBoardDate(Date boardDate) {
 	this.boardDate = boardDate;
 }
 
-	
-	
-	
+
+
+
 }

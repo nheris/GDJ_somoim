@@ -15,7 +15,7 @@ import com.somoim.app.util.Pager;
 @Repository
 public class QnaDAO implements BoardDAO{
 
-	
+
 	@Autowired
 	private SqlSession sqlSession;
 	

@@ -11,11 +11,11 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 public class ChatHandler extends TextWebSocketHandler{
 
-	private static HashMap<String, WebSocketSession> sessions = new HashMap<>();	
-	
-	 // group( 정모, 모임, 1:1 )에 따른 Map 나누기 
-	private static List<HashMap<String,WebSocketSession>> list = new ArrayList<>(); 
-	
+	private static HashMap<String, WebSocketSession> sessions = new HashMap<>();
+
+	 // group( 정모, 모임, 1:1 )에 따른 Map 나누기
+	private static List<HashMap<String,WebSocketSession>> list = new ArrayList<>();
+
 	// 연결후에 실행되는 메서드
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
@@ -41,6 +41,6 @@ public class ChatHandler extends TextWebSocketHandler{
 		System.out.println("연결해제");
 	}
 
-	
-	
+
+
 }

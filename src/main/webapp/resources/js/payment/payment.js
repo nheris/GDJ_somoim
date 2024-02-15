@@ -3,6 +3,7 @@
  let payBtn = document.querySelectorAll(".paymentBtn");
  
 
+
 function popupWindow(url, title, width, height) {
 // width  : 팝업창 가로 크기
 // height : 팝업창 세로 크기
@@ -28,9 +29,9 @@ let popUp;
 Array.from(payBtn).forEach((button)=>{
   button.addEventListener("click",function(){
     let dataType = this.getAttribute('data-type');
-    popUp = popupWindow("/pay/paypopup?pTypeNum="+dataType,"payment",400,300);
+    popUp = popupWindow("/pay/paypopup?pTypeNum="+dataType,"payment",540,800);
     popUp.onresize = function(){
-      popUp.resizeTo(425,400)
+      popUp.resizeTo(570,900)
     }
     popUp.onload = function(){
       popUp.addEventListener("message", handleMessageFromChild);
@@ -43,13 +44,12 @@ Array.from(payBtn).forEach((button)=>{
     console.log(e.data);
     if (e.data === "paymentSelect") {
         // 부모 창에 메시지를 전달
-        
+        paymentWidget.requestPayment({
+          orderId: "1W_pCfO4rzG9szJEcThKe",
+          orderName: "테스트결제",
+          successUrl: "localhost/mypage/pay",
+          failUrl: "localhost/mypage/pay",
+        });
     }
 }
 
-// 구매자의 고유 아이디를 불러와서 customerKey로 설정하세요.
-// 이메일・전화번호와 같이 유추가 가능한 값은 안전하지 않습니다.
-const widgetClientKey = "test_ck_GePWvyJnrK44GQx7Q1ga8gLzN97E";
-const customerKey = "SnHdye8vvE8Ph9Q8-pkz1";
-const paymentWidget = PaymentWidget(widgetClientKey, customerKey); // 회원 결제
-  

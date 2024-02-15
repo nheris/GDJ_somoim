@@ -13,13 +13,13 @@ public class MoimDAO {
 	@Autowired
 	private SqlSession sqlSession;
 	private final String NAMESPACE = "com.somoim.app.moim.MoimDAO.";
-	
+
 	//list
 	public List<MoimDTO> getList(MemberDTO memberDTO) throws Exception {
 		return sqlSession.selectList(NAMESPACE+"getList", memberDTO);
 	}
-	
-	
+
+
 	//add
 		//모임 개설
 	public int add(MoimDTO moimDTO) throws Exception {
@@ -33,8 +33,8 @@ public class MoimDAO {
 	public int moimHeadAdd(MoimDTO moimDTO) throws Exception {
 		return sqlSession.insert(NAMESPACE+"moimHeadAdd", moimDTO);
 	}
-	
-	
+
+
 	//delete
 		//모임사진 삭제
 	public MoimFileDTO file(MoimDTO moimDTO) throws Exception {
@@ -45,7 +45,7 @@ public class MoimDAO {
 		return sqlSession.delete(NAMESPACE+"delete", moimDTO);
 	}
 
-	
+
 	//update
 	public MoimDTO update(MoimDTO moimDTO) throws Exception {
 		return sqlSession.selectOne(NAMESPACE+"update", moimDTO);
@@ -63,13 +63,13 @@ public class MoimDAO {
 	}
 
 
-	
+
 	//모임 멤버 가입
 //	public int moimMemAdd(MoimDTO moimDTO) {
 //		return sqlSession.insert(NAMESPACE+"moimMemAdd", moimDTO);
 //	}
-	
-	
-	
-	
+
+
+
+
 }
