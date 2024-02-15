@@ -14,6 +14,8 @@ public class MemberDTO {
 	private String address;
 	private String phone;
 	private String email;
+	private Long loginNum;
+	
 	
 	private ProfileDTO profile;
 	private List<RoleDTO> roleDTO;
@@ -82,5 +84,11 @@ public class MemberDTO {
 		this.email = email;
 	}
 	
+	public Long getLoginNum() {
+		return loginNum;
+	}
+	public void setLoginNum(Long loginNum) {
+		this.loginNum = loginNum;
+	}
 
 }

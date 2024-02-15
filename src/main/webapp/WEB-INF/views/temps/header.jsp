@@ -42,7 +42,7 @@
 								<c:if test="${member eq null}">
 									<li><a href="/member/login"><i class="lni lni-enter"></i>
 											로그인</a></li>
-									<li><a href="/member/joinapp"><i class="lni lni-user"></i>
+									<li><a href="/member/join"><i class="lni lni-user"></i>
 											회원가입</a></li>
 								</c:if>
 								<c:if test="${member ne null}">

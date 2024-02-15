@@ -119,7 +119,7 @@
                                 </div>
                                 
                                 <div>
-                                    <input type="text" id="adrs_in">
+                                    <input name="address" type="text" id="adrs_in">
                                 </div>
                             </div>
 
@@ -134,6 +134,10 @@
                             <div class="form-group">
                                 <label for="attachs">사진첨부</label>
                                 <input name="attachs" id="attachs" type="file">
+                            </div>
+
+                            <div class="form-group" hidden>                                
+                                <input name="loginNum" id="attachs" value="1" type="text">
                             </div>
 
 

@@ -24,7 +24,7 @@
   	<insert id="setJoin" parameterType="MemberDTO">
   		INSERT INTO MEMBER
   		VALUES
-  		(#{userName},#{password},#{nickName},#{name},#{userBirth},#{address},#{phone},#{email})
+  		(#{userName},#{password},#{nickName},#{name},#{userBirth},#{address},#{phone},#{email},#{loginNum})
   	</insert>
   	
   	<insert id="setProfileJoin" parameterType="ProfileDTO">
@@ -59,6 +59,7 @@
   		<result column="ADDRESS" property="address"/>
  		<result column="PHONE" property="phone"/>
   		<result column="EMAIL" property="email"/>
+  		<result column="LOGINNUM" property="loginNum"/>
   			<association property="profile" javaType="ProfileDTO">
   		 		<id column="FILENUM" property="fileNum"/>
   		 		<result column="FILENAME" property="fileName"/>

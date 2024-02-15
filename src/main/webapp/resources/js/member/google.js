@@ -4,11 +4,31 @@ function handleCredentialResponse(response) {
     const responsePayload = parseJwt(response.credential);
     console.log("ID: " + responsePayload.sub);
     console.log('Full Name: ' + responsePayload.name);
-    console.log('Given Name: ' + responsePayload.given_name);
-    console.log('Family Name: ' + responsePayload.family_name);
-    console.log("Image URL: " + responsePayload.picture);
     console.log("Email: " + responsePayload.email);
+
+    const queryParams = new URLSearchParams({
+        userName: responsePayload.sub,
+        name: responsePayload.name,
+        email: responsePayload.email
+    });
+    console.log(responsePayload.name);
+    const formdata = new FormData();
+    formdata.append("name",responsePayload.name);
+    formdata.append("email",responsePayload.email)
+    fetch("/member/submitApp",{
+        method:"POST",
+        body:formdata,
+        })
+        .then(r => r.text())
+        .then(d => {
+            if(d == "success"){
+                location.href = "/member/joinApp"
+            }else{
+                location.href = "/"
+            }
+        })
 }
+
 function parseJwt (token) {
     var base64Url = token.split('.')[1];
     var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
@@ -18,6 +38,9 @@ function parseJwt (token) {
 
     return JSON.parse(jsonPayload);
 };
+
+
+
 
 
   

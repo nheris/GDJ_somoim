@@ -86,4 +86,15 @@ public class MemberService {
 	public MemberDTO getMypage(MemberDTO memberDTO)throws Exception{
 		return memberDAO.getDetail(memberDTO);
 	}
+	
+	public MemberDTO submitJoinApp(MemberDTO memberDTO)throws Exception{
+		MemberDTO dto = memberDAO.getDetail(memberDTO);
+		
+		if(dto.getEmail().equals(memberDTO.getEmail())) {
+			return memberDTO;
+		}else {
+			dto=null;
+		}
+		return dto;
+	}
 }

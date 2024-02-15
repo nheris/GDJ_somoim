@@ -37,9 +37,13 @@
                                 <span>Or</span>
                             </div>
                             <div class="form-group">
-                                <label for="userName">아이디</label>
-                                <input name="userName" id="userName" type="text">
-                                <button id="checkId" type="button">중복검사</button>
+                                <label for="userName">아이디&이메일</label>
+                                <input name="userName" id="userName" value="${exmember.email}" type="text">
+                            </div>
+
+                            <div class="form-group" hidden>
+                                <label for="userName">아이디&이메일</label>
+                                <input name="email" id="email" value="${exmember.email}" type="text">
                             </div>
 
                             <div class="form-group">
@@ -48,7 +52,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="name">이름</label>
-                                <input name="name" id="name" type="text">
+                                <input name="name" id="name" type="text" value="${exmember.name}">
                             </div>
                             <div class="form-group">
                                 <label for="userBirth">생년월일</label>
@@ -117,13 +121,14 @@
                                 <label for="phone">전화번호</label>
                                 <input name="phone" id="phone" type="text">
                             </div>
-                            <div class="form-group">
-                                <label for="email">이메일</label>
-                                <input name="email" id="email" type="email">
-                            </div>
+                            
                             <div class="form-group">
                                 <label for="attachs">사진첨부</label>
                                 <input name="attachs" id="attachs" type="file">
+                            </div>
+
+                            <div class="form-group" hidden>                                
+                                <input name="loginNum" id="attachs" value="1" type="text">
                             </div>
 
 
@@ -153,7 +158,7 @@
 	<c:import url="../temps/footer.jsp"></c:import>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script src="../resources/js/member/joinCheck.js"></script>
+	<script src="../resources/js/member/joinCheckApp.js"></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>	
 	
 </body>
