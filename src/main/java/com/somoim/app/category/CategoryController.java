@@ -10,15 +10,19 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.somoim.app.board.BoardDTO;
 import com.somoim.app.member.MemberDTO;
 import com.somoim.app.moim.MoimDTO;
+import com.somoim.app.moim.MoimFileDTO;
+import com.somoim.app.util.FileManager;
+import com.somoim.app.util.Pager;
 
 @Controller
 @RequestMapping("/category/*")
-public class categoryController {
+public class CategoryController {
 
 	@Autowired
-	private categoryService categoryService;
+	private CategoryService categoryService;
 	
 	@GetMapping("main")
 	public void getList() throws Exception {
@@ -30,8 +34,20 @@ public class categoryController {
 	@GetMapping("list")
 	public void list (HttpSession session, Model model) throws Exception{
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
-		List<categoryDTO> ar = categoryService.list(memberDTO);
+		List<CategoryDTO> ar = categoryService.list(memberDTO);
 		model.addAttribute("list", ar);
 	}
+	
+	
+	@GetMapping("categoryList")
+	public String getListCategory (Pager pager, Model model, CategoryDTO categoryDTO)throws Exception{
+		List<CategoryDTO> ar = categoryService.getListCategory(pager, categoryDTO);
+		model.addAttribute("data", ar);
+		model.addAttribute("pager",pager);
+		System.out.println(categoryDTO);
+		return "category/category";
+	}
+	
+	
 	
 }

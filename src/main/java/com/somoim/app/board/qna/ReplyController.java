@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.somoim.app.board.BoardDTO;
 import com.somoim.app.member.MemberDTO;
 import com.somoim.app.util.Pager;
+
 
 
 
@@ -44,7 +46,9 @@ public class ReplyController {
 	public Map<String, Object> setReply(Pager pager,ReplyDTO replyDTO, HttpSession session, Model model)throws Exception{
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		replyDTO.setUserName(memberDTO.getUserName());
-		
+		QnaDTO qnaDTO = (QnaDTO)session.getAttribute("board");
+		replyDTO.setBoardNum(qnaDTO.getBoardNum());
+		System.out.println(replyDTO.getBoardNum());
 		int result = replyService.setReply(replyDTO);
 		
 		List<ReplyDTO> ar = replyService.getList(pager, replyDTO);
@@ -59,15 +63,11 @@ public class ReplyController {
 	}
 	
 	@GetMapping("list")
-	@ResponseBody
-	public Map<String, Object> getList(Pager pager, ReplyDTO replyDTO, Model model)throws Exception {
+	public String getList(Pager pager, ReplyDTO replyDTO, Model model)throws Exception {
 		List<ReplyDTO> ar = replyService.getList(pager, replyDTO);
-		
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("datas", ar);
-		map.put("pager", pager);
-		
-		return map;
+		model.addAttribute("data", ar);
+		model.addAttribute("pager", pager);
+		return "board/replyListResult";
 	}
 	
 	

@@ -16,7 +16,7 @@
         <typeAlias type="com.somoim.app.payment.PaymentTypeDTO" alias="PaymentTypeDTO"/>
   		<typeAlias type="com.somoim.app.member.role.RoleDTO" alias="RoleDTO"/>  
   		<typeAlias type="com.somoim.app.board.qna.QnaDTO" alias="QnaDTO"/>
-  		<typeAlias type="com.somoim.app.category.categoryDTO" alias="categoryDTO"/>		
+  		<typeAlias type="com.somoim.app.category.CategoryDTO" alias="CategoryDTO"/>		
         <typeAlias type="com.somoim.app.payment.ClientDTO" alias="ClientDTO"/>
   		<typeAlias type="com.somoim.app.member.role.RoleDTO" alias="RoleDTO"/>  	
   		<typeAlias type="com.somoim.app.board.qna.ReplyDTO" alias="ReplyDTO"/>

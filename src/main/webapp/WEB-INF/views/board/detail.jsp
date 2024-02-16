@@ -74,9 +74,8 @@
 			</form>
 		</div>
 		<c:if test="${board eq '문의게시판'}">
-										<button class="btn btn-light" id="up"
-									data-product-num="${productDTO.productNum}">수정</button>
-								<button class="btn btn-light" id="del">삭제</button>
+			<button class="btn btn-light" id="up"data-board-num="${replyDTO.boardNum}">수정</button>
+			<button class="btn btn-light" id="del">삭제</button>
 			<table class="table">
 				<thead>
 					<tr>
@@ -91,27 +90,26 @@
 
 				</tbody>
 			</table>
+			
+
+			
 			<div class="my-3">
-				<form id="replyForm">
+				<form id="replyForm" >
 					<input type="hidden" name="boardNum" value="${replyDTO.boardNum}">
-					<div class="mb-3">
-						<textarea class="form-control" id="boardReplyText rows="
-							3" name="boardReplyText"></textarea>
-						<div>
-							<button id="more" data-replyList-page="1"
-								data-replyList-totalPage="1">더보기</button>
+					<input type="hidden" name="boardNum" value="${detail.boardNum}" />
+						<div class="mb-3">
+							<textarea class="form-control" id="boardReplyText rows="3" name="boardReplyText"></textarea>
+							<div>
+								<button type="button" class="btn btn-primary" id="replyAdd">댓글달기</button>
+							</div>
 						</div>
-						<div>
-							<button type="button" class="btn btn-primary" id="replyAdd">댓글달기</button>
-						</div>
-					</div>
 				</form>
 		</c:if>
 	</div>
 	<!-- ========================= JS improt ========================= -->
 		
 	<script src="/resources/js/board/boardDetail.js"></script>
-	<script src="/resources/js/category/category.js"></script>
+	<script src="/resources/js/board/reply.js"></script>
 
 	<c:import url="../temps/footer.jsp"></c:import>
 </body>

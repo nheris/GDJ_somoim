@@ -12,6 +12,7 @@ import com.somoim.app.util.Pager;
 
 
 
+
 @Service
 public class ReplyService {
 
@@ -29,9 +30,8 @@ public class ReplyService {
 	}
 	
 	public List<ReplyDTO> getList(Pager pager,ReplyDTO replyDTO)throws Exception{
-		pager.setPerPage(5L);
 		pager.makeRow();
-		
+		System.out.println(replyDTO.getBoardNum());
 		pager.makeNum(replyDAO.getTotalCount(replyDTO));
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("pager", pager);
