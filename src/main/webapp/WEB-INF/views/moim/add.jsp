@@ -135,7 +135,7 @@
 													<!-- ... --> 
 													<label for="cityList">시/도</label> 
 													<select id="cityList" onchange="city(this)" class="form-select" aria-label="Default select example">
-														<option selected="selected">전체</option>
+														<option selected="selected" disabled="">전체</option>
 														<option value="서울">서울특별시</option>
 														<option value="부산">부산광역시</option>
 														<option value="대구">대구광역시</option>
@@ -157,7 +157,7 @@
 
 													<label for="remainList" class="w70">시/군/구</label>
 													<select id="remainList" class="form-select" aria-label="Default select example">
-														<option selected="selected">시/군/구 선택</option>
+														<option selected="selected" disabled="">시/군/구 선택</option>
 
 													</select>
 

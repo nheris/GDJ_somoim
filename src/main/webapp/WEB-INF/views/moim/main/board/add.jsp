@@ -11,11 +11,11 @@
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <!-- CSS 임포트 -->
-<c:import url="../../temps/head_css.jsp"></c:import>
+<c:import url="../../../temps/head_css.jsp"></c:import>
 <!-- 내비게이터 import -->
-<c:import url="../../temps/header.jsp"></c:import>
+<c:import url="../../../temps/header.jsp"></c:import>
 <!-- summernote -->
-<c:import url="../../temps/summernote.jsp"></c:import>
+<c:import url="../../../temps/summernote.jsp"></c:import>
 </head>
 <body>
 	<!-- 모임 홈 헤더 -->
@@ -29,11 +29,11 @@
 				</div>
 				<div class="col-lg-6 col-md-6 col-12">
 					<ul class="nav justify-content-end">
-						<li class="nav-item"><a class="nav-link" href="./home"
+						<li class="nav-item"><a class="nav-link" href="../home?moimNum=${dto.moimNum}"
 							style="color: white">Home</a></li>
-						<li class="nav-item"><a class="nav-link" href="./board"
+						<li class="nav-item"><a class="nav-link" href="./list?moimNum=${dto.moimNum}"
 							style="color: white; font-weight: bold;">게시판</a></li>
-						<li class="nav-item"><a class="nav-link" href="./together"
+						<li class="nav-item"><a class="nav-link" href="../together?moimNum=${dto.moimNum}"
 							style="color: white">정모</a></li>
 						<li class="nav-item"><a class="nav-link" href="#"
 							style="color: white">채팅</a></li>
@@ -56,9 +56,9 @@
 		<div class="comment-form">
             <h3 class="comment-reply-title"><span style="font-weight: bold;">Writing</span></h3>
             
-            <form action="./writing" method="POST">
+            <form action="./add" method="POST" enctype="multipart/form-data">
                 <div class="row">
-
+					<input type="hidden" name="moimNum" value="${dto.moimNum}">
                     <div class="mb-3">
 						<input type="text" class="form-control" id="boardTitle" name="boardTitle" placeholder="제목을 입력해 주세요.">
 					</div>
@@ -93,7 +93,7 @@
 	</a>
 
 	<!-- ========================= JS improt ========================= -->
-	<c:import url="../../temps/footer.jsp"></c:import>
+	<c:import url="../../../temps/footer.jsp"></c:import>
 	<script src="https://unpkg.com/bootstrap@4.3.1/dist/js/bootstrap.bundle.min.js" data-src="https://unpkg.com/bootstrap@4.3.1/dist/js/bootstrap.min.js" ></script>
 	<script src="https://unpkg.com/bootstrap-select@1.13.8/dist/js/bootstrap-select.min.js"></script>
 	<script src="/resources/js/moim/main.js"></script>

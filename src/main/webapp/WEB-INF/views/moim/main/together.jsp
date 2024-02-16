@@ -31,7 +31,7 @@
 					<ul class="nav justify-content-end">
 						<li class="nav-item"><a class="nav-link" href="./home?moimNum=${moimDTO.moimNum}"
 							style="color: white">Home</a></li>
-						<li class="nav-item"><a class="nav-link" href="./board?moimNum=${moimDTO.moimNum}"
+						<li class="nav-item"><a class="nav-link" href="./board/list?moimNum=${moimDTO.moimNum}"
 							style="color: white;">게시판</a></li>
 						<li class="nav-item"><a class="nav-link" href="./together?moimNum=${moimDTO.moimNum}"
 							style="color: white; font-weight: bold;">정모</a></li>

@@ -18,5 +18,8 @@
   		
   		<typeAlias type="com.somoim.app.moim.meet.MeetDTO" alias="MeetDTO"/>
   		<typeAlias type="com.somoim.app.moim.meet.MeetFileDTO" alias="MeetFileDTO"/>
+  		
+  		<typeAlias type="com.somoim.app.moim.board.MoimBoardDTO" alias="MoimBoardDTO"/>
+  		<typeAlias type="com.somoim.app.moim.board.MoimBoardFileDTO" alias="MoimBoardFileDTO"/>
   	</typeAliases>
   </configuration>

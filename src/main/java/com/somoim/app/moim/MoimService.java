@@ -59,12 +59,12 @@ public class MoimService {
 	}
 	
 	//update
-	public MoimDTO update(MoimDTO moimDTO) throws Exception {
-		return moimDAO.update(moimDTO);
+	public MoimDTO getInfo(MoimDTO moimDTO) throws Exception {
+		return moimDAO.getInfo(moimDTO);
 	}
 
-	public int updatePost(MoimDTO moimDTO, MultipartFile file) throws Exception {
-		int result = moimDAO.updatePost(moimDTO);
+	public int update(MoimDTO moimDTO, MultipartFile file) throws Exception {
+		int result = moimDAO.update(moimDTO);
 		
 		String path = servletContext.getRealPath("/resources/upload/moim");
 		
@@ -80,10 +80,6 @@ public class MoimService {
 		return result;
 	}
 
-	public MoimDTO getInfo(MoimDTO moimDTO) throws Exception {
-		return moimDAO.getInfo(moimDTO);
-	}
-	
 	
 	
 }

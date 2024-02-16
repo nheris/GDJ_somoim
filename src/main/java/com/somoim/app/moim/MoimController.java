@@ -68,12 +68,12 @@ public class MoimController {
 	//update 모임수정
 	@GetMapping("update")
 	public void update(MoimDTO moimDTO, Model model) throws Exception {
-		moimDTO = moimService.update(moimDTO);
+		moimDTO = moimService.getInfo(moimDTO);
 		model.addAttribute("dto", moimDTO);
 	}
 	@PostMapping("update")
 	public String update(MoimDTO moimDTO, MultipartFile file) throws Exception {
-		int result = moimService.updatePost(moimDTO, file);
+		int result = moimService.update(moimDTO, file);
 		
 		return "redirect:./list";
 	}
@@ -93,21 +93,7 @@ public class MoimController {
 
 	
 	
-	//board 게시판
-	@GetMapping("main/board")
-	public void board(MoimDTO moimDTO, Model model) throws Exception {
-		moimDTO = moimService.getInfo(moimDTO);
-		model.addAttribute("dto", moimDTO);
-	}
-	@GetMapping("main/writing")
-	public void mainWrite() throws Exception {
-		
-	}
-	@PostMapping("main/writing")
-	public void mainWrite(HttpSession session, MoimBoardDTO moimBoardDTO) throws Exception {
-		
-	}
-
+	
 
 	
 }
