@@ -5,11 +5,16 @@
   <!-- mapper namespace는 비우면 에러 -->
   <mapper namespace="com.somoim.app.chat.ChatMessageDAO">
   	
+  	<!-- ChatRoom -->
   	<insert id="addChatRoom">
   		INSERT INTO CHATROOM (CHATROOMNUM) VALUES (CHATROOM_SEQ.NEXTVAL)
   	</insert>
+  	  	
+  	<select id="chatRoomCh" resultType="Long">
+  		SELECT DISTINCT CHATROOMNUM FROM CHATROOM
+  	</select>
   	
-  	
+  	<!-- Chat -->
   	<!-- parameter member(userName), chatRoom(chatRoomNum) -->
   	<insert id="addChat" parameterType="ChatMessageDTO">
   		INSERT INTO CHATMESSAGE 
@@ -17,8 +22,10 @@
 		VALUES
 			(MESSAGE_SEQ.NEXTVAL, 1, #{userName}, #{chatText}, SYSDATE)
   	</insert>
-  	
-  	<select id="chatRoomCh" resultType="Long">
-  		SELECT DISTINCT CHATROOMNUM FROM CHATROOM
-  	</select>
+
+	<select id="chatHistory" parameterType="ChatMessageDTO" resultType="ChatMessageDTO">
+		SELECT * 
+			FROM CHATMESSAGE
+		WHERE CHATROOMNUM = #{chatRoomNum}
+	</select>
   </mapper>

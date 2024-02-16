@@ -16,17 +16,21 @@ public class ChatMessageService {
 	private ChatMessageDAO chatMessageDAO;
 	
 	public int addChat(ChatMessageDTO chatMessageDTO) {
-		Map<String, Object> map = new HashMap<>();
-		
 		List<Long> roomList = chatMessageDAO.chatRoomCh();
 		
 		// 방이 없다면 (방번호로 찾기)
-		if(!roomList.contains(chatMessageDTO.getChatRoomNum())){
+		if(!roomList.contains(1L)){
 			// 방 생성
 			chatMessageDAO.addChatRoom();			
 		}
 		
 		// 채팅
 		return chatMessageDAO.addChat(chatMessageDTO);
+	}
+	
+	// 특정방의 이전 채팅 기록
+	public List<ChatMessageDTO> chatHistory(ChatMessageDTO chatMessageDTO){
+		chatMessageDTO.setChatRoomNum(1L);
+		return chatMessageDAO.chatHistory(chatMessageDTO);
 	}
 }

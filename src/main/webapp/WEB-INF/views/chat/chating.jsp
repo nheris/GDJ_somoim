@@ -86,7 +86,7 @@
 											<div class="message my-message">Are we meeting today?</div>
 										</li>
 										<li class="clearfix">
-											<input type="hidden" id="userCh" value="${user.nickName}">
+											<input type="hidden" id="userCh" value="${user.userName}">
 											<div class="message-data">
 												<span class="message-data-time">10:15 AM, Today</span>
 											</div>
@@ -94,6 +94,29 @@
 												results
 												to show you.</div>
 										</li>
+										<c:forEach var="item" items="${chatHistory}">
+											<c:if test="${user.userName eq item.userName}">
+												<li class="clearfix">
+													<input type="hidden" id="userCh" value="${user.userName}">
+													<div class="message-data">
+														<span class="message-data-time">${item.chatTimeStamp}</span>
+													</div>
+													<div class="message my-message">${item.chatText}</div>
+												</li>
+											</c:if>
+											<c:if test="${user.userName ne item.userName}">
+												<li class="clearfix">
+													<div class="message-data text-right">
+														<span class="message-data-time">${item.chatTimeStamp}</span>
+														<img src="https://bootdey.com/img/Content/avatar/avatar7.png"
+															alt="avatar">
+													</div>
+													<div class="message other-message float-right">
+														${item.chatText}
+													</div>
+												</li>
+											</c:if>
+										</c:forEach>
 									</ul>
 
 								</div>

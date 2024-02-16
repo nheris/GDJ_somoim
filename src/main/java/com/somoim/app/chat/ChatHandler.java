@@ -36,19 +36,11 @@ public class ChatHandler extends TextWebSocketHandler{
 	//메세지를 다루는 메서드
 	@Override
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
-		
 		ObjectMapper objectMapper = new ObjectMapper();
-		System.out.println(0);
 		ChatMessageDTO chatMessageDTO = objectMapper.readValue(message.getPayload(), ChatMessageDTO.class);
-		System.out.println(1);
-		try {
-			int result = chatMessageService.addChat(chatMessageDTO);
-		}catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		}
-		
-		System.out.println(2);
+
+		int result = chatMessageService.addChat(chatMessageDTO);
+
 		//전송된 메시지를 List의 모든 세션에 전송
 		for (WebSocketSession s : sessions.values()) {
 			s.sendMessage(message);
