@@ -14,6 +14,12 @@
   		SELECT DISTINCT CHATROOMNUM FROM CHATROOM
   	</select>
   	
+  	<select id="chatRoomList" parameterType="MemberDTO" resultType="Long">
+  		SELECT DISTINCT CHATROOMNUM
+			FROM CHATMESSAGE
+		WHERE USERNAME = #{userName}
+  	</select>
+  	
   	<!-- Chat -->
   	<!-- parameter member(userName), chatRoom(chatRoomNum) -->
   	<insert id="addChat" parameterType="ChatMessageDTO">

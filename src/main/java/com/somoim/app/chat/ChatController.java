@@ -33,7 +33,9 @@ public class ChatController {
 		memberDTO = (MemberDTO)session.getAttribute("member");
 		MemberDTO dto = memberService.getLogin(memberDTO);
 
+		List<Long> chatRoomList = chatMessageService.chatRoomList(dto);
 		List<ChatMessageDTO> chatHistory = chatMessageService.chatHistory(chatMessageDTO);
+		mv.addObject("chatRoomList", chatRoomList);
 		mv.addObject("chatHistory", chatHistory);
 		
 		mv.addObject("user",dto);

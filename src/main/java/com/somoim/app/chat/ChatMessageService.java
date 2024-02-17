@@ -1,8 +1,6 @@
 package com.somoim.app.chat;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,5 +30,9 @@ public class ChatMessageService {
 	public List<ChatMessageDTO> chatHistory(ChatMessageDTO chatMessageDTO){
 		chatMessageDTO.setChatRoomNum(1L);
 		return chatMessageDAO.chatHistory(chatMessageDTO);
+	}
+	
+	public List<Long> chatRoomList(MemberDTO memberDTO){
+		return chatMessageDAO.chatRoomList(memberDTO);
 	}
 }

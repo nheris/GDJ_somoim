@@ -1,11 +1,12 @@
 package com.somoim.app.chat;
 
 import java.util.List;
-import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import com.somoim.app.member.MemberDTO;
 
 @Repository
 public class ChatMessageDAO {
@@ -19,6 +20,11 @@ public class ChatMessageDAO {
 	// chating 치기전 방 생성 
 	public int addChatRoom() {
 		return sqlSession.insert(NAMESPACE+"addChatRoom");
+	}
+	
+	// 특정 user의 참여중인 채팅방
+	public List<Long> chatRoomList(MemberDTO memberDTO){
+		return sqlSession.selectList(NAMESPACE+"chatRoomList", memberDTO);
 	}
 	
 	// chatMessage 테이블의 방번호와 chatRoom 테이블의 번호를 비교하기위해
