@@ -39,11 +39,19 @@ public class ChatHandler extends TextWebSocketHandler{
 		ObjectMapper objectMapper = new ObjectMapper();
 		ChatMessageDTO chatMessageDTO = objectMapper.readValue(message.getPayload(), ChatMessageDTO.class);
 
+		List<MemberDTO> list = chatMessageService.roomUserList(chatMessageDTO);
+
 		int result = chatMessageService.addChat(chatMessageDTO);
 
+		Long roomNum = (Long)session.getAttributes().get("roomNum");
+		
+		
 		//전송된 메시지를 List의 모든 세션에 전송
 		for (WebSocketSession s : sessions.values()) {
-			s.sendMessage(message);
+			
+			if(chatMessageDTO.getChatRoomNum() == roomNum) {
+				s.sendMessage(message);				
+			}
 		}
 
 	}

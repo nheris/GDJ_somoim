@@ -20,6 +20,16 @@
 		WHERE USERNAME = #{userName}
   	</select>
   	
+  	<select id="roomUserList" parameterType="ChatMessageDTO" resultType="MemberDTO">
+  		SELECT DISTINCT(USERNAME)
+			FROM CHATROOM CR
+				JOIN CHATMESSAGE CM
+				USING(CHATROOMNUM)
+				JOIN MEMBER M
+				USING (USERNAME)
+		WHERE CHATROOMNUM = 1
+  	</select>
+  	
   	<!-- Chat -->
   	<!-- parameter member(userName), chatRoom(chatRoomNum) -->
   	<insert id="addChat" parameterType="ChatMessageDTO">

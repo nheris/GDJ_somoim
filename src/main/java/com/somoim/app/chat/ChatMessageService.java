@@ -35,4 +35,8 @@ public class ChatMessageService {
 	public List<Long> chatRoomList(MemberDTO memberDTO){
 		return chatMessageDAO.chatRoomList(memberDTO);
 	}
+	
+	public List<MemberDTO> roomUserList(ChatMessageDTO chatMessageDTO){
+		return chatMessageDAO.roomUserList(chatMessageDTO);
+	}
 }

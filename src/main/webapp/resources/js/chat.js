@@ -3,7 +3,7 @@
  */
 // msg input
 
-console.log('js');
+console.log('c js');
 
 const sendMsg = document.getElementById('sendMsg');
 
@@ -19,7 +19,15 @@ const userName = "${userName}";
 const chatText = "${chatText}";
 const chatMessageStamp = "${chatMessageStamp}";
 
+let chatHistory = document.getElementById('chat-history');
+let scrollToBottom = chatHistory.scrollHeight - chatHistory.scrollTop === chatHistory.clientHeight;
 
+// scroll 밑에 고정
+function scroller(){
+    if(scrollToBottom){
+        chatHistory.scrollTo(0, chatHistory.scrollHeight);
+    }
+}
 
 sendMsg.addEventListener('keyup',(e) => {
 	if(sendMsg.value != ""){
@@ -43,6 +51,7 @@ sendMsg.addEventListener('keyup',(e) => {
 			
             // mySend(userCh.value +" : "+sendMsg.value);
 
+            scroller();
         	sendMsg.value = '';
         }
 	}
@@ -147,14 +156,16 @@ function otherSend(msg, date){
     div.innerText = msg;
 }
 
-let chatHistory = document.getElementById('chat-history');
-let newMsgCount = 0;
-const newCntBtn = document.querySelector('#bBtn > div');
-let scrollToBottom = chatHistory.scrollHeight - chatHistory.scrollTop === chatHistory.clientHeight;
+let chatRoom = document.getElementById('chatRoomNum');
 
-// scroll 밑에 고정
-function scroller(){
-    if(scrollToBottom){
-        chatHistory.scrollTo(0, chatHistory.scrollHeight);
-    }
-}
+chatRoom.addEventListener('click',()=>{
+    console.log('chatchat');
+    let n = chatRoom.getAttribute("data-roomNum");
+
+    fetch("../chat?chatRoomNum="+n,{
+        method:"GET"
+    })
+    .then(r => console.log(r))
+    
+});
+

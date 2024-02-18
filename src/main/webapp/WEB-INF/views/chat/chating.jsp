@@ -37,7 +37,7 @@
 										</div>
 									</li>
 									<c:forEach var="item" items="${chatRoomList}">
-										<li class="clearfix">
+										<li id="chatRoomNum" data-roomNum="${item}" class="clearfix">
 											<img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="avatar">
 											<div class="about">
 												<div class="name my-4">${item}</div>
@@ -68,11 +68,6 @@
 								</div>
 								<!-- 채팅기록 -->
 								<div class="chat-history" id="chat-history" style="overflow-y: scroll; height: 450px;">
-									<!-- visually-hidden -->
-									<!-- <span class="position-fixed" id="bBtn">
-										<div style="transform:translateX(500%) !important"
-											class="btn btn-light">Count</div>
-									</span> -->
 									<ul class="m-b-0" id="chat_record">
 										<!-- 상대방 (.text-right, float-right) -->
 										<li class="clearfix">

@@ -27,6 +27,10 @@ public class ChatMessageDAO {
 		return sqlSession.selectList(NAMESPACE+"chatRoomList", memberDTO);
 	}
 	
+	public List<MemberDTO> roomUserList(ChatMessageDTO chatMessageDTO){
+		return sqlSession.selectList(NAMESPACE+"roomUserList", chatMessageDTO);
+	}
+	
 	// chatMessage 테이블의 방번호와 chatRoom 테이블의 번호를 비교하기위해
 	public List<Long> chatRoomCh() {
 		return sqlSession.selectList(NAMESPACE+"chatRoomCh");
