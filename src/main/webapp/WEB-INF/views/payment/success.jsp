@@ -149,7 +149,7 @@ color: #b0b8c1;
 <div class="flex-column align-center confirm-loading w-100 max-w-540">
   <div class="flex-column align-center">
     <img src="https://static.toss.im/lotties/loading-spot-apng.png" width="120" height="120"></img>
-    <h2 class="title text-center">결제 요청 완료</h2>
+    <h2 class="title text-center">결제 정보 확인 완료</h2>
     <h4 class="text-center description">결제 승인하기 버튼을 클릭하면 결제가 완료 됩니다.</h4>
   </div>
   <div class="w-100">

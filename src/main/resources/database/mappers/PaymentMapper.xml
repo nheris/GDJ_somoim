@@ -22,6 +22,16 @@
   	
   	<!-- 결제수단의 클라이언트키를 가져옴 -->
   	<select id="getClientKey" resultType="ClientDTO" parameterType="ClientDTO">
-  		SELECT KEYID FROM CLIENTKEY WHERE KEYNAME=#{keyName}
+  		SELECT * FROM CLIENTKEY WHERE KEYNAME=#{keyName}
+  	</select>
+  	
+  	<!-- 결제승인 요청 전 주문정보 저장 -->
+  	<insert id="setOrders" parameterType="OrdersDTO">
+  		INSERT INTO ORDERS VALUES(#{orderId},#{customerKey},current_date,#{orderStatus},#{amount},#{pTypeNum})
+  	</insert>
+  	
+  	<!-- 이전에 결제취소 된 주문건 검색 -->
+  	<select id="getOrders" resultType="OrdersDTO" parameterType="OrdersDTO">
+  		SELECT * FROM ORDERS WHERE CUSTOMERKEY=#{customerKey} AND PTYPENUM=#{pTypeNum} AND ORDERSTATUS=0
   	</select>
   </mapper>

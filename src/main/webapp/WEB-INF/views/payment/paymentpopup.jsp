@@ -83,11 +83,12 @@ body {
 				</div>
 				<div class="col-9 d-flex flex-column justify-content-end">
 					<ul class="mb-2">
-						<li><span>${type.pTypeName}</span></li>
+						<li><span id="orderName">${type.pTypeName}</span></li>
 						<li><span style="color: lightskyblue"> <c:set
 									var="formattedPrice" value="${type.pTypePrice}" /> <fmt:formatNumber
 									value="${formattedPrice}" pattern="#,###" />원
 						</span></li>
+						<li><span id="pTypeNum" data-ptype="${type.pTypeNum}" style="display: none;"></span></li>
 					</ul>
 				</div>
 			</div>
@@ -104,7 +105,7 @@ body {
 				<div id="payment-method"></div>
 				<div id="agreement"></div>
 				<div style="text-align: right; margin-left: 5px; width: 54px; padding-top: 6px; padding-bottom: 0px; padding-left: 0px; padding-right: 0px;">
-					<input id="agreementCheck" type="checkbox" style="width: 24px; height: 24px; border-radius: 20%;"/>
+					<input id="agreementCheck" type="checkbox" checked style="width: 24px; height: 24px; border-radius: 20%;"/>
 				</div>
 				<div class="col" style="padding: 6px;">
 					<span style="color: black;">[필수] 정기결제로 진행되는 것에 동의 합니다.</span>

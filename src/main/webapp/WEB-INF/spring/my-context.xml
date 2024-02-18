@@ -27,4 +27,9 @@
 		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactoryBean"></constructor-arg>
 	</bean>
 	
+	<!-- 결제관련 시크릿키 로드 -->
+	<bean class="com.somoim.app.payment.SecretKey" id="secretKey">
+		<property name="secretKey" value="${toss.secretKey}"></property>
+	</bean>
+	
 </beans>
