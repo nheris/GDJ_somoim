@@ -25,10 +25,10 @@ public class MoimBoardController {
 	
 	//list
 	@GetMapping("list")
-	public void list(MoimDTO moimDTO, Pager pager ,Model model) throws Exception {
-		List<Object> ar = moimBoardService.list(pager, moimDTO);
+	public void list(MoimBoardDTO boardDTO, Pager pager ,Model model) throws Exception {
+		List<Object> ar = moimBoardService.list(pager, boardDTO);
 		
-		model.addAttribute("moimDTO", moimDTO);
+		model.addAttribute("moimDTO", boardDTO);
 		model.addAttribute("list", ar);
 	}
 	
@@ -40,6 +40,8 @@ public class MoimBoardController {
 	@PostMapping("add")
 	public String add(MoimBoardDTO boardDTO, HttpSession session, MultipartFile[] file) throws Exception {
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		
+		boardDTO.setBoardProfile(memberDTO.getProfile().getFileName());
 		boardDTO.setBoardWriter(memberDTO.getNickName());
 		//boardDTO.setBoardWriter(memberDTO.getUserName());
 		boardDTO.setUserName(memberDTO.getUserName());
@@ -53,7 +55,46 @@ public class MoimBoardController {
 	}
 	
 	//detail
+	@GetMapping("detail")
+	public void detail(MoimBoardDTO boardDTO, Model model) throws Exception {
+		boardDTO = moimBoardService.detail(boardDTO);
+		
+		model.addAttribute("dto",boardDTO);
+	}
 	
-	//
-
+	//update
+	@GetMapping("update")
+	public void update(MoimBoardDTO boardDTO, Model model) throws Exception{
+		boardDTO = moimBoardService.detail(boardDTO);
+		model.addAttribute("dto", boardDTO);
+	}
+	
+	@PostMapping("update")
+	public String update(MoimBoardDTO boardDTO, MultipartFile [] file, Model model) throws Exception{
+		int result = moimBoardService.update(boardDTO, file);
+		String msg = "다시 시도해주세요.";
+		String path = "./update";
+		if(result == 1) {
+			msg = "수정 완료";
+			path = "./list?moimNum="+boardDTO.getMoimNum();
+		}
+		model.addAttribute("msg",msg);
+		model.addAttribute("path",path);
+		
+		return "moim/resultAlert";
+	}	
+	
+	//delete
+	@PostMapping("delete")
+	public String delete(MoimBoardDTO boardDTO, Pager pager , Model model) throws Exception{
+		int result=moimBoardService.delete(boardDTO);
+		
+		List<Object> ar = moimBoardService.list(pager, boardDTO);
+		
+		model.addAttribute("dto", boardDTO);
+		model.addAttribute("list", ar);
+		
+		String path = "redirect:./list?moimNum="+boardDTO.getMoimNum();
+		return path;
+	}
 }

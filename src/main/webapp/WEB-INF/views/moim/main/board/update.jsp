@@ -47,7 +47,7 @@
 		<div class="col-12 mx-3 bg-white" style="border-radius: 10px; width: 99%">
 			<div class="section-title" style="margin-bottom: 40px">
 				<h2 class="wow fadeInUp" data-wow-delay=".4s"
-					style="font-size: 22px; padding-bottom: 10px; margin-top: 20px; margin-bottom: 8px; height: 45px">게시판 글쓰기</h2>
+					style="font-size: 22px; padding-bottom: 10px; margin-top: 20px; margin-bottom: 8px; height: 45px">게시판 수정</h2>
 				
 			</div>
 		</div>
@@ -56,14 +56,15 @@
 		<div class="comment-form">
             <h3 class="comment-reply-title"><span style="font-weight: bold;">Writing</span></h3>
             
-            <form action="./add" method="POST" enctype="multipart/form-data">
+            <form action="./update" method="POST" enctype="multipart/form-data">
                 <div class="row">
+					<input type="hidden" name="boardNum" value="${dto.boardNum}">
 					<input type="hidden" name="moimNum" value="${dto.moimNum}">
                     <div class="mb-3">
-						<input type="text" class="form-control" id="boardTitle" name="boardTitle" placeholder="제목을 입력해 주세요.">
+						<input type="text" class="form-control" id="boardTitle" name="boardTitle" value="${dto.boardTitle}">
 					</div>
 					<div class="mb-3">
-						<textarea class="form-control" id="boardText" name="boardText" rows="8" placeholder="내용을 입력하세요."></textarea>
+						<textarea class="form-control" id="boardText" name="boardText" rows="8">${dto.boardText}</textarea>
 					</div>
 					<div class="mb-3">
 						<label for="exampleFormControlTextarea1" class="form-label">파일 첨부</label>

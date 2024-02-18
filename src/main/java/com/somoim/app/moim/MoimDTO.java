@@ -1,6 +1,8 @@
 package com.somoim.app.moim;
 
-import java.util.Date;
+
+
+import java.sql.Date;
 
 import com.somoim.app.moim.member.MoimMemberDTO;
 

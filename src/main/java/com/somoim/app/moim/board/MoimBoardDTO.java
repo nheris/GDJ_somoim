@@ -1,7 +1,10 @@
 package com.somoim.app.moim.board;
 
-import java.util.Date;
+
+import java.sql.Date;
 import java.util.List;
+
+import com.somoim.app.member.ProfileDTO;
 
 public class MoimBoardDTO {
 	private Long boardNum;
@@ -13,8 +16,19 @@ public class MoimBoardDTO {
 	private Long boardClick;
 	private Long boardLike;
 	private String boardWriter;
+	private String boardProfile;
 	
 	private List<MoimBoardFileDTO> fileDTOs;
+
+
+
+	public String getBoardProfile() {
+		return boardProfile;
+	}
+
+	public void setBoardProfile(String boardProfile) {
+		this.boardProfile = boardProfile;
+	}
 
 	public Long getBoardNum() {
 		return boardNum;

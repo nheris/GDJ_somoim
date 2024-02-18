@@ -22,7 +22,7 @@
 			<div class="row align-items-center">
 				<div class="col-lg-6 col-md-6 col-12">
 					<div class="breadcrumbs-content">
-						<h1 class="page-title">${dto.moimName}</h1>
+						<h1 class="page-title"></h1>
 					</div>
 				</div>
 				<div class="col-lg-6 col-md-6 col-12">
@@ -62,21 +62,22 @@
                     <div class="mt-5">
 						<form class="row g-3" action="./list">
 						  <div class="col-auto">
-							  <select name="kind" class="form-select" aria-label="Default select example">
-								  <option class="a" value="kind1">제목</option>
-								  <option class="a" value="kind2">내용</option>
-								  <option class="a" value="kind3">작성자</option>
-								  <option class="a" value="kind4">제목+내용+작성자</option>
+							  <select name="searchFind" class="form-select" aria-label="Default select example">
+								  <option class="a" value="searchFind1">제목</option>
+								  <option class="a" value="searchFind2">내용</option>
+								  <option class="a" value="searchFind3">작성자</option>
+								  <option class="a" value="searchFind4">제목+내용+작성자</option>
 							</select>
 						  </div>		
 						
 						  <div class="col-auto">
-						    <label for="search" class="visually-hidden"></label>
+						    <label for="search" class="visually-hidden">Search</label>
 						    <input type="text" name="search" class="form-control" id="search">
 						  </div>
 						  <div class="col-auto">
-						    <button type="submit" class="btn btn-primary mb-3"><i class="lni lni-search-alt theme-color"></i></button>
+						    <button type="submit" class="btn mb-3" style="background-color: rgb(88,48,224); color:white;"><i class="lni lni-search-alt theme-color"></i></button>
 						  </div>
+						  <input type="hidden" name="moimNum" value="${moimDTO.moimNum}">
 						</form>
 					</div>
                     
@@ -93,10 +94,17 @@
 						  </tr>
 						</thead>
 						<tbody class="table-group-divider" id="listTbody">
+							<!-- 서치 결과 없을 때 -->
+							<c:if test="${list.size()==0}">
+								<tr>
+									<td colspan="4">결과 없습니다</td>
+								<tr>
+							</c:if>
+							
 							<c:forEach items="${list}" var="dto">
 								<tr>
 									<th class="col-md-1 text-center" scope="row">${dto.boardNum}</th>
-									<td class="col-md-5 ps-5">${dto.boardTitle}</td>
+									<td class="col-md-5 ps-5 "><a href="./detail?moimNum=${dto.moimNum}&boardNum=${dto.boardNum}">${dto.boardTitle}</td>
 									<td class="col-md-2 text-center">${dto.boardWriter}</td>
 									<td class="col-md-2 text-center">${dto.boardDate}</td>
 									<td class="col-md-1 text-center">${dto.boardClick}</td>
@@ -122,13 +130,13 @@
                             <div class="pagination left text-center">
                                 <ul class="pagination-list">
 									<c:if test="${!pager.start}">
-										<li><a href="./list?page=${pager.startNum-1}"><i class="lni lni-chevron-left"></i></a></li>
+										<li><a href="./list?page=${pager.startNum-1}&search=${pager.search}&searchFind=${pager.searchFind}&moimNum=${moimDTO.moimNum}"><i class="lni lni-chevron-left"></i></a></li>
 									</c:if>
 									<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
-                                    	<li class="active"><a href="./list?page=${i}">${i}</a></li>
+                                    	<li class="active"><a href="./list?page=${i}&search=${pager.search}&searchFind=${pager.searchFind}&moimNum=${moimDTO.moimNum}">${i}</a></li>
 									</c:forEach>
 									<c:if test="${!pager.last}">
-                                    	<li><a href="./list?page=${pager.lastNum+1}"><i class="lni lni-chevron-right"></i></a></li>
+                                    	<li><a href="./list?page=${pager.lastNum+1}&search=${pager.search}&searchFind=${pager.searchFind}&moimNum=${moimDTO.moimNum}"><i class="lni lni-chevron-right"></i></a></li>
 									</c:if>
                                 </ul>
                             </div>

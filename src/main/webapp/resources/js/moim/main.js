@@ -14,7 +14,7 @@ $('#boardText').summernote({
   ]
 });
 
-//게시판 글 등록
+//게시판 글 공백시 alert
 const submit = document.getElementById("submit");
 let boardTitle = document.getElementById("boardTitle");
 let boardText = document.getElementById("boardText");

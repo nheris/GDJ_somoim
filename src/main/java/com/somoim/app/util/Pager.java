@@ -21,7 +21,19 @@ public class Pager {
 	private String searchFind;
 	private String categorySelect;
 	
+	private Long moimNum;
 	
+	
+	
+	
+	public Long getMoimNum() {
+		return moimNum;
+	}
+
+	public void setMoimNum(Long moimNum) {
+		this.moimNum = moimNum;
+	}
+
 	public String getCategorySelect() {
 		return categorySelect;
 	}

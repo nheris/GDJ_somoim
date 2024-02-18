@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.somoim.app.moim.MoimDTO;
+import com.somoim.app.moim.MoimFileDTO;
 import com.somoim.app.util.FileManager;
 import com.somoim.app.util.Pager;
 
@@ -25,12 +26,14 @@ public class MoimBoardService {
 	private ServletContext servletContext;
 	
 	//list
-	public List<Object> list(Pager pager, MoimDTO moimDTO) throws Exception {
+	public List<Object> list(Pager pager, MoimBoardDTO boardDTO) throws Exception {
 		
 		Map<String, Object> map = new HashMap<String, Object>();
+		Long total = moimBoardDAO.getTotalCount(boardDTO);
 		pager.makeRow();
+		pager.makeNum(total);
 		map.put("pager", pager);
-		map.put("moimDTO", moimDTO);
+		map.put("dto", boardDTO);
 
 		return moimBoardDAO.list(map);
 	}
@@ -59,6 +62,56 @@ public class MoimBoardService {
 		
 		return result;
 	}
+	
+	//detail
+	public MoimBoardDTO detail(MoimBoardDTO boardDTO) throws Exception {
+		return moimBoardDAO.detail(boardDTO);
+		
+	}
+	
+	//update
+	public int update(MoimBoardDTO boardDTO, MultipartFile[] file) throws Exception {
+		int result = moimBoardDAO.update(boardDTO);
+		
+		String path = servletContext.getRealPath("/resources/upload/moimBoard");
+		//파일삭제
+		List<MoimBoardFileDTO> ar = moimBoardDAO.file(boardDTO);
+		for(MoimBoardFileDTO f : ar) {
+			fileManager.fileDelete(path, f.getFileName());
+		}
+		//파일추가
+		for(MultipartFile f: file) {
+			
+			if(f.isEmpty()) {
+				continue;
+			}
+			
+			String fileName = fileManager.fileSave(path, f);
+			
+			MoimBoardFileDTO boardFileDTO = new MoimBoardFileDTO();
+			boardFileDTO.setFileName(fileName);
+			boardFileDTO.setOriName(f.getOriginalFilename());
+			boardFileDTO.setBoardNum(boardDTO.getBoardNum());
+			result = moimBoardDAO.fileAdd(boardFileDTO);
+		}
+		
+		return result;
+	}
+	
+	
+	//delete
+	public int delete(MoimBoardDTO boardDTO) throws Exception {
+		//게시글 사진 삭제
+		List<MoimBoardFileDTO> ar = moimBoardDAO.file(boardDTO);
+		String path = servletContext.getRealPath("/resources/upload/moimBoard");
+		for(MoimBoardFileDTO f : ar) {
+			fileManager.fileDelete(path, f.getFileName());
+		}
+		//게시글 삭제
+		return moimBoardDAO.delete(boardDTO);
+	}
+
+	
 	
 
 }
