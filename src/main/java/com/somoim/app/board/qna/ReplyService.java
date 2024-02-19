@@ -20,23 +20,24 @@ public class ReplyService {
 	private ReplyDAO replyDAO;
 	
 	
-	public int setDelete(ReplyDTO replyDTO)throws Exception{
+	public int setDelete(BoardReplyDTO replyDTO)throws Exception{
 		return replyDAO.setDelete(replyDTO);
 	}
 	
 	
-	public int setReply(ReplyDTO replyDTO)throws Exception{
+	public int setReply(BoardReplyDTO replyDTO)throws Exception{
 		return replyDAO.setReply(replyDTO);
 	}
 	
-	public List<ReplyDTO> getList(Pager pager,ReplyDTO replyDTO)throws Exception{
+	public List<BoardReplyDTO> getList(Pager pager,BoardReplyDTO replyDTO)throws Exception{
+		pager.setPerPage(5L);
 		pager.makeRow();
 		System.out.println(replyDTO.getBoardNum());
 		pager.makeNum(replyDAO.getTotalCount(replyDTO));
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("pager", pager);
 		map.put("replyDTO", replyDTO);
-			
+		
 		
 		return replyDAO.getList(map);
 	}

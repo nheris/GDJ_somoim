@@ -31,9 +31,11 @@ public class ReplyController {
 	
 	@PostMapping("delete")
 	@ResponseBody
-	public Map<String, Object> setDelete(Pager pager, ReplyDTO replyDTO)throws Exception{
+	public Map<String, Object> setDelete(Pager pager, BoardReplyDTO replyDTO, Model model)throws Exception{
 		replyService.setDelete(replyDTO);
-	 	List<ReplyDTO> ar = replyService.getList(pager, replyDTO);
+		model.addAttribute("replyDTO", replyDTO);
+		System.out.println(replyDTO.getBoardReplyNum());
+	 	List<BoardReplyDTO> ar = replyService.getList(pager, replyDTO);
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("datas", ar);
 		map.put("pager", pager);
@@ -43,15 +45,13 @@ public class ReplyController {
 	
 	@PostMapping("add")
 	@ResponseBody
-	public Map<String, Object> setReply(Pager pager,ReplyDTO replyDTO, HttpSession session, Model model)throws Exception{
+	public Map<String, Object> setReply(Pager pager,BoardReplyDTO replyDTO, HttpSession session, Model model)throws Exception{
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		replyDTO.setUserName(memberDTO.getUserName());
-		QnaDTO qnaDTO = (QnaDTO)session.getAttribute("board");
-		replyDTO.setBoardNum(qnaDTO.getBoardNum());
 		System.out.println(replyDTO.getBoardNum());
 		int result = replyService.setReply(replyDTO);
 		
-		List<ReplyDTO> ar = replyService.getList(pager, replyDTO);
+		List<BoardReplyDTO> ar = replyService.getList(pager, replyDTO);
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("datas", ar);
@@ -63,11 +63,18 @@ public class ReplyController {
 	}
 	
 	@GetMapping("list")
-	public String getList(Pager pager, ReplyDTO replyDTO, Model model)throws Exception {
-		List<ReplyDTO> ar = replyService.getList(pager, replyDTO);
-		model.addAttribute("data", ar);
-		model.addAttribute("pager", pager);
-		return "board/replyListResult";
+	@ResponseBody
+	public Map<String, Object> getList(Pager pager, BoardReplyDTO replyDTO, Model model)throws Exception {
+		List<BoardReplyDTO> ar = replyService.getList(pager, replyDTO);
+		model.addAttribute("replyDTO",replyDTO);
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+//		model.addAttribute("data", ar);
+//		model.addAttribute("pager", pager);
+		map.put("datas", ar);
+		map.put("pager", pager);
+		return map;
+//		return "board/replyListResult";
 	}
 	
 	

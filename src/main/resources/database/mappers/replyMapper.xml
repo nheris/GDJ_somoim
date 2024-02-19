@@ -4,8 +4,8 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <!-- mapper namespace는 비우면 에러 -->
   <mapper namespace="com.somoim.app.board.qna.ReplyDAO">
-  <resultMap type="replyDTO" id="getDetailResult">
-  <id column="BOARDREPLYNUM" property="boardReplyNUM"/>
+  <resultMap type="BoardreplyDTO" id="getDetailResult">
+  <id column="BOARDREPLYNUM" property="boardReplyNum"/>
   <result column="USERNAME" property="userName"/>
   <result column="BOARDNUM" property="boardNum"/>
   <result column="BOARDREPLYTEXT" property="boardReplyText"/>
@@ -13,21 +13,21 @@
   
   </resultMap>
   
-  	<delete id="setDelete" parameterType="ReplyDTO">
-  		DELETE REPLY WHERE boardReplyNUM=#{boardReplyNUM}
+  	<delete id="setDelete" parameterType="BoardReplyDTO">
+  		DELETE REPLY WHERE boardReplyNUM=#{boardReplyNum}
   	</delete>
   
-  	<insert id="setReply" parameterType="ReplyDTO">
+  	<insert id="setReply" parameterType="BoardReplyDTO">
   		INSERT INTO BOARDREPLY 
   		VALUES (board_Reply_SEQ.NEXTVAL, #{userName}, #{boardNum}, #{boardReplyText}, sysdate)
   	</insert>
   	
-  	<select id="getTotalCount" parameterType="ReplyDTO" resultType="Long">
+  	<select id="getTotalCount" parameterType="BoardReplyDTO" resultType="Long">
   		SELECT COUNT(BOARDREPLYNUM) FROM BOARDREPLY
   		WHERE boardNum=#{boardNum}
   	</select>
   	
-  	<select id="getList" parameterType="Map" resultType="ReplyDTO">
+  	<select id="getList" parameterType="Map" resultType="BoardReplyDTO">
   		SELECT * FROM
   		(SELECT ROWNUM RN, R.* FROM
   		(SELECT * FROM BOARDREPLY

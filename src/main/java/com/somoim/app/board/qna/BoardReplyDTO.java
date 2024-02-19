@@ -4,7 +4,7 @@ import java.sql.Date;
 
 import oracle.sql.DATE;
 
-public class ReplyDTO {
+public class BoardReplyDTO {
 
 	private Long boardReplyNum;
 	private String userName;

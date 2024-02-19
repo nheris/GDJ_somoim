@@ -60,57 +60,69 @@
 				</div>
 			</div>
 		</div>
-		<div>
-			<%--
-                <c:if test="${detail.boardWriter eq member.userName}">
-                    --%>
-			<a id="update" class="btn btn-outline-dark mb-3" href="#">Update</a>
-			<a id="delete" class="btn btn-outline-dark mb-3" href="#">Delete</a>
-			<%--
-                </c:if>
-                --%>
-			<form id="frm" action="./update" method="get">
-				<input type="hidden" name="boardNum" value="${detail.boardNum}" />
-			</form>
-		</div>
-		<c:if test="${board eq '문의게시판'}">
-			<button class="btn btn-light" id="up"data-board-num="${replyDTO.boardNum}">수정</button>
-			<button class="btn btn-light" id="del">삭제</button>
-			<table class="table">
-				<thead>
-					<tr>
-						<th>Content</th>
-						<th>Writer</th>
-						<th>Date</th>
-						<th></th>
-						<th></th>
-					</tr>
-				</thead>
-				<tbody id="replyList" data-user="${member.userName}">
 
-				</tbody>
-			</table>
-			
-
-			
-			<div class="my-3">
-				<form id="replyForm" >
-					<input type="hidden" name="boardNum" value="${replyDTO.boardNum}">
-					<input type="hidden" name="boardNum" value="${detail.boardNum}" />
-						<div class="mb-3">
-							<textarea class="form-control" id="boardReplyText rows="3" name="boardReplyText"></textarea>
-							<div>
-								<button type="button" class="btn btn-primary" id="replyAdd">댓글달기</button>
-							</div>
-						</div>
-				</form>
+		<c:if test="${detail.boardWriter eq member.userName}">
+			<div class="col-auto d-flex justify-content-end mb-3">
+				<a id="update" class="btn btn-outline-dark mb-3" data-board-num="${detail.boardNum}" href="#">수정</a> <a
+					id="delete" class="btn btn-outline-dark mb-3" href="#">삭제</a>
+			</div>
 		</c:if>
+
+		<form id="frm" action="./update" method="get">
+			<input type="hidden" name="boardNum" value="${detail.boardNum}" />
+		</form>
+	
+
+	<input id="temp" type="hidden" name="boardNum" value="${detail.boardNum}" data-temp="${detail.boardNum}" />
+	<input id="deletetemp" type="hidden" name="boardReplyNum" value="${replyDTO.boardReplyNum}"/>
+	<c:if test="${board eq '문의게시판'}">
+
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Content</th>
+					<th>Writer</th>
+					<th>Date</th>
+					<th></th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody id="replyList" data-user="${member.userName}">
+
+			</tbody>
+		</table>
+		<div id="pager">
+					<div>
+							<button class="btn btn-outline-dark" id="more" data-replyList-page="1"
+								data-replyList-totalPage="1">더보기</button>
+						</div>
+		</div>
+		<div class="my-3">
+			<form id="replyForm">
+				<input id="temp" type="hidden" name="boardNum"
+					value="${detail.boardNum}" />
+
+
+
+				<div class="mb-3 mt-3">
+					<textarea class="form-control" id="boardReplyText rows="
+						3" name="boardReplyText"></textarea>
+					<div class="row">
+						<div class="col-2">
+							<button type="button" class="btn btn-outline-dark mb-3 mt-3"
+								id="replyAdd">댓글달기</button>
+						</div>
+					</div>
+				</div>
+			</form>
+	</c:if>
+	</div>
+	</div>
 	</div>
 	<!-- ========================= JS improt ========================= -->
-		
+
 	<script src="/resources/js/board/boardDetail.js"></script>
 	<script src="/resources/js/board/reply.js"></script>
-
 	<c:import url="../temps/footer.jsp"></c:import>
 </body>
 </html>
