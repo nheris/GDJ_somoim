@@ -119,6 +119,39 @@
 	</div>
 	</div>
 	</div>
+		<!-- Modal -->
+	<div class="modal fade" id="replyUpdateModal" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h1 class="modal-title fs-5" id="exampleModalLabel">Modal
+						title</h1>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+				<!-- form 자체를 가지고가기위해 id부여 -->
+					<form method="post" id="replyUpdateForm">
+						<textarea class="form-control" name="boardReplyText"
+							id="replyUpdateContents" rows="3"></textarea>
+							<!-- value값을 비워놓는건 productDetail.js에서 값을 받기위해 -->
+						<input type="hidden" value="" name="replyNum" id="replyUpdateNum">
+						<!-- 작성자와 비교용 -->
+						<input type="hidden" value="" name="userName" id="boardReplyWriter">
+					</form>
+				</div>
+				<div class="modal-footer">
+				<!-- 수정후 버튼을 강제적으로 눌러지기 하기위해서 id부여 -->
+					<button type="button" id="replyCloseButton" class="btn btn-secondary"
+						data-bs-dismiss="modal">Close</button>
+					<!--수정 버튼을 클릭했을때 replyNum을 찾으러 가야함-->
+					<button type="button" class="btn btn-primary"
+						id="replyUpdateButton">수정</button>
+				</div>
+			</div>
+		</div>
+	</div>
 	<!-- ========================= JS improt ========================= -->
 
 	<script src="/resources/js/board/boardDetail.js"></script>
