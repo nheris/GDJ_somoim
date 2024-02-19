@@ -104,15 +104,15 @@ replyAdd.addEventListener("click", () => {
 // delete
 replyList.addEventListener("click", function (e) {
     if ((e.target.id = "del"));
-    let as = document.getElementById("data-replyNum");
-    console.log(as.value);
+    let boardReplyNum = document.getElementById("data-replyNum");
+    console.log(boardReplyNum);
     {
         console.log("click");
         fetch("/reply/delete", {
             method: "POST",
             body:
                 "boardReplyNum=" +
-                as +
+                boardReplyNum +
                 "&boardNum=" +
                 updat.getAttribute("data-board-num"),
         })
