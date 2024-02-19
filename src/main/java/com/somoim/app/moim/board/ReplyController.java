@@ -39,11 +39,12 @@ public class ReplyController {
 	
 	//list
 	@GetMapping("list")
-	public void getList(ReplyDTO replyDTO, Model model, Pager pager) throws Exception{
+	public String getList(ReplyDTO replyDTO, Model model, Pager pager) throws Exception{
 		List<ReplyDTO> ar = replyService.getList(replyDTO, pager);
 		
 		model.addAttribute("list", ar);
 		model.addAttribute("pager", pager);
 		
+		return "/moim/main/board/replyListResult";
 	}
 }

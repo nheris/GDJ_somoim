@@ -22,13 +22,13 @@ delBtn.addEventListener("click", (e)=>{
 //REPLY
 //
 //후기댓글들 상품에 뜨게
-let boardNum = document.getElementById("boardNum");
-fetch("../reply/list?boardNum="+boardNum, {
+let boardNum = document.getElementById("boardNum").value;
+fetch("/moim/main/reply/list?boardNum="+boardNum, {
 	method:"GET"
 }).then(r=> r.text())
   .then(r=>{
     console.log(r);    
-    document.getElementById("replyList").innerHTML=r
+    //document.getElementById("replyList").innerHTML=r
   })
 
 
