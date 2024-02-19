@@ -11,6 +11,7 @@ const btn = document.getElementById("btn");
 const frn = document.querySelector("#frm");
 const birthday = document.getElementById("userBirth").value;
 const btn_area = document.getElementById("btn_area");
+const person_chk = document.getElementById("check1");
 
 
 let selectYear = document.getElementById("year");
@@ -256,10 +257,10 @@ btn.addEventListener("click",(e)=>{
         return false;
     }
     
-    if(!person_chk.checked){
-        alert("개인정보 이용동의는 필수입니다");
-        return false;
-    }    
+    // if(!person_chk.checked){
+    //     alert("개인정보 이용동의는 필수입니다");
+    //     return false;
+    // }    
     
     frm.submit();    
 })

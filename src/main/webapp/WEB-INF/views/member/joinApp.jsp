@@ -38,12 +38,17 @@
                             </div>
                             <div class="form-group">
                                 <label for="userName">아이디&이메일</label>
-                                <input name="userName" id="userName" value="${exmember.email}" type="text">
+                                <input name="userName" id="userName" value="${appmember.userName}" type="text">
+                            </div>
+                            
+                            <div class="form-group" hidden>
+                                <label for="userName">아이디&이메일</label>
+                                <input name="email" id="userName" value="${appmember.userName}" type="text">
                             </div>
 
                             <div class="form-group" hidden>
-                                <label for="userName">아이디&이메일</label>
-                                <input name="email" id="email" value="${exmember.email}" type="text">
+                                <label for="password">비밀번호</label>
+                                <input name="password" value="appjoiner" id="password" type="password">                                
                             </div>
 
                             <div class="form-group">
@@ -52,7 +57,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="name">이름</label>
-                                <input name="name" id="name" type="text" value="${exmember.name}">
+                                <input name="name" id="name" value="${appmember.name}" type="text">
                             </div>
                             <div class="form-group">
                                 <label for="userBirth">생년월일</label>
@@ -113,7 +118,7 @@
                                 </div>
                                 
                                 <div>
-                                    <input type="text" id="adrs_in">
+                                    <input name="address" type="text" id="adrs_in">
                                 </div>
                             </div>
 
@@ -121,14 +126,13 @@
                                 <label for="phone">전화번호</label>
                                 <input name="phone" id="phone" type="text">
                             </div>
-                            
                             <div class="form-group">
                                 <label for="attachs">사진첨부</label>
                                 <input name="attachs" id="attachs" type="file">
                             </div>
-
+                            
                             <div class="form-group" hidden>                                
-                                <input name="loginNum" id="attachs" value="1" type="text">
+                                <input name="loginNum" id="attachs" value="2" type="text">
                             </div>
 
 

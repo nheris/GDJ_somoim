@@ -74,9 +74,9 @@ public class MemberService {
 
 				memberDTO.setNickName(dto.getNickName());
 				memberDTO.setProfile(dto.getProfile());
-
+				memberDTO.setLoginNum(dto.getLoginNum());
 				return memberDTO;
-
+				
 			}else {
 				dto=null;
 			}
@@ -89,13 +89,13 @@ public class MemberService {
 	}
 	
 	public MemberDTO submitJoinApp(MemberDTO memberDTO)throws Exception{
-		MemberDTO dto = memberDAO.getDetail(memberDTO);
 		
-		if(dto.getEmail().equals(memberDTO.getEmail())) {
+		MemberDTO dto = memberDAO.getDetail(memberDTO);
+		if(dto !=null) {
 			return memberDTO;
-		}else {
-			dto=null;
 		}
 		return dto;
+		
 	}
+	
 }

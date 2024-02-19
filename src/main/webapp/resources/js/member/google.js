@@ -11,10 +11,11 @@ function handleCredentialResponse(response) {
         name: responsePayload.name,
         email: responsePayload.email
     });
-    console.log(responsePayload.name);
+
     const formdata = new FormData();
     formdata.append("name",responsePayload.name);
-    formdata.append("email",responsePayload.email)
+    formdata.append("userName",responsePayload.email)
+
     fetch("/member/submitApp",{
         method:"POST",
         body:formdata,

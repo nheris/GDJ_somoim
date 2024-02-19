@@ -12,6 +12,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <!-- CSS 임포트 -->
 <c:import url="../temps/head_css.jsp"></c:import>
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 </head>
 
 <body>
@@ -28,11 +29,11 @@
                         <form action="./login" method="post">
                             <div class="form-group">
                                 <label for="userName">Username</label>
-                                <input name="userName" value="user2" id="userName" type="text">
+                                <input name="userName" value="user1" id="userName" type="text">
                             </div>
                             <div class="form-group">
                                 <label for="password">Password</label>
-                                <input name="password" value="user2" id="password" type="password">
+                                <input name="password" value="user1" id="password" type="password">
                             </div>
                             <div class="check-and-pass">
                                 <div class="row align-items-center">
@@ -62,9 +63,17 @@
 										<div id="g_id_onload" data-client_id="412327098082-jo918jh8s5gmuiifhgsimmn6m4cgcif6.apps.googleusercontent.com"
                                         data-callback="handleCredentialResponse">
                                         </div>
+
 										<div class="g_id_signin" data-type="standard" data size="large"
 										  data-theme="outline" data-text="sign_in_with" data-shape="rectangular" data-logo_alignment="left">
 										</div>
+
+                                        <a id="kakao-login-btn" href="javascript:loginWithKakao()">
+                                            <img src="https://k.kakaocdn.net/14/dn/btroDszwNrM/I6efHub1SN5KCJqLm1Ovx1/o.jpg" width="222"
+                                              alt="카카오 로그인 버튼" />
+                                          </a>
+                                          <p id="token-result"></p>
+
                                     </li>
                                 </ul>
                             </div>
@@ -83,9 +92,12 @@
 	<a href="#" class="scroll-top btn-hover"> <i
 		class="lni lni-chevron-up"></i>
 	</a>
+    <script>Kakao.init('41504573c73e97d71e5e72ea413250b3')</script>
     <script src="../resources/js/member/google.js"></script>
+    <script src="../resources/js/member/kakao.js"></script>
     <script src="https://accounts.google.com/gsi/client" async defer></script>
-
+	
+    
 	<!-- ========================= JS improt ========================= -->
 	<c:import url="../temps/footer.jsp"></c:import>
 </body>

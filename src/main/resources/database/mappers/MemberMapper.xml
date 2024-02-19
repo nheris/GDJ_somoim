@@ -24,7 +24,7 @@
   	<insert id="setJoin" parameterType="MemberDTO">
   		INSERT INTO MEMBER
   		VALUES
-  		(#{userName},#{password},#{nickName},#{name},#{userBirth},#{address},#{phone},#{email},#{customerKey},#{loginNum}))
+  		(#{userName},#{password},#{nickName},#{name},#{userBirth},#{address},#{phone},#{email},#{customerKey},#{loginNum})
   	</insert>
   	
   	<insert id="setProfileJoin" parameterType="ProfileDTO">

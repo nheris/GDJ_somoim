@@ -172,7 +172,6 @@ selectDay.addEventListener("click",()=>{
 
 //시,도,광역시,특별시
 getLocation.addEventListener("click", function() {
-    let area_detail = document.getElementById("area_detail");
     
     // AJAX 요청
     jQuery.ajax({
@@ -208,7 +207,6 @@ function changeList(){
     let selected = area.options[area.selectedIndex];
 
     let area_detail = document.getElementById("area_detail");
-
    
     // 여기서 result_item을 resultItem으로 수정
 
@@ -222,13 +220,10 @@ function changeList(){
         },
         success: function(data){
 
-            console.log(selected.value);
             area_detail.innerHTML = "";
             for(let i = 0;i<data.result.length;i++){
                 let addr_name = data.result[i].addr_name;
                 let cd = data.result[i].cd;
-                console.log(addr_name);
-                console.log(cd)
                 
                 let sel = document.createElement("option");
                 sel.setAttribute("value",cd);
@@ -242,6 +237,7 @@ function changeList(){
 
     });
 }
+
 btn_area.addEventListener("click",()=>{
     const btn_close = document.getElementById("btn_close");
     const adrs_in = document.getElementById("adrs_in");
