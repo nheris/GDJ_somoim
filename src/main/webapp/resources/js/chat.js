@@ -9,7 +9,9 @@ const sendMsg = document.getElementById('sendMsg');
 
 const chat_record = document.getElementById('chat_record');
 const userCh = document.getElementById('userCh');
+const roomCh = document.getElementById('roomCh');
 const msgForm = document.getElementById('msgForm');
+const chat_message = document.querySelector('.chat-message');
 
 let sock = new SockJS("http://localhost:80/chat");
 
@@ -34,13 +36,12 @@ sendMsg.addEventListener('keyup',(e) => {
         if(e.key == 'Enter' || e.keyCode == '13'){
 
             const chatMessage = {
-                "userName" : userName,
-                "chatText" : chatText,
-                "chatRoomNum" : 1
+                "userName" : userCh.value,
+                "chatText" : sendMsg.value,
+                "chatRoomNum" : roomCh.value
             };
-            chatMessage.userName = userCh.value;
-            console.log(chatMessage.userName);
-            chatMessage.chatText = sendMsg.value;
+
+            console.log(chatMessage);
 
             
 
@@ -158,14 +159,19 @@ function otherSend(msg, date){
 
 let chatRoom = document.getElementById('chatRoomNum');
 
-chatRoom.addEventListener('click',()=>{
-    console.log('chatchat');
-    let n = chatRoom.getAttribute("data-roomNum");
-
-    fetch("../chat?chatRoomNum="+n,{
-        method:"GET"
-    })
-    .then(r => console.log(r))
-    
+chatRoom.addEventListener('click',(e)=>{
+   chat_record.style.visibility = 'visible';
+   chat_message.style.visibility = 'visible';
+   console.log('chatchat');
+       let n = chatRoom.getAttribute("data-roomNum");
+   
+       fetch("../chat?chatRoomNum="+n,{
+           method:"GET"
+       })
+       .then(r => console.log(r.text()))
+       console.log(e.target);
+       console.log(n);
 });
+
+    
 

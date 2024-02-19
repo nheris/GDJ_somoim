@@ -28,7 +28,6 @@ public class ChatMessageService {
 	
 	// 특정방의 이전 채팅 기록
 	public List<ChatMessageDTO> chatHistory(ChatMessageDTO chatMessageDTO){
-		chatMessageDTO.setChatRoomNum(1L);
 		return chatMessageDAO.chatHistory(chatMessageDTO);
 	}
 	

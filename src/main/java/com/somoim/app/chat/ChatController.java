@@ -1,15 +1,13 @@
 package com.somoim.app.chat;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.somoim.app.member.MemberDTO;
@@ -31,6 +29,7 @@ public class ChatController {
 			mv.setViewName("/member/login");
 			return mv;
 		}
+		
 		session.setAttribute("roomNum", chatMessageDTO.getChatRoomNum());
 		
 		memberDTO = (MemberDTO)session.getAttribute("member");
@@ -38,20 +37,14 @@ public class ChatController {
 
 		List<Long> chatRoomList = chatMessageService.chatRoomList(dto);
 		List<ChatMessageDTO> chatHistory = chatMessageService.chatHistory(chatMessageDTO);
+		
 		mv.addObject("chatRoomList", chatRoomList);
 		mv.addObject("chatHistory", chatHistory);
+		
+		mv.addObject("roomNum", session.getAttribute("roomNum"));
 		
 		mv.addObject("user",dto);
 		mv.setViewName("/chat/chating");
 		return mv;
-	}
-	
-	@GetMapping("/chat")
-	@ResponseBody
-	public Map<String, Object> getHistory(){
-		
-		Map<String, Object> map = new HashMap<>();
-		
-		return map;
 	}
 }

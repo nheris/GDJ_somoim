@@ -36,12 +36,13 @@
   		INSERT INTO CHATMESSAGE 
 			(MESSAGENUM, CHATROOMNUM, USERNAME, CHATTEXT, CHATTIMESTAMP)
 		VALUES
-			(MESSAGE_SEQ.NEXTVAL, 1, #{userName}, #{chatText}, SYSDATE)
+			(MESSAGE_SEQ.NEXTVAL, #{chatRoomNum}, #{userName}, #{chatText}, SYSDATE)
   	</insert>
 
 	<select id="chatHistory" parameterType="ChatMessageDTO" resultType="ChatMessageDTO">
 		SELECT * 
 			FROM CHATMESSAGE
 		WHERE CHATROOMNUM = #{chatRoomNum}
+		ORDER BY CHATTIMESTAMP
 	</select>
   </mapper>

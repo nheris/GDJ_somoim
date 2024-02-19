@@ -1,8 +1,11 @@
 package com.somoim.app.chat;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.socket.CloseStatus;
@@ -23,7 +26,11 @@ public class ChatHandler extends TextWebSocketHandler{
 	private static HashMap<String, WebSocketSession> sessions = new HashMap<>();	
 	
 	 // group( 정모, 모임, 1:1 )에 따른 Map 나누기 
-	private static List<HashMap<String,WebSocketSession>> list = new ArrayList<>(); 
+	private static List<WebSocketSession> sessionList = new ArrayList<>(); 
+	
+	
+	private Set<WebSocketSession> sessionsCol 
+		= Collections.synchronizedSet(new HashSet<WebSocketSession>());
 	
 	// 연결후에 실행되는 메서드
 	@Override
@@ -31,6 +38,7 @@ public class ChatHandler extends TextWebSocketHandler{
 		// 세션 아이디를 키로 사용, session을 값으로
 		System.out.println("연결");
 		sessions.put(session.getId(), session);
+		sessionList.add(session);
 	}
 
 	//메세지를 다루는 메서드
@@ -38,19 +46,16 @@ public class ChatHandler extends TextWebSocketHandler{
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
 		ObjectMapper objectMapper = new ObjectMapper();
 		ChatMessageDTO chatMessageDTO = objectMapper.readValue(message.getPayload(), ChatMessageDTO.class);
-
-		List<MemberDTO> list = chatMessageService.roomUserList(chatMessageDTO);
-
-		int result = chatMessageService.addChat(chatMessageDTO);
-
-		Long roomNum = (Long)session.getAttributes().get("roomNum");
 		
+		List<MemberDTO> list = chatMessageService.roomUserList(chatMessageDTO);
+		
+		int result = chatMessageService.addChat(chatMessageDTO);
 		
 		//전송된 메시지를 List의 모든 세션에 전송
-		for (WebSocketSession s : sessions.values()) {
-			
-			if(chatMessageDTO.getChatRoomNum() == roomNum) {
-				s.sendMessage(message);				
+		for (WebSocketSession s : sessionList) {
+			Long no = (Long)s.getAttributes().get("roomNum");
+			if(no == chatMessageDTO.getChatRoomNum()) {
+				s.sendMessage(message);
 			}
 		}
 

@@ -67,6 +67,7 @@
 									</div>
 								</div>
 								<!-- 채팅기록 -->
+								<!-- style="visibility: hidden;" -->
 								<div class="chat-history" id="chat-history" style="overflow-y: scroll; height: 450px;">
 									<ul class="m-b-0" id="chat_record">
 										<!-- 상대방 (.text-right, float-right) -->
@@ -90,6 +91,7 @@
 										</li>
 										<li class="clearfix">
 											<input type="hidden" id="userCh" value="${user.userName}">
+											<input type="hidden" id="roomCh" value=${chatHistory.get(0).chatRoomNum}>
 											<div class="message-data">
 												<span class="message-data-time">10:15 AM, Today</span>
 											</div>
@@ -125,8 +127,8 @@
 								</div>
 
 								<!-- 채팅입력 -->
-
-								<div class="chat-message clearfix">
+								<!-- style="visibility: hidden;" -->
+								<div id="chat-message" class="chat-message clearfix">
 									<div class="input-group mb-0">
 										<div class="input-group-prepend">
 											<span class="input-group-text"><i class="fa fa-send"></i></span>
