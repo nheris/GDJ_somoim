@@ -104,45 +104,54 @@
 					</div>
 					
 					
-					<!-- 댓글 -->
 					<h3 class="comment-title my-5"><span>댓글</span></h3>
 					
-					<div class="author my-3">
-						<div style="text-align: right;">
-						    <a href="#" data-moim-num="120"><i class="lni lni-pencil update"></i></a>
-						    <a href="javascript:void(0)" class="del" data-moim-num="120"><i class="lni lni-trash del"></i></a>
-						    <a href="javascript:void(0)" class="del" data-moim-num="120"><i class="lni lni-reply"></i></a>
-						</div>
-						
-						<div class="author-profile">
-							<img src="/resources/img/profile/profile.jpg" alt="2" style="width: 36px; height: 36px; border-radius: 100px;">
-							<span class="mx-2">닉네임&ensp;·&ensp;작성일</span>
-						</div>
-						<div class="ms-5">
-							Donec aliquam ex ut odio dictum, ut consequat leo interdum. Aenean nunc
-							ipsum, blandit eu enim sed, facilisis convallis orci. Etiam commodo
-							lectus
-							quis vulputate tincidunt. Mauris tristique velit eu magna maximus
-							condimentum.
-						</div>
-						<h3 class="comment-title my-3"></h3>
+					<!-- 댓글 -->
+					<div class="author my-3" id="replyList" data-user="${member.userName}">
+						<c:forEach items="${list}" var="dto">
+							<c:if test="${dto.userName eq member.userName}">
+							    <div style="text-align: right;">
+							        <a href="javascript:void(0)" class="up" data-reply-num="${dto.replyNum}"><i class="lni lni-pencil update"></i></a>
+							        <a href="javascript:void(0)" class="del" data-reply-num="${dto.replyNum}"><i class="lni lni-trash del"></i></a>
+							        <a href="javascript:void(0)" class="re" data-reply-num="${dto.replyNum}"><i class="lni lni-reply"></i></a>
+							    </div>
+							</c:if>
+							
+							<div class="author-profile">
+							    <img src="/resources/img/profile/profile.jpg" alt="3" style="width: 36px; height: 36px; border-radius: 100px;">
+							    <span class="mx-2">${dto.replyWriter}&ensp;·&ensp;${dto.replyDate}</span>
+							</div>
+							<div class="ms-5">
+							    ${dto.replyText}
+							</div>
+							<h3 class="comment-title my-3"></h3>
+						</c:forEach>
 					</div>
-
+					
+					<!-- 댓 페이징 -->
+					<div class="col-auto text-center">
+				    	<button id="more" data-replyList-page="1" data-replyList-totalPage="1" class="btn btn-light btn-sm">더보기</button>
+				    </div>
+					
 					<!-- 댓글 작성폼 -->
 					<div class="comment-form">
 						<h3 class="comment-reply-title"><span>Leave a comment</span></h3>
-						<form action="#" method="POST">
+						<form id="replyForm" method="POST">
 							<div class="row">
+								<input type="hidden" name="boardNum" value="${dto.boardNum}">
+								
 								<div class="col-12">
 									<div class="form-box form-group">
-										<textarea name="#" class="form-control form-control-custom" placeholder="댓글을 남겨보세요."></textarea>
+										<textarea id="replyText" name="replyText" class="form-control form-control-custom" placeholder="댓글을 남겨보세요."></textarea>
 									</div>
 								</div>
+								
 								<div class="col-12">
 									<div class="button">
-										<button type="submit" class="btn">Post Comment</button>
+										<button type="button" id="replyAdd" class="btn">Post Comment</button>
 									</div>
 								</div>
+								
 							</div>
 						</form>
 					</div>

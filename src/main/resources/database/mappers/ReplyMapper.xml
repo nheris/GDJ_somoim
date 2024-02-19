@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <!-- mapper namespace는 비우면 에러 -->
+  <mapper namespace="com.somoim.app.moim.board.ReplyDAO">
+  
+  	<!-- add -->
+  	<insert id="add" parameterType="ReplyDTO">
+		INSERT INTO REPLY
+		VALUES (MOIMREPLY_SEQ.NEXTVAL, #{userName}, #{boardNum},#{replyText}, current_date, #{replyWriter})
+	</insert>
+  
+  	<!-- list -->
+  	<select id="getTotalCount" parameterType="ReplyDTO" resultType="Long">
+		SELECT COUNT(REPLYNUM)
+		FROM REPLY
+		WHERE BOARDNUM=#{boardNum}
+	</select>
+	<select id="getList" parameterType="Map" resultType="ReplyDTO">
+		SELECT *
+		FROM (SELECT ROWNUM RN, R.* 
+			  FROM (SELECT *
+					FROM REPLY
+					WHERE BOARDNUM = #{replyDTO.boardNum}
+					ORDER BY REPLYNUM DESC) R)
+		WHERE RN BETWEEN #{pager.startRow} AND #{pager.lastRow}
+	</select>
+  
+  
+  
+  </mapper>

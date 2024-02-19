@@ -21,5 +21,8 @@
   		
   		<typeAlias type="com.somoim.app.moim.board.MoimBoardDTO" alias="MoimBoardDTO"/>
   		<typeAlias type="com.somoim.app.moim.board.MoimBoardFileDTO" alias="MoimBoardFileDTO"/>
+  		
+  		<!-- 임시 -->
+  		<typeAlias type="com.somoim.app.moim.board.ReplyDTO" alias="ReplyDTO"/>
   	</typeAliases>
   </configuration>
