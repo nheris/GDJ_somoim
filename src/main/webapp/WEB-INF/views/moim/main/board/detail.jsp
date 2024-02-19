@@ -165,7 +165,7 @@
 					</div>
 				</c:if>
 				<form id="frm" action="./update" method="get">
-                    <input type="hidden" name="boardNum" value="${dto.boardNum}">
+                    <input type="hidden" id="boardNum" name="boardNum" value="${dto.boardNum}">
                     <input type="hidden" name="moimNum" value="${dto.moimNum}">
                 </form>
 		</div>
