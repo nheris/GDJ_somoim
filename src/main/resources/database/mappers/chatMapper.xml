@@ -27,7 +27,7 @@
 				USING(CHATROOMNUM)
 				JOIN MEMBER M
 				USING (USERNAME)
-		WHERE CHATROOMNUM = 1
+		WHERE CHATROOMNUM = #{chatRoomNum}
   	</select>
   	
   	<!-- Chat -->
@@ -44,5 +44,16 @@
 			FROM CHATMESSAGE
 		WHERE CHATROOMNUM = #{chatRoomNum}
 		ORDER BY CHATTIMESTAMP
+	</select>
+	
+	
+	<select id="moimChat" resultType="MoimDTO">
+		SELECT * 
+		FROM CHATROOM
+			JOIN MOIMCHAT
+			USING (CHATROOMNUM)
+			JOIN MOIM
+			USING (MOIMNUM)
+		WHERE CHATROOMNUM = 1
 	</select>
   </mapper>

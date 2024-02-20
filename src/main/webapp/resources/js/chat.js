@@ -72,6 +72,7 @@ sock.onmessage =  function (e){
     const ampm = today.getHours() >= 12 ? 'PM' : 'AM';
     const date = `${hours}:${minutes} ${ampm}, ${dayName}`;
 
+    console.log("e : "+e.data);
     let data = e.data;
     console.log(data);
     let ar = data.split(",");
@@ -82,8 +83,10 @@ sock.onmessage =  function (e){
     console.log(user);
     console.log(userCh.value);
     if(user === userCh.value){
+        console.log('mySend');
         mySend(str, date);
     }else{
+        console.log('otherSend');
         otherSend(str, date);
     }
     
@@ -135,10 +138,10 @@ function mySend(msg, date){
 function otherSend(msg, date){
     let li = document.createElement("li");
     li.classList.add('clearfix');
-    let div = document.createElement('div');
+    let div = document.createElement("div");
     div.classList.add('message-data');
     div.classList.add('text-right');
-    let span = document.createElement('span');
+    let span = document.createElement("span");
     span.classList.add('message-data-time');
     
     span.innerText = date;
@@ -148,7 +151,7 @@ function otherSend(msg, date){
     li.append(div);
     div.append(span);
 
-    div = document.createElement('div');
+    div = document.createElement("div");
     
     li.append(div);
     div.classList.add('message');
@@ -157,20 +160,35 @@ function otherSend(msg, date){
     div.innerText = msg;
 }
 
-let chatRoom = document.getElementById('chatRoomNum');
-
+let chatRoom = document.querySelector(".chat-list");
+console.log(chatRoom);
 chatRoom.addEventListener('click',(e)=>{
-   chat_record.style.visibility = 'visible';
-   chat_message.style.visibility = 'visible';
-   console.log('chatchat');
-       let n = chatRoom.getAttribute("data-roomNum");
-   
-       fetch("../chat?chatRoomNum="+n,{
-           method:"GET"
-       })
-       .then(r => console.log(r.text()))
-       console.log(e.target);
-       console.log(n);
+    chat_record.innerHTML = null;
+    if(e.target.classList.contains('clearfix')){
+        let n = e.target.getAttribute('data-roomNum');
+        console.log("room num : "+n);
+        chat_record.style.visibility = 'visible';
+        chat_message.style.visibility = 'visible';
+        
+            fetch("/chat/room?chatRoomNum="+n,{
+                method:"GET"
+            })
+            .then(r => r.json())
+            .then(r => {
+             console.log(r);
+             for(let i=0;i<r.record.length;i++){
+                 let msg = r.record[i].chatText;
+                 let date = r.record[i].chatTimeStamp;
+                 
+                 if(r.record[i].userName === userCh.value){
+                     mySend(msg,date);
+                 }else{
+                     otherSend(msg,date);
+                 }
+             }
+             scroller();
+            });
+    }
 });
 
     

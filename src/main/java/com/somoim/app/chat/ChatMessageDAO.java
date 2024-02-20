@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.somoim.app.member.MemberDTO;
+import com.somoim.app.moim.MoimDTO;
 
 @Repository
 public class ChatMessageDAO {
@@ -26,7 +27,7 @@ public class ChatMessageDAO {
 	public List<Long> chatRoomList(MemberDTO memberDTO){
 		return sqlSession.selectList(NAMESPACE+"chatRoomList", memberDTO);
 	}
-	
+	// 방에있는 유저
 	public List<MemberDTO> roomUserList(ChatMessageDTO chatMessageDTO){
 		return sqlSession.selectList(NAMESPACE+"roomUserList", chatMessageDTO);
 	}
@@ -46,5 +47,8 @@ public class ChatMessageDAO {
 		return sqlSession.selectList(NAMESPACE+"chatHistory", chatMessageDTO);
 	}
 	
-	
+	// moim chat
+	public MoimDTO moimChat(){
+		return sqlSession.selectOne(NAMESPACE+"moimChat");
+	}
 }

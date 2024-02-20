@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.somoim.app.member.MemberDTO;
+import com.somoim.app.moim.MoimDTO;
 
 @Service
 public class ChatMessageService {
@@ -17,7 +18,7 @@ public class ChatMessageService {
 		List<Long> roomList = chatMessageDAO.chatRoomCh();
 		
 		// 방이 없다면 (방번호로 찾기)
-		if(!roomList.contains(1L)){
+		if(!roomList.contains(chatMessageDTO.getChatRoomNum())){
 			// 방 생성
 			chatMessageDAO.addChatRoom();			
 		}
@@ -37,5 +38,9 @@ public class ChatMessageService {
 	
 	public List<MemberDTO> roomUserList(ChatMessageDTO chatMessageDTO){
 		return chatMessageDAO.roomUserList(chatMessageDTO);
+	}
+	
+	public MoimDTO moimChat(){
+		return chatMessageDAO.moimChat();
 	}
 }

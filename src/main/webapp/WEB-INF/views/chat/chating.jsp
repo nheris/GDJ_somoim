@@ -36,6 +36,7 @@
 											<div class="name my-4">Vincent Porter</div>
 										</div>
 									</li>
+									<span>${moimChat.moimName}</span>
 									<c:forEach var="item" items="${chatRoomList}">
 										<li id="chatRoomNum" data-roomNum="${item}" class="clearfix">
 											<img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="avatar">
@@ -66,10 +67,12 @@
 										</div>
 									</div>
 								</div>
+								
 								<!-- 채팅기록 -->
 								<!-- style="visibility: hidden;" -->
-								<div class="chat-history" id="chat-history" style="overflow-y: scroll; height: 450px;">
+								<div class="chat-history" id="chat-history" style="overflow-y: scroll; height: 450px;" style="visibility: hidden;">
 									<ul class="m-b-0" id="chat_record">
+
 										<!-- 상대방 (.text-right, float-right) -->
 										<li class="clearfix">
 											<div class="message-data text-right">
@@ -91,7 +94,7 @@
 										</li>
 										<li class="clearfix">
 											<input type="hidden" id="userCh" value="${user.userName}">
-											<input type="hidden" id="roomCh" value=${chatHistory.get(0).chatRoomNum}>
+											<input type="hidden" id="roomCh" value=${roomNum}>
 											<div class="message-data">
 												<span class="message-data-time">10:15 AM, Today</span>
 											</div>
@@ -99,7 +102,7 @@
 												results
 												to show you.</div>
 										</li>
-										<c:forEach var="item" items="${chatHistory}">
+										<!-- <c:forEach var="item" items="${chatHistory}">
 											<c:if test="${user.userName eq item.userName}">
 												<li class="clearfix">
 													<input type="hidden" id="userCh" value="${user.userName}">
@@ -121,14 +124,15 @@
 													</div>
 												</li>
 											</c:if>
-										</c:forEach>
-									</ul>
+										</c:forEach> -->
 
+
+									</ul>
 								</div>
 
 								<!-- 채팅입력 -->
 								<!-- style="visibility: hidden;" -->
-								<div id="chat-message" class="chat-message clearfix">
+								<div id="chat-message" class="chat-message clearfix" style="visibility: hidden;">
 									<div class="input-group mb-0">
 										<div class="input-group-prepend">
 											<span class="input-group-text"><i class="fa fa-send"></i></span>

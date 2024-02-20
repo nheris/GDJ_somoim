@@ -27,10 +27,7 @@ public class ChatHandler extends TextWebSocketHandler{
 	
 	 // group( 정모, 모임, 1:1 )에 따른 Map 나누기 
 	private static List<WebSocketSession> sessionList = new ArrayList<>(); 
-	
-	
-	private Set<WebSocketSession> sessionsCol 
-		= Collections.synchronizedSet(new HashSet<WebSocketSession>());
+
 	
 	// 연결후에 실행되는 메서드
 	@Override
@@ -54,9 +51,18 @@ public class ChatHandler extends TextWebSocketHandler{
 		//전송된 메시지를 List의 모든 세션에 전송
 		for (WebSocketSession s : sessionList) {
 			Long no = (Long)s.getAttributes().get("roomNum");
-			if(no == chatMessageDTO.getChatRoomNum()) {
-				s.sendMessage(message);
+			System.out.println(no+" : "+chatMessageDTO.getChatRoomNum());
+			
+			try {
+				if(no == chatMessageDTO.getChatRoomNum()) {
+					System.out.println("------------------------");
+					System.out.println(message.getPayload());
+					s.sendMessage(message);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
+			
 		}
 
 	}
@@ -64,7 +70,7 @@ public class ChatHandler extends TextWebSocketHandler{
 	// 연결종료후 실행될 메서드
 	@Override
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
-		sessions.remove(session.getId());
+		sessionList.remove(session);
 		System.out.println("연결해제");
 	}
 
