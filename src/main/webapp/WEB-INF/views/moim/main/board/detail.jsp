@@ -115,6 +115,7 @@
 					<div class="col-auto text-center">
 				    	<button id="more" data-replyList-page="1" data-replyList-totalPage="1" class="btn btn-light btn-sm">더보기</button>
 				    </div>
+				    
 					
 					<!-- 댓글 작성폼 -->
 					<div class="comment-form">

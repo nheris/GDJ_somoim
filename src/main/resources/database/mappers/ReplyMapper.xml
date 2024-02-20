@@ -23,10 +23,21 @@
 			  FROM (SELECT *
 					FROM REPLY
 					WHERE BOARDNUM = #{replyDTO.boardNum}
-					ORDER BY REPLYNUM DESC) R)
+					ORDER BY REPLYNUM ASC) R)
 		WHERE RN BETWEEN #{pager.startRow} AND #{pager.lastRow}
 	</select>
   
-  
+  	<!-- delete -->
+  	<delete id="delete" parameterType="ReplyDTO">
+		DELETE REPLY
+		WHERE REPLYNUM=#{replyNum}
+	</delete>
+  	
+  	<!-- update -->
+  	<update id="update" parameterType="ReplyDTO">
+  		UPDATE REPLY 
+  		SET REPLYTEXT=#{replyText}
+  		WHERE REPLYNUM = #{replyNum}
+  	</update>
   
   </mapper>

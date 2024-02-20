@@ -34,9 +34,12 @@ public class ReplyController {
 		int result = replyService.add(replyDTO);
 		
 		//조회
-		model.addAttribute(memberDTO);
+		List<ReplyDTO> ar = replyService.getList(replyDTO, pager);
 		
-		return "replyListResult";
+		model.addAttribute("list", ar);
+		model.addAttribute("pager", pager);
+		
+		return "moim/main/board/replyListResult";
 	}
 	
 	//list
@@ -47,6 +50,31 @@ public class ReplyController {
 		model.addAttribute("list", ar);
 		model.addAttribute("pager", pager);
 		
+		return "moim/main/board/replyListResult";
+	}
+	
+	//delete
+	@PostMapping("delete")
+	public String delete(ReplyDTO replyDTO, Model model, Pager pager) throws Exception{
+		int result = replyService.delete(replyDTO);
+		//
+		List<ReplyDTO> ar = replyService.getList(replyDTO, pager);
+		
+		model.addAttribute("list", ar);
+		model.addAttribute("pager", pager);
+		
+		return "moim/main/board/replyListResult";
+	}
+	
+	//update
+	@PostMapping("update")
+	public String update(ReplyDTO replyDTO, Model model, Pager pager) throws Exception{
+		int result = replyService.update(replyDTO);
+		//
+		List<ReplyDTO> ar = replyService.getList(replyDTO, pager);
+		
+		model.addAttribute("list", ar);
+		model.addAttribute("pager", pager);
 		
 		return "moim/main/board/replyListResult";
 	}

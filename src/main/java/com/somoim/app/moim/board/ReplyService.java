@@ -30,4 +30,14 @@ public class ReplyService {
 		
 		return replyDAO.getList(map);
 	}
+	
+	//delete
+	public int delete(ReplyDTO replyDTO) throws Exception{
+		return replyDAO.delete(replyDTO);
+	}
+	
+	//update
+	public int update(ReplyDTO replyDTO) throws Exception{
+		return replyDAO.update(replyDTO);
+	}
 }

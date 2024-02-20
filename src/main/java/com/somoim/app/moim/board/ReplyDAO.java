@@ -19,11 +19,21 @@ public class ReplyDAO {
 	}	
 	
 	//list
-	public Long getTotalCount(ReplyDTO replyDTO) {
+	public Long getTotalCount(ReplyDTO replyDTO) throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"getTotalCount", replyDTO);
 	}
 
-	public List<ReplyDTO> getList(Map<String, Object> map) {
+	public List<ReplyDTO> getList(Map<String, Object> map) throws Exception{
 		return sqlSession.selectList(NAMESPACE+"getList", map);
+	}
+	
+	//delete
+	public int delete(ReplyDTO replyDTO) throws Exception{
+		return sqlSession.delete(NAMESPACE+"delete", replyDTO);
+	}
+	
+	//update
+	public int update(ReplyDTO replyDTO) throws Exception{
+		return sqlSession.update(NAMESPACE+"update", replyDTO);
 	}
 }
