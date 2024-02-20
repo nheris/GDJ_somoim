@@ -5,28 +5,39 @@
   <!-- mapper namespace는 비우면 에러 -->
   <mapper namespace="com.somoim.app.moim.board.BoardDAO">
   
-  	<!-- list -->
   	<sql id="search">
   		<where>
-  			<if test="searchFind == 'searchFind1'">
-  				BOARDTITLE LIKE '%'||#{search}||'%'
+  			<if test="searchFind == 'searchFind1' or searchFind=='searchFind4'">
+  				BOARDTITLE LIKE '%'||#{pager.search}||'%'
   			</if>
-  			<if test="searchFind == 'searchFind2'">
-  				OR BOARDTEXT LIKE '%'||#{search}||'%'
+  			<if test="searchFind == 'searchFind2' or searchFind=='searchFind4'">
+  				OR BOARDTEXT LIKE '%'||#{pager.search}||'%'
   			</if>
-  			<if test="searchFind == 'searchFind3'">
-  				OR BOARDWRITER LIKE '%'||#{search}||'%'
+  			<if test="searchFind == 'searchFind3' or searchFind=='searchFind4'">
+  				OR BOARDWRITER LIKE '%'||#{pager.search}||'%'
   			</if>
-		</where>
+  		</where>
   	</sql>
-  	<select id="list" resultType="MoimBoardDTO" parameterType="Map">
-  		SELECT *
+  	
+  	
+  		<!-- SELECT *
 		FROM (SELECT ROWNUM R, N.*
 	 		  FROM (SELECT * FROM MOIMBOARD
-	 		  		WHERE MOIMNUM =#{dto.moimNum}
-	 		  		<!-- <include refid="search"></include> -->
+	 		  		WHERE MOIMNUM =#{dto.moimNum} 
+	 		  		<include refid="search"></include>
 	   		  		ORDER BY BOARDNUM DESC)N)
-	   	WHERE R BETWEEN #{pager.startRow} AND #{pager.lastRow}
+	   	WHERE R BETWEEN #{pager.startRow} AND #{pager.lastRow} -->
+  	
+  	<select id="list" resultType="MoimBoardDTO" parameterType="Map">
+	   	SELECT *
+		FROM (SELECT ROWNUM R, N.*
+	  		  FROM (SELECT *
+	  				FROM (SELECT * 
+	  			  		  FROM MOIMBOARD
+	  			  		  WHERE MOIMNUM =#{dto.moimNum})
+					<include refid="search"></include>
+	  				ORDER BY BOARDNUM DESC)N)
+		WHERE R BETWEEN #{pager.startRow} AND #{pager.lastRow}
   	</select>
   	<select id="getTotalCount" resultType="Long" parameterType="MoimBoardDTO">
 		SELECT COUNT(BOARDNUM)

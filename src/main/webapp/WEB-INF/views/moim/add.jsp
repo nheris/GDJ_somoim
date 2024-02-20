@@ -193,8 +193,12 @@
 								<div class="mb-3">
 									<label for="exampleFormControlTextarea1" class="form-label">모임 대표 이미지</label>
 									<div class="input-group mb-3">
-									  <input type="file" class="form-control" name="file">
+									  <!-- <input type="file" class="form-control" name="file"> -->
+										<input class="form-control" type="file" id="formFileMultiple" multiple data-file-count="0" data-file-max="5" name="attachs" accept="image/jpg, image/jpeg, image/png, image/gif">
 									</div>
+									<!-- <div class="col-auto d-flex justify-content-end mt-3 mb-3">
+										<button class="btn btn-outline-dark" id="fileAdd">등록</button>
+									</div> -->
 								</div>
 								<div class="mb-3">
 									<label for="moimName" class="form-label">모임 정원(10~300명)</label>

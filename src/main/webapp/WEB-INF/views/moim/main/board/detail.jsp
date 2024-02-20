@@ -80,7 +80,7 @@
 											<img src="/resources/upload/moimBoard/${i.fileName}" class="d-block w-100" alt="...">
 											</div>
 										</c:if>
-										<<%-- div>${j.index}</div> --%>
+										<!-- <div>${j.index}</div> -->
 										
 									</c:forEach>
 
@@ -108,7 +108,7 @@
 					
 					<!-- 댓글 -->
 					<div class="author my-3" id="replyList" data-user="${member.userName}">
-						
+	
 					</div>
 					
 					<!-- 댓 페이징 -->

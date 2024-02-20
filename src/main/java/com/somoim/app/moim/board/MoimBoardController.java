@@ -30,6 +30,7 @@ public class MoimBoardController {
 		
 		model.addAttribute("moimDTO", boardDTO);
 		model.addAttribute("list", ar);
+
 	}
 	
 	//add
@@ -60,6 +61,7 @@ public class MoimBoardController {
 		boardDTO = moimBoardService.detail(boardDTO);
 		
 		model.addAttribute("dto",boardDTO);
+		
 	}
 	
 	//update
