@@ -41,6 +41,11 @@ public class BoardReplyDTO {
 	public void setBoardReplyDate(Date boardReplyDate) {
 		this.boardReplyDate = boardReplyDate;
 	}
+	@Override
+	public String toString() {
+		return "BoardReplyDTO [boardReplyNum=" + boardReplyNum + ", userName=" + userName + ", boardNum=" + boardNum
+				+ ", boardReplyText=" + boardReplyText + ", boardReplyDate=" + boardReplyDate + "]";
+	}
 	
 	
 	

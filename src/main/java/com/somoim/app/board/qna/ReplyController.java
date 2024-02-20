@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -31,10 +32,9 @@ public class ReplyController {
 	
 	@PostMapping("delete")
 	@ResponseBody
-	public Map<String, Object> setDelete(Pager pager, BoardReplyDTO replyDTO, Model model)throws Exception{
+	public Map<String, Object> setDelete(@RequestBody BoardReplyDTO replyDTO, Pager pager, Model model)throws Exception{
+		System.out.println(replyDTO);
 		replyService.setDelete(replyDTO);
-		model.addAttribute("replyDTO", replyDTO);
-		System.out.println(replyDTO.getBoardReplyNum());
 	 	List<BoardReplyDTO> ar = replyService.getList(pager, replyDTO);
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("datas", ar);
@@ -75,6 +75,13 @@ public class ReplyController {
 		map.put("pager", pager);
 		return map;
 //		return "board/replyListResult";
+	}
+	
+	@PostMapping("update")
+	@ResponseBody
+	public int setUpdate(BoardReplyDTO boardReplyDTO)throws Exception{
+		int result = replyService.setUpdate(boardReplyDTO);
+		return result;
 	}
 	
 	

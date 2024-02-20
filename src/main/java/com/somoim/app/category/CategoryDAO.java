@@ -14,6 +14,8 @@ import com.somoim.app.moim.MoimDTO;
 import com.somoim.app.moim.MoimFileDTO;
 import com.somoim.app.util.Pager;
 
+import oracle.net.aso.m;
+
 @Repository
 public class CategoryDAO {
 
@@ -24,11 +26,11 @@ public class CategoryDAO {
 	
 
 	//동기식list
-		public List<CategoryDTO> list(MemberDTO memberDTO) throws Exception {
+		public List<MoimDTO> list(MemberDTO memberDTO) throws Exception {
 			return sqlSession.selectList(namespace+"list", memberDTO);
 		}
 	//비동기List
-		public List<CategoryDTO> getListCategory(Map<String, Object>map) throws Exception{
+		public List<MoimDTO> getListCategory(Map<String, Object>map) throws Exception{
 			return sqlSession.selectList(namespace+"getListCategory", map);
 		}
 		
@@ -40,5 +42,6 @@ public class CategoryDAO {
 		public List<MoimFileDTO> getFileList(MoimDTO moimDTO)throws Exception{
 			return sqlSession.selectList(namespace+"getFileList", moimDTO);
 		}
+		
 	
 }

@@ -64,11 +64,6 @@ private ServletContext servletContext;
 		//2-2 HDD에 저장하고 파일명 받아오기
 		
 		
-		System.out.println("attachs size: " + attachs.length);
-		if(attachs.length==6) {
-			System.out.println("5개까지만 가능하다.");
-			
-		}
 		for(MultipartFile f: attachs) {
 			System.out.println(f);
 			if(f.isEmpty()) {

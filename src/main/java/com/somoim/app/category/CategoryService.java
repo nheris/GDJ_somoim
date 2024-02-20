@@ -31,22 +31,21 @@ private FileManager fileManager;
 private ServletContext servletContext;
 
 //list
-public List<CategoryDTO> list(MemberDTO memberDTO) throws Exception {
+public List<MoimDTO> list(MemberDTO memberDTO) throws Exception {
 	return categoryDAO.list(memberDTO);
 	
 }
 
-public List<CategoryDTO> getListCategory(Pager pager, CategoryDTO categoryDTO)throws Exception{
-	System.out.println(servletContext.getRealPath("/resources/upload/moim"));
+public List<MoimDTO> getListCategory(Pager pager, MoimDTO moimDTO)throws Exception{
 	Map<String, Object> map = new HashMap<String, Object>();
 	map.put("pager", pager);
-	map.put("CategoryDTO", categoryDTO);
+	map.put("CategoryDTO", moimDTO);
 	pager.makeRow();
 	pager.makeNum(categoryDAO.getTotalCount(map));
 	pager.setPerPage(5L);
-	System.out.println(categoryDTO.getMoimCategory());
 	return categoryDAO.getListCategory(map);
 }
+
 
 
 

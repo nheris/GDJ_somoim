@@ -21,6 +21,7 @@ public class ReplyService {
 	
 	
 	public int setDelete(BoardReplyDTO replyDTO)throws Exception{
+		System.out.println("bordReplyNum"+replyDTO.getBoardReplyNum());
 		return replyDAO.setDelete(replyDTO);
 	}
 	
@@ -42,6 +43,9 @@ public class ReplyService {
 		return replyDAO.getList(map);
 	}
 
+	public int setUpdate(BoardReplyDTO boardReplyDTO)throws Exception{
+		return replyDAO.setUpdate(boardReplyDTO);
+	}
 		
 	
 	

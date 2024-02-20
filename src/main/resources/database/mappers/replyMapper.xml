@@ -14,7 +14,7 @@
   </resultMap>
   
   	<delete id="setDelete" parameterType="BoardReplyDTO">
-  		DELETE REPLY WHERE boardReplyNUM=#{boardReplyNum}
+  		DELETE BOARDREPLY WHERE BOARDREPLYNUM=#{boardReplyNum}
   	</delete>
   
   	<insert id="setReply" parameterType="BoardReplyDTO">
@@ -35,6 +35,11 @@
   		ORDER BY BOARDREPLYNUM DESC) R)
   		WHERE RN BETWEEN #{pager.startRow} AND #{pager.lastRow}
   	</select>
+  
+  <update id="setUpdate" parameterType="BoardReplyDTO">
+  UPDATE BOARDREPLY set boardReplyText=#{boardReplyText} where boardReplyNum=${boardReplyNum}
+  </update>
+  
   
 
   </mapper>

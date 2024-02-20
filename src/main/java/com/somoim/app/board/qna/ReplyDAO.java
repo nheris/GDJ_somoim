@@ -35,6 +35,9 @@ public List<BoardReplyDTO> getList(Map<String, Object> map)throws Exception{
 	return sqlSession.selectList(namespace+"getList", map);
 }
 
-	
+public int setUpdate(BoardReplyDTO boardReplyDTO)throws Exception{
+	return sqlSession.update(namespace+"setUpdate", boardReplyDTO);
+}	
+
 	
 }

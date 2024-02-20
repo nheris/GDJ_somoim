@@ -34,17 +34,16 @@ public class CategoryController {
 	@GetMapping("list")
 	public void list (HttpSession session, Model model) throws Exception{
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
-		List<CategoryDTO> ar = categoryService.list(memberDTO);
+		List<MoimDTO> ar = categoryService.list(memberDTO);
 		model.addAttribute("list", ar);
 	}
 	
 	
 	@GetMapping("categoryList")
-	public String getListCategory (Pager pager, Model model, CategoryDTO categoryDTO)throws Exception{
-		List<CategoryDTO> ar = categoryService.getListCategory(pager, categoryDTO);
+	public String getListCategory (Pager pager, Model model, MoimDTO moimDTO)throws Exception{
+		List<MoimDTO> ar = categoryService.getListCategory(pager, moimDTO);
 		model.addAttribute("data", ar);
 		model.addAttribute("pager",pager);
-		System.out.println(categoryDTO);
 		return "category/category";
 	}
 	

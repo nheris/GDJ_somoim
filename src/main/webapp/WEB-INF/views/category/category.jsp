@@ -7,17 +7,17 @@
 		<div class="single-grid wow fadeInUp" data-wow-delay=".2s">
 			<div class="image">
 				<a href="../moim/home?moimNum=${data.moimNum}" class="thumbnail"><img
-					src="../resources/upload/moim/${data.moimFileDTO.fileName}" alt="#"></a>
+					src="/resources/upload/moim/${data.moimFileDTO.fileName}" alt="#"></a>
 				<div class="author">
 					<div class="author-image">
 					<!-- 프로필 이미지 -->
 						<a href="javascript:void(0)"><img
-							src="/resources/upload/member/${member.profile.fileName}" alt="#"> <span>${data.moimHead}</span></a>
+							src="../resources/upload/member/${member.profile.fileName}" alt="#"> <span>${data.moimHead}</span></a>
 					</div>
 				</div>
-				<p class="item-position">
+<!-- 				<p class="item-position">
 					<i class="lni lni-bolt"></i>지금 뜨고있는 모임
-				</p>
+				</p> -->
 			</div>
 			<div class="content">
 				<div class="top-content">

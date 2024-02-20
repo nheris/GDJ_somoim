@@ -67,7 +67,7 @@
 					id="delete" class="btn btn-outline-dark mb-3" href="#">삭제</a>
 			</div>
 		</c:if>
-
+			
 		<form id="frm" action="./update" method="get">
 			<input type="hidden" name="boardNum" value="${detail.boardNum}" />
 		</form>
@@ -125,20 +125,21 @@
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h1 class="modal-title fs-5" id="exampleModalLabel">Modal
-						title</h1>
+					<h1 class="modal-title fs-5" id="exampleModalLabel">댓글 수정</h1>
 					<button type="button" class="btn-close" data-bs-dismiss="modal"
 						aria-label="Close"></button>
 				</div>
 				<div class="modal-body">
+				
+				
 				<!-- form 자체를 가지고가기위해 id부여 -->
 					<form method="post" id="replyUpdateForm">
 						<textarea class="form-control" name="boardReplyText"
-							id="replyUpdateContents" rows="3"></textarea>
-							<!-- value값을 비워놓는건 productDetail.js에서 값을 받기위해 -->
-						<input type="hidden" value="" name="replyNum" id="replyUpdateNum">
+							id="boardReplyTexts" rows="3"></textarea>
+							
+						<input type="hidden" value="" name="boardReplyNum" id="boardReplyNum">
 						<!-- 작성자와 비교용 -->
-						<input type="hidden" value="" name="userName" id="boardReplyWriter">
+						<input type="hidden" value="" name="userName" id="userName">
 					</form>
 				</div>
 				<div class="modal-footer">

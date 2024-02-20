@@ -5,7 +5,7 @@
 <!-- mapper namespace는 비우면 에러 -->
 <mapper namespace="com.somoim.app.category.CategoryDAO">
 
-	<resultMap type="CategoryDTO" id="listReault">
+	<resultMap type="MoimDTO" id="listReault">
 		<id column="MOIMNUM" property="moimNum" />
 		<result column="MOIMNAME" property="moimName" />
 		<result column="MOIMREGION" property="moimRegion" />
@@ -71,11 +71,11 @@
 			</otherwise>
 		</choose>
 	</sql>
-	<select id="getListCategory" parameterType="Map" resultType="CategoryDTO">
+	<select id="getListCategory" parameterType="Map" resultMap="listReault">
 		SELECT * FROM
 		(SELECT ROWNUM R, N.* FROM
 		(
-		SELECT * FROM MOIM LEFT JOIN MOIMFILE USING (MOIMNUM) 
+		SELECT * FROM MOIM LEFT JOIN MOIMFILE USING (MOIMNUM) LEFT JOIN MOIMMEMBER USING (MOIMNUM)
 		 <include refid="moimCategory"></include>
 		ORDER BY MOIMNUM DESC
 		)
@@ -90,10 +90,12 @@
 	</select>
 	
 		<!-- file List -->
-	<select id="getFileList" parameterType="CategoryDTO"
+	<select id="getFileList" parameterType="MoimDTO"
 		resultType="MoimFileDTO">
 		SELECT FILENAME FROM MOIMFILE WHERE
 		MOIMNUM=#{moimNum}
 	</select>
+
+
 
 </mapper>
