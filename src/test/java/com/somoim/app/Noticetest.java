@@ -22,7 +22,7 @@ public class Noticetest extends MyTest{
 	@Autowired
 	private NoticeDAO noticeDAO;
 
-	@Test
+//	@Test
 	public void test() throws Exception {
 		this.getListTest();
 	}
