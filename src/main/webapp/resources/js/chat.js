@@ -9,14 +9,14 @@ const sendMsg = document.getElementById('sendMsg');
 
 const chat_record = document.getElementById('chat_record');
 const userCh = document.getElementById('userCh');
-const roomCh = document.getElementById('roomCh');
+
 const msgForm = document.getElementById('msgForm');
 const chat_message = document.querySelector('.chat-message');
 
 let sock = new SockJS("http://localhost:80/chat");
+const chatRoomNum = document.getElementById('chatRoomNum');
 
 const messageNum = "${chatMessageNum}";
-const chatRoomNum = "${chatRoomNum}";
 const userName = "${userName}";
 const chatText = "${chatText}";
 const chatMessageStamp = "${chatMessageStamp}";
@@ -32,18 +32,16 @@ function scroller(){
 }
 
 sendMsg.addEventListener('keyup',(e) => {
-	if(sendMsg.value != ""){
+    if(sendMsg.value != ""){
         if(e.key == 'Enter' || e.keyCode == '13'){
-
+            const roomCh = chatRoomNum.getAttribute('data-roomNum');
             const chatMessage = {
                 "userName" : userCh.value,
                 "chatText" : sendMsg.value,
-                "chatRoomNum" : roomCh.value
+                "chatRoomNum" : roomCh
             };
-
-            console.log(chatMessage);
-
             
+            console.log(chatMessage);
 
             // sock.send(userCh.value+":"+sendMsg.value);
             sock.send(JSON.stringify(chatMessage));
@@ -166,6 +164,8 @@ chatRoom.addEventListener('click',(e)=>{
     chat_record.innerHTML = null;
     if(e.target.classList.contains('clearfix')){
         let n = e.target.getAttribute('data-roomNum');
+        chatRoomNum.chatRoomNum = n;
+        console.log("chatRoomNum : "+chatRoomNum.getAttribute('data-roomNum'));
         console.log("room num : "+n);
         chat_record.style.visibility = 'visible';
         chat_message.style.visibility = 'visible';
