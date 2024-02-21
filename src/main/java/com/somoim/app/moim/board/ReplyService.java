@@ -4,9 +4,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.somoim.app.member.MemberDTO;
 import com.somoim.app.util.Pager;
 
 @Service
@@ -28,6 +32,8 @@ public class ReplyService {
 		map.put("pager", pager);
 		map.put("replyDTO", replyDTO);
 		
+		List<ReplyDTO> ar = replyDAO.getList(map);
+		
 		return replyDAO.getList(map);
 	}
 	
@@ -40,4 +46,25 @@ public class ReplyService {
 	public int update(ReplyDTO replyDTO) throws Exception{
 		return replyDAO.update(replyDTO);
 	}
+
+	
+	//reply
+	public int info(ReplyDTO replyDTO, HttpSession session) throws Exception{
+		ReplyDTO parent = replyDAO.info(replyDTO);
+		
+		replyDTO.setReplyRef(parent.getReplyRef());
+		replyDTO.setReplyStep(parent.getReplyStep()+1);
+		replyDTO.setReplyDepth(parent.getReplyDepth()+1);
+		
+		int result = replyDAO.replyUpdate(parent);
+		
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		replyDTO.setUserName(memberDTO.getUserName());
+		replyDTO.setReplyWriter(memberDTO.getNickName());
+		
+		result = replyDAO.reply(replyDTO);
+		
+		return result;
+	}
+	
 }

@@ -183,8 +183,9 @@
 
 								<!-- 모임설정 -->
 								<div class="mb-3">
-									<label for="moimName" class="form-label">모임 이름</label>
-									<input type="text" class="form-control" id="moimName" name="moimName" placeholder="모임 이름">
+									<label for="moimName" class="form-label">모임 이름(2~10자)</label>
+									<input type="text" class="form-control" id="moimName" name="moimName" placeholder="모임 이름" minlength = "2" maxlength = "10">
+									
 								</div>
 								<div class="mb-3">
 									<label for="moimText" class="form-label">모임 설명</label>

@@ -58,32 +58,7 @@
                                 </h3>
                                 <!-- post meta -->
                                 <p>${dto.moimText}</p>
-                                <!-- post image -->
-                                <div class="post-image">
-                                    <div class="row align-items-center">
-                                        <div class="col-lg-6 col-md-6 col-12">
-                                            <h3></h3>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                                tempor
-                                                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                                quis nostrud
-                                                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                            </p>
-                                        </div>
-                                        <div class="col-lg-6 col-md-6 col-12">
-                                            <a href="javascript:void(0)">
-                                                <img src="assets/images/blog/blog-inner-image.jpg" alt="#">
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                                    irure
-                                    dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                                    pariatur.
-                                    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia. </p>
+                                
                                 <!-- post quote -->
                                 <blockquote>
                                     <div class="icon">
@@ -92,34 +67,23 @@
                                     <h4>asdfasdfasdfasdfasdfasdfasdfasdfasdf</h4>
                                     <span>${dto.moimHead}</span>
                                 </blockquote>
-                                <h3>Setting the mood with incense</h3>
-                                <p>Remove aversion, then, from all things that are not in our control, and transfer it
-                                    to
-                                    things contrary to the nature of what is in our control. But, for the present,
-                                    totally
-                                    suppress desire: for, if you desire any of the things which are not in your own
-                                    control,
-                                    you must necessarily be disappointed; and of those which are, and which it would be
-                                    laudable to desire, nothing is yet in your possession. Use only the appropriate
-                                    actions
-                                    of pursuit and avoidance; and even these lightly, and with gentleness and
-                                    reservation.
-                                </p>
+                                <h5>꼭 읽어주세요.</h5>                             
                                 <ul class="list">
-                                    <li><i class="lni lni-chevron-right"></i> The happiness of your life depends upon
-                                        the
-                                        quality of your thoughts </li>
+                                    <li><i class="lni lni-chevron-right"></i> 으음.. </li>
                                     <li><i class="lni lni-chevron-right"></i> You have power over your mind, not outside
                                         events</li>
                                     <li><i class="lni lni-chevron-right"></i>The things you think about determine the
                                         quality of your mind</li>
                                 </ul>
-
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                                    irure
-                                    dolor in reprehenderit. </p>
+								
+								
+								<div class="post-comments mt-2">
+									<h3>참여멤버</h3>
+								</div>
+								
+								
+								
+								
                                 <!--post tags -->
                                 <!-- Post Social Share -->
                                 <div class="post-social-media">

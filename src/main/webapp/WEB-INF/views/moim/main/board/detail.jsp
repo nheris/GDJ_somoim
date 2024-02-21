@@ -108,8 +108,9 @@
 					
 					<!-- 댓글 -->
 					<div class="author my-3" id="replyList" data-user="${member.userName}">
-	
+						
 					</div>
+					
 					
 					<!-- 댓 페이징 -->
 					<div class="col-auto text-center">

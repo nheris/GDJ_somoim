@@ -7,8 +7,11 @@
   
   	<!-- add -->
   	<insert id="add" parameterType="ReplyDTO">
+  	<selectKey keyProperty="replyNum" resultType="Long" order="BEFORE">
+  			SELECT MOIMREPLY_SEQ.NEXTVAL FROM DUAL
+	</selectKey>
 		INSERT INTO REPLY
-		VALUES (MOIMREPLY_SEQ.NEXTVAL, #{userName}, #{boardNum},#{replyText}, current_date, #{replyWriter})
+		VALUES (#{replyNum}, #{userName}, #{boardNum},#{replyText}, current_date, #{replyWriter}, #{replyNum}, 0,0 )
 	</insert>
   
   	<!-- list -->
@@ -23,7 +26,8 @@
 			  FROM (SELECT *
 					FROM REPLY
 					WHERE BOARDNUM = #{replyDTO.boardNum}
-					ORDER BY REPLYNUM ASC) R)
+					<!-- ORDER BY REPLYNUM ASC) R) -->
+					ORDER BY REPLYREF ASC, REPLYSTEP ASC) R)
 		WHERE RN BETWEEN #{pager.startRow} AND #{pager.lastRow}
 	</select>
   
@@ -39,5 +43,30 @@
   		SET REPLYTEXT=#{replyText}
   		WHERE REPLYNUM = #{replyNum}
   	</update>
-  
+  	
+  	<!-- REPLY -->
+  	<!-- 값가져오기 -->
+  	<select id="info" parameterType="ReplyDTO" resultType="ReplyDTO">
+  		SELECT * FROM REPLY
+  		WHERE REPLYNUM=#{replyNum}
+  	</select>
+  	<!-- reply step update -->
+  	<update id="replyUpdate" parameterType="ReplyDTO">
+  		UPDATE REPLY SET REPLYSTEP=REPLYSTEP+1
+  		WHERE REPLYREF= #{replyRef} AND REPLYSTEP > #{replyStep}
+  	</update>
+  	<!-- <update id="replyUpdate" parameterType="ReplyDTO">
+  		UPDATE REPLY SET REPLYSTEP=REPLYSTEP+1
+  		WHERE REPLYNUM= #{replyNum}
+  	</update> -->
+  	<!-- reply add -->
+  	<insert id="reply" parameterType="ReplyDTO">
+  		<selectKey keyProperty="replyNum" resultType="Long" order="BEFORE">
+  			SELECT MOIMREPLY_SEQ.NEXTVAL FROM DUAL
+  		</selectKey>
+  		INSERT INTO REPLY
+  		VALUES
+  		(#{replyNum}, #{userName}, #{boardNum},#{replyText}, current_date, #{replyWriter}, #{replyRef},#{replyStep},#{replyDepth})
+  	</insert>
+ 
   </mapper>

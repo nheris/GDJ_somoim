@@ -4,8 +4,6 @@ package com.somoim.app.moim.board;
 import java.sql.Date;
 import java.util.List;
 
-import com.somoim.app.member.ProfileDTO;
-
 public class MoimBoardDTO {
 	private Long boardNum;
 	private String userName;

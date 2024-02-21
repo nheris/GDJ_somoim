@@ -86,17 +86,58 @@ replyList.addEventListener("click",(e)=>{
         })
         .then(res=>res.text())
         .then(r=>{
-            //console.log(r);
+            console.log(r);
             //폼내용 초기화
             //replyUpdateForm.reset();
             //modal창 닫기 버튼 강제 누름
             document.getElementById("replyCloseButton"+replyNum).click();
+            
 
             replyList.innerHTML=r;
 
         })
     }
 })
+
+//답 댓 add
+replyList.addEventListener("click",(e)=>{
+    if(e.target.classList.contains("replyup")){
+        console.log('연결');
+
+        let replyNum = e.target.getAttribute("data-reply-num");
+        let reText = document.getElementById("reText"+replyNum).value;
+        
+        //console.log(replyNum);
+        //console.log(reText);
+        if(reText === ''){
+            alert('내용을 입력하세요.');
+            e.preventDefault();
+            return false;
+        }
+
+
+        fetch("../reply/reply",{
+            method: "post",
+            headers:{
+                "Content-type":"application/x-www-form-urlencoded"
+            },
+            body: "replyNum="+replyNum+"&replyText="+reText+"&boardNum="+boardNum
+        })
+        .then(res=>res.text())
+        .then(r=>{
+            //console.log(r);
+            //폼내용 초기화
+            //replyUpdateForm.reset();
+            //modal창 닫기 버튼 강제 누름
+            document.getElementById("reCloseButton"+replyNum).click();
+
+            replyList.innerHTML=r;
+
+        })
+    }
+})
+
+
 
 //댓 페이징
 
@@ -125,67 +166,11 @@ replyList.addEventListener("click",(e)=>{
 </div>
 <h3 class="comment-title my-3"></h3> */}
 
-function makeList(r){
-    more.setAttribute("data-replyList-page", r.pager.page*1+1);
-    more.setAttribute("data-replyList-totalPage", r.pager.totalPage);
-    let userName = replyList.getAttribute("data-user");
-    r=r.datas;
-    for(let i=0;i<r.length;i++){
-
-
-        if(userName == r[i].userName){
-            let div= document.createElement("div");
-            div.setAttribute("style","text-align: right;")
-
-        }
-
-
-        let tr = document.createElement("tr");
-
-        let td = document.createElement("td");
-        td.setAttribute("id","replyContents"+r[i].replyNum)
-        td.innerHTML=r[i].replyContents;
-        tr.append(td);
-        
-        td = document.createElement("td");
-        td.innerHTML=r[i].userName;
-        tr.append(td);
-
-        td = document.createElement("td");
-        let d = new Date(r[i].replyDate);
-        td.innerHTML=d.getFullYear()+"."+(d.getMonth()+1)+"."+d.getDate();
-        tr.append(td);
-
-        td = document.createElement("td");
-        td.innerHTML=r[i].replyJumsu;
-        tr.append(td);
-
-        if(userName == r[i].userName){
-			td = document.createElement("td");
-			let b = document.createElement("button")
-			b.innerHTML="삭제";
-			b.setAttribute("class", "del")
-			b.setAttribute("data-replyNum", r[i].replyNum)
-			td.append(b);
-			tr.append(td)
-
-			td = document.createElement("td");
-			b = document.createElement("button")
-			b.innerHTML="수정";
-			b.setAttribute("class", "update")
-			b.setAttribute("data-replyNum", r[i].replyNum)
-            //data-bs-toggle="modal" data-bs-target="#exampleModal"
-            b.setAttribute("data-bs-toggle","modal")
-            b.setAttribute("data-bs-target","#replyUpdateModal")
-			td.append(b);
-			tr.append(td)
-		}
-        replyList.append(tr);
 
 
 
-    }
-}
+
+
 
 
 //UPDATE DELETE

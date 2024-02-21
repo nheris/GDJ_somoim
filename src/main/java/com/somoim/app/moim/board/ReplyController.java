@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.somoim.app.member.MemberDTO;
 import com.somoim.app.util.Pager;
@@ -78,4 +79,21 @@ public class ReplyController {
 		
 		return "moim/main/board/replyListResult";
 	}
+	
+	//reply
+	@PostMapping("reply")
+	public String reply(ReplyDTO replyDTO, Model model, Pager pager, HttpSession session) throws Exception{
+		
+		
+		int result = replyService.info(replyDTO,session);
+		
+		//조회
+		List<ReplyDTO> ar = replyService.getList(replyDTO, pager);
+		
+		model.addAttribute("list", ar);
+		model.addAttribute("pager", pager);
+		
+		return "moim/main/board/replyListResult";
+	}
+	
 }

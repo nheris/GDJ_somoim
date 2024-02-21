@@ -1,6 +1,6 @@
 package com.somoim.app.moim.meet;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class MeetDTO {
 	private Long meetNum;

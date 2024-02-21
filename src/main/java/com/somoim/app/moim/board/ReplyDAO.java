@@ -36,4 +36,16 @@ public class ReplyDAO {
 	public int update(ReplyDTO replyDTO) throws Exception{
 		return sqlSession.update(NAMESPACE+"update", replyDTO);
 	}
+	
+	//reply
+	public ReplyDTO info(ReplyDTO replyDTO) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"info", replyDTO);
+	}
+	public int replyUpdate(ReplyDTO replyDTO) throws Exception{
+		return sqlSession.update(NAMESPACE+"replyUpdate", replyDTO);
+	}
+	public int reply(ReplyDTO replyDTO) throws Exception{
+		return sqlSession.insert(NAMESPACE+"reply", replyDTO);
+	}
+
 }
