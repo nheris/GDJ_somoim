@@ -13,7 +13,7 @@ public class JUnitTest extends MyTest {
 	@Autowired
 	private MemberDAO memberDAO;
 
-	//@Test
+	@Test
 	public void join_test() throws Exception{
 		MemberDTO memberDTO = new MemberDTO();
 		memberDTO.setUserName("qjatj");
