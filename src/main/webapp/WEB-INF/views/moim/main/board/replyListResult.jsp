@@ -73,6 +73,10 @@
 			
 		</div>
 		<div class="ms-5">
+			
+			<c:if test="${dto.replyDepth ne '0' }">
+			<span style="color: steelblue; font-weight: bolder;">@parent닉</span>
+			</c:if>
 			${dto.replyText}
 		</div>
 	</div>

@@ -27,7 +27,7 @@
 					FROM REPLY
 					WHERE BOARDNUM = #{replyDTO.boardNum}
 					<!-- ORDER BY REPLYNUM ASC) R) -->
-					ORDER BY REPLYREF ASC, REPLYSTEP ASC) R)
+					ORDER BY REPLYREF ASC, REPLYDATE ASC) R)
 		WHERE RN BETWEEN #{pager.startRow} AND #{pager.lastRow}
 	</select>
   
