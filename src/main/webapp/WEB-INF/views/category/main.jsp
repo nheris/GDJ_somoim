@@ -58,8 +58,7 @@
 									class="lni lni-circle-plus"></i> 문의게시판</a></li>
 							<li class="nav-item"><a class="nav-link" href="/notice/list"><i
 									class="lni lni-bookmark"></i> 공지게시판</a></li>
-							<li class="nav-item"><a class="nav-link"
-								href="/mypage/pay"><i
+							<li class="nav-item"><a class="nav-link" href="/mypage/pay"><i
 									class="lni lni-trash"></i> 구독 결제 하기</a></li>
 						</ul>
 						<div class="text-center">
@@ -75,10 +74,21 @@
 					<div class="row">
 						<div></div>
 						<!-- 안에 내용 수정해서 사용하세요 -->
-						<div class="col-12">
-							<h3>Category</h3>
+						<div class="col-12 text-center">
+							<h3>카테고리</h3>
 						</div>
-						<div class="col-12">
+							<div class="container mb-4 mt-4" name="searchFind">
+								<ul class="nav nav-pills list-group-horizontal d-flex justify-content-center" name="searchFind">
+									<li class="nav-item px-2"><a
+										class="nav-link active moimRegion" href="#"
+										data-selete="all">전체</a>
+									</li>
+									<li class="nav-item px-2" name="find0" id="find0">
+										<a class="nav-link moimRegion" href="#"
+										data-selete="find0">내지역만</a>
+									</li>
+									</ul>
+									</div>
 							<div class="container mb-4 mt-4" name="categorySelect">
 								<ul
 									class="nav nav-pills list-group-horizontal d-flex justify-content-center"

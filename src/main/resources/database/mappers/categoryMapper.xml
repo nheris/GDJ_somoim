@@ -71,13 +71,29 @@
 			</otherwise>
 		</choose>
 	</sql>
+	
+		<sql id="boardCategorys">
+		WHERE
+		<choose>
+			<when test="pager.searchFind=='find0'">
+				MOIMREGION Like #{moimRegion}
+			</when>
+			<otherwise>
+				MOIMREGION Like '%''%'
+			</otherwise>
+		</choose>
+	</sql>
+	
+	
 	<select id="getListCategory" parameterType="Map" resultMap="listReault">
 		SELECT * FROM
 		(SELECT ROWNUM R, N.* FROM
-		(
-		SELECT * FROM MOIM LEFT JOIN MOIMFILE USING (MOIMNUM) LEFT JOIN MOIMMEMBER USING (MOIMNUM)
+		(SELECT * FROM 
+		(SELECT * FROM MOIM LEFT JOIN MOIMFILE USING (MOIMNUM) LEFT JOIN MOIMMEMBER USING (MOIMNUM)
 		 <include refid="moimCategory"></include>
 		ORDER BY MOIMNUM DESC
+		)
+		<include refid="boardCategorys"></include>
 		)
 		N)
 		WHERE R BETWEEN #{pager.startRow} AND #{pager.lastRow}
