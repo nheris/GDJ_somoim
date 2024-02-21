@@ -47,6 +47,7 @@ public class ChatHandler extends TextWebSocketHandler{
 		List<MemberDTO> list = chatMessageService.roomUserList(chatMessageDTO);
 		
 		int result = chatMessageService.addChat(chatMessageDTO);
+		System.out.println("handle session : "+session.getAttributes().get("roomNum"));
 		
 		//전송된 메시지를 List의 모든 세션에 전송
 		for (WebSocketSession s : sessionList) {

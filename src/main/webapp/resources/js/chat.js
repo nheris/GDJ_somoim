@@ -34,7 +34,9 @@ function scroller(){
 sendMsg.addEventListener('keyup',(e) => {
     if(sendMsg.value != ""){
         if(e.key == 'Enter' || e.keyCode == '13'){
-            const roomCh = chatRoomNum.getAttribute('data-roomNum');
+            const roomCh = chatRoomNum.getAttribute('data-chatRoom');
+            console.log("roomCh : "+roomCh);
+            
             const chatMessage = {
                 "userName" : userCh.value,
                 "chatText" : sendMsg.value,
@@ -61,6 +63,7 @@ sock.onopen = function(){
 }
 
 sock.onmessage =  function (e){
+    console.log("onmessage");
     const week = new Array('SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT');
     let today = new Date(e.timeStamp);
 
@@ -72,14 +75,13 @@ sock.onmessage =  function (e){
 
     console.log("e : "+e.data);
     let data = e.data;
-    console.log(data);
+    
     let ar = data.split(",");
     // {"userName":"user2"
     let user = ar[0].trim().substring(13,ar[0].length-1);
     let str = ar[1].trim().substring(12,ar[1].length-1);
 
-    console.log(user);
-    console.log(userCh.value);
+    console.log(user +" : "+userCh.value);
     if(user === userCh.value){
         console.log('mySend');
         mySend(str, date);
@@ -97,10 +99,10 @@ sock.onerror = function(){
     console.log('error');
 }
 
-// sock.onclose = function(){
-//     console.log('onClose');
+sock.onclose = function(){
+    console.log('onClose');
     
-// }
+}
 
 {/* 
 <div class="message-data">
@@ -159,14 +161,14 @@ function otherSend(msg, date){
 }
 
 let chatRoom = document.querySelector(".chat-list");
-console.log(chatRoom);
+
 chatRoom.addEventListener('click',(e)=>{
     chat_record.innerHTML = null;
     if(e.target.classList.contains('clearfix')){
         let n = e.target.getAttribute('data-roomNum');
-        chatRoomNum.chatRoomNum = n;
-        console.log("chatRoomNum : "+chatRoomNum.getAttribute('data-roomNum'));
-        console.log("room num : "+n);
+        
+        chatRoomNum.setAttribute('data-chatRoom',n);
+        console.log("n : "+n +" +chatRoomNum.getAttribute('data-roomNum') : "+chatRoomNum.getAttribute('data-roomNum'));
         chat_record.style.visibility = 'visible';
         chat_message.style.visibility = 'visible';
         

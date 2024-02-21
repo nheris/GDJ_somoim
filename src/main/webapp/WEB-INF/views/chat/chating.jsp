@@ -36,9 +36,8 @@
 											<div class="name my-4">Vincent Porter</div>
 										</div>
 									</li>
-									<span>${moimChat.moimName}</span>
 									<c:forEach var="item" items="${chatRoomList}">
-										<li id="chatRoomNum" data-roomNum="${item}" class="clearfix">
+										<li id="chatRoomNum" data-roomNum="${item}" data-chatRoom="${item}" class="clearfix">
 											<img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="avatar">
 											<div class="about">
 												<div class="name my-4">${item}</div>
