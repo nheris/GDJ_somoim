@@ -91,7 +91,13 @@ public class MemberService {
 	public MemberDTO submitJoinApp(MemberDTO memberDTO)throws Exception{
 		
 		MemberDTO dto = memberDAO.getDetail(memberDTO);
+		System.out.println("dto확인"+dto);
+		System.out.println("memberDTO확인"+memberDTO.getUserName());
 		if(dto !=null) {
+			
+			memberDTO.setNickName(dto.getNickName());
+			memberDTO.setProfile(dto.getProfile());
+			memberDTO.setLoginNum(dto.getLoginNum());
 			return memberDTO;
 		}
 		return dto;

@@ -1,16 +1,10 @@
 package com.somoim.app.member;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.HashMap;
+
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,13 +13,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 
 
@@ -33,148 +24,66 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Controller
 @RequestMapping("/member/*")
-
 public class MemberController {
+
 	@Autowired
 	private MemberService memberService;
+	@Autowired
+	private KakaoAPI kakaoAPI;
 	
-	public HashMap<String, Object> getUserInfo(String accessToken) {
-	    HashMap<String, Object> userInfo = new HashMap<>();
-	    String reqUrl = "https://kapi.kakao.com/v2/user/me";
-	    try{
-	        URL url = new URL(reqUrl);
-	        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-	        conn.setRequestMethod("POST");
-	        conn.setRequestProperty("Authorization", "Bearer " + accessToken);
-	        conn.setRequestProperty("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
-
-	        int responseCode = conn.getResponseCode();
-	       
-	        BufferedReader br;
-	        if (responseCode >= 200 && responseCode <= 300) {
-	            br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-	        } else {
-	            br = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
-	        }
-
-	        String line = "";
-	        StringBuilder responseSb = new StringBuilder();
-	        while((line = br.readLine()) != null){
-	            responseSb.append(line);
-	        }
-	        String result = responseSb.toString();
-	        
-	        ObjectMapper objectMapper = new ObjectMapper();
-
-	     // Json 문자열을 JsonNode로 파싱
-	     JsonNode jsonNode = objectMapper.readTree(result);
-
-	     // properties와 kakao_account 필드에 접근하여 JsonObject로 변환
-	     JsonNode propertiesNode = jsonNode.get("properties");
-	     JsonNode kakaoAccountNode = jsonNode.get("kakao_account");
-	     
-
-	     String nickname = propertiesNode.path("nickname").asText();
-	        String email = kakaoAccountNode.path("email").asText();
-	        
-	        userInfo.put("nickname", nickname);
-	        userInfo.put("email", email);
-
-	        br.close();
-
-	    }catch (Exception e){
-	        e.printStackTrace();
-	    }
-	    return userInfo;
-	}
 	
-	// 카카오 로그인 access_token 리턴
-	public String getAccessToken(String code) throws Exception {
-	    String access_Token = "";
-	    String refresh_Token = "";
-	    String reqURL = "https://kauth.kakao.com/oauth/token";
-
-	    try {
-	        URL url = new URL(reqURL);
-	        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-
-	        //POST 요청을 위해 기본값이 false인 setDoOutput을 true로
-	        conn.setRequestMethod("POST");
-	        conn.setRequestProperty("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
-	        conn.setDoOutput(true);
-
-	        //POST 요청에 필요로 요구하는 파라미터 스트림을 통해 전송
-	        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
-	        StringBuilder sb = new StringBuilder();
-	        sb.append("grant_type=authorization_code");
-	        sb.append("&client_id=f596bc753587abe6cf4b789ef8f12223");  //본인이 발급받은 key
-	        sb.append("&redirect_uri=http://localhost/member/login");     // 본인이 설정해 놓은 경로
-	        sb.append("&code=" + code);
-	        bw.write(sb.toString());
-	        bw.flush();
-
-	        //결과 코드가 200이라면 성공
-	        int responseCode = conn.getResponseCode();
-	        System.out.println("responseCode : " + responseCode);
-
-	        //요청을 통해 얻은 JSON타입의 Response 메세지 읽어오기
-	        BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-	        String line = "";
-	        String result = "";
-
-	        while ((line = br.readLine()) != null) {
-	            result += line;
-	        }
-	        System.out.println("response body : " + result);
-
-	     // 요청을 통해 얻은 JSON 타입의 Response 메시지를 JsonObject로 파싱
-	     //objectmapper
-	        ObjectMapper objectMapper = new ObjectMapper();
-	        Map<String, String> jsonMap= objectMapper.readValue(result, new TypeReference<Map<String, String>>(){});
-
-	        // JsonObject에서 access_token과 refresh_token 값을 가져옴
-	        access_Token = jsonMap.get("access_token");
-	        refresh_Token = jsonMap.get("refresh_token");
-
-	        System.out.println("access_token : " + access_Token);
-	        System.out.println("refresh_token : " + refresh_Token);
-	        br.close();
-	        bw.close();
-	    } catch (IOException e) {
-	        // TODO Auto-generated catch block
-	        e.printStackTrace();
-	    }
-
-	    return access_Token;
-	}
+	
+	@GetMapping("login")
+	public String getLogin(Model model)throws Exception{
+		model.addAttribute("kakaoApiKey", kakaoAPI.getKakaoApiKey());
+		model.addAttribute("redirectUri", kakaoAPI.getKakaoRedirectUri());
+		System.out.println(kakaoAPI.getKakaoApiKey()+"왜여기선안돼는거얌");
+		System.out.println(kakaoAPI.getKakaoRedirectUri());
 		
-	
-	// 카카오 sns 로그인 redirect 페이지
-	@RequestMapping(value = "/login")
-	public String snsKakaologin(String code, HttpServletRequest request) throws Exception {
-	  // 전달 받은 code를 사용해서 access_token 받기
-	  String accessToken = getAccessToken(code);
-	  //return받은 access_token으로 사용자 정보 가져오기
-	  HashMap<String, Object> userInfo = getUserInfo(accessToken);
 
-	  String phone = (String) userInfo.get("phone_number");
-	  String strPhone = phone.replaceAll("-", "");
-	  strPhone = strPhone.replace("+82 ", "0");
-	  
-	  if(userInfo != null) {
-	    //사용자 정보가 존재하면 SNS로그인 처리해주도록 redirect
-	    return "redirect:/login/snsLoginWithPhone?snsType=K&phone=" + strPhone;
-	  } else {
-	    //회원가입 페이지로 redirect
-	    return "redirect:/joinApp/join?snsType=K";
-	  }
-	  
+        return "member/login";
 	}
+
+	
+	
+    @GetMapping("joinApp")
+    public String kakaoLogin(@RequestParam String code,MemberDTO memberDTO,HttpSession session) throws Exception{
+        // 1. 인가 코드 받기 (@RequestParam String code)
+
+        // 2. 토큰 받기
+        String accessToken = kakaoAPI.getAccessToken(code);
+        session.setAttribute("accessToken", accessToken);
+        // 3. 사용자 정보 받기
+        Map<String, Object> userInfo = kakaoAPI.getUserInfo(accessToken);
+
+        String getUserName = (String)userInfo.get("email");
+        String nickname = (String)userInfo.get("nickname");
+        memberDTO.setUserName(getUserName);
+        
+        System.out.println(memberDTO.getUserName()); 
+        System.out.println("email = " + getUserName);
+        System.out.println("nickname = " + nickname);
+        System.out.println("accessToken = " + accessToken);
+        
+        MemberDTO dto = memberService.submitJoinApp(memberDTO);
+        System.out.println("컨트롤러 dto확인"+dto);
+		if(dto==null) {
+			session.setAttribute("appmember",memberDTO);
+			
+			return "member/joinApp";
+		}else {
+			
+			System.out.println(dto.getUserName()+"왜 로그인이 안되니?");
+			session.setAttribute("appmember",dto);
+			return "redirect:../";
+		}
+    }
+	
 	
 	//구글 로그인
-	@GetMapping("joinApp")
-	public void setJoinApp(ModelAndView mv)throws Exception{		
-	}
+//	@GetMapping("joinApp")
+//	public void setJoinApp(ModelAndView mv)throws Exception{		
+//	}
 	
 	@PostMapping("joinApp")
 	public String setJoinApp(MemberDTO memberDTO,MultipartFile attachs,Model model)throws Exception{
@@ -203,13 +112,20 @@ public class MemberController {
 		MemberDTO dto = memberService.submitJoinApp(memberDTO);
         
 		if(dto==null) {
-			session.setAttribute("appmember",memberDTO);      			
+			session.setAttribute("goomember",memberDTO);      			
 			return "success";
 		}else {
 			System.out.println(dto.getUserName()+"왜 로그인이 안되니?");
-			session.setAttribute("member",dto);
+			session.setAttribute("goomember",dto);
 			return "goHome";
 		}
+	}
+	
+	@PostMapping("/emailAuth")
+	@ResponseBody
+	public void mailCheck(String email) {
+		System.out.println("이메일 인증 요청이 들어옴!");
+		System.out.println("이메일 인증 이메일 : " + email);
 	}
 	
 	
@@ -252,10 +168,7 @@ public class MemberController {
 
 		return "member/result";
 	}
-	@GetMapping("login")
-	public void getLogin(MemberDTO memberDTO)throws Exception{
 
-	}
 
 	@PostMapping("login")
 	public String getLogin(MemberDTO memberDTO,HttpSession session,Model model)throws Exception{
@@ -276,9 +189,28 @@ public class MemberController {
 		return "redirect:../";
 	}
 	@GetMapping("logout")
-	public String getLogout(HttpSession session)throws Exception{
+	public String getLogout(HttpSession session,Model model)throws Exception{
+		
+
+		session.setAttribute("appmember", null);
 		session.setAttribute("member",null);
+		
 		return "redirect:../";
 	}
+    @GetMapping("goologout")
+    public void logout(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        // 1. 구글 로그아웃
+        // 구글에서 로그아웃하는 로직을 추가해야 합니다. 구글의 로그아웃 엔드포인트를 호출하거나 구글 API를 사용하여 로그아웃합니다.
+
+        // 2. 로컬 세션 만료
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            session.invalidate(); // 세션 만료
+        }
+        String googleLogoutUrl = "https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=http://localhost:80/";
+        response.sendRedirect(googleLogoutUrl);
+        
+        
+    }
 
 }

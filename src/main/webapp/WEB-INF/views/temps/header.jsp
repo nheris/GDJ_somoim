@@ -39,17 +39,28 @@
 						<!-- navbar collapse -->
 						<div class="login-button">
 							<ul>
-								<c:if test="${member eq null}">
+								<c:if test="${member eq null and appmember eq null and goomember eq null}">
 									<li><a href="/member/login"><i class="lni lni-enter"></i>
 											로그인</a></li>
 									<li><a href="/member/join"><i class="lni lni-user"></i>
 											회원가입</a></li>
 								</c:if>
-								<c:if test="${member ne null}">
+								<c:if test="${member ne null or appmember ne null or goomember ne null}">
 									<li><a href="/mypage/main"><i class="lni lni-user"></i>
 											마이페이지</a></li>
-									<li><a href="/member/logout"><i class="lni lni-ban"></i>
-											로그아웃</a></li>
+									<c:if test="${appmember eq null and goomember eq null}">
+										<li><a href="/member/logout"><i class="lni lni-ban"></i>
+												로그아웃</a></li>
+									</c:if>
+									<c:if test="${appmember ne null}">
+									<li><a href="https://kauth.kakao.com/oauth/logout?client_id=f596bc753587abe6cf4b789ef8f12223&logout_redirect_uri=http://localhost/member/logout
+										"><i class="lni lni-ban"></i>
+										로그아웃1</a></li>
+									</c:if>	
+									<c:if test="${goomember ne null}">
+										<li><a href="/member/goologout"><i class="lni lni-ban"></i>
+											로그아웃2</a></li>
+									</c:if>
 								</c:if>
 							</ul>
 						</div>

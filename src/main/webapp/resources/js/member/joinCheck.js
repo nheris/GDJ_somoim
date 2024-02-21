@@ -258,9 +258,25 @@ btn_area.addEventListener("click",()=>{
 })
 
 const p_pattern =/^[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}/;
+
+
 const e_pattern = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-za-z0-9\-]+/;
 
-
+$(".email_auth_btn").click(function(){	     	 
+    var email = $('#email').val();
+    $.ajax({
+        type : "POST",
+        url : "member/emailAuth",
+        data : {email : email},
+        success : function(data){
+            alert("인증번호가 전송되었습니다");
+            email_auth_cd=data;
+        },
+        error: function(data){
+            alert("메일 발송 실패");
+        }
+    })
+})
 
 btn.addEventListener("click",(e)=>{
     

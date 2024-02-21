@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
 <meta charset="utf-8" />
@@ -12,7 +12,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <!-- CSS 임포트 -->
 <c:import url="../temps/head_css.jsp"></c:import>
-<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 </head>
 
 <body>
@@ -68,13 +67,12 @@
 										  data-theme="outline" data-text="sign_in_with" data-shape="rectangular" data-logo_alignment="left">
 										</div>
 
-                                        <a id="kakao-login-btn" href="javascript:loginWithKakao()">
+                                        <a id="kakao-login-btn" href="https://kauth.kakao.com/oauth/authorize?client_id=${kakaoApiKey}&redirect_uri=${redirectUri}&response_type=code">
                                             <img src="https://k.kakaocdn.net/14/dn/btroDszwNrM/I6efHub1SN5KCJqLm1Ovx1/o.jpg" width="222"
                                               alt="카카오 로그인 버튼" />
                                           </a>
-                                          <p id="token-result"></p>
-
-                                    </li>
+                         
+                                        </li>
                                 </ul>
                             </div>
                             <p class="outer-link">Don't have an account? <a href="./join">회원가입</a>
@@ -92,9 +90,7 @@
 	<a href="#" class="scroll-top btn-hover"> <i
 		class="lni lni-chevron-up"></i>
 	</a>
-    <script>Kakao.init('41504573c73e97d71e5e72ea413250b3')</script>
     <script src="../resources/js/member/google.js"></script>
-    <script src="../resources/js/member/kakao.js"></script>
     <script src="https://accounts.google.com/gsi/client" async defer></script>
 	
     

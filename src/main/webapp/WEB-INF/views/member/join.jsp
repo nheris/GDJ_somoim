@@ -127,10 +127,19 @@
                                 <label for="phone">전화번호</label>
                                 <input name="phone" id="phone" type="text">
                             </div>
+
+
+
                             <div class="form-group">
                                 <label for="email">이메일</label>
-                                <input name="email" id="email" type="email">
+                                <input type="text" placeholder="이메일" name="email" id="email" class="email">
+                                <button type="button" id="email_auth_btn" class="email_auth_btn">인증번호 받기</button>
                             </div>
+                            <input type="text" placeholder="인증번호 입력" id="email_auth_key">
+
+                            
+
+
                             <div class="form-group">
                                 <label for="attachs">사진첨부</label>
                                 <input name="attachs" id="attachs" type="file">
