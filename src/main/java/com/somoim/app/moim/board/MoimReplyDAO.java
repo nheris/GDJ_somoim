@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class ReplyDAO {
+public class MoimReplyDAO {
 	@Autowired
 	private SqlSession sqlSession;
 	private final String NAMESPACE ="com.somoim.app.moim.board.ReplyDAO.";
