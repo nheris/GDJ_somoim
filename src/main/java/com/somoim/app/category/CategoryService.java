@@ -36,13 +36,17 @@ public List<MoimDTO> list(MemberDTO memberDTO) throws Exception {
 	
 }
 
-public List<MoimDTO> getListCategory(Pager pager, MoimDTO moimDTO)throws Exception{
+public List<MoimDTO> getListCategory(Pager pager, MoimDTO moimDTO, HttpSession session)throws Exception{
+	MemberDTO a = (MemberDTO)session.getAttribute("member");
+	System.out.println("주소"+a.getAddress());
 	Map<String, Object> map = new HashMap<String, Object>();
 	map.put("pager", pager);
 	map.put("CategoryDTO", moimDTO);
+//	map.put("member", a);
 	//System.out.println(moimDTO.getMoimRegion());
 	System.out.println(pager.getCategorySelect());
-	System.out.println(pager.getSearchFind());
+	System.out.println("MoimRegion : "+moimDTO.getMoimRegion());
+	System.out.println("Find : "+pager.getSearchFind());
 	pager.makeRow();
 	pager.makeNum(categoryDAO.getTotalCount(map));
 	pager.setPerPage(5L);

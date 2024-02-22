@@ -36,7 +36,7 @@ function getcategoryList(page) {
             page +
             "&categorySelect=" +
             category +
-            "&moimRegion=" +
+            "&searchFind=" +
             region,
         {
             method: "GET",

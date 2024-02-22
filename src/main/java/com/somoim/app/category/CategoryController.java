@@ -40,8 +40,8 @@ public class CategoryController {
 	
 	
 	@GetMapping("categoryList")
-	public String getListCategory (Pager pager, Model model, MoimDTO moimDTO)throws Exception{
-		List<MoimDTO> ar = categoryService.getListCategory(pager, moimDTO);
+	public String getListCategory (Pager pager, Model model, MoimDTO moimDTO, HttpSession session)throws Exception{
+		List<MoimDTO> ar = categoryService.getListCategory(pager, moimDTO, session);
 		model.addAttribute("data", ar);
 		model.addAttribute("pager",pager);
 		return "category/category";

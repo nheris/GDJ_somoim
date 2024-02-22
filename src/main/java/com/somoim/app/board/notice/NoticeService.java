@@ -111,6 +111,8 @@ public class NoticeService implements BoardService{
 		System.out.println(pager.getStartNum());
 		System.out.println(pager.getLastNum());
 		System.out.println(pager.getSearch());
+		System.out.println("ㅅ"+pager.getSearchFind());
+		System.out.println(pager.getCategorySelect());
 		return noticeDAO.getListJson(map);
 	}
 

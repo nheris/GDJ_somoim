@@ -85,7 +85,7 @@
 									</li>
 									<li class="nav-item px-2" name="find0" id="find0">
 										<a class="nav-link moimRegion" href="#"
-										data-selete="find0">내지역만</a>
+										data-selete="find0">내지역만(미구현)</a>
 									</li>
 									</ul>
 									</div>
