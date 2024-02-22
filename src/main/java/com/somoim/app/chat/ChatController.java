@@ -36,14 +36,19 @@ public class ChatController {
 		
 		memberDTO = (MemberDTO)session.getAttribute("member");
 		MemberDTO dto = memberService.getLogin(memberDTO);
-
+		
 		mv.addObject("roomNum",session.getAttribute("roomNum"));
-
+		System.out.println(mv.getModelMap());
 //		List<ChatMessageDTO> chatHistory = chatMessageService.chatHistory(chatMessageDTO);
 //		mv.addObject("chatHistory", chatHistory);
-		chatMessageDTO.setChatRoomNum((Long)session.getAttribute("roomNum"));
-		MoimDTO moimChat = chatMessageService.moimChat(chatMessageDTO);
-		mv.addObject("moimChat",moimChat);
+
+//		chatMessageDTO.setChatRoomNum((Long)session.getAttribute("roomNum"));
+//		System.out.println(chatMessageDTO.getChatRoomNum());
+//		System.out.println(chatMessageDTO.getUserName());
+//		MoimDTO moimChat = chatMessageService.moimChat(chatMessageDTO);
+//		System.out.println(moimChat.getMoimName());
+//		mv.addObject("moimChat",moimChat);
+		
 		
 		List<Long> chatRoomList = chatMessageService.chatRoomList(dto);
 		mv.addObject("chatRoomList", chatRoomList);

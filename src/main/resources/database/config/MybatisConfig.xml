@@ -18,6 +18,8 @@
   		<typeAlias type="com.somoim.app.board.qna.QnaDTO" alias="QnaDTO"/>
   		<typeAlias type="com.somoim.app.category.categoryDTO" alias="categoryDTO"/>		
         <typeAlias type="com.somoim.app.payment.ClientDTO" alias="ClientDTO"/>
-  		<typeAlias type="com.somoim.app.member.role.RoleDTO" alias="RoleDTO"/>  	
+  		<typeAlias type="com.somoim.app.member.role.RoleDTO" alias="RoleDTO"/>
+  		<typeAlias type="com.somoim.app.chat.ChatMessageDTO" alias="ChatMessageDTO"/>
+  		<typeAlias type="java.util.Map" alias="Map"/>
   	</typeAliases>
   </configuration>
