@@ -34,4 +34,29 @@
   	<select id="getOrders" resultType="OrdersDTO" parameterType="OrdersDTO">
   		SELECT * FROM ORDERS WHERE CUSTOMERKEY=#{customerKey} AND PTYPENUM=#{pTypeNum} AND ORDERSTATUS=0
   	</select>
+  	
+  	<!-- 결제된 주문정보 업데이트 -->
+  	<update id="upOrders" parameterType="OrdersDTO">
+  		UPDATE ORDERS SET ORDERSTATUS = #{orderStatus} WHERE ORDERID=#{orderId}
+  	</update>
+  	
+  	<!-- 오더ID로 조회 -->
+  	<select id="searchOrder" parameterType="OrdersDTO" resultType="OrdersDTO">
+  		SELECT * FROM ORDERS WHERE ORDERID=#{orderId}
+  	</select>
+  	
+  	<!-- 결제된 Payment 정보 저장 -->
+  	<insert id="setPayment" parameterType="PaymentDTO">
+  		INSERT INTO PAYMENT VALUES(#{paymentKey},#{orderId},#{customerKey},#{keyName},#{pTypeNum},#{paymentDay},#{amount},#{depositKey})
+  	</insert>
+  	
+  	<!-- 결제 상태 변경된 Payment 정보 업데이트 -->
+  	<update id="upPayment" parameterType="PaymentDTO">
+  		UPDATE PAYMENT SET PAYMENTDAY=#{paymentDay} WHERE PAYMENTKEY=#{paymentKey}
+  	</update>
+  	
+  	<!-- 가상계좌 미결제 상태 Payment 조회 -->
+  	<select id="getPayment" parameterType="PaymentDTO" resultType="PaymentDTO">
+  		SELECT * FROM PAYMENT WHERE ORDERID=#{orderId}
+  	</select>
   </mapper>

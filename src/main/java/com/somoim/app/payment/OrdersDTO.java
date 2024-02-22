@@ -10,14 +10,13 @@ public class OrdersDTO {
 	private Date oderDate;
 	private Integer orderStatus;
 	private Integer amount;
-	private Integer pTypeNum;
-	
-	
-	
+	private Integer pTypeNum;	
+
+
 	@Override
 	public String toString() {
 		return "OrdersDTO [orderId=" + orderId + ", customerKey=" + customerKey + ", oderDate=" + oderDate
-				+ ", oderStatus=" + orderStatus + ", amount=" + amount + ", pTypeNum=" + pTypeNum + "]";
+				+ ", orderStatus=" + orderStatus + ", amount=" + amount + ", pTypeNum=" + pTypeNum + "]";
 	}
 
 	public void creatOderId() {

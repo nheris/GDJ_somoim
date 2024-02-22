@@ -1,6 +1,8 @@
 package com.somoim.app.payment;
 
-import java.sql.Date;
+
+
+import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
@@ -11,22 +13,24 @@ public class PaymentDTO {
 	private String paymentKey;
 	private String customerKey;
 	private String keyName;
-	private Long pTypeNum;
-	private Date paymentDay;
+	private Integer pTypeNum;
+	private java.sql.Date paymentDay;
 	private Long amount;
+	private String depositKey;
 	
-	
-
-
 	
 	@Override
 	public String toString() {
 		return "PaymentDTO [orderId=" + orderId + ", paymentKey=" + paymentKey + ", customerKey=" + customerKey
 				+ ", keyName=" + keyName + ", pTypeNum=" + pTypeNum + ", paymentDay=" + paymentDay + ", amount="
-				+ amount + "]";
+				+ amount + ", depositKey=" + depositKey + "]";
 	}
-
-	
+	public String getDepositKey() {
+		return depositKey;
+	}
+	public void setDepositKey(String depositKey) {
+		this.depositKey = depositKey;
+	}
 	public String getOrderId() {
 		return orderId;
 	}
@@ -51,16 +55,16 @@ public class PaymentDTO {
 	public void setKeyName(String keyName) {
 		this.keyName = keyName;
 	}
-	public Long getpTypeNum() {
+	public Integer getpTypeNum() {
 		return pTypeNum;
 	}
-	public void setpTypeNum(Long pTypeNum) {
+	public void setpTypeNum(Integer pTypeNum) {
 		this.pTypeNum = pTypeNum;
 	}
 	public Date getPaymentDay() {
 		return paymentDay;
 	}
-	public void setPaymentDay(Date paymentDay) {
+	public void setPaymentDay(java.sql.Date paymentDay) {
 		this.paymentDay = paymentDay;
 	}
 	public Long getAmount() {
@@ -69,6 +73,5 @@ public class PaymentDTO {
 	public void setAmount(Long amount) {
 		this.amount = amount;
 	}
-
 	
 }

@@ -7,12 +7,22 @@ const pTypeNum = document.getElementById("pTypeNum").getAttribute("data-ptype");
 
 price = parseInt(price.replace(/,/g,""));
 
-
+let ordersDTO = {"amount":price,"pTypeNum":pTypeNum}
+let clientDTO = {"keyName":"toss"}
 
 fetch("./payment",{
   method: "POST",
   headers: {"Content-Type": "application/json"},
-  body: JSON.stringify({amount: price,pTypeNum: pTypeNum,keyName: "toss"})
+  body: JSON.stringify(
+    {
+      "ordersDTO":{
+        "amount": price,
+        "pTypeNum": pTypeNum
+      },
+      "clientDTO":{
+        "keyName": "toss"
+      }
+    })
   }).then(r=>r.json()).then(r=>{
 
   const customerKey = r.orders.customerKey;
@@ -39,7 +49,7 @@ fetch("./payment",{
             orderId: r.orders.orderId,
             orderName: orderName,
             successUrl: window.location.origin+"/pay/success",
-            failUrl: window.location.origin+"/pay/success",
+            failUrl: window.location.origin+"/pay/fail",
           });
     }
   });
