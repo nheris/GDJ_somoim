@@ -1,6 +1,9 @@
 package com.somoim.app.chat;
 
 import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
 
 public class ChatMessageDTO {
 
@@ -8,9 +11,9 @@ public class ChatMessageDTO {
 	private Long chatRoomNum;
 	private String userName;
 	private String chatText;
-	private Date chatMessageStamp;
-
-
+	private String chatTimeStamp;
+	
+	
 	public Long getMessageNum() {
 		return messageNum;
 	}
@@ -35,11 +38,16 @@ public class ChatMessageDTO {
 	public void setChatText(String chatText) {
 		this.chatText = chatText;
 	}
-	public Date getChatMessageStamp() {
-		return chatMessageStamp;
+	public String getChatTimeStamp() {
+		return chatTimeStamp;
 	}
-	public void setChatMessageStamp(Date chatMessageStamp) {
-		this.chatMessageStamp = chatMessageStamp;
+	public void setChatTimeStamp(Date chatTimeStamp) {
+		SimpleDateFormat format = new SimpleDateFormat("hh:mm a E", Locale.US);
+		Calendar c = Calendar.getInstance();
+		c.setTime(chatTimeStamp);
+		c.add(Calendar.HOUR, 9);
+		
+		this.chatTimeStamp = format.format(c.getTime());
 	}
 
 

@@ -4,11 +4,17 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <!-- mapper namespace는 비우면 에러 -->
   <mapper namespace="com.somoim.app.member.MemberDAO">
+  
+  	<select id="checkPw" parameterType="MemberDTO" resultType="int">
+  		SELECT COUNT(*) FROM MEMBER
+  		WHERE USERNAME=#{userName} AND EMAIL=#{email}
+  	</select>  	  
+  
   	<update id="setPasswordUpdate" parameterType="MemberDTO">
   		UPDATE MEMBER
   		SET 
   			PASSWORD = #{password}
-  		WHERE USERNAME = #{userName}
+  		WHERE USERNAME = #{userName} AND EMAIL=#{email}
   	</update>
   	
   	<update id="setUpdate" parameterType="MemberDTO">
@@ -24,7 +30,7 @@
   	<insert id="setJoin" parameterType="MemberDTO">
   		INSERT INTO MEMBER
   		VALUES
-  		(#{userName},#{password},#{nickName},#{name},#{userBirth},#{address},#{phone},#{email},#{customerKey})
+  		(#{userName},#{password},#{nickName},#{name},#{userBirth},#{address},#{phone},#{email},#{customerKey},#{loginNum})
   	</insert>
   	
   	<insert id="setProfileJoin" parameterType="ProfileDTO">
@@ -59,6 +65,7 @@
   		<result column="ADDRESS" property="address"/>
  		<result column="PHONE" property="phone"/>
   		<result column="EMAIL" property="email"/>
+  		<result column="LOGINNUM" property="loginNum"/>
   			<association property="profile" javaType="ProfileDTO">
   		 		<id column="FILENUM" property="fileNum"/>
   		 		<result column="FILENAME" property="fileName"/>

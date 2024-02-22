@@ -32,17 +32,17 @@
 
 	<div class="container">
 		<form method="POST" enctype="multipart/form-data">
-						<c:if test="${board eq '문의게시판'}">
-					<div class=" mb-3">
-						<input type="radio" class="btn-check" name="boardSecret"
-							id="success-outlined" autocomplete="off" checked value="0"> <label
-							class="btn btn-outline-secondary" for="success-outlined">일반글</label>
+			<c:if test="${board eq '문의게시판'}">
+				<div class=" mb-3">
+					<input type="radio" class="btn-check" name="boardSecret"
+						id="success-outlined" autocomplete="off" checked value="0">
+					<label class="btn btn-outline-secondary" for="success-outlined">일반글</label>
 
-						<input type="radio" class="btn-check" name="boardSecret"
-							id="danger-outlined" autocomplete="off" value="1"> <label
-							class="btn btn-outline-secondary" for="danger-outlined">비밀글</label>
-					</div>
-				</c:if>
+					<input type="radio" class="btn-check" name="boardSecret"
+						id="danger-outlined" autocomplete="off" value="1"> <label
+						class="btn btn-outline-secondary" for="danger-outlined">비밀글</label>
+				</div>
+			</c:if>
 			<div class="mb-2">
 				<label for="CATEGORY" name="boardCategory" class="form-label">Category</label>
 				<select class="form-select" aria-label="Default select example"
@@ -66,7 +66,7 @@
 				</div>
 			</div>
 			<div class="mb-3">
-				<label for="boardText" class="form-label" id="boardText">Contents</label>
+				<label for="boardText" class="form-label">Contents</label>
 				<textarea class="form-control" id="boardText" rows="3"
 					name="boardText">${boardDTO.boardText}</textarea>
 			</div>
@@ -83,7 +83,7 @@
 
 
 	<!-- ========================= JS improt ========================= -->
-	<script src="/resources/js/board/fileDelete.js"></script>
+	<script src="/resources/js/board/boardAdd.js"></script>
 	<c:import url="../temps/footer.jsp"></c:import>
 </body>
 </html>
