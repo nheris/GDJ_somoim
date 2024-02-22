@@ -18,6 +18,16 @@
   		<typeAlias type="com.somoim.app.board.qna.QnaDTO" alias="QnaDTO"/>
   		<typeAlias type="com.somoim.app.category.categoryDTO" alias="categoryDTO"/>		
         <typeAlias type="com.somoim.app.payment.ClientDTO" alias="ClientDTO"/>
-  		<typeAlias type="com.somoim.app.member.role.RoleDTO" alias="RoleDTO"/>  	
+  		<typeAlias type="com.somoim.app.member.role.RoleDTO" alias="RoleDTO"/>
+        
+        <typeAlias type="com.somoim.app.moim.meet.MeetDTO" alias="MeetDTO"/>
+        <typeAlias type="com.somoim.app.moim.meet.MeetFileDTO" alias="MeetFileDTO"/>
+        
+        <typeAlias type="com.somoim.app.moim.board.MoimBoardDTO" alias="MoimBoardDTO"/>
+        <typeAlias type="com.somoim.app.moim.board.MoimBoardFileDTO" alias="MoimBoardFileDTO"/>
+        
+        
+        <typeAlias type="com.somoim.app.moim.board.ReplyDTO" alias="ReplyDTO"/>
+         	
   	</typeAliases>
   </configuration>
