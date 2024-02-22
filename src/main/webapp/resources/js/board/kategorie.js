@@ -15,7 +15,7 @@ navLinks.forEach((link) => {
 
         console.log("선택된 카테고리:", category);
         page = "";
-        getNoticeList(listsear.value, page, "", category); // 페이지 변수 전달
+        getNoticeList(listsear.value, page, searchFind.value, category); // 페이지 변수 전달
     });
 });
 

@@ -38,8 +38,24 @@ public class NoticeController {
 	public String active() {
 		return "";
 	}
+	@ModelAttribute("category0")
+	public String getcategory0() {
+		return "공지";
+	}
+	@ModelAttribute("category1")
+	public String getcategory1() {
+		return "패치";
+	}
+
+	@ModelAttribute("category2")
+	public String getcategory2() {
+		return "기타";
+	}
 
 
+	//=============================================================================
+	
+	
 	// 등록
 	@GetMapping("add")
 	public String setAdd()throws Exception{
