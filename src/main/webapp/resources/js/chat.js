@@ -45,12 +45,7 @@ sendMsg.addEventListener('keyup',(e) => {
             
             console.log(chatMessage);
 
-            // sock.send(userCh.value+":"+sendMsg.value);
             sock.send(JSON.stringify(chatMessage));
-            
-            // fetch
-			
-            // mySend(userCh.value +" : "+sendMsg.value);
 
             scroller();
         	sendMsg.value = '';
@@ -73,22 +68,27 @@ sock.onmessage =  function (e){
     const ampm = today.getHours() >= 12 ? 'PM' : 'AM';
     const date = `${hours}:${minutes} ${ampm}, ${dayName}`;
 
-    console.log("e : "+e.data);
     let data = e.data;
+    let jsonData = JSON.parse(data);
     
-    let ar = data.split(",");
-    // {"userName":"user2"
-    let user = ar[0].trim().substring(13,ar[0].length-1);
-    let str = ar[1].trim().substring(12,ar[1].length-1);
+    let user = jsonData.userName;
+    let str = jsonData.chatText;
+    let roomNumber = jsonData.chatRoomNum;
 
+    console.log(user +" : "+str+" : "+roomNumber);
     console.log(user +" : "+userCh.value);
-    if(user === userCh.value){
-        console.log('mySend');
-        mySend(str, date);
-    }else{
-        console.log('otherSend');
-        otherSend(str, date);
+    console.log(roomNumber +" : "+chatRoomNum.getAttribute('data-chatRoom'));
+    
+    if(roomNumber === chatRoomNum.getAttribute('data-chatRoom')){
+        if(user === userCh.value){
+            console.log('mySend');
+            mySend(str, date);
+        }else{
+            console.log('otherSend');
+            otherSend(str, date);
+        }
     }
+    
     
     scroller();
 
@@ -101,14 +101,8 @@ sock.onerror = function(){
 
 sock.onclose = function(){
     console.log('onClose');
-    
 }
 
-{/* 
-<div class="message-data">
-    <span class="message-data-time">10:12 AM, Today</span>
-</div> 
-*/}
 
 function mySend(msg, date){
     // 채팅형태로 Element 추가

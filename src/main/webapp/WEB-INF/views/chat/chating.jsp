@@ -40,7 +40,10 @@
 										<li id="chatRoomNum" data-roomNum="${item}" data-chatRoom="${item}" class="clearfix">
 											<img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="avatar">
 											<div class="about">
-												<div class="name my-4">${item}</div>
+												<div class="name my-4">${item}
+												<c:if test="${not empty moimChat.moimName}">
+													<span>${moimChat.moimName}</span>
+												</c:if>
 											</div>
 										</li>
 									</c:forEach>

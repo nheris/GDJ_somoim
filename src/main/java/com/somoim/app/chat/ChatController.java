@@ -41,8 +41,8 @@ public class ChatController {
 
 //		List<ChatMessageDTO> chatHistory = chatMessageService.chatHistory(chatMessageDTO);
 //		mv.addObject("chatHistory", chatHistory);
-		
-		MoimDTO moimChat = chatMessageService.moimChat();
+		chatMessageDTO.setChatRoomNum((Long)session.getAttribute("roomNum"));
+		MoimDTO moimChat = chatMessageService.moimChat(chatMessageDTO);
 		mv.addObject("moimChat",moimChat);
 		
 		List<Long> chatRoomList = chatMessageService.chatRoomList(dto);

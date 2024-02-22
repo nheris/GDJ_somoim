@@ -40,7 +40,7 @@ public class ChatMessageService {
 		return chatMessageDAO.roomUserList(chatMessageDTO);
 	}
 	
-	public MoimDTO moimChat(){
-		return chatMessageDAO.moimChat();
+	public MoimDTO moimChat(ChatMessageDTO chatMessageDTO){
+		return chatMessageDAO.moimChat(chatMessageDTO);
 	}
 }
