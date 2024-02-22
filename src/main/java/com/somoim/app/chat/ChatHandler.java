@@ -23,19 +23,23 @@ public class ChatHandler extends TextWebSocketHandler{
 	
 	private MemberDTO memberDTO;
 	
-	private static HashMap<String, WebSocketSession> sessions = new HashMap<>();	
+	private static HashMap<String, Object> sessions = new HashMap<>();	
 	
 	 // group( 정모, 모임, 1:1 )에 따른 Map 나누기 
 	private static List<WebSocketSession> sessionList = new ArrayList<>(); 
 
+	public ChatHandler() {
+		sessionList = new ArrayList<WebSocketSession>();
+		sessions = new HashMap<>();
+	}
 	
 	// 연결후에 실행되는 메서드
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
 		// 세션 아이디를 키로 사용, session을 값으로
 		System.out.println("연결");
-		sessions.put(session.getId(), session);
 		sessionList.add(session);
+		System.out.println("connect : "+session.getAttributes().get("roomNum"));
 	}
 
 	//메세지를 다루는 메서드
@@ -43,21 +47,23 @@ public class ChatHandler extends TextWebSocketHandler{
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
 		ObjectMapper objectMapper = new ObjectMapper();
 		ChatMessageDTO chatMessageDTO = objectMapper.readValue(message.getPayload(), ChatMessageDTO.class);
-		
+		System.out.println(chatMessageDTO.getChatText() +" : "+ chatMessageDTO.getUserName()+" : "+chatMessageDTO.getChatRoomNum());
 		List<MemberDTO> list = chatMessageService.roomUserList(chatMessageDTO);
+		Long chat = chatMessageService.chatHistory(chatMessageDTO).get(0).getChatRoomNum();
 		
 		int result = chatMessageService.addChat(chatMessageDTO);
-		System.out.println("handle session : "+session.getAttributes().get("roomNum"));
+		
 		
 		//전송된 메시지를 List의 모든 세션에 전송
 		for (WebSocketSession s : sessionList) {
-			Long no = (Long)s.getAttributes().get("roomNum");
-			System.out.println(no+" : "+chatMessageDTO.getChatRoomNum());
 			
 			try {
-				if(no == chatMessageDTO.getChatRoomNum()) {
+				if(chat == chatMessageDTO.getChatRoomNum()) {
 					System.out.println("------------------------");
 					System.out.println(message.getPayload());
+					sessions.put(chatMessageDTO.getUserName(), chatMessageDTO);
+					WebSocketSession socket = (WebSocketSession)sessions.get(chatMessageDTO.getUserName());
+					
 					s.sendMessage(message);
 				}
 			} catch (Exception e) {

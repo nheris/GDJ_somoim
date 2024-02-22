@@ -62,12 +62,10 @@ public class ChatController {
 		// -> jsp
 		model.addAttribute("roomNum", chatMessageDTO.getChatRoomNum());
 		model.addAttribute("chatHistory", chatHistory);
-		System.out.println("session.get : "+session.getAttribute("roomNum"));
 		// -> js
 		Map<String, Object> map = new HashMap<>();
 		map.put("record", chatHistory);
 		map.put("roomNum", chatMessageDTO.getChatRoomNum());
-		System.out.println("session map get : "+map.get("roomNum"));
 		return map;
 	}
 }
