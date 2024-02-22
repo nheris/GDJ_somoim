@@ -47,20 +47,20 @@ public class MoimDAO {
 
 
 	//update
-	public MoimDTO update(MoimDTO moimDTO) throws Exception {
-		return sqlSession.selectOne(NAMESPACE+"update", moimDTO);
+	public MoimDTO getInfo(MoimDTO moimDTO) throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"getInfo", moimDTO);
 	}
-	public int updatePost(MoimDTO moimDTO) throws Exception {
-		return sqlSession.update(NAMESPACE+"updatePost", moimDTO);
+	public int update(MoimDTO moimDTO) throws Exception {
+		return sqlSession.update(NAMESPACE+"update", moimDTO);
 	}
 	public int fileUpdate(MoimFileDTO moimFileDTO) throws Exception {
 		return sqlSession.update(NAMESPACE+"fileUpdate", moimFileDTO);
 	}
 
 
-	public MoimDTO getInfo(MoimDTO moimDTO) throws Exception {
-		return sqlSession.selectOne(NAMESPACE+"update", moimDTO);
-	}
+//	public MoimDTO getInfo(MoimDTO moimDTO) throws Exception {
+//		return sqlSession.selectOne(NAMESPACE+"update", moimDTO);
+//	}
 
 
 
