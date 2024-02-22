@@ -9,8 +9,7 @@
 <title>Somoim</title>
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <!-- CSS 임포트 -->
 <c:import url="../temps/head_css.jsp"></c:import>
 </head>

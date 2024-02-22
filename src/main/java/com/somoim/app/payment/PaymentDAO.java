@@ -30,4 +30,32 @@ public class PaymentDAO {
 	public ClientDTO getClientKey(ClientDTO clientDTO)throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"getClientKey",clientDTO);
 	}
+	
+	public int setOrders(OrdersDTO ordersDTO)throws Exception {
+		return sqlSession.insert(NAMESPACE+"setOrders",ordersDTO);
+	}
+	
+	public OrdersDTO getOrders(OrdersDTO ordersDTO)throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"getOrders", ordersDTO);
+	}
+	
+	public int upOrders(OrdersDTO ordersDTO)throws Exception{
+		return sqlSession.update(NAMESPACE+"upOrders", ordersDTO);
+	}
+	
+	public OrdersDTO searchOrder(OrdersDTO ordersDTO) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"searchOrder", ordersDTO);
+	}
+	
+	public int setPayment(PaymentDTO paymentDTO)throws Exception{
+		return sqlSession.insert(NAMESPACE+"setPayment", paymentDTO);
+	}
+	
+	public PaymentDTO getPayment(PaymentDTO paymentDTO)throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"getPayment", paymentDTO);
+	}
+	
+	public int upPayment(PaymentDTO paymentDTO)throws Exception{
+		return sqlSession.update(NAMESPACE+"upPayment", paymentDTO);
+	}
 }

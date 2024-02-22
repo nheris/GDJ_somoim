@@ -46,7 +46,8 @@ public class MoimService {
 		return result;
 
 	}
-
+	
+	//delete
 	public int delete(MoimDTO moimDTO) throws Exception {
 		//모임사진 삭제
 		MoimFileDTO moimFileDTO = moimDAO.file(moimDTO);
@@ -58,13 +59,13 @@ public class MoimService {
 	}
 
 	//update
-	public MoimDTO update(MoimDTO moimDTO) throws Exception {
-		return moimDAO.update(moimDTO);
+	public MoimDTO getInfo(MoimDTO moimDTO) throws Exception {
+		return moimDAO.getInfo(moimDTO);
 	}
 
-	public int updatePost(MoimDTO moimDTO, MultipartFile file) throws Exception {
-		int result = moimDAO.updatePost(moimDTO);
-
+	public int update(MoimDTO moimDTO, MultipartFile file) throws Exception {
+		int result = moimDAO.update(moimDTO);
+		
 		String path = servletContext.getRealPath("/resources/upload/moim");
 
 		String fileName = fileManager.fileSave(path, file);
@@ -79,10 +80,6 @@ public class MoimService {
 		return result;
 	}
 
-	public MoimDTO getInfo(MoimDTO moimDTO) throws Exception {
-		return moimDAO.getInfo(moimDTO);
-	}
-
-
-
+	
+	
 }

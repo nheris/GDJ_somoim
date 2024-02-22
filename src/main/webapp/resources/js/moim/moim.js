@@ -14,11 +14,41 @@ $('#moimText').summernote({
         ]
       });
 
-
-//모임 개설
+//모임개설
 const submitBtn = document.getElementById("submitBtn");
 let addForm = document.getElementById("addForm");
-submitBtn.addEventListener("click",()=>{
+
+//input 공백시
+
+let moimName = document.getElementById("moimName");
+let moimText = document.getElementById("moimText");
+let moimMemCount = document.getElementById("moimMemCount");
+let regionShow = document.getElementById("regionShow");
+
+document.addEventListener("DOMContentLoaded", function(){
+    submitBtn.addEventListener("click",(e)=>{
+    //console.log('연결')
+    //console.log(regionShow.innerText)
+    if(regionShow.innerText === '지역 찾기' ||regionShow.innerText === '시/군/구 선택'){
+    	alert('지역을 설정해주세요.');
+        e.preventDefault();
+        return false;
+    }else if(moimName.value === ''){
+        alert('제목을 입력하세요.');
+        e.preventDefault();
+        return false;
+    }else if(moimText.value === ''){
+        alert('내용을 입력하세요.');
+        e.preventDefault();
+        return false;
+    }else if(moimMemCount.value === ''){
+        alert('정원을 입력하세요.');
+        e.preventDefault();
+        return false;
+    }
+
+    return true;
+
     let form = new FormData(addForm);
     //console.log(form)
     fetch("./add",{
@@ -30,9 +60,62 @@ submitBtn.addEventListener("click",()=>{
     })
     .then(res=>res.text)
     .then(r=>{
-        console.log(r);
+        //console.log(r);
     })
-})
+
+
+    })
+});
+
+//모임 개설
+
+// submitBtn.addEventListener("click",()=>{
+//     let form = new FormData(addForm);
+//     //console.log(form)
+//     fetch("./add",{
+//         method:"post",
+//         headers:{
+//             "Content-type":"application/x-www-form-urlencoded"
+//         },
+//         body: form
+//     })
+//     .then(res=>res.text)
+//     .then(r=>{
+//         //console.log(r);
+//     })
+// })
+
+//개설시 제한
+	//이미지
+// File uload 검사
+let ctncheck = $("#formFileMultiple");
+ctncheck.on("change", () => {
+    let files = ctncheck[0].files; // 선택된 파일들
+    //console.log("click");
+    //console.log("value임 = " + ctncheck.val());
+    //console.log("Attribute임 = " + ctncheck.attr("value"));
+    //console.log("선택된 파일 개수 = " + files.length);
+    if (files.length > 5) {
+        alert("5개 이하의 파일만 업로드 가능합니다.");
+        ctncheck.val(""); // 파일 선택 취소
+        return false;
+    }
+    for (let i = 0; i < files.length; i++) {
+        let ext = files[i].name.split(".").pop().toLowerCase(); // 확장자 분리
+        //console.log("ext임" + ext);
+        // 아래 확장자가 있는지 체크 배열에 담아서 비교
+        if ($.inArray(ext, ["jpg", "jpeg", "gif", "png"]) == -1) {
+            alert(
+                "jpg,gif,jpeg,png 파일만 업로드 할수 있습니다. 다시 업로드 해주십시오."
+            );
+            ctncheck.val(""); // 파일 선택 취소
+            return false;
+        }
+    }
+});
+
+
+
 
 
 
@@ -113,9 +196,8 @@ function city(e){
 }
 
 const save = document.getElementById("save");
-let moimName = document.getElementById("moimName");
-let moimText = document.getElementById("moimText");
-let moimMemCount = document.getElementById("moimMemCount");
+
+
 
 save.addEventListener("click",()=>{
 
@@ -134,17 +216,8 @@ save.addEventListener("click",()=>{
     document.getElementById("regionShow").innerText = moimRegion.value;
 	
 
-    console.log(moimMemCount.value);
+    //console.log(moimMemCount.value);
 
-	// if(moimName ==""){
-    //     alert("모임명을 입력해주세요.")
-    // }
-    // if(moimText ==""){
-    //     alert("모임내용을 입력해주세요.")
-    // }
-	// if(moimMemCount<10 && 300<moimMemCount){
-    //     alert("정원을 다시 입력해주세요.")
-    // }
 
     document.getElementById("close").click();
 })

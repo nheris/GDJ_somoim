@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.somoim.app.board.BoardDTO;
 import com.somoim.app.board.BoardFileDTO;
 import com.somoim.app.board.BoardService;
+import com.somoim.app.member.role.RoleDTO;
 import com.somoim.app.util.FileManager;
 import com.somoim.app.util.Pager;
 
@@ -63,11 +64,6 @@ private ServletContext servletContext;
 		//2-2 HDD에 저장하고 파일명 받아오기
 		
 		
-		System.out.println("attachs size: " + attachs.length);
-		if(attachs.length==6) {
-			System.out.println("5개까지만 가능하다.");
-			
-		}
 		for(MultipartFile f: attachs) {
 			System.out.println(f);
 			if(f.isEmpty()) {
@@ -103,5 +99,6 @@ private ServletContext servletContext;
 		int result = qnaDAO.setDelete(boardDTO);
 		return result;
 	}
+
 
 }

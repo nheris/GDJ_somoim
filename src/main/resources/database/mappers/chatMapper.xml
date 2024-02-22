@@ -5,20 +5,55 @@
   <!-- mapper namespace는 비우면 에러 -->
   <mapper namespace="com.somoim.app.chat.ChatMessageDAO">
   	
+  	<!-- ChatRoom -->
   	<insert id="addChatRoom">
   		INSERT INTO CHATROOM (CHATROOMNUM) VALUES (CHATROOM_SEQ.NEXTVAL)
   	</insert>
-  	
-  	
-  	<!-- parameter member(userName), chatRoom(chatRoomNum) -->
-  	<insert id="addChat" parameterType="Map">
-  		INSERT INTO CHATMESSAGE 
-			(MESSAGENUM, CHATROOMNUM, USERNAME, CHATTEXT, CHATTIMESTAMP)
-		VALUES
-			(MESSAGE_SEQ.NEXTVAL, #{room.chatRoomNum}, #{member.userName}, #{chatText}, SYSDATE)
-  	</insert>
-  	
+  	  	
   	<select id="chatRoomCh" resultType="Long">
   		SELECT DISTINCT CHATROOMNUM FROM CHATROOM
   	</select>
+  	
+  	<select id="chatRoomList" parameterType="MemberDTO" resultType="Long">
+  		SELECT DISTINCT CHATROOMNUM
+			FROM CHATMESSAGE
+		WHERE USERNAME = #{userName}
+  	</select>
+  	
+  	<select id="roomUserList" parameterType="ChatMessageDTO" resultType="MemberDTO">
+  		SELECT DISTINCT(USERNAME)
+			FROM CHATROOM CR
+				JOIN CHATMESSAGE CM
+				USING(CHATROOMNUM)
+				JOIN MEMBER M
+				USING (USERNAME)
+		WHERE CHATROOMNUM = #{chatRoomNum}
+  	</select>
+  	
+  	<!-- Chat -->
+  	<!-- parameter member(userName), chatRoom(chatRoomNum) -->
+  	<insert id="addChat" parameterType="ChatMessageDTO">
+  		INSERT INTO CHATMESSAGE 
+			(MESSAGENUM, CHATROOMNUM, USERNAME, CHATTEXT, CHATTIMESTAMP)
+		VALUES
+			(MESSAGE_SEQ.NEXTVAL, #{chatRoomNum}, #{userName}, #{chatText}, SYSDATE)
+  	</insert>
+
+	<select id="chatHistory" parameterType="ChatMessageDTO" resultType="ChatMessageDTO">
+		SELECT * 
+			FROM CHATMESSAGE
+		WHERE CHATROOMNUM = #{chatRoomNum}
+		ORDER BY CHATTIMESTAMP
+	</select>
+	
+	
+	<select id="moimChat" parameterType="ChatMessageDTO" resultType="MoimDTO">
+		SELECT * 
+		FROM CHATROOM
+			JOIN MOIMCHAT
+			USING (CHATROOMNUM)
+			JOIN MOIM
+			USING (MOIMNUM)
+		WHERE CHATROOMNUM = #{chatRoomNum}
+	</select>
   </mapper>

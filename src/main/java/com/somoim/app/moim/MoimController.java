@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.somoim.app.member.MemberDTO;
+import com.somoim.app.moim.meet.MeetDTO;
 
 @Controller
 @RequestMapping("/moim/*")
@@ -65,35 +66,32 @@ public class MoimController {
 	//update 모임수정
 	@GetMapping("update")
 	public void update(MoimDTO moimDTO, Model model) throws Exception {
-		moimDTO = moimService.update(moimDTO);
+		moimDTO = moimService.getInfo(moimDTO);
 		model.addAttribute("dto", moimDTO);
 	}
 	@PostMapping("update")
 	public String update(MoimDTO moimDTO, MultipartFile file) throws Exception {
-		int result = moimService.updatePost(moimDTO, file);
-
+		int result = moimService.update(moimDTO, file);
+		
 		return "redirect:./list";
 	}
-
-
-
+	
+	
+	//-----------------------------------------------MAIN-------------------------------------------------------
+	
+	
 	//home
-	@GetMapping("home")
+	@GetMapping("main/home")
 	public void detail(MoimDTO moimDTO, Model model) throws Exception {
 		moimDTO = moimService.getInfo(moimDTO);
 		model.addAttribute("dto", moimDTO);
 
 	}
+	
 
-	//board 게시판
-	@GetMapping("board")
-	public void board() throws Exception {
+	
+	
+	
 
-	}
-
-	//together 정모
-	@GetMapping("together")
-	public void together() throws Exception {
-
-	}
+	
 }

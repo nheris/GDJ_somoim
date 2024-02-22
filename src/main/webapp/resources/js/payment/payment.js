@@ -44,12 +44,7 @@ Array.from(payBtn).forEach((button)=>{
     console.log(e.data);
     if (e.data === "paymentSelect") {
         // 부모 창에 메시지를 전달
-        paymentWidget.requestPayment({
-          orderId: "1W_pCfO4rzG9szJEcThKe",
-          orderName: "테스트결제",
-          successUrl: "localhost/mypage/pay",
-          failUrl: "localhost/mypage/pay",
-        });
+     
     }
 }
 

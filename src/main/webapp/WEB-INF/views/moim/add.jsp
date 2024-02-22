@@ -135,7 +135,7 @@
 													<!-- ... --> 
 													<label for="cityList">시/도</label> 
 													<select id="cityList" onchange="city(this)" class="form-select" aria-label="Default select example">
-														<option selected="selected">전체</option>
+														<option selected="selected" disabled="">전체</option>
 														<option value="서울">서울특별시</option>
 														<option value="부산">부산광역시</option>
 														<option value="대구">대구광역시</option>
@@ -157,7 +157,7 @@
 
 													<label for="remainList" class="w70">시/군/구</label>
 													<select id="remainList" class="form-select" aria-label="Default select example">
-														<option selected="selected">시/군/구 선택</option>
+														<option selected="selected" disabled="">시/군/구 선택</option>
 
 													</select>
 
@@ -183,18 +183,23 @@
 
 								<!-- 모임설정 -->
 								<div class="mb-3">
-									<label for="moimName" class="form-label">모임 이름</label>
-									<input type="text" class="form-control" id="moimName" name="moimName" placeholder="모임 이름">
+									<label for="moimName" class="form-label">모임 이름(2~10자)</label>
+									<input type="text" class="form-control" id="moimName" name="moimName" placeholder="모임 이름" minlength = "2" maxlength = "10">
+									
 								</div>
 								<div class="mb-3">
-									<label for="exampleFormControlTextarea1" class="form-label">모임 설명</label>
+									<label for="moimText" class="form-label">모임 설명</label>
 									<textarea class="form-control" id="moimText" name="moimText" rows="8" placeholder="모임에 대한 설명이나 목표를 적어주세요."></textarea>
 								</div>
 								<div class="mb-3">
 									<label for="exampleFormControlTextarea1" class="form-label">모임 대표 이미지</label>
 									<div class="input-group mb-3">
-									  <input type="file" class="form-control" name="file">
+									  <!-- <input type="file" class="form-control" name="file"> -->
+										<input class="form-control" type="file" id="formFileMultiple" multiple data-file-count="0" data-file-max="5" name="attachs" accept="image/jpg, image/jpeg, image/png, image/gif">
 									</div>
+									<!-- <div class="col-auto d-flex justify-content-end mt-3 mb-3">
+										<button class="btn btn-outline-dark" id="fileAdd">등록</button>
+									</div> -->
 								</div>
 								<div class="mb-3">
 									<label for="moimName" class="form-label">모임 정원(10~300명)</label>

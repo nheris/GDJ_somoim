@@ -91,6 +91,11 @@ display: none;
 margin-top: 72px;
 }
 
+.confirm-Fail {
+display: none;
+margin-top: 72px;
+}
+
 .button-group {
 margin-top: 32px;
 display: flex;
@@ -149,12 +154,12 @@ color: #b0b8c1;
 <div class="flex-column align-center confirm-loading w-100 max-w-540">
   <div class="flex-column align-center">
     <img src="https://static.toss.im/lotties/loading-spot-apng.png" width="120" height="120"></img>
-    <h2 class="title text-center">결제 요청 완료</h2>
-    <h4 class="text-center description">결제 승인하기 버튼을 클릭하면 결제가 완료 됩니다.</h4>
+    <h2 class="title text-center">결제 정보 확인 완료</h2>
+    <h4 class="text-center description">결제 승인요청 중 입니다</h4>
   </div>
-  <div class="w-100">
+  <!-- <div class="w-100">
     <button id="confirmPaymentButton" class="btn primary w-100">결제 승인하기</button>
-  </div>
+  </div> -->
 </div>
 <div class="flex-column align-center confirm-success w-100 max-w-540">
   <img src="https://static.toss.im/illusts/check-blue-spot-ending-frame.png" width="120" height="120"></img>
@@ -162,23 +167,35 @@ color: #b0b8c1;
   <div class="response-section w-100">
     <div class="flex justify-between">
       <span class="response-label">결제 금액</span>
-      <span id="amount" class="response-text"></span>
+      <span class="amount response-text"></span>
     </div>
     <div class="flex justify-between">
       <span class="response-label">주문번호</span>
-      <span id="orderId" class="response-text"></span>
+      <span class="orderId response-text"></span>
     </div>
-    <div class="flex justify-between">
-      <span class="response-label">paymentKey</span>
-      <span id="paymentKey" class="response-text"></span>
+    <div class="w-100">
+      <button id="confirmDoneBtn" class="btn primary w-100">확인</button>
     </div>
   </div>
-
-  <div class="w-100 button-group">
-    <a class="btn primary" href='/my/payment-logs' target="_blank" rel="noreferrer noopener">테스트 결제내역 확인하기</a>
-    <div class="flex" style="gap: 16px;">
-      <a class="btn w-100" href="https://developers.tosspayments.com/sandbox">다시 테스트하기</a>
-      <a class="btn w-100" href="https://docs.tosspayments.com/guides/payment-widget/integration" target="_blank" rel="noreferrer noopener">결제 연동 문서가기</a>
+</div>
+<div class="flex-column align-center confirm-Fail w-100 max-w-540">
+  <img src="https://static.toss.im/illusts/check-blue-spot-ending-frame.png" width="120" height="120"></img>
+  <h2 class="title">결제승인에 실패하였습니다.</h2>
+  <div class="response-section w-100">
+    <div class="flex justify-between">
+      <span class="response-label">결제 금액</span>
+      <span class="amount response-text"></span>
+    </div>
+    <div class="flex justify-between">
+      <span class="response-label">주문번호</span>
+      <span class="orderId response-text"></span>
+    </div>
+    <div class="flex justify-between">
+      <span class="response-label">결제실패 사유</span>
+      <span id="message" class="response-text"></span>
+    </div>
+    <div class="w-100">
+      <button id="confirmFailBtn" onclick="closeWindow()" class="btn primary w-100">확인</button>
     </div>
   </div>
 </div>

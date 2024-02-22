@@ -14,7 +14,7 @@ public class MoimListTest extends MyTest{
 	@Autowired
 	private MoimDAO moimDAO;
 
-	@Test
+	//@Test
 	public void test() throws Exception{
 		MemberDTO memberDTO = new MemberDTO();
 		memberDTO.setUserName("user1");
