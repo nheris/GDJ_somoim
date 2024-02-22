@@ -87,23 +87,25 @@
 						<button id="btn2" hidden class="btn btn-hover">수정완료</button>
 					</span>
 					<br><br><br><br>
-					<h2>비밀번호 변경</h2>
-					<form id="frm2" action="./password" method="post">
-						<table class="table table-hover" id="del_td">
-							<tr>
-								<td class="table dark">비밀번호</td>
-								<td><input type="password" name="password" id = "password"></td>
-							</tr>
-							<tr>
-								<td class="table dark">비밀번호변경</td>
-								<td><input type="password" id = "passwordCheck"></td>
-							</tr>
-							
-						</table>
-					</form>
-					<button id="btn3">비밀번호 수정</button>
+					<c:if test="${appmember eq null}">
+						<h2>비밀번호 변경</h2>
+						<form id="frm2" action="./password" method="post">
+							<table class="table table-hover" id="del_td">
+								<tr>
+									<td class="table dark">비밀번호</td>
+									<td><input type="password" name="password" id = "password"></td>
+								</tr>
+								<tr>
+									<td class="table dark">비밀번호변경</td>
+									<td><input type="password" id = "passwordCheck"></td>
+								</tr>
+								
+							</table>
+						</form>
+						<button id="btn3">비밀번호 수정</button>
+					</c:if>
 				</div>
-					
+			
 					
 					
 					
