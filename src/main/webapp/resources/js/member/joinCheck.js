@@ -27,7 +27,7 @@ let p1 = false;
 let p2 = false;
 
 let id1 = false;
-
+let echeck = false;
 
 let accessToken;													
    //토근 가져오기
@@ -65,6 +65,7 @@ $("#checkId").click(function(){
             id1 = true;
         }else{
             alert("중복된아이디 입니다")
+            id1 = false;
         }
     })
 })
@@ -262,20 +263,40 @@ const p_pattern =/^[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}/;
 
 const e_pattern = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-za-z0-9\-]+/;
 
-$(".email_auth_btn").click(function(){	     	 
+
+$(".email_auth_btn").click(function(){
     var email = $('#email').val();
+    if(email!=''||e_pattern.test(email)){	     	 
+        alert("인증번호가 전송되었습니다");
     $.ajax({
         type : "POST",
-        url : "member/emailAuth",
+        url : "emailAuth",
         data : {email : email},
-        success : function(data){
-            alert("인증번호가 전송되었습니다");
-            email_auth_cd=data;
+        success : function(edata){
+            console.log("data"+edata);
+            email_auth_cd=edata;
         },
-        error: function(data){
+        error: function(edata){
             alert("메일 발송 실패");
         }
-    })
+    });
+}else{
+    alert("이메일을 입력하세요");
+}
+});
+
+    
+$("#key_check").click(function(){
+    if($("#mail_auth_key").val(email_auth_cd.toString())){
+        $("#auth_check").show();
+        echeck = true;
+    }else{
+        alert("인증번호를 확인해주세요");
+        console.log(email_auth_cd);
+        console.log(typeof email_auth_cd);
+        $("#auth_check").hide();
+        echeck = false;
+    }
 })
 
 btn.addEventListener("click",(e)=>{
@@ -285,7 +306,9 @@ btn.addEventListener("click",(e)=>{
     let year = selectYear.value;
     let month = selectMonth.value;
     let date = selectDay.value;
-    
+
+ 
+
     //개인정보 이용 동의검사
     
     if(!id1){
@@ -377,13 +400,17 @@ btn.addEventListener("click",(e)=>{
         phone.focus();
         return false;
     }
-    
-    if(e_pattern.test(email.value)===false){
-        alert('올바른 이메일 주소를 입력해주세요.')     
-        email.focus();   
-        return false;
+
+    if(!e_pattern.test($("#email").val())){
+        alert('올바른 이메일 주소를 입력해주세요.');   
+        email.focus();
+        
+            return false;
+        }else if(!echeck){
+            alert('인증번호를 확인해주세요');
     }
     
+ 
     
     if(!person_chk.checked){
         alert("개인정보 이용동의는 필수입니다");

@@ -16,6 +16,7 @@
 		<!-- 파일 당 크기 제한 : 단위 Byte -->
 		<property name="maxUploadSizePerFile" value="2097152"></property>
 	</bean>
+	
 		<!-- navermail설정 -->
     <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl"> 
      <property name="host" value="smtp.naver.com"/> <!-- 메이서버 호스트 -->
@@ -25,12 +26,12 @@
        <!-- 보안연결 SSL과 관련된 설정 -->
      <property name="javaMailProperties">
       <props>
-      <prop key="mail.smtp.auth">true</prop>
-      <prop key="mail.smtp.starttls.enable">true</prop>
-      <prop key="mail.smtps.checkserveridentity">true</prop>
-      <prop key="mail.smtps.ssl.trust">*</prop>
-      <prop key="mail.debug">true</prop>
-      <prop key="mail.smtp.socketFactory.class">javax.net.ssl.SSLSocketFactory</prop>
+        	<prop key="mail.transport.protocol">smtp</prop> <!-- 프로토콜 설정 -->
+            <prop key="mail.smtp.auth">true</prop> <!-- smtp 인증 -->
+            <prop key="mail.smtp.starttls.enable">true</prop> <!-- smtp starttls 사용 -->
+            <prop key="mail.debug">true</prop> <!-- 디버그 사용 -->
+            <prop key="mail.smtp.ssl.trust">smtp.naver.com</prop> <!-- ssl 인증 서버는 smtp.naver.com -->
+            <prop key="mail.smtp.ssl.enable">true</prop> <!-- ssl 사용 -->
       </props>
      </property>
     </bean>

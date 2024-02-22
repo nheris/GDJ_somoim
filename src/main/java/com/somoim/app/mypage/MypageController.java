@@ -30,13 +30,21 @@ public class MypageController {
 
 	@GetMapping("main")
 	public String getMypage(HttpSession session,Model model)throws Exception{
+		MemberDTO dto = new MemberDTO();
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		if(memberDTO != null && memberDTO.getLoginNum() != null) {
+			dto = memberService.getMypage(memberDTO);
+			model.addAttribute("member", dto);
+			System.out.println(dto.getAddress());
+			return "mypage/main";			
+		}			
 		memberDTO=(MemberDTO)session.getAttribute("appmember");
-		memberDTO = memberService.getMypage(memberDTO);
-
-		model.addAttribute("member", memberDTO);
-
-		return "mypage/main";
+		
+		dto = memberService.getMypage(memberDTO);
+		model.addAttribute("member",dto);
+		System.out.println("앱");
+		return "mypage/main";	
+		
 	}
 
 	@PostMapping("update")
@@ -46,6 +54,7 @@ public class MypageController {
 		MemberDTO m = (MemberDTO)session.getAttribute("member");
 		m=(MemberDTO)session.getAttribute("appmember");
 		memberDTO.setUserName(m.getUserName());
+				
 
 		int result = memberService.setUpdate(memberDTO,attachs);
 
@@ -59,6 +68,9 @@ public class MypageController {
 		MemberDTO m = (MemberDTO)session.getAttribute("member");
 		m=(MemberDTO)session.getAttribute("appmember");
 		memberDTO.setUserName(m.getUserName());
+		memberDTO.setEmail(m.getEmail());
+		System.out.println(memberDTO.getEmail());
+		
 
 		memberService.setPasswordUpdate(memberDTO);
 

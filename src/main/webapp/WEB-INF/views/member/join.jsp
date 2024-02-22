@@ -119,7 +119,7 @@
                                 </div>
                                 
                                 <div>
-                                    <input name="address" type="text" id="adrs_in">
+                                    <input name="address" type="text" id="adrs_in" disabled>
                                 </div>
                             </div>
 
@@ -135,10 +135,12 @@
                                 <input type="text" placeholder="이메일" name="email" id="email" class="email">
                                 <button type="button" id="email_auth_btn" class="email_auth_btn">인증번호 받기</button>
                             </div>
-                            <input type="text" placeholder="인증번호 입력" id="email_auth_key">
-
-                            
-
+                            <div class="form-group">
+                                <input type="text" placeholder="인증번호 입력" id="email_auth_key">
+                                <button type="button" id="key_check">인증번호 확인</button>
+                                <br>
+                                <p style="display: none;" id="auth_check">인증확인!</p>
+                            </div>
 
                             <div class="form-group">
                                 <label for="attachs">사진첨부</label>
@@ -164,7 +166,7 @@
                             <div class="button">
                                 <button type="submit" id="btn">Registration</button>
                             </div>
-                            <p class="outer-link">Already have an account? <a href="/login"> Login Now</a>
+                            <p class="outer-link">Already have an account? <a href="/member/login"> Login Now</a>
                             </p>
                         </form>
                     </div>

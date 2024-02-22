@@ -1,11 +1,14 @@
 package com.somoim.app.member;
 
+import java.util.List;
+
 import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.somoim.app.member.role.RoleDTO;
 import com.somoim.app.util.FileManager;
 
 @Service
@@ -67,7 +70,8 @@ public class MemberService {
 	}
 	public MemberDTO getLogin(MemberDTO memberDTO)throws Exception{
 		MemberDTO dto = memberDAO.getDetail(memberDTO);
-
+		List<RoleDTO> roleDTOList = memberDTO.getRoleDTO();
+		
 		if(dto!=null) {
 			if(dto.getPassword().equals(memberDTO.getPassword())) {
 
@@ -75,6 +79,11 @@ public class MemberService {
 				memberDTO.setNickName(dto.getNickName());
 				memberDTO.setProfile(dto.getProfile());
 				memberDTO.setLoginNum(dto.getLoginNum());
+				memberDTO.setEmail(dto.getEmail());
+			
+					
+				}
+				
 				return memberDTO;
 				
 			}else {
@@ -98,6 +107,7 @@ public class MemberService {
 			memberDTO.setNickName(dto.getNickName());
 			memberDTO.setProfile(dto.getProfile());
 			memberDTO.setLoginNum(dto.getLoginNum());
+			memberDTO.setRoleDTO(dto.getRoleDTO());
 			return memberDTO;
 		}
 		return dto;

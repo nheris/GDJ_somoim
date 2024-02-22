@@ -44,7 +44,7 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-12">
-                                        <a href="javascript:void(0)" class="lost-pass">Lost your password?</a>
+                                        <a href="findPw" class="lost-pass">Lost your password?</a>
                                     </div>
                                 </div>
                             </div>

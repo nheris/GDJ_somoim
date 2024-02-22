@@ -2,12 +2,18 @@ package com.somoim.app.member;
 
 
 import java.util.Map;
+import java.util.Random;
 
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.ws.rs.GET;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.MailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,8 +36,13 @@ public class MemberController {
 	private MemberService memberService;
 	@Autowired
 	private KakaoAPI kakaoAPI;
+	@Autowired
+	private JavaMailSenderImpl mailSenderImpl;
 	
-	
+	@GetMapping("findPw")
+	public void findPw()throws Exception{
+		
+	}
 	
 	@GetMapping("login")
 	public String getLogin(Model model)throws Exception{
@@ -112,20 +123,47 @@ public class MemberController {
 		MemberDTO dto = memberService.submitJoinApp(memberDTO);
         
 		if(dto==null) {
-			session.setAttribute("goomember",memberDTO);      			
+			session.setAttribute("appmember",memberDTO);      			
 			return "success";
 		}else {
 			System.out.println(dto.getUserName()+"왜 로그인이 안되니?");
-			session.setAttribute("goomember",dto);
+			session.setAttribute("appmember",dto);
 			return "goHome";
 		}
 	}
 	
 	@PostMapping("/emailAuth")
 	@ResponseBody
-	public void mailCheck(String email) {
+	public String mailCheck(String email) {
 		System.out.println("이메일 인증 요청이 들어옴!");
 		System.out.println("이메일 인증 이메일 : " + email);
+		
+		Random random = new Random();
+		int checkNum = random.nextInt(888888)+111111;
+		
+		String setFrom = "qjatj802@naver.com";
+		String toMail = email;
+		String title = "회원가입 이증 이메일 입니다";
+		String content =
+				"홈페이지를 방문해주셔서 감사합니다"+
+				"<br><br>"+
+				"인증번호는"+checkNum+"입니다"+
+				"<br>"+
+				"해당 인증번호를 인증번호 확인란에 기입하여 주세요.";
+		try {			
+			MimeMessage message = mailSenderImpl.createMimeMessage();
+			MimeMessageHelper helper = new MimeMessageHelper(message, true,"utf-8");
+			helper.setFrom(setFrom);
+			helper.setTo(toMail);
+			helper.setSubject(title);
+			helper.setText(content, true);
+			mailSenderImpl.send(message);	
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return Integer.toString(checkNum);
 	}
 	
 	
@@ -186,6 +224,7 @@ public class MemberController {
 			return "member/result";
 		}
 		session.setAttribute("member", memberDTO);
+		System.out.println(memberDTO.getAddress());
 		return "redirect:../";
 	}
 	@GetMapping("logout")

@@ -38,12 +38,12 @@
                             </div>
                             <div class="form-group">
                                 <label for="userName">아이디&이메일</label>
-                                <input name="userName" id="userName" value="${appmember.userName}" type="text">
+                                <input name="userName" id="userName" value="${appmember.userName}${goomember.userName}" type="text">
                             </div>
                             
                             <div class="form-group" hidden>
                                 <label for="userName">아이디&이메일</label>
-                                <input name="email" id="userName" value="${appmember.userName}" type="text">
+                                <input name="email" id="userName" value="${appmember.userName}${goomember.userName}" type="text">
                             </div>
 
                             <div class="form-group" hidden>
@@ -57,7 +57,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="name">이름</label>
-                                <input name="name" id="name" value="${appmember.name}" type="text">
+                                <input name="name" id="name" value="${appmember.name}${goomember.userName}" type="text">
                             </div>
                             <div class="form-group">
                                 <label for="userBirth">생년월일</label>
