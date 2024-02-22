@@ -119,7 +119,7 @@
                                 </div>
                                 
                                 <div>
-                                    <input name="address" type="text" id="adrs_in" disabled>
+                                    <input name="address" type="text" id="adrs_in" readonly>
                                 </div>
                             </div>
 
