@@ -3,12 +3,12 @@ package com.somoim.app.payment;
 import java.sql.Date;
 
 public class SubHistoryDTO {
-	
+
 	private Long payNum;
 	private Long subNum;
 	private Date payDay;
 	private Integer payPrice;
-	
+
 	public Long getPayNum() {
 		return payNum;
 	}
@@ -33,6 +33,6 @@ public class SubHistoryDTO {
 	public void setPayPrice(Integer payPrice) {
 		this.payPrice = payPrice;
 	}
-	
-	
+
+
 }

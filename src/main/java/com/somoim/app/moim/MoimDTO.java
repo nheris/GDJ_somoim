@@ -15,12 +15,12 @@ public class MoimDTO {
 	private String moimText;
 	private Long moimMemCount;
 	private String moimHead;
-	
-	
+
+
 	private MoimFileDTO moimFileDTO;
 	private MoimMemberDTO moimMemberDTO;
-	
-	
+
+
 	public MoimMemberDTO getMoimMemberDTO() {
 		return moimMemberDTO;
 	}
@@ -82,5 +82,5 @@ public class MoimDTO {
 	public void setMoimDate(Date moimDate) {
 		this.moimDate = moimDate;
 	}
-	
+
 }

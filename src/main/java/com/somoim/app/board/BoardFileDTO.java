@@ -3,11 +3,11 @@ package com.somoim.app.board;
 import com.somoim.app.files.FileDTO;
 
 public class BoardFileDTO extends FileDTO {
-	
+
 	private Long boardNum;
 
 	private String userName;
-	
+
 	public String getUserName() {
 		return userName;
 	}
@@ -23,8 +23,8 @@ public class BoardFileDTO extends FileDTO {
 	public void setBoardNum(Long boardNum) {
 		this.boardNum = boardNum;
 	}
-	
 
-	
+
+
 
 }

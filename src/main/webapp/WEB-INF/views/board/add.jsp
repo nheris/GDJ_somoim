@@ -31,41 +31,59 @@
 	<!--  -->
 
 	<div class="container">
-	<form method="POST" enctype="multipart/form-data">
-					<div class="mb-2">
-					<label for="CATEGORY" name="boardCategory" class="form-label">Category</label>
-					<select class="form-select" aria-label="Default select example" name="boardCategory" style="width: 200px;">
-						<option value="0">공지</option>
-						<option value="1">패치</option>
-						<option value="2">기타</option>
-					</select>
-				</div>
-			<div >
-				
-					<input type="hidden" name="boardNum" value="${boardDTO.boardNum}" id="boardNum">
-					<input type="hidden" value="${member.userName}" id="userName" name="userName">
-					<div class="mb-3 text-start">
-						<label for="title" class="form-label">Title</label> 
-						<input  type="text" class="form-control" id="title" value="${boardDTO.boardTitle}" name="boardTitle">
+		<form method="POST" enctype="multipart/form-data">
+						<c:if test="${board eq '문의게시판'}">
+					<div class=" mb-3">
+						<input type="radio" class="btn-check" name="boardSecret"
+							id="success-outlined" autocomplete="off" checked value="0"> <label
+							class="btn btn-outline-secondary" for="success-outlined">일반글</label>
+
+						<input type="radio" class="btn-check" name="boardSecret"
+							id="danger-outlined" autocomplete="off" value="1"> <label
+							class="btn btn-outline-secondary" for="danger-outlined">비밀글</label>
 					</div>
+				</c:if>
+			<div class="mb-2">
+				<label for="CATEGORY" name="boardCategory" class="form-label">Category</label>
+				<select class="form-select" aria-label="Default select example"
+					name="boardCategory" style="width: 200px;">
+					<option value="0">${category0}</option>
+					<option value="1">${category1}</option>
+					<option value="2">${category2}</option>
+				</select>
+			</div>
+
+
+
+			<div>
+				<input type="hidden" name="boardNum" value="${boardDTO.boardNum}"
+					id="boardNum"> <input type="hidden"
+					value="${member.userName}" id="userName" name="userName">
+				<div class="mb-3 text-start">
+					<label for="title" class="form-label">Title</label> <input
+						type="text" class="form-control" id="title"
+						value="${boardDTO.boardTitle}" name="boardTitle">
+				</div>
 			</div>
 			<div class="mb-3">
 				<label for="boardText" class="form-label" id="boardText">Contents</label>
 				<textarea class="form-control" id="boardText" rows="3"
 					name="boardText">${boardDTO.boardText}</textarea>
 			</div>
-			<input class="form-control" type="file" id="formFileMultiple" multiple data-file-count="0" data-file-max="5" name="attachs" accept="image/jpg, image/jpeg, image/png, image/gif">
-					<div class="col-auto d-flex justify-content-end mt-3 mb-3">
-			<button class="btn btn-outline-dark" id="fileAdd">등록</button>
-		</div>
-		</div>
+			<input class="form-control" type="file" id="formFileMultiple"
+				multiple data-file-count="0" data-file-max="5" name="attachs"
+				accept="image/jpg, image/jpeg, image/png, image/gif">
+			<div class="col-auto d-flex justify-content-end mt-3 mb-3">
+				<button class="btn btn-outline-dark" id="fileAdd">등록</button>
+			</div>
+	</div>
 
-	</form>	
-</div>
+	</form>
+	</div>
 
 
 	<!-- ========================= JS improt ========================= -->
-
+	<script src="/resources/js/board/fileDelete.js"></script>
 	<c:import url="../temps/footer.jsp"></c:import>
 </body>
 </html>
