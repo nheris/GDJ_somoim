@@ -12,10 +12,10 @@ navLinks.forEach((link) => {
         this.classList.add("active");
         console.log("선택된 카테고리:", category);
         page = "";
-        getcategoryList(page, category);
+        getcategoryList(page, category, region);
     });
 });
-getcategoryList("", ""); // 첫 페이지 호출
+getcategoryList("", "", ""); // 첫 페이지 호출
 
 let re = document.querySelectorAll(".moimRegion");
 re.forEach((reg) => {
@@ -26,6 +26,7 @@ re.forEach((reg) => {
         re.forEach((re) => re.classList.remove("active"));
         this.classList.add("active");
         console.log("지역 모음 :", region);
+        getcategoryList(page, category, region);
     });
 });
 

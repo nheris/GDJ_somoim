@@ -40,6 +40,9 @@ public List<MoimDTO> getListCategory(Pager pager, MoimDTO moimDTO)throws Excepti
 	Map<String, Object> map = new HashMap<String, Object>();
 	map.put("pager", pager);
 	map.put("CategoryDTO", moimDTO);
+	//System.out.println(moimDTO.getMoimRegion());
+	System.out.println(pager.getCategorySelect());
+	System.out.println(pager.getSearchFind());
 	pager.makeRow();
 	pager.makeNum(categoryDAO.getTotalCount(map));
 	pager.setPerPage(5L);

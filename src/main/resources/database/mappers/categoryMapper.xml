@@ -76,10 +76,10 @@
 		WHERE
 		<choose>
 			<when test="pager.searchFind=='find0'">
-				MOIMREGION Like #{moimRegion}
+				MOIMREGION Like '%'||#{moimRegion}||'%'
 			</when>
 			<otherwise>
-				MOIMREGION Like '%''%'
+				MOIMREGION Like '%'||'%'
 			</otherwise>
 		</choose>
 	</sql>
@@ -101,9 +101,18 @@
 	</select>
 	
 	<select id="getTotalCount" parameterType="Map" resultType="Long">
-		SELECT COUNT(MOIMNUM) from MOIM 
+		SELECT COUNT(MOIMNUM) from 
+		(SELECT * FROM (
+		SELECT * FROM MOIM
+		<include refid="boardCategorys"></include>
+		)
 		<include refid="moimCategory"></include>
+		)
 	</select>
+	
+	
+	
+	
 	
 		<!-- file List -->
 	<select id="getFileList" parameterType="MoimDTO"
