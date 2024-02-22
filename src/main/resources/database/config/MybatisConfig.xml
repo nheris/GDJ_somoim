@@ -13,12 +13,11 @@
   		<typeAlias type="com.somoim.app.moim.MoimDTO" alias="MoimDTO"/>
   		<typeAlias type="com.somoim.app.moim.MoimFileDTO" alias="MoimFileDTO"/>
   		<typeAlias type="com.somoim.app.moim.member.MoimMemberDTO" alias="MoimMemberDTO"/>
-        <typeAlias type="com.somoim.app.payment.PaymentTypeDTO" alias="PaymentTypeDTO"/>
-  		<typeAlias type="com.somoim.app.member.role.RoleDTO" alias="RoleDTO"/>  
-  		<typeAlias type="com.somoim.app.board.qna.QnaDTO" alias="QnaDTO"/>
-  		<typeAlias type="com.somoim.app.category.categoryDTO" alias="categoryDTO"/>		
-        <typeAlias type="com.somoim.app.payment.ClientDTO" alias="ClientDTO"/>
+      <typeAlias type="com.somoim.app.payment.PaymentTypeDTO" alias="PaymentTypeDTO"/>
   		<typeAlias type="com.somoim.app.member.role.RoleDTO" alias="RoleDTO"/>
+  		<typeAlias type="com.somoim.app.board.qna.QnaDTO" alias="QnaDTO"/>
+      <typeAlias type="com.somoim.app.payment.ClientDTO" alias="ClientDTO"/>
+  		<typeAlias type="com.somoim.app.board.qna.BoardReplyDTO" alias="BoardReplyDTO"/>
   		<typeAlias type="com.somoim.app.chat.ChatMessageDTO" alias="ChatMessageDTO"/>
   		<typeAlias type="java.util.Map" alias="Map"/>
   	</typeAliases>

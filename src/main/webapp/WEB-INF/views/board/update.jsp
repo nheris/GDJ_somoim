@@ -31,42 +31,47 @@
 	<!--  -->
 
 	<div class="container">
-	<form method="POST" enctype="multipart/form-data">
-					<div class="mb-2">
-					<label for="CATEGORY" name="boardCategory" class="form-label">Category</label>
-					<select class="form-select" aria-label="Default select example" name="boardCategory" style="width: 200px;">
-						<option value="0">공지</option>
-						<option value="1">패치</option>
-						<option value="2">기타</option>
-					</select>
-				</div>
-		<div class="row gx-5 justify-content-center">
-			<div class="col-lg-11 col-xl-9 col-xxl-8">
-				
-					<input type="hidden" name="boardNum" value="${DTO.boardNum}" id="boardNum">
-					<input type="hidden" value="${member.userName}" id="userName" name="userName">
+		<form method="POST" enctype="multipart/form-data">
+
+			<div class="mb-2">
+				<label for="CATEGORY" name="boardCategory" class="form-label">Category</label>
+				<select class="form-select" aria-label="Default select example"
+					name="boardCategory" style="width: 200px;">
+					<option value="0">공지</option>
+					<option value="1">패치</option>
+					<option value="2">기타</option>
+				</select>
+			</div>
+			<div class="mb-2">
+					<input type="hidden" name="boardNum" value="${DTO.boardNum}"
+						id="boardNum"> <input type="hidden"
+						value="${member.userName}" id="userName" name="userName">
 					<div class="mb-3 text-start">
-						<label for="title" class="form-label">Title</label> 
-						<input  type="text" class="form-control" id="title" value="${DTO.boardTitle}" name="boardTitle">
+						<label for="title" class="form-label">Title</label> <input
+							type="text" class="form-control" id="title"
+							value="${DTO.boardTitle}" name="boardTitle">
 					</div>
+				</div>
+				<div class="mb-3">
+					<label for="boardText" class="form-label">Contents</label>
+					<textarea class="form-control" id="boardText" rows="3"
+						name="boardText">${DTO.boardText}</textarea>
+				</div>
+				<input class="form-control" type="file" id="filelist"
+					data-file-count="0" data-file-max="5" name="attachs"
+					accept="image/jpg, image/jpeg, image/png, image/gif">
+			
+			<div class="col-auto d-flex justify-content-end mt-3 mb-3">
+				<button class="btn btn-outline-dark">등록</button>
 			</div>
-			<div class="mb-3">
-				<label for="boardText" class="form-label" id="boardText">Contents</label>
-				<textarea class="form-control" id="boardText" rows="3"
-					name="boardText">${DTO.boardText}</textarea>
 			</div>
-			<input class="form-control" type="file" id="filelist" data-file-count="0" data-file-max="5" name="attachs" accept="image/jpg, image/jpeg, image/png, image/gif" >
-		</div>
-		<div class="col-auto d-flex justify-content-end mt-3 mb-3">
-			<button class="btn btn-outline-dark">등록</button>
-		</div>
 	</div>
 	</form>
 
 
 
 	<!-- ========================= JS improt ========================= -->
-
+	<script src="/resources/js/board/boardUpdate.js"></script>
 	<c:import url="../temps/footer.jsp"></c:import>
 </body>
 </html>
