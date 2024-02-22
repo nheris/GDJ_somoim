@@ -89,9 +89,9 @@ public class MemberService {
 			}else {
 				dto=null;
 			}
-		}
 		return dto;
 	}
+	
 
 	public MemberDTO getMypage(MemberDTO memberDTO)throws Exception{
 		return memberDAO.getDetail(memberDTO);
