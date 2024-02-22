@@ -115,6 +115,7 @@
 					<!-- 댓 페이징 -->
 					<div class="col-auto text-center">
 				    	<button id="more" data-replyList-page="1" data-replyList-totalPage="1" class="btn btn-light btn-sm">더보기</button>
+						<button id="mo" data-replyList-page="${pager.page}" data-replyList-totalPage="${pager.totalPage}" class="btn btn-light btn-sm">더보기(/"${pager.totalPage}")</button>				    	
 				    </div>
 				    
 					

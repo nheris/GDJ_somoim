@@ -140,6 +140,51 @@ replyList.addEventListener("click",(e)=>{
 
 
 //댓 페이징
+const more = document.getElementById("more");
+
+//getReplyList(1, update.getAttribute("data-product-num"));
+
+more.addEventListener("click", ()=>{
+	console.log('연결');
+	let p = more.getAttribute("data-replyList-page");//현재 페이지 번호
+	let a = more.getAttribute("data-replyList-totalPage");//전체 페이지 번호
+
+	if(p>a){
+		alert('마지막 페이지 입니다');
+	}
+
+    fetch("../reply/list?boardNum="+boardNum+"&page="+p,{
+        method: "get",
+        
+    })
+    .then(res=>res.text())
+    .then(r=>{
+        //console.log(r);
+        
+        //more.setAttribute("data-replyList-page", r.pager.page*1+1);
+        //more.setAttribute("data-replyList-totalPage", r.pager.totalPage);
+
+        replyList.innerHTML=r;
+
+    })
+})
+
+// getReplyList(p, update.getAttribute("data-product-num"))
+// function getReplyList(page, num){
+// 	fetch("../reply/list?page="+page+"&productNum="+num, {
+// 		method:"GET"
+// 	})
+//     .then(r => r.json())
+// 	.then(r => {
+//         console.log('=================')
+//         console.log(r)
+
+//         
+        
+//         makeList(r);
+//     })
+//  };
+
 
 
 //listbody

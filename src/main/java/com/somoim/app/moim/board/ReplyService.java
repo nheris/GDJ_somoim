@@ -32,8 +32,6 @@ public class ReplyService {
 		map.put("pager", pager);
 		map.put("replyDTO", replyDTO);
 		
-		List<ReplyDTO> ar = replyDAO.getList(map);
-		
 		return replyDAO.getList(map);
 	}
 	
