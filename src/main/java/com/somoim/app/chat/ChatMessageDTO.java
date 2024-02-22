@@ -6,7 +6,7 @@ import java.util.Calendar;
 import java.util.Locale;
 
 public class ChatMessageDTO {
-	
+
 	private Long messageNum;
 	private Long chatRoomNum;
 	private String userName;
@@ -49,6 +49,6 @@ public class ChatMessageDTO {
 		
 		this.chatTimeStamp = format.format(c.getTime());
 	}
-	
-	
+
+
 }

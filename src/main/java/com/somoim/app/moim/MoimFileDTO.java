@@ -13,5 +13,5 @@ public class MoimFileDTO extends FileDTO{
 		this.moimNum = moimNum;
 	}
 
-	
+
 }

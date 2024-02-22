@@ -3,15 +3,15 @@ package com.somoim.app.payment;
 import java.sql.Date;
 
 public class SubscriptionDTO {
-	
+
 	private Long subNum;
 	private String userName;
 	private Long payNum;
 	private Date subDate;
 	private Date endSubDate;
 	private Integer subStatus;
-	
-	
+
+
 	public Long getSubNum() {
 		return subNum;
 	}
@@ -48,6 +48,6 @@ public class SubscriptionDTO {
 	public void setSubStatus(Integer subStatus) {
 		this.subStatus = subStatus;
 	}
-	
-	
+
+
 }

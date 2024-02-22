@@ -60,6 +60,6 @@ public class ChatHandler extends TextWebSocketHandler{
 		System.out.println("연결해제");
 	}
 
-	
-	
+
+
 }

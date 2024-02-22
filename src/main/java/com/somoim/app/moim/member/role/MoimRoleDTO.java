@@ -3,8 +3,8 @@ package com.somoim.app.moim.member.role;
 public class MoimRoleDTO {
 	private Long moimRoleNum;
 	private String moimRoleName;
-	
-	
+
+
 	public Long getMoimRoleNum() {
 		return moimRoleNum;
 	}

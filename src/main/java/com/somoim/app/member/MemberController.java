@@ -15,35 +15,50 @@ import org.springframework.web.multipart.MultipartFile;
 public class MemberController {
 	@Autowired
 	private MemberService memberService;
-	
+
+	@GetMapping("idCheck")
+	public String getIdCheck(MemberDTO memberDTO,Model model)throws Exception{
+		int result = 0;
+
+		memberDTO = memberService.getMypage(memberDTO);
+		if(memberDTO == null) {
+			result = 1;
+		}
+
+		model.addAttribute("result",result);
+
+		return "member/id";
+
+	}
+
 	@GetMapping("join")
 	public void setJoin(MemberDTO memberDTO)throws Exception{
-		
+
 	}
-	
+
 	@PostMapping("join")
 	public String setJoin(MemberDTO memberDTO,MultipartFile attachs,Model model)throws Exception{
 		int result = memberService.setjoin(memberDTO, attachs);
-		
+
 		String msg = "가입 실패";
 		String path = "./join";
-		
+
 		if(result>0) {
 			msg = "가입 성공";
 			path = "../";
 		}
-		
+
 		model.addAttribute("msg", msg);
 		System.out.println("path");
 		model.addAttribute("path", path);
-		
+
 		return "member/result";
 	}
 	@GetMapping("login")
 	public void getLogin(MemberDTO memberDTO)throws Exception{
-		
+
 	}
-	
+
 	@PostMapping("login")
 	public String getLogin(MemberDTO memberDTO,HttpSession session,Model model)throws Exception{
 		memberDTO= memberService.getLogin(memberDTO);
@@ -52,23 +67,15 @@ public class MemberController {
 		if(memberDTO==null) {
 			model.addAttribute("msg", msg);
 			model.addAttribute("path", path);
-			return "member/result"; 
-		}		
+			return "member/result";
+		}
 		session.setAttribute("member", memberDTO);
-		return "redirect:../";		
+		return "redirect:../";
 	}
 	@GetMapping("logout")
 	public String getLogout(HttpSession session)throws Exception{
 		session.setAttribute("member",null);
 		return "redirect:../";
 	}
-	
-	@GetMapping("mypage")
-	public void getProfile(MemberDTO memberDTO)throws Exception{
-		
-	}
-	
-	
-	
-	
-}	
+
+}

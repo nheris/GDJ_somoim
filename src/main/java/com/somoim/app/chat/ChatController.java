@@ -23,10 +23,10 @@ public class ChatController {
 
 	@Autowired
 	private MemberService memberService;
-	
+
 	@Autowired
 	private ChatMessageService chatMessageService;
-	
+
 	@GetMapping("/chat")
 	public ModelAndView chat(HttpSession session,ChatMessageDTO chatMessageDTO, MemberDTO memberDTO, ModelAndView mv) throws Exception{
 		if(session.getAttribute("member") == null) {

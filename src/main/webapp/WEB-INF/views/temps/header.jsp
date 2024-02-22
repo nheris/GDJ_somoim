@@ -30,10 +30,12 @@
 							id="navbarSupportedContent">
 							<ul id="nav" class="navbar-nav ms-auto">
 								<li class="nav-item"><a href="/">Home</a></li>
-								<li class="nav-item"><a href="/"
+								<li class="nav-item"><a href="/moim/list"
 									aria-label="Toggle navigation">내 모임리스트</a></li>
 								<li class="nav-item"><a href="/">모임만들기</a></li>
-								<li class="nav-item"><a href="/">공지사항</a></li>
+								<li class="nav-item"><a href="/notice/list">공지사항</a></li>
+								<li class="nav-item"><a href="/qna/list">QNA</a></li>
+								<li class="nav-item"><a href="/qna/fnq">FNQ</a></li>
 							</ul>
 						</div>
 						<!-- navbar collapse -->
@@ -46,7 +48,7 @@
 											회원가입</a></li>
 								</c:if>
 								<c:if test="${member ne null}">
-									<li><a href="/mypage"><i class="lni lni-user"></i>
+									<li><a href="/mypage/main"><i class="lni lni-user"></i>
 											마이페이지</a></li>
 									<li><a href="/member/logout"><i class="lni lni-ban"></i>
 											로그아웃</a></li>

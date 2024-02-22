@@ -11,10 +11,10 @@ import com.somoim.app.moim.MoimDTO;
 
 @Repository
 public class ChatMessageDAO {
-	
+
 	@Autowired
 	private SqlSession sqlSession;
-	
+
 	private final String NAMESPACE = "com.somoim.app.chat.ChatMessageDAO.";
 	
 	// room
@@ -31,7 +31,7 @@ public class ChatMessageDAO {
 	public List<MemberDTO> roomUserList(ChatMessageDTO chatMessageDTO){
 		return sqlSession.selectList(NAMESPACE+"roomUserList", chatMessageDTO);
 	}
-	
+
 	// chatMessage 테이블의 방번호와 chatRoom 테이블의 번호를 비교하기위해
 	public List<Long> chatRoomCh() {
 		return sqlSession.selectList(NAMESPACE+"chatRoomCh");
