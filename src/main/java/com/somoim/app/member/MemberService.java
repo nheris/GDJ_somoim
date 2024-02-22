@@ -35,7 +35,7 @@ public class MemberService {
 			return result;
 		}
 		String path = servletContext.getRealPath("/resources/upload/member");
-
+		System.out.println(path);
 		String fileName = fileManager.fileSave(path, attachs);
 		ProfileDTO profileDTO = new ProfileDTO();
 		profileDTO.setFileName(fileName);
@@ -57,7 +57,7 @@ public class MemberService {
 			return result;
 		}
 		String path = servletContext.getRealPath("/resources/upload/member");
-
+		System.out.println(path);
 		String fileName = fileManager.fileSave(path, attachs);
 		ProfileDTO profileDTO = new ProfileDTO();
 		profileDTO.setFileName(fileName);
@@ -70,25 +70,24 @@ public class MemberService {
 	}
 	public MemberDTO getLogin(MemberDTO memberDTO)throws Exception{
 		MemberDTO dto = memberDAO.getDetail(memberDTO);
-		List<RoleDTO> roleDTOList = memberDTO.getRoleDTO();
+
 		
 		if(dto!=null) {
 			if(dto.getPassword().equals(memberDTO.getPassword())) {
 
-
+				RoleDTO role = dto.getRoleDTO().get(0);
+				
 				memberDTO.setNickName(dto.getNickName());
 				memberDTO.setProfile(dto.getProfile());
 				memberDTO.setLoginNum(dto.getLoginNum());
-				memberDTO.setEmail(dto.getEmail());
-			
-					
-				}
+				memberDTO.setEmail(dto.getEmail());				
 				
 				return memberDTO;
 				
 			}else {
 				dto=null;
 			}
+		}
 		return dto;
 	}
 	
