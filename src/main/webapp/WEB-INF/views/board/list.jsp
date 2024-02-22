@@ -9,8 +9,7 @@
 <title>Somoim</title>
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <!-- CSS 임포트 -->
 <c:import url="../temps/head_css.jsp"></c:import>
 </head>
@@ -38,11 +37,11 @@
 			<li class="nav-item px-2"><a
 				class="nav-link active BOARDCATEGORY" href="#" data-category="all">전체</a></li>
 			<li class="nav-item px-2" name="category0" id="category0"><a
-				class="nav-link BOARDCATEGORY" href="#" data-category="category0">공지</a></li>
+				class="nav-link BOARDCATEGORY" href="#" data-category="category0">${category0}</a></li>
 			<li class="nav-item px-2" name="category1" id="category1"><a
-				class="nav-link BOARDCATEGORY" href="#" data-category="category1">패치</a></li>
+				class="nav-link BOARDCATEGORY" href="#" data-category="category1">${category1}</a></li>
 			<li class="nav-item px-2" name="category2" id="category2"><a
-				class="nav-link BOARDCATEGORY" href="#" data-category="category2">기타</a></li>
+				class="nav-link BOARDCATEGORY" href="#" data-category="category2">${category2}</a></li>
 		</ul>
 	</div>
 	<!--  -->

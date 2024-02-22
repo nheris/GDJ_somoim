@@ -49,100 +49,100 @@
 					<div class="col-12 p-0">
 						<div class="category-slider">
 							<!-- Start Single Category -->
-							<a href="category.html" class="single-cat">
+							<a href="category/main" class="single-cat">
 								<div class="icon">
 									<img src="/resources/assets/images/categories/car.svg" alt="#">
 								</div>
-								<h3>Vehicle</h3>
+								<h3>문화/공연/음악</h3>
 								<h5 class="total">35</h5>
 							</a>
 							<!-- End Single Category -->
 							<!-- Start Single Category -->
-							<a href="category.html" class="single-cat">
+<!-- 							<a href="category/main" class="single-cat">
 								<div class="icon">
 									<img src="/resources/assets/images/categories/laptop.svg"
 										alt="#">
 								</div>
-								<h3>Electronics</h3>
+								<h3>전체</h3>
 								<h5 class="total">22</h5>
-							</a>
+							</a> -->
 							<!-- End Single Category -->
 							<!-- Start Single Category -->
-							<a href="category.html" class="single-cat">
+							<a href="category/main" class="single-cat">
 								<div class="icon">
 									<img src="/resources/assets/images/categories/matrimony.svg"
 										alt="#">
 								</div>
-								<h3>Matrimony</h3>
+								<h3>사교/인맥</h3>
 								<h5 class="total">55</h5>
 							</a>
 							<!-- End Single Category -->
 							<!-- Start Single Category -->
-							<a href="category.html" class="single-cat">
+							<a href="category/main" class="single-cat">
 								<div class="icon">
 									<img src="/resources/assets/images/categories/furniture.svg"
 										alt="#">
 								</div>
-								<h3>Furnitures</h3>
+								<h3>공예/만들기</h3>
 								<h5 class="total">21</h5>
 							</a>
 							<!-- End Single Category -->
 							<!-- Start Single Category -->
-							<a href="category.html" class="single-cat">
+							<a href="category/main" class="single-cat">
 								<div class="icon">
 									<img src="/resources/assets/images/categories/jobs.svg" alt="#">
 								</div>
-								<h3>Jobs</h3>
+								<h3>업종/직무</h3>
 								<h5 class="total">44</h5>
 							</a>
 							<!-- End Single Category -->
 							<!-- Start Single Category -->
-							<a href="category.html" class="single-cat">
+							<a href="category/main" class="single-cat">
 								<div class="icon">
 									<img src="/resources/assets/images/categories/real-estate.svg"
 										alt="#">
 								</div>
-								<h3>Real Estate</h3>
+								<h3>자유주제</h3>
 								<h5 class="total">65</h5>
 							</a>
 							<!-- End Single Category -->
 							<!-- Start Single Category -->
-							<a href="category.html" class="single-cat">
+							<a href="category/main" class="single-cat">
 								<div class="icon">
 									<img src="/resources/assets/images/categories/laptop.svg"
 										alt="#">
 								</div>
-								<h3>Education</h3>
+								<h3>외국/언어</h3>
 								<h5 class="total">35</h5>
 							</a>
 							<!-- End Single Category -->
 							<!-- Start Single Category -->
-							<a href="category.html" class="single-cat">
+							<a href="category/main" class="single-cat">
 								<div class="icon">
 									<img src="/resources/assets/images/categories/hospital.svg"
 										alt="#">
 								</div>
-								<h3>Health & Beauty</h3>
+								<h3>봉사활동</h3>
 								<h5 class="total">22</h5>
 							</a>
 							<!-- End Single Category -->
 							<!-- Start Single Category -->
-							<a href="category.html" class="single-cat">
+							<a href="category/main" class="single-cat">
 								<div class="icon">
 									<img src="/resources/assets/images/categories/tshirt.svg"
 										alt="#">
 								</div>
-								<h3>Fashion</h3>
+								<h3>운동/스포츠</h3>
 								<h5 class="total">25</h5>
 							</a>
 							<!-- End Single Category -->
 							<!-- Start Single Category -->
-							<a href="category.html" class="single-cat">
+							<a href="category/main" class="single-cat">
 								<div class="icon">
 									<img src="/resources/assets/images/categories/education.svg"
 										alt="#">
 								</div>
-								<h3>Education</h3>
+								<h3>인문학</h3>
 								<h5 class="total">42</h5>
 							</a>
 							<!-- End Single Category -->
@@ -152,7 +152,7 @@
 									<img src="/resources/assets/images/categories/controller.svg"
 										alt="#">
 								</div>
-								<h3>Gadgets</h3>
+								<h3>게임/오락</h3>
 								<h5 class="total">32</h5>
 							</a>
 							<!-- End Single Category -->
@@ -162,7 +162,7 @@
 									<img src="/resources/assets/images/categories/travel.svg"
 										alt="#">
 								</div>
-								<h3>Backpacks</h3>
+								<h3>아웃도어/여행</h3>
 								<h5 class="total">15</h5>
 							</a>
 							<!-- End Single Category -->
@@ -172,7 +172,7 @@
 									<img src="/resources/assets/images/categories/watch.svg"
 										alt="#">
 								</div>
-								<h3>Watches</h3>
+								<h3>요리/제조</h3>
 								<h5 class="total">65</h5>
 							</a>
 							<!-- End Single Category -->

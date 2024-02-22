@@ -46,7 +46,7 @@
   		</selectKey>
   	
   		INSERT INTO MOIM
-  		VALUES (#{moimNum}, #{moimName}, #{moimRegion}, #{moimCategory}, SYSDATE, #{moimText}, #{moimMemCount}, #{moimHead})
+  		VALUES (#{moimNum}, #{moimName}, #{moimRegion}, #{moimCategory}, current_date, #{moimText}, #{moimMemCount}, #{moimHead})
   		
   	</insert>
   	<insert id="fileAdd" parameterType="MoimFileDTO">
@@ -72,7 +72,7 @@
   	<!-- update -->
   	<!-- GET -->
   	<!-- moimNum대한 모임 전체 정보와 사진 조회 -->
-  	<select id="update" parameterType="MoimDTO" resultMap="updateResult">
+  	<select id="getInfo" parameterType="MoimDTO" resultMap="updateResult">
   		<!-- SELECT *
 		FROM MOIM m 
 		WHERE MOIMNUM = #{moimNum} -->
@@ -101,17 +101,31 @@
  
 	<!-- POST -->
 	<!-- 모임 내용,사진 수정 -->
-  	<update id="updatePost" parameterType="MoimDTO">
-  		UPDATE MOIM SET
-  		MOIMNAME = #{moimName},
-  		MOIMTEXT = #{moimText},
-  		MOIMMEMCOUNT = #{moimMemCount}
+  	<update id="update" parameterType="MoimDTO">
+  		UPDATE MOIM
+  		<set>
+  			<if test="moimName != null and moimName !=''">
+	  		MOIMNAME = #{moimName},
+	  		</if>
+	  		<if test="moimText != null and moimText !=''">
+	  		MOIMTEXT = #{moimText},
+	  		</if>
+	  		<if test="moimMemCount != null and moimMemCount !=''">
+	  		MOIMMEMCOUNT = #{moimMemCount}
+	  		</if>
+  		</set>
   		WHERE MOIMNUM = #{moimNum}
   	</update>
 	<update id="fileUpdate" parameterType="MoimFileDTO">
-		UPDATE MOIMFILE SET
-		FILENAME = #{fileName},
-		ORINAME = #{oriName}
+		UPDATE MOIMFILE
+		<set>
+			<if test="fileName != null or fileName !=''">
+			FILENAME = #{fileName},
+			</if>
+			<if test="oriName != null or oriName !=''">
+			ORINAME = #{oriName}
+			</if>
+		</set>
 		WHERE MOIMNUM = #{moimNum}
 	</update>
 	
@@ -122,8 +136,10 @@
 	WHERE MOIMNUM =#{moimNum} -->
   
   
-  
-  
+  	<!-- 게시판 글쓰기 -->
+  	
+  		
+  		
   
   
   </mapper>

@@ -39,7 +39,7 @@
 		</selectKey>
 		INSERT INTO NOTICEBOARD
 		VALUES(
-		#{boardNum}, #{userName}, #{boardTitle}, #{boardText}, #{boardWriter}, SYSDATE,
+		#{boardNum}, #{userName}, #{boardTitle}, #{boardText}, #{boardWriter}, current_date,
 		#{boardCategory}
 		)
 	</insert>

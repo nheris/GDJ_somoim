@@ -1,6 +1,7 @@
 package com.somoim.app.moim.member;
 
-import java.util.Date;
+
+import java.sql.Date;
 
 public class MoimMemberDTO {
 	private String userName;

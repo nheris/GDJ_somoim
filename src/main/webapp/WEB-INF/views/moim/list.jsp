@@ -114,7 +114,7 @@
 																<!-- <div class="content"> -->
 																<span class="content mx-5">
 																	<h5 class="title">
-																		<a href="./home?moimNum=${dto.moimNum}" id="moimName"
+																		<a href="./main/home?moimNum=${dto.moimNum}" id="moimName"
 																			data-moim-num="${dto.moimNum}">${dto.moimName}</a>
 																	</h5>
 																	<span class="moimHead">${dto.moimHead}</span>
@@ -139,10 +139,6 @@
 																<li>
 																	<a href="#" data-moim-num="${dto.moimNum}">
 																	<i class="lni lni-pencil update"></i></a>
-																</li>
-																<li>
-																	<a href="./home">
-																	<i class="lni lni-eye"></i></a>
 																</li>
 																<li>
 																	<a href="javascript:void(0)" class="del" data-moim-num="${dto.moimNum}">

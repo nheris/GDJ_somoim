@@ -85,20 +85,70 @@
                                 <input name="userBirth" id="userBirth" type="hidden" maxlength="10">
                             </div>
                             <div class="form-group">
-                                <label for="address">주소</label>
-                                <input name="address" id="address" type="text">
+                                <!-- Button trigger modal -->
+                                <button type="button" id="getLocation" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    주소 검색하기
+                                </button>
+                                <br><br>
+                                <!-- Modal -->
+                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>                                            
+                                        <div class="modal-body">
+                                                <label for="area">지역 : </label>
+                                                <select id="area" onchange="changeList()">    
+                                                    <option value="0">선택하기</option>
+                                                </select>
+                                        </div>                                            
+                                        <div>
+                                            <label for="area_detail">세부지역 : </label>
+                                            <select id="area_detail">
+                                                <option value="0">선택하기</option>
+                                            </select>
+                                        </div>
+                                        <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="btn_close">Close</button>
+                                        <button type="button" class="btn btn-primary" id="btn_area">Save changes</button>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <input name="address" type="text" id="adrs_in" disabled>
+                                </div>
                             </div>
+
                             <div class="form-group">
                                 <label for="phone">전화번호</label>
                                 <input name="phone" id="phone" type="text">
                             </div>
+
+
+
                             <div class="form-group">
                                 <label for="email">이메일</label>
-                                <input name="email" id="email" type="email">
+                                <input type="text" placeholder="이메일" name="email" id="email" class="email">
+                                <button type="button" id="email_auth_btn" class="email_auth_btn">인증번호 받기</button>
                             </div>
+                            <div class="form-group">
+                                <input type="text" placeholder="인증번호 입력" id="email_auth_key">
+                                <button type="button" id="key_check">인증번호 확인</button>
+                                <br>
+                                <p style="display: none;" id="auth_check">인증확인!</p>
+                            </div>
+
                             <div class="form-group">
                                 <label for="attachs">사진첨부</label>
                                 <input name="attachs" id="attachs" type="file">
+                            </div>
+
+                            <div class="form-group" hidden>                                
+                                <input name="loginNum" id="attachs" value="1" type="text">
                             </div>
 
 
@@ -116,7 +166,7 @@
                             <div class="button">
                                 <button type="submit" id="btn">Registration</button>
                             </div>
-                            <p class="outer-link">Already have an account? <a href="/login"> Login Now</a>
+                            <p class="outer-link">Already have an account? <a href="/member/login"> Login Now</a>
                             </p>
                         </form>
                     </div>
