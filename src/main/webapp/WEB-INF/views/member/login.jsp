@@ -27,11 +27,11 @@
                         <form action="./login" method="post">
                             <div class="form-group">
                                 <label for="userName">Username</label>
-                                <input name="userName" value="user2" id="userName" type="text">
+                                <input name="userName" value="user1" id="userName" type="text">
                             </div>
                             <div class="form-group">
                                 <label for="password">Password</label>
-                                <input name="password" value="user2" id="password" type="password">
+                                <input name="password" value="user1" id="password" type="password">
                             </div>
                             <div class="check-and-pass">
                                 <div class="row align-items-center">
