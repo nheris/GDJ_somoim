@@ -55,12 +55,10 @@ private ServletContext servletContext;
 	public int setAdd(BoardDTO boardDTO, MultipartFile[] attachs) throws Exception {
 		//1. 글을 등록 - 글번호를 알아오기 위해서
 		int result = qnaDAO.setAdd(boardDTO);	
-		System.out.println("글번호 알아오기"+result);
 		
 		//2. 파일을 HDD에 저장
 		//2-1 저장할 폴더의 실제 경로 구하기
 		String path = servletContext.getRealPath("/resources/upload/qna");
-		System.out.println("실제경로"+path);
 		//2-2 HDD에 저장하고 파일명 받아오기
 		
 		
@@ -85,8 +83,32 @@ private ServletContext servletContext;
 
 	@Override
 	public int setUpdate(BoardDTO boardDTO, MultipartFile[] attachs) throws Exception {
-		// TODO Auto-generated method stub
-		return qnaDAO.setUpdate(boardDTO);
+		//1. 글을 등록 - 글번호를 알아오기 위해서
+				int result = qnaDAO.setAdd(boardDTO);	
+				
+				//2. 파일을 HDD에 저장
+				//2-1 저장할 폴더의 실제 경로 구하기
+				String path = servletContext.getRealPath("/resources/upload/qna");
+				//2-2 HDD에 저장하고 파일명 받아오기
+				
+				
+				for(MultipartFile f: attachs) {
+					System.out.println(f);
+					if(f.isEmpty()) {
+						continue;
+					}
+					
+					String fileName = fileManager.fileSave(path, f);
+				//2-3 DB에 파일 정보 저장하기
+					BoardFileDTO boardFileDTO = new BoardFileDTO();
+					boardFileDTO.setUserName(boardDTO.getUserName());
+					boardFileDTO.setFileName(fileName);
+					boardFileDTO.setOriName(f.getOriginalFilename());
+					boardFileDTO.setBoardNum(boardDTO.getBoardNum());
+					result = qnaDAO.setFileAdd(boardFileDTO);
+				}
+				
+				return result;
 	}
 
 	@Override

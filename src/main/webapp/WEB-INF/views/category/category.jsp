@@ -6,7 +6,7 @@
 	<div class="col-6" mb-2>
 		<div class="single-grid wow fadeInUp" data-wow-delay=".2s">
 			<div class="image">
-				<a href="../moim/home?moimNum=${data.moimNum}" class="thumbnail"><img
+				<a href="../moim/main/home?moimNum=${data.moimNum}" class="thumbnail"><img
 					src="/resources/upload/moim/${data.moimFileDTO.fileName}" alt="#"></a>
 				<div class="author">
 					<div class="author-image">
@@ -23,7 +23,7 @@
 				<div class="top-content">
 					<a href="javascript:void(0)" class="tag">${data.moimCategory}</a>
 					<h3 class="title">
-						<a href="../moim/home?moimNum=${data.moimNum}">${data.moimName}</a>
+						<a href="../moim/main/home?moimNum=${data.moimNum}">${data.moimName}</a>
 					</h3>
 					<ul class="info-list">
 						<li><a href="javascript:void(0)"><i class="lni lni-map-marker"></i>${data.moimRegion}</a></li>						
