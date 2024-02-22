@@ -20,9 +20,9 @@ import com.somoim.app.util.Pager;
 
 @Controller
 @RequestMapping("/moim/main/reply/*")
-public class ReplyController {
+public class MoimReplyController {
 	@Autowired
-	private ReplyService replyService;
+	private MoimReplyService replyService;
 	
 	
 	
