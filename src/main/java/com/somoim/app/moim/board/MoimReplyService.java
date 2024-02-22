@@ -14,9 +14,9 @@ import com.somoim.app.member.MemberDTO;
 import com.somoim.app.util.Pager;
 
 @Service
-public class ReplyService {
+public class MoimReplyService {
 	@Autowired
-	private ReplyDAO replyDAO;
+	private MoimReplyDAO replyDAO;
 	
 	//add
 	public int add(ReplyDTO replyDTO) throws Exception {
