@@ -23,15 +23,15 @@
 				<div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-12">
 					<div class="form-head">
 						<h4 class="title">비밀번호 찾기</h4>
-							<form action="./login" method="post">
+							<form action="./findPw" method="post">
 							    <div class="form-group">
 							        <label for="userName">Username</label>
-							        <input name="userName" value="user1" id="userName" type="text">
+							        <input name="userName" id="userName" type="text">
 							    </div>
 	                            <div class="form-group">
 	                                <label for="email">이메일</label>
 	                                <input type="text" placeholder="이메일" name="email" id="email" class="email">
-	                                <button type="button" id="email_auth_btn" class="email_auth_btn">인증번호 받기</button>
+	                                <button type="button" id="checkId" class="email_auth_btn">인증번호 받기</button>
 	                            </div>
 	                            <div class="form-group">
 	                                <input type="text" placeholder="인증번호 입력" id="email_auth_key">
@@ -53,6 +53,9 @@
 
 	<!-- ========================= JS improt ========================= -->
 	<c:import url="../temps/footer.jsp"></c:import>
+	<script src="../resources/js/member/findPw.js"></script>
+	
+	
 </body>
 
 </html>

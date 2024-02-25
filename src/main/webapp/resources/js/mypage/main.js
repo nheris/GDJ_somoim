@@ -48,22 +48,27 @@ btn2.addEventListener("click",(e)=>{
 btn3.addEventListener("click",(e)=>{
     let pwd = document.getElementById("password").value;
     let pwdCheck = document.getElementById("passwordCheck").value;
-    
+    let p_pwd=document.getElementById("p_pwd").value;
+    let p_pwdCheck=document.getElementById("p_pwdCheck").innerHTML;
+
     function strongPassword (str) {
         return /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/.test(str);
       }
 
-    
-        if(pwd==pwdCheck){
+        if(p_pwd !== p_pwdCheck){
+            console.log(p_pwdCheck);
+            console.log(p_pwd);
+            alert("현재비밀번호 확인")
+        }else if(pwd==pwdCheck){
             if(strongPassword(pwd)){
-                e.preventDefault();                
+                e.preventDefault();
                 frm2.submit();
                 alert("변경되었습니다");
                 }else{
                     alert("비밀번호는 8글자 이상,영문,숫자,특수문자가 들어가야합니다")
                 }
             }else{
-        alert("비밀번호를 확인해주세요");
+        alert("변경할 비밀번호를 확인해주세요");
     }
 
     

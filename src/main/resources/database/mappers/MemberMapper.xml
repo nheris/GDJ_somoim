@@ -8,12 +8,11 @@
   	<select id="checkPw" parameterType="MemberDTO" resultType="int">
   		SELECT COUNT(*) FROM MEMBER
   		WHERE USERNAME=#{userName} AND EMAIL=#{email}
-  	</select>  	  
+  	</select>
   
   	<update id="setPasswordUpdate" parameterType="MemberDTO">
   		UPDATE MEMBER
-  		SET 
-  			PASSWORD = #{password}
+  		SET PASSWORD = #{password}
   		WHERE USERNAME = #{userName} AND EMAIL=#{email}
   	</update>
   	

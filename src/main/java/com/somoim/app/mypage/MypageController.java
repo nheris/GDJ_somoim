@@ -46,6 +46,21 @@ public class MypageController {
 		return "mypage/main";	
 		
 	}
+	
+	@PostMapping("password")
+	public String setPasswordUpdate(HttpSession session,MemberDTO memberDTO)throws Exception{
+		
+		MemberDTO m = (MemberDTO)session.getAttribute("member");
+		memberDTO.setUserName(m.getUserName());
+		memberDTO.setEmail(m.getEmail());
+		System.out.println(memberDTO.getEmail());
+		
+		
+		memberService.setPasswordUpdate(memberDTO);
+		
+		return "redirect:./main";
+		
+	}
 
 	@PostMapping("update")
 	public String setUpdate(MultipartFile attachs,HttpSession session,MemberDTO memberDTO)throws Exception{
@@ -61,20 +76,6 @@ public class MypageController {
 
 		return "redirect:./main";
 
-	}
-	@PostMapping("password")
-	public String setPasswordUpdate(HttpSession session,MemberDTO memberDTO)throws Exception{
-
-		MemberDTO m = (MemberDTO)session.getAttribute("member");
-		m=(MemberDTO)session.getAttribute("appmember");
-		memberDTO.setUserName(m.getUserName());
-		memberDTO.setEmail(m.getEmail());
-		System.out.println(memberDTO.getEmail());
-		
-
-		memberService.setPasswordUpdate(memberDTO);
-
-		return "redirect:./main";
 	}
 
 	@GetMapping("pay")

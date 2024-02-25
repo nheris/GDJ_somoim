@@ -23,7 +23,7 @@ function handleCredentialResponse(response) {
         .then(r => r.text())
         .then(d => {
             if(d == "success"){
-                location.href = "/member/joinApp"
+                location.href = "/member/joinGoo"
             }else{
                 location.href = "/"
             }

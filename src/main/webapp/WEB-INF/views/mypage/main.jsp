@@ -92,11 +92,20 @@
 						<form id="frm2" action="./password" method="post">
 							<table class="table table-hover" id="del_td">
 								<tr>
-									<td class="table dark">비밀번호</td>
+									<td class="table dark">현재 비밀번호</td>
+									<td><input type="password" id = "p_pwd"></td>
+								</tr>
+
+								<tr hidden>									
+									<td id="p_pwdCheck">${member.password}</td>
+								</tr>
+
+								<tr>
+									<td class="table dark">변경 할 비밀번호</td>
 									<td><input type="password" name="password" id = "password"></td>
 								</tr>
 								<tr>
-									<td class="table dark">비밀번호변경</td>
+									<td class="table dark">변경 할 비밀번호확인</td>
 									<td><input type="password" id = "passwordCheck"></td>
 								</tr>
 								
