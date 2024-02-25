@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.somoim.app.member.MemberDTO;
+import com.somoim.app.moim.member.MoimMemberDTO;
 import com.somoim.app.util.FileManager;
 
 @Service
@@ -32,7 +33,11 @@ public class MoimService {
 		result = moimDAO.moimHeadAdd(moimDTO);
 
 		String path = servletContext.getRealPath("/resources/upload/moim");
-
+		
+		if(file.isEmpty()) {
+			return result;
+		}
+		
 		String fileName = fileManager.fileSave(path, file);
 
 		MoimFileDTO moimFileDTO = new MoimFileDTO();
@@ -67,7 +72,11 @@ public class MoimService {
 		int result = moimDAO.update(moimDTO);
 		
 		String path = servletContext.getRealPath("/resources/upload/moim");
-
+		
+		if(file.isEmpty()) {
+			return result;
+		}
+		
 		String fileName = fileManager.fileSave(path, file);
 
 		MoimFileDTO moimFileDTO = new MoimFileDTO();
@@ -79,6 +88,28 @@ public class MoimService {
 
 		return result;
 	}
+	//home
+	//memInfo
+	public List<MoimMemberDTO> memInfo(MoimDTO moimDTO) {
+		return moimDAO.memInfo(moimDTO);
+	}
+	public Long memNum(MoimDTO moimDTO) {
+		return moimDAO.memNum(moimDTO);
+	}
+	
+	
+	//join
+	public int join(MoimMemberDTO moimMemberDTO) {
+		return moimDAO.join(moimMemberDTO);
+	}
+	
+	//kick
+	public int kick(MoimMemberDTO moimMemberDTO) {
+		return moimDAO.kick(moimMemberDTO);
+	}
+
+
+
 
 	
 	

@@ -96,23 +96,31 @@
 			                
 								<!-- 모임설정 -->
 								<div class="mb-3">
-									<label for="moimName" class="form-label">모임 이름</label>
-									<input type="text" class="form-control" id="moimName" name="moimName" value="${dto.moimName}" placeholder="모임 이름">
+									<label for="moimName" class="form-label">모임 이름(2~10자)</label>
+									<input type="text" class="form-control" id="moimName" name="moimName" value="${dto.moimName}" placeholder="모임 이름" minlength = "2" maxlength = "10">
 								</div>
 								<div class="mb-3">
-									<label for="exampleFormControlTextarea1" class="form-label">모임 설명</label>
+									<label for="moimText" class="form-label">모임 설명</label>
 									<textarea class="form-control" id="moimText" name="moimText" rows="8" placeholder="모임에 대한 설명이나 목표를 적어주세요.">${dto.moimText}</textarea>
 								</div>
 								<div class="mb-3">
 									<label for="exampleFormControlTextarea1" class="form-label">모임 대표 이미지</label>
-									<div class="mb-3"><img src="/resources/upload/moim/${dto.moimFileDTO.fileName}" id="preview" style="width: 100px; height: 100px; border-radius: 50px;" alt="..."></div>
+									<div class="mb-3">
+										<c:if test="${empty dto.moimFileDTO.fileName}">
+											<img src="/resources/img/moim/basic.png" id="preview" style="width: 100px; height: 100px; border-radius: 50px;" alt="..." >
+										</c:if>
+										<c:if test="${not empty dto.moimFileDTO.fileName}">
+											<img src="/resources/upload/moim/${dto.moimFileDTO.fileName}" id="preview" style="width: 100px; height: 100px; border-radius: 50px;" alt="...">
+										</c:if>
+									</div>
 									<div class="input-group mb-3">
-									  <input type="file" class="form-control" name="file" onchange="readImg(this);">
+									  <!-- <input type="file" class="form-control" name="file" onchange="readImg(this);"> -->
+									  <input class="form-control" type="file" id="formFileMultiple" onchange="readImg(this);" data-file-count="0" data-file-max="1" name="file" accept="image/jpg, image/jpeg, image/png, image/gif">
 									</div>
 								</div>
 								<div class="mb-3">
 									<label for="moimName" class="form-label">모임 정원(10~300명)</label>
-									<input type="number" class="form-control" id="moimMemCount" name="moimMemCount" value="${dto.moimMemCount}">
+									<input type="number" class="form-control" id="moimMemCount" name="moimMemCount" value="${dto.moimMemCount}" min="10" max="300">
 								</div>
 								
 								<input type="hidden" name="moimNum" value="${dto.moimNum}">
@@ -153,7 +161,7 @@
 	<c:import url="../temps/footer.jsp"></c:import>
 	<script src="https://unpkg.com/bootstrap@4.3.1/dist/js/bootstrap.bundle.min.js" data-src="https://unpkg.com/bootstrap@4.3.1/dist/js/bootstrap.min.js" ></script>
 	<script src="https://unpkg.com/bootstrap-select@1.13.8/dist/js/bootstrap-select.min.js"></script>
-	<script src="/resources/js/moim/moimCon.js"></script>
+	<script src="/resources/js/moim/moimUpdate.js"></script>
 </body>
 
 </html>

@@ -8,6 +8,7 @@
 </head>
 <body>
 	<script type="text/javascript">
+		alert('왓냐');
 		let msg = '${msg}';
 		alert(msg);
 		location.href="${path}"

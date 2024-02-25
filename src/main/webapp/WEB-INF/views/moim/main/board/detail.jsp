@@ -56,6 +56,7 @@
 					<div class="author my-3">
 						<div class="author-profile">
 								<img src="/resources/upload/member/${dto.boardProfile}" alt="2" style="width: 40px; height: 40px; border-radius: 100px; float: left;">
+								<img src="../resources/upload/member/${member.profile.fileName}" alt="2" style="width: 40px; height: 40px; border-radius: 100px; float: left;">
 								<div class="mx-2" style=" display:inline-block;">
 									<div class="mx-2">${dto.boardWriter}</div>
 									<div class="mx-2">${dto.boardDate}</div>

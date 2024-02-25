@@ -26,7 +26,8 @@
         <typeAlias type="com.somoim.app.moim.board.ReplyDTO" alias="ReplyDTO"/>
         <typeAlias type="com.somoim.app.payment.PaymentDTO" alias="PaymentDTO"/>
         <typeAlias type="com.somoim.app.payment.OrdersDTO" alias="OrdersDTO"/>
-  		<typeAlias type="com.somoim.app.member.role.RoleDTO" alias="RoleDTO"/>  	
+  		<typeAlias type="com.somoim.app.member.role.RoleDTO" alias="RoleDTO"/>
+  		<typeAlias type="java.lang.Long" alias="Long"/>
   	</typeAliases>
   </configuration>
   

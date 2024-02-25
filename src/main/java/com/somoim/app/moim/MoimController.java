@@ -1,6 +1,9 @@
 package com.somoim.app.moim;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -14,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.somoim.app.member.MemberDTO;
 import com.somoim.app.moim.meet.MeetDTO;
+import com.somoim.app.moim.member.MoimMemberDTO;
 
 @Controller
 @RequestMapping("/moim/*")
@@ -74,6 +78,7 @@ public class MoimController {
 		int result = moimService.update(moimDTO, file);
 		
 		return "redirect:./list";
+		
 	}
 	
 	
@@ -82,14 +87,79 @@ public class MoimController {
 	
 	//home
 	@GetMapping("main/home")
-	public void detail(MoimDTO moimDTO, Model model) throws Exception {
+	public Map<String, Object> detail(MoimDTO moimDTO) throws Exception {
+		//모임정보
 		moimDTO = moimService.getInfo(moimDTO);
-		model.addAttribute("dto", moimDTO);
+		
+		//회원정보
+		List<MoimMemberDTO> ar = moimService.memInfo(moimDTO);
+		Long memNum = moimService.memNum(moimDTO);
+		
+		
+		//System.out.println("확인:"+ ar.get(0).getUserName());
+		//System.out.println("확인2:"+ ar.size());
+		List<String> contain = new ArrayList<>();
+		
+		for(int i=0; i<ar.size();i++) {
+			contain.add(ar.get(i).getUserName());
+		}
+		
+		//System.out.println("111:"+ contain.get(0));
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("dto", moimDTO);
+		map.put("contain", contain);
+		map.put("memInfo", ar);
+		map.put("memNum", memNum);
+
+
+		return map;
 
 	}
-	
+	//join
+	@GetMapping("main/home/join")
+	public String join(MoimMemberDTO moimMemberDTO, HttpSession session,Model model) throws Exception {
+		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+		moimMemberDTO.setUserName(memberDTO.getUserName());
+		
+		System.out.println("1:"+moimMemberDTO.getMoimNum());
+		System.out.println("2:"+moimMemberDTO.getUserName());
+		
+		int result = moimService.join(moimMemberDTO);		
+		
+		String msg = "다시 시도해주세요.";
+		String path = "../home?moimNum="+moimMemberDTO.getMoimNum();
+		if(result == 1) {
+			
+			msg = "가입 완료";
+			path = "../home?moimNum="+moimMemberDTO.getMoimNum();
+		}
+		model.addAttribute("msg",msg);
+		model.addAttribute("path",path);
+		//model.addAttribute("dto", moimDTO);
+		
+		return "moim/resultAlert";
+	}
 
-	
+	//kick
+	@PostMapping("main/home/kick")
+	public String kick(MoimMemberDTO moimMemberDTO, Model model) throws Exception{
+		int result = moimService.kick(moimMemberDTO);
+		
+		System.out.println(moimMemberDTO.getMoimNum());
+		String path = "../home?moimNum="+moimMemberDTO.getMoimNum();
+//		String msg = "다시 시도해주세요.";
+//		String path = "../home?moimNum="+moimMemberDTO.getMoimNum();
+//		if(result == 1) {
+//			msg = "퇴출하였습니다.";
+//			path = "../home?moimNum="+moimMemberDTO.getMoimNum();
+//		}
+//		model.addAttribute("msg",msg);
+//		model.addAttribute("path",path);
+		
+		return path;
+	}
 	
 	
 

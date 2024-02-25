@@ -1,18 +1,4 @@
-//정모이름 10글자 제한 일단 나중에
-// let meetName= document.getElementById("meetName");
-// meetName.addEventListener('blur', function(){
-//     //console.log('연결');
-//     let name = meetName.value;
-//     if(name.length<2||10<name.length){
-//     	console.log(meetName.className);
-//     	meetName.className += ' is-invalid';
-//         let div = document.createElement('div');
-//         div.setAttribute("class","invalid-feedback");
-//         let text = document.createTextNode('이름: 2~10자');
-//         div.appendChild(text);
-//         meetName.after(div);
-//     }
-// })
+
 
 //datepicker
 $(function() {
