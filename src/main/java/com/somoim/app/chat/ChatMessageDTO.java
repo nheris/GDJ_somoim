@@ -3,15 +3,19 @@ package com.somoim.app.chat;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Locale;
 
-public class ChatMessageDTO {
+import com.somoim.app.member.MemberDTO;
+
+public class ChatMessageDTO extends MemberDTO{
 
 	private Long messageNum;
 	private Long chatRoomNum;
 	private String userName;
 	private String chatText;
 	private String chatTimeStamp;
+	private List<MemberDTO> memberDTOs;
 	
 	
 	public Long getMessageNum() {

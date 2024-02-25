@@ -95,6 +95,7 @@
 											<div class="message my-message">Are we meeting today?</div>
 										</li>
 										<li class="clearfix">
+											<input type="hidden" id="userNick" value="${user.nickName}">
 											<input type="hidden" id="userCh" value="${user.userName}">
 											<input type="hidden" id="roomCh" value=${roomNum}>
 											<div class="message-data">

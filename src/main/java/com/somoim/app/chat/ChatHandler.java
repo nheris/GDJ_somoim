@@ -31,6 +31,7 @@ public class ChatHandler extends TextWebSocketHandler{
 	//메세지를 다루는 메서드
 	@Override
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
+		System.out.println("message");
 		ObjectMapper objectMapper = new ObjectMapper();
 		ChatMessageDTO chatMessageDTO = objectMapper.readValue(message.getPayload(), ChatMessageDTO.class);
 		System.out.println(chatMessageDTO.getChatText() +" : "+ chatMessageDTO.getUserName()+" : "+chatMessageDTO.getChatRoomNum());

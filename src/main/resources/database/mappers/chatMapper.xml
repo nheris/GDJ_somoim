@@ -39,7 +39,7 @@
 			(MESSAGE_SEQ.NEXTVAL, #{chatRoomNum}, #{userName}, #{chatText}, SYSDATE)
   	</insert>
 
-	<select id="chatHistory" parameterType="ChatMessageDTO" resultType="ChatMessageDTO">
+	<select id="chatHistory" parameterType="ChatMessageDTO" resultType="MemberDTO" resultMap="getRoomMember">
 		SELECT * 
 			FROM CHATMESSAGE
 		WHERE CHATROOMNUM = #{chatRoomNum}
@@ -56,4 +56,18 @@
 			USING (MOIMNUM)
 		WHERE CHATROOMNUM = #{chatRoomNum}
 	</select>
+	
+	<resultMap type="ChatMessageDTO" id="getRoomMember">
+		<id column="MESSAGENUM" property="messageNum"/>
+		<result column="CHATROOMNUM" property="chatRoomNum"/>
+		<result column="USERNAME" property="userName"/>
+		<result column="CHATTEXT" property="chatText"/>
+		<result column="CHATTIMESTAMP" property="chatTimeStamp"/>
+		
+		<collection property="memberDTOs" javaType="List" ofType="MemberDTO">
+			<id column="USERNAME" property="userName"/>
+			<result column="NICKNAME" property="nickName"/>
+			<result column="NAME" property="name"/>
+		</collection>
+	</resultMap>
   </mapper>

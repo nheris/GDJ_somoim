@@ -9,6 +9,7 @@ const sendMsg = document.getElementById('sendMsg');
 
 const chat_record = document.getElementById('chat_record');
 const userCh = document.getElementById('userCh');
+const userNick = document.getElementById('userNick')
 
 const msgForm = document.getElementById('msgForm');
 const chat_message = document.querySelector('.chat-message');
@@ -31,6 +32,7 @@ function scroller(){
     }
 }
 
+// 엔터하면 값을 서버로 보냄
 sendMsg.addEventListener('keyup',(e) => {
     if(sendMsg.value != ""){
         if(e.key == 'Enter' || e.keyCode == '13'){
@@ -40,7 +42,8 @@ sendMsg.addEventListener('keyup',(e) => {
             const chatMessage = {
                 "userName" : userCh.value,
                 "chatText" : sendMsg.value,
-                "chatRoomNum" : roomCh
+                "chatRoomNum" : roomCh,
+                "nickName" : userNick.value
             };
             
             console.log(chatMessage);
@@ -57,6 +60,7 @@ sock.onopen = function(){
     console.log('연결');
 }
 
+// 메세지를 정보를 서버로
 sock.onmessage =  function (e){
     console.log("onmessage");
     const week = new Array('SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT');
@@ -71,21 +75,18 @@ sock.onmessage =  function (e){
     let data = e.data;
     let jsonData = JSON.parse(data);
     
+    console.log(jsonData);
+    
     let user = jsonData.userName;
-    let str = jsonData.chatText;
     let roomNumber = jsonData.chatRoomNum;
-
-    console.log(user +" : "+str+" : "+roomNumber);
-    console.log(user +" : "+userCh.value);
-    console.log(roomNumber +" : "+chatRoomNum.getAttribute('data-chatRoom'));
+    // let str = jsonData.chatText;
+    let nick = jsonData.nickName;
     
     if(roomNumber === chatRoomNum.getAttribute('data-chatRoom')){
         if(user === userCh.value){
-            console.log('mySend');
-            mySend(str, date);
+            mySend(jsonData.chatText, date);
         }else{
-            console.log('otherSend');
-            otherSend(str, date);
+            otherSend(nick, jsonData.chatText, date);
         }
     }
     
@@ -103,8 +104,8 @@ sock.onclose = function(){
     console.log('onClose');
 }
 
-
-function mySend(msg, date){
+// 내 채팅
+function mySend(msg ,date){
     // 채팅형태로 Element 추가
     // chat-record add
     let li = document.createElement("li");
@@ -129,7 +130,8 @@ function mySend(msg, date){
     div.innerText = msg;
 }
 
-function otherSend(msg, date){
+// 타인의 채팅
+function otherSend(nick, msg, date){
     let li = document.createElement("li");
     li.classList.add('clearfix');
     let div = document.createElement("div");
@@ -144,10 +146,10 @@ function otherSend(msg, date){
     chat_record.append(li);
     li.append(div);
     div.append(span);
-
     div = document.createElement("div");
     
     li.append(div);
+    div.innerText = nick;
     div.classList.add('message');
     div.classList.add('other-message');
     div.classList.add('float-right');
@@ -156,13 +158,15 @@ function otherSend(msg, date){
 
 let chatRoom = document.querySelector(".chat-list");
 
+// 채팅방을 클릭하면 DB에서 채팅기록 가져오기
 chatRoom.addEventListener('click',(e)=>{
     chat_record.innerHTML = null;
     if(e.target.classList.contains('clearfix')){
         let n = e.target.getAttribute('data-roomNum');
+        let nick = e.target.getAttribute('data-nick');
         
         chatRoomNum.setAttribute('data-chatRoom',n);
-        console.log("n : "+n +" +chatRoomNum.getAttribute('data-roomNum') : "+chatRoomNum.getAttribute('data-roomNum'));
+        console.log("n : "+n +" +chatRoomNum.getAttribute('data-roomNum') : "+chatRoomNum.getAttribute('data-roomNum') +' : '+nick);
         chat_record.style.visibility = 'visible';
         chat_message.style.visibility = 'visible';
         
@@ -171,7 +175,7 @@ chatRoom.addEventListener('click',(e)=>{
             })
             .then(r => r.json())
             .then(r => {
-             console.log(r);
+             console.log(r.record[0]);
              for(let i=0;i<r.record.length;i++){
                  let msg = r.record[i].chatText;
                  let date = r.record[i].chatTimeStamp;
@@ -179,7 +183,7 @@ chatRoom.addEventListener('click',(e)=>{
                  if(r.record[i].userName === userCh.value){
                      mySend(msg,date);
                  }else{
-                     otherSend(msg,date);
+                     otherSend(null,msg,date);
                  }
              }
              scroller();
