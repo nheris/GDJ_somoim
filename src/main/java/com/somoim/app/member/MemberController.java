@@ -64,7 +64,7 @@ public class MemberController {
 	@GetMapping("findCheck")
 	public String findPw(MemberDTO memberDTO,Model model)throws Exception{
 		int result = memberService.checkPw(memberDTO);
-		System.out.println(result);
+
 		if(result>0) {
 			result=1;
 		}else {
