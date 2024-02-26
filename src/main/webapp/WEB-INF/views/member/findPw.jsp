@@ -23,10 +23,10 @@
 				<div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-12">
 					<div class="form-head">
 						<h4 class="title">비밀번호 찾기</h4>
-							<form action="./findPw" method="post">
+							<form id="frm" action="./findPw" method="post">
 							    <div class="form-group">
 							        <label for="userName">Username</label>
-							        <input name="userName" id="userName" type="text">
+							        <input type="text" placeholder="아이디" name="userName" id="userName">
 							    </div>
 	                            <div class="form-group">
 	                                <label for="email">이메일</label>
@@ -39,7 +39,22 @@
 	                                <br>
 	                                <p style="display: none;" id="auth_check">일치합니다</p>
 	                            </div>
+
+								<table id="findpwd" style="display: none;">
+									<tr>
+										<td class="table dark">변경 할 비밀번호</td>
+										<td><input type="password" name="password" id="password"></td>
+									</tr>
+									<tr>
+										<td class="table dark">변경 할 비밀번호확인</td>
+										<td><input type="password" id="passwordCheck"></td>
+									</tr>
+								</table>
+								<div>
+									<button type="button" id="chg_pwd" style="display: none;">변경하기</button>
+								</div>
 						    </form>
+							
 				    </div>
 			    </div>
 		    </div>

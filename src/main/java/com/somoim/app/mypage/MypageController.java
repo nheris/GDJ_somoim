@@ -53,7 +53,6 @@ public class MypageController {
 		MemberDTO m = (MemberDTO)session.getAttribute("member");
 		memberDTO.setUserName(m.getUserName());
 		memberDTO.setEmail(m.getEmail());
-		System.out.println(memberDTO.getEmail());
 		
 		
 		memberService.setPasswordUpdate(memberDTO);

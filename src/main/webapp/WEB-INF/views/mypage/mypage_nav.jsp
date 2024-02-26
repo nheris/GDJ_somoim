@@ -44,7 +44,7 @@
 									결제 하기</a></li>
 						</ul>
 						<div class="text-center">
-							<button class="btn btn-danger mt-5" href="javascript:void(0)">회원탈퇴</button>
+							<button type="button" class="btn btn-danger mt-5" onclick="location.href='/member/accountDel'" >회원탈퇴</button>
 						</div>
 					</div>
 				</nav>

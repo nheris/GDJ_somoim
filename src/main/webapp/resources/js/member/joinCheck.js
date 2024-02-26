@@ -287,13 +287,13 @@ $(".email_auth_btn").click(function(){
 
     
 $("#key_check").click(function(){
-    if($("#mail_auth_key").val(email_auth_cd.toString())){
+    if($("#email_auth_key").val()==email_auth_cd){
+
         $("#auth_check").show();
         echeck = true;
     }else{
         alert("인증번호를 확인해주세요");
-        console.log(email_auth_cd);
-        console.log(typeof email_auth_cd);
+
         $("#auth_check").hide();
         echeck = false;
     }

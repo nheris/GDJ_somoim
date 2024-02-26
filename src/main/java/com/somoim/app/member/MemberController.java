@@ -39,11 +39,29 @@ public class MemberController {
 	@Autowired
 	private JavaMailSenderImpl mailSenderImpl;
 	
+	//회원탈퇴
+	@GetMapping("accountDel")
+	public void accountDel()throws Exception{
+		
+	}
+	@PostMapping("accountDel")
+	public void accountDel(MemberDTO memberDTO,HttpSession session)throws Exception{
+		
+	}
 	
 	//사용자 정보로 비밀번호 찾기
 	@GetMapping("findPw")
-	public void findPw()throws Exception{		
+	public void findPw()throws Exception{}
+	
+	@PostMapping("findPw")
+	public String findPw(HttpSession session,MemberDTO memberDTO)throws Exception{
 		
+		System.out.println(memberDTO.getUserName()); 
+		System.out.println(memberDTO.getEmail());
+		memberService.setPasswordUpdate(memberDTO);
+		
+		
+		return "member/login";
 	}
 	
 	//소모임 앱아이디 중복검사
@@ -75,6 +93,8 @@ public class MemberController {
 		
 		return "member/idCheck";
 	}
+	
+
 	
 	//회원가입 이메일 인증
 		@PostMapping("/emailAuth")

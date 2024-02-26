@@ -70,6 +70,5 @@ btn3.addEventListener("click",(e)=>{
             }else{
         alert("변경할 비밀번호를 확인해주세요");
     }
-
     
 })

@@ -6,12 +6,6 @@ function handleCredentialResponse(response) {
     console.log('Full Name: ' + responsePayload.name);
     console.log("Email: " + responsePayload.email);
 
-    const queryParams = new URLSearchParams({
-        userName: responsePayload.sub,
-        name: responsePayload.name,
-        email: responsePayload.email
-    });
-
     const formdata = new FormData();
     formdata.append("name",responsePayload.name);
     formdata.append("userName",responsePayload.email)
