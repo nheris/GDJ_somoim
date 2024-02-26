@@ -1,5 +1,6 @@
 package com.somoim.app.chat;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,7 +16,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.somoim.app.member.MemberDTO;
 import com.somoim.app.member.MemberService;
-import com.somoim.app.moim.MoimDTO;
 
 @Controller
 //@RequestMapping("/chat/*")
@@ -63,7 +63,7 @@ public class ChatController {
 	public Map<String, Object> chatRecord(HttpSession session, ChatMessageDTO chatMessageDTO, Model model) {
 		session.setAttribute("roomNum", chatMessageDTO.getChatRoomNum());
 		List<ChatMessageDTO> chatHistory = chatMessageService.chatHistory(chatMessageDTO);
-		
+		System.out.println(chatMessageService.roomUserList(chatMessageDTO).get(0));
 		// -> jsp
 		model.addAttribute("roomNum", chatMessageDTO.getChatRoomNum());
 		model.addAttribute("chatHistory", chatHistory);

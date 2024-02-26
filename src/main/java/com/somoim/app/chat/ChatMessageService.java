@@ -22,7 +22,8 @@ public class ChatMessageService {
 			// 방 생성
 			chatMessageDAO.addChatRoom();
 		}
-
+		MemberDTO member = new MemberDTO();
+		System.out.println("member : "+member.getNickName());
 		// 채팅
 		return chatMessageDAO.addChat(chatMessageDTO);
 	}
@@ -40,7 +41,7 @@ public class ChatMessageService {
 		return chatMessageDAO.roomUserList(chatMessageDTO);
 	}
 	
-	public MoimDTO moimChat(ChatMessageDTO chatMessageDTO){
-		return chatMessageDAO.moimChat(chatMessageDTO);
+	public MoimDTO moimChatList(ChatMessageDTO chatMessageDTO){
+		return chatMessageDAO.moimChatList(chatMessageDTO);
 	}
 }

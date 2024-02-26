@@ -15,9 +15,17 @@ public class ChatMessageDTO extends MemberDTO{
 	private String userName;
 	private String chatText;
 	private String chatTimeStamp;
-	private List<MemberDTO> memberDTOs;
+	
+	private MemberDTO memberDTO; 
 	
 	
+	public MemberDTO getMemberDTO() {
+		return memberDTO;
+	}
+	public void setMemberDTO(MemberDTO memberDTO) {
+		this.memberDTO = memberDTO;
+	}
+
 	public Long getMessageNum() {
 		return messageNum;
 	}
@@ -53,6 +61,10 @@ public class ChatMessageDTO extends MemberDTO{
 		
 		this.chatTimeStamp = format.format(c.getTime());
 	}
-
-
+	
+	@Override
+	public String toString() {
+		return "ChatMessageDTO [messageNum=" + messageNum + ", chatRoomNum=" + chatRoomNum + ", userName=" + userName
+				+ ", chatText=" + chatText + ", chatTimeStamp=" + chatTimeStamp + ", memberDTO=" + memberDTO + "]";
+	}
 }

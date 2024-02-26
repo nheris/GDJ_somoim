@@ -48,7 +48,7 @@ public class ChatMessageDAO {
 	}
 	
 	// moim chat
-	public MoimDTO moimChat(ChatMessageDTO chatMessageDTO){
+	public MoimDTO moimChatList(ChatMessageDTO chatMessageDTO){
 		return sqlSession.selectOne(NAMESPACE+"moimChat",chatMessageDTO);
 	}
 }

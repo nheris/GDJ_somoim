@@ -10,6 +10,7 @@ import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.somoim.app.member.MemberDTO;
 
 public class ChatHandler extends TextWebSocketHandler{
 
@@ -34,9 +35,11 @@ public class ChatHandler extends TextWebSocketHandler{
 		System.out.println("message");
 		ObjectMapper objectMapper = new ObjectMapper();
 		ChatMessageDTO chatMessageDTO = objectMapper.readValue(message.getPayload(), ChatMessageDTO.class);
-		System.out.println(chatMessageDTO.getChatText() +" : "+ chatMessageDTO.getUserName()+" : "+chatMessageDTO.getChatRoomNum());
 		
 		Long chat = chatMessageService.chatHistory(chatMessageDTO).get(0).getChatRoomNum();
+
+		chatMessageDTO.setNickName(chatMessageDTO.getNickName());
+		System.out.println(chatMessageDTO.toString());
 		
 		int result = chatMessageService.addChat(chatMessageDTO);
 		

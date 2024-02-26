@@ -105,55 +105,68 @@ sock.onclose = function(){
 }
 
 // 내 채팅
+
 function mySend(msg ,date){
     // 채팅형태로 Element 추가
     // chat-record add
     let li = document.createElement("li");
     li.classList.add('clearfix');
-    let div = document.createElement("div");
-    div.classList.add('message-data')
-    let span = document.createElement("span");
-    span.classList.add('message-data-time');
-    span.innerText = date;
-
-    // 날짜와 프로필사진 (my 는 profile 사진이 위에 있음)
     chat_record.append(li);
-    li.append(div);
-    div.append(span);
 
-    // msg 를 담을 div
-    div = document.createElement('div');
-    
-    li.append(div);
+    let div = document.createElement("div");
     div.classList.add('message');
     div.classList.add('my-message');
+    div.classList.add('float-start');
     div.innerText = msg;
+    li.append(div);
+
+    div = document.createElement("div");
+    div.classList.add('message-data');
+    let span = document.createElement("span");
+    span.classList.add('message-data-time');
+    span.classList.add('mt-4');
+    span.classList.add('pt-3');
+    span.innerText = date;
+    div.append(span);
+    
+    li.append(div);
+
 }
 
 // 타인의 채팅
 function otherSend(nick, msg, date){
     let li = document.createElement("li");
     li.classList.add('clearfix');
+    
     let div = document.createElement("div");
     div.classList.add('message-data');
     div.classList.add('text-right');
-    let span = document.createElement("span");
-    span.classList.add('message-data-time');
-    
-    span.innerText = date;
-    
-    // 날짜, 프로필사진 
+    div.classList.add('my-2');
+    div.innerHTML = "<h6 class='my-3'>"+nick+"</h6>";
     chat_record.append(li);
     li.append(div);
-    div.append(span);
-    div = document.createElement("div");
     
-    li.append(div);
-    div.innerText = nick;
+    div = document.createElement("div");
     div.classList.add('message');
     div.classList.add('other-message');
     div.classList.add('float-right');
     div.innerText = msg;
+
+    li.append(div);
+    let br = document.createElement("br");
+    li.append(br);
+    
+    div = document.createElement("div");
+    div.classList.add('message-data');
+    div.classList.add('text-right');
+    div.classList.add('pt-3');
+    let span = document.createElement("span");
+    span.classList.add('message-data-time');
+    span.classList.add('mx-1');
+    span.innerText = date;
+    div.append(span);
+    
+    li.append(div);
 }
 
 let chatRoom = document.querySelector(".chat-list");
@@ -163,10 +176,8 @@ chatRoom.addEventListener('click',(e)=>{
     chat_record.innerHTML = null;
     if(e.target.classList.contains('clearfix')){
         let n = e.target.getAttribute('data-roomNum');
-        let nick = e.target.getAttribute('data-nick');
         
         chatRoomNum.setAttribute('data-chatRoom',n);
-        console.log("n : "+n +" +chatRoomNum.getAttribute('data-roomNum') : "+chatRoomNum.getAttribute('data-roomNum') +' : '+nick);
         chat_record.style.visibility = 'visible';
         chat_message.style.visibility = 'visible';
         
@@ -175,15 +186,15 @@ chatRoom.addEventListener('click',(e)=>{
             })
             .then(r => r.json())
             .then(r => {
-             console.log(r.record[0]);
-             for(let i=0;i<r.record.length;i++){
+                for(let i=0;i<r.record.length;i++){
                  let msg = r.record[i].chatText;
                  let date = r.record[i].chatTimeStamp;
-                 
+                 let nick = r.record[i].memberDTO.nickName;
+
                  if(r.record[i].userName === userCh.value){
                      mySend(msg,date);
                  }else{
-                     otherSend(null,msg,date);
+                     otherSend(nick,msg,date);
                  }
              }
              scroller();

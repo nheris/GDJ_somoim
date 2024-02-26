@@ -41,13 +41,15 @@
 
 	<select id="chatHistory" parameterType="ChatMessageDTO" resultType="MemberDTO" resultMap="getRoomMember">
 		SELECT * 
-			FROM CHATMESSAGE
+		FROM CHATMESSAGE
+			JOIN MEMBER
+			USING(USERNAME)
 		WHERE CHATROOMNUM = #{chatRoomNum}
 		ORDER BY CHATTIMESTAMP
 	</select>
 	
 	
-	<select id="moimChat" parameterType="ChatMessageDTO" resultType="MoimDTO">
+	<select id="moimChatList" parameterType="ChatMessageDTO" resultType="MoimDTO">
 		SELECT * 
 		FROM CHATROOM
 			JOIN MOIMCHAT
@@ -64,10 +66,10 @@
 		<result column="CHATTEXT" property="chatText"/>
 		<result column="CHATTIMESTAMP" property="chatTimeStamp"/>
 		
-		<collection property="memberDTOs" javaType="List" ofType="MemberDTO">
+		<association property="memberDTO" javaType="MemberDTO">
 			<id column="USERNAME" property="userName"/>
 			<result column="NICKNAME" property="nickName"/>
 			<result column="NAME" property="name"/>
-		</collection>
+		</association>
 	</resultMap>
   </mapper>

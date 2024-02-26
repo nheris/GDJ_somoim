@@ -77,23 +77,24 @@
 
 										<!-- 상대방 (.text-right, float-right) -->
 										<li class="clearfix">
-											<div class="message-data text-right">
-												<span class="message-data-time">10:10 AM, Today</span>
-												<img src="https://bootdey.com/img/Content/avatar/avatar7.png"
-													alt="avatar">
-											</div>
+											<div class="message-data text-right my-2">nickName</div>
 											<div class="message other-message float-right"> Hi Aiden, how are you? How
 												is the
 												project coming along?
 											</div>
+											<br>
+											<div class="message-data text-right pt-3">
+												<span class="message-data-time mx-1">10:10 AM, Today</span>
+											</div>
+										</li>
+										<!-- 내 채팅 -->
+										<li class="clearfix">
+											<div class="message my-message float-start">Are we meeting today?</div>
+											<div class="message-data">
+												<span class="message-data-time mt-4 pt-3">10:12 AM, Today</span>
+											</div>
 										</li>
 
-										<li class="clearfix">
-											<div class="message-data">
-												<span class="message-data-time">10:12 AM, Today</span>
-											</div>
-											<div class="message my-message">Are we meeting today?</div>
-										</li>
 										<li class="clearfix">
 											<input type="hidden" id="userNick" value="${user.nickName}">
 											<input type="hidden" id="userCh" value="${user.userName}">
