@@ -50,6 +50,11 @@ public class MoimBoardDAO {
 		return sqlSession.delete(NAMESPACE+"delete", boardDTO);
 	}
 	
+	//click
+	public int click(MoimBoardDTO boardDTO) {
+		return sqlSession.update(NAMESPACE+"click", boardDTO);
+	}
+	
 
 	
 }

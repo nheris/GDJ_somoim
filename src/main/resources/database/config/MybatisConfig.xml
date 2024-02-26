@@ -28,6 +28,8 @@
         <typeAlias type="com.somoim.app.payment.OrdersDTO" alias="OrdersDTO"/>
   		<typeAlias type="com.somoim.app.member.role.RoleDTO" alias="RoleDTO"/>
   		<typeAlias type="java.lang.Long" alias="Long"/>
+  		<typeAlias type="java.lang.Integer" alias="Integer"/>
+  		<typeAlias type="com.somoim.app.moim.meet.MeetMemberDTO" alias="MeetMemberDTO"/>
   	</typeAliases>
   </configuration>
   

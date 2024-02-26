@@ -90,6 +90,14 @@
 		</collection>
 	</resultMap>
 	
+	<!-- click -->
+	<update id="click" parameterType="MoimBoardDTO">
+		UPDATE MOIMBOARD
+		SET BOARDCLICK = BOARDCLICK + 1
+		WHERE BOARDNUM = #{boardNum}
+	</update>
+	
+	
 	<!-- update -->
 	<update id="update" parameterType="MoimBoardDTO">
 		UPDATE MOIMBOARD

@@ -58,6 +58,7 @@ public class MoimBoardController {
 	//detail
 	@GetMapping("detail")
 	public void detail(MoimBoardDTO boardDTO, Model model) throws Exception {
+		int result = moimBoardService.click(boardDTO);
 		boardDTO = moimBoardService.detail(boardDTO);
 		
 		model.addAttribute("dto",boardDTO);

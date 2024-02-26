@@ -110,6 +110,11 @@ public class MoimBoardService {
 		//게시글 삭제
 		return moimBoardDAO.delete(boardDTO);
 	}
+	
+	//click
+	public int click(MoimBoardDTO boardDTO) {
+		return moimBoardDAO.click(boardDTO);
+	}
 
 	
 	

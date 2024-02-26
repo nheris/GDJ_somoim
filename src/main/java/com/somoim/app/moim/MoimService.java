@@ -55,6 +55,9 @@ public class MoimService {
 	//delete
 	public int delete(MoimDTO moimDTO) throws Exception {
 		//모임사진 삭제
+		if(moimDAO.file(moimDTO) == null) {
+			return moimDAO.delete(moimDTO);
+		}
 		MoimFileDTO moimFileDTO = moimDAO.file(moimDTO);
 		String path = servletContext.getRealPath("/resources/upload/moim");
 		fileManager.fileDelete(path, moimFileDTO.getFileName());

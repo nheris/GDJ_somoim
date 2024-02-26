@@ -36,12 +36,18 @@ public class MeetService {
 		
 		String path = servletContext.getRealPath("/resources/upload/meet");
 		
+		if(file.isEmpty()) {
+			
+			return result;
+		}
 		String fileName = fileManager.fileSave(path, file);
+		
 		
 		MeetFileDTO meetFileDTO = new MeetFileDTO();
 		meetFileDTO.setFileName(fileName);
 		meetFileDTO.setOriName(file.getOriginalFilename());
 		meetFileDTO.setMeetNum(meetDTO.getMeetNum());
+		
 		
 		result = meetDAO.fileAdd(meetFileDTO);
 		
@@ -52,12 +58,25 @@ public class MeetService {
 	//delete
 	public int delete(MeetDTO meetDTO) throws Exception {
 		//정모 사진 삭제
+		if(meetDAO.file(meetDTO) == null) {
+			return meetDAO.delete(meetDTO);
+		}
 		MeetFileDTO meetFileDTO = meetDAO.file(meetDTO);
 		String path = servletContext.getRealPath("/resources/upload/meet");
 		fileManager.fileDelete(path, meetFileDTO.getFileName());
 		
 		//정모 삭제
 		return meetDAO.delete(meetDTO);
+	}
+	
+	//모인멤버	
+	public Integer memNum(MeetDTO meet) {
+		return meetDAO.memNum(meet);
+	}
+	
+	//join
+	public int join(MeetMemberDTO meetMemberDTO) {
+		return meetDAO.join(meetMemberDTO);
 	}
 
 	

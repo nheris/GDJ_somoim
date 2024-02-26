@@ -117,14 +117,15 @@ public class MoimController {
 		return map;
 
 	}
+	
 	//join
 	@GetMapping("main/home/join")
 	public String join(MoimMemberDTO moimMemberDTO, HttpSession session,Model model) throws Exception {
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
 		moimMemberDTO.setUserName(memberDTO.getUserName());
 		
-		System.out.println("1:"+moimMemberDTO.getMoimNum());
-		System.out.println("2:"+moimMemberDTO.getUserName());
+		//System.out.println("1:"+moimMemberDTO.getMoimNum());
+		//System.out.println("2:"+moimMemberDTO.getUserName());
 		
 		int result = moimService.join(moimMemberDTO);		
 		
@@ -141,24 +142,12 @@ public class MoimController {
 		
 		return "moim/resultAlert";
 	}
-
+	
 	//kick
 	@PostMapping("main/home/kick")
-	public String kick(MoimMemberDTO moimMemberDTO, Model model) throws Exception{
+	public void kick(MoimMemberDTO moimMemberDTO, Model model) throws Exception{
 		int result = moimService.kick(moimMemberDTO);
 		
-		System.out.println(moimMemberDTO.getMoimNum());
-		String path = "../home?moimNum="+moimMemberDTO.getMoimNum();
-//		String msg = "다시 시도해주세요.";
-//		String path = "../home?moimNum="+moimMemberDTO.getMoimNum();
-//		if(result == 1) {
-//			msg = "퇴출하였습니다.";
-//			path = "../home?moimNum="+moimMemberDTO.getMoimNum();
-//		}
-//		model.addAttribute("msg",msg);
-//		model.addAttribute("path",path);
-		
-		return path;
 	}
 	
 	

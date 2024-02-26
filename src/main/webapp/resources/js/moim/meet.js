@@ -1,5 +1,4 @@
 
-
 //datepicker
 $(function() {
     $("#meetDate").datepicker({
@@ -27,7 +26,45 @@ $(function() {
     $('#meetDate').datepicker('setDate', 'today'); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)            
 });
         
-        
+
+//공백시
+const submitBtn = document.getElementById("submitBtn");
+let meetName = document.getElementById("meetName");
+let meetDate = document.getElementById("meetDate");
+let meetPlace = document.getElementById("meetPlace");
+let meetCost = document.getElementById("meetCost");
+let meetCount = document.getElementById("meetCount");
+
+document.addEventListener("DOMContentLoaded", function(){
+    submitBtn.addEventListener("click",(e)=>{
+    console.log('연결')
+    if(meetName.value === ''){
+      alert('이름을 입력하세요.');
+      e.preventDefault();
+      return false;
+    }else if(meetDate.value === ''){
+      alert('날짜를 지정하세요.');
+      e.preventDefault();
+      return false;
+    }else if(meetPlace.value === ''){
+        alert('위치를 지정하세요.');
+        e.preventDefault();
+        return false;
+    }else if(meetCost.value === ''){
+    alert('비용을 입력하세요.');
+    e.preventDefault();
+    return false;
+    }else if(meetCount.value === ''){
+      alert('정원을 입력하세요.');
+      e.preventDefault();
+      return false;
+    }
+
+    return true;
+  })
+});
+
+
 
 //지도 실행
 showMap();

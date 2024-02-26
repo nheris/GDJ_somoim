@@ -6,7 +6,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.somoim.app.member.MemberDTO;
 
 
 @Repository
@@ -42,6 +41,16 @@ public class MeetDAO {
 		//정모 삭제
 	public int delete(MeetDTO meetDTO) throws Exception{
 		return sqlSession.delete(NAMESPACE+"delete", meetDTO);
+	}
+	
+	//모인멤
+	public Integer memNum(MeetDTO meet) {
+		return sqlSession.selectOne(NAMESPACE+"memNum", meet);
+	}
+	
+	//join
+	public int join(MeetMemberDTO meetMemberDTO) {
+		return sqlSession.insert(NAMESPACE+"join", meetMemberDTO);
 	}
 	
 	

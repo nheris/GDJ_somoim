@@ -56,9 +56,8 @@
 					<div class="author my-3">
 						<div class="author-profile">
 								<img src="/resources/upload/member/${dto.boardProfile}" alt="2" style="width: 40px; height: 40px; border-radius: 100px; float: left;">
-								<img src="../resources/upload/member/${member.profile.fileName}" alt="2" style="width: 40px; height: 40px; border-radius: 100px; float: left;">
 								<div class="mx-2" style=" display:inline-block;">
-									<div class="mx-2">${dto.boardWriter}</div>
+									<div class="mx-2">${dto.boardWriter} ( ${dto.userName} )</div>
 									<div class="mx-2">${dto.boardDate}</div>
 								</div>
 					
@@ -75,6 +74,7 @@
 									<div class="carousel-item active">
 									<img src="/resources/upload/moimBoard/${dto.fileDTOs[0].fileName}" class="d-block w-100" alt="...">
 									</div>
+									
 									<c:forEach var="i" items="${dto.fileDTOs}" varStatus="j">
 										<c:if test="${j.index ne '0'}">
 											<div class="carousel-item ">
