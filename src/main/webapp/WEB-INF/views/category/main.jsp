@@ -66,6 +66,7 @@
 								회원탈퇴</button>
 						</div>
 					</div>
+					<input type="hidden" name="address"value="${member.address}"/>
 				</nav>
 				<div class="col-lg-1 col-md-1"></div>
 				<!-- Main content -->

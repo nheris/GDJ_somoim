@@ -2,7 +2,9 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+
 <c:forEach items="${data}" var="data">
+	<input type="hidden" name="address"value="${member.address}"/>
 	<div class="col-6" mb-2>
 		<div class="single-grid wow fadeInUp" data-wow-delay=".2s">
 			<div class="image">
@@ -15,9 +17,6 @@
 							src="../resources/upload/member/${member.profile.fileName}" alt="#"> <span>${data.moimHead}</span></a>
 					</div>
 				</div>
-<!-- 				<p class="item-position">
-					<i class="lni lni-bolt"></i>지금 뜨고있는 모임
-				</p> -->
 			</div>
 			<div class="content">
 				<div class="top-content">
