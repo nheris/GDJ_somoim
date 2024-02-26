@@ -25,7 +25,9 @@
         <typeAlias type="com.somoim.app.moim.board.ReplyDTO" alias="ReplyDTO"/>
         <typeAlias type="com.somoim.app.payment.PaymentDTO" alias="PaymentDTO"/>
         <typeAlias type="com.somoim.app.payment.OrdersDTO" alias="OrdersDTO"/>
-  		<typeAlias type="com.somoim.app.payment.SubsDTO" alias="SubsDTO"/>  	  	
+  		<typeAlias type="com.somoim.app.payment.SubsDTO" alias="SubsDTO"/>
+  		<typeAlias type="com.somoim.app.member.role.MemberRoleDTO" alias="MemberRoleDTO"/>
+  		  	  	
   	</typeAliases>
   </configuration>
   

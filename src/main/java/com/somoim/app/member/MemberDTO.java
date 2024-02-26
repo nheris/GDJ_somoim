@@ -17,22 +17,19 @@ public class MemberDTO {
 	private String email;
 	private String customerKey;
 	private Long loginNum;
-	private Integer serviceRole;
+	private MemberRoleDTO roleDTO;
 	
 	
 	private ProfileDTO profile;
 	
 	
 
-
-
-
 	@Override
 	public String toString() {
 		return "MemberDTO [userName=" + userName + ", password=" + password + ", nickName=" + nickName + ", name="
 				+ name + ", userBirth=" + userBirth + ", address=" + address + ", phone=" + phone + ", email=" + email
-				+ ", customerKey=" + customerKey + ", loginNum=" + loginNum + ", serviceRole=" + serviceRole
-				+ ", profile=" + profile + "]";
+				+ ", customerKey=" + customerKey + ", loginNum=" + loginNum + ", profile=" + profile + ", roleDTO="
+				+ roleDTO + "]";
 	}
 
 
@@ -51,16 +48,12 @@ public class MemberDTO {
 		this.customerKey = customerKey;
 	}
 
-	public Integer getServiceRole() {
-		return serviceRole;
+	public MemberRoleDTO getRoleDTO() {
+		return roleDTO;
 	}
-
-
-	public void setServiceRole(Integer serviceRole) {
-		this.serviceRole = serviceRole;
+	public void setRoleDTO(MemberRoleDTO roleDTO) {
+		this.roleDTO = roleDTO;
 	}
-
-
 	public String getUserBirth() {
 		return userBirth;
 	}

@@ -74,13 +74,15 @@ public class MemberService {
 		
 		if(dto!=null) {
 			if(dto.getPassword().equals(memberDTO.getPassword())) {
+
+				MemberRoleDTO role = dto.getRoleDTO();
 				
 				memberDTO.setNickName(dto.getNickName());
 				memberDTO.setProfile(dto.getProfile());
 				memberDTO.setLoginNum(dto.getLoginNum());
 				memberDTO.setEmail(dto.getEmail());
 				memberDTO.setAddress(dto.getAddress());
-				memberDTO.setServiceRole(dto.getServiceRole());
+				memberDTO.setRoleDTO(role);
 				
 				return memberDTO;
 				
@@ -106,7 +108,7 @@ public class MemberService {
 			memberDTO.setNickName(dto.getNickName());
 			memberDTO.setProfile(dto.getProfile());
 			memberDTO.setLoginNum(dto.getLoginNum());
-			memberDTO.setServiceRole(dto.getServiceRole());
+			memberDTO.setRoleDTO(dto.getRoleDTO());
 			return memberDTO;
 		}
 		return dto;
