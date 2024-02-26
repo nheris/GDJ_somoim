@@ -66,15 +66,12 @@
  		<result column="PHONE" property="phone"/>
   		<result column="EMAIL" property="email"/>
   		<result column="LOGINNUM" property="loginNum"/>
+  		<result column="ROLENUM" property="serviceRole"/>
   			<association property="profile" javaType="ProfileDTO">
   		 		<id column="FILENUM" property="fileNum"/>
   		 		<result column="FILENAME" property="fileName"/>
   		 		<result column="ORINAME" property="oriName"/>
   		 	</association>
-  		 	<collection property="roleDTO" javaType="List" ofType="RoleDTO">
-  		 		<result column="ROLENUM" property="roleNum"/>
-  		 		<result column="ROLENAME" property="roleName"/>
-  		 	</collection>
   	</resultMap>
   	
   	

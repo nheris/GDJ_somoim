@@ -13,7 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.somoim.app.board.BoardDTO;
 import com.somoim.app.board.BoardFileDTO;
 import com.somoim.app.board.BoardService;
-import com.somoim.app.member.role.RoleDTO;
+import com.somoim.app.member.role.MemberRoleDTO;
 import com.somoim.app.util.FileManager;
 import com.somoim.app.util.Pager;
 

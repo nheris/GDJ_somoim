@@ -224,6 +224,7 @@ public class MemberController {
 			return "member/result";
 		}
 		session.setAttribute("member", memberDTO);
+		System.out.println(memberDTO);
 		System.out.println(memberDTO.getAddress());
 		return "redirect:../";
 	}

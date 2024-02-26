@@ -3,7 +3,7 @@ package com.somoim.app.member;
 import java.util.List;
 import java.util.UUID;
 
-import com.somoim.app.member.role.RoleDTO;
+import com.somoim.app.member.role.MemberRoleDTO;
 
 public class MemberDTO {
 
@@ -17,10 +17,24 @@ public class MemberDTO {
 	private String email;
 	private String customerKey;
 	private Long loginNum;
+	private Integer serviceRole;
 	
 	
 	private ProfileDTO profile;
-	private List<RoleDTO> roleDTO;
+	
+	
+
+
+
+
+	@Override
+	public String toString() {
+		return "MemberDTO [userName=" + userName + ", password=" + password + ", nickName=" + nickName + ", name="
+				+ name + ", userBirth=" + userBirth + ", address=" + address + ", phone=" + phone + ", email=" + email
+				+ ", customerKey=" + customerKey + ", loginNum=" + loginNum + ", serviceRole=" + serviceRole
+				+ ", profile=" + profile + "]";
+	}
+
 
 	public String creatCustomerKey() {
 		UUID uuid = UUID.randomUUID();
@@ -37,12 +51,16 @@ public class MemberDTO {
 		this.customerKey = customerKey;
 	}
 
-	public List<RoleDTO> getRoleDTO() {
-		return roleDTO;
+	public Integer getServiceRole() {
+		return serviceRole;
 	}
-	public void setRoleDTO(List<RoleDTO> roleDTO) {
-		this.roleDTO = roleDTO;
+
+
+	public void setServiceRole(Integer serviceRole) {
+		this.serviceRole = serviceRole;
 	}
+
+
 	public String getUserBirth() {
 		return userBirth;
 	}
