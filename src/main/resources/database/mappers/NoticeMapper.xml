@@ -16,8 +16,7 @@
 		<result column="BOARDCATEGORY" property="boardCategory" />
 
 
-		<collection property="fileDTOs" javaType="List"
-			ofType="BoardFileDTO">
+		<collection property="fileDTOs" javaType="List" ofType="BoardFileDTO">
 			<id property="fileNum" column="FILENUM" />
 			<result property="fileName" column="FILENAME" />
 			<result property="oriName" column="ORINAME" />

@@ -42,10 +42,11 @@ public class CategoryController {
 	@GetMapping("categoryList")
 	public String getListCategory (Pager pager, Model model, MoimDTO moimDTO, HttpSession session)throws Exception{
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+		moimDTO.setAddress(memberDTO.getAddress());
 		System.out.println("유저 주소 : "+memberDTO.getAddress());
 		System.out.println("nickname : "+memberDTO.getNickName());
-		moimDTO.setAddress(memberDTO.getAddress());
 		List<MoimDTO> ar = categoryService.getListCategory(pager, moimDTO, memberDTO);
+		System.out.println("유저 주소 moim : "+moimDTO.getAddress());
 		model.addAttribute("data", ar);
 		model.addAttribute("pager",pager);
 		return "category/category";

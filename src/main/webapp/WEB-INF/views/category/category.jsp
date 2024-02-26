@@ -4,7 +4,7 @@
 
 
 <c:forEach items="${data}" var="data">
-	<input type="hidden" name="address"value="${member.address}"/>
+	<input type="hidden" name="address"value="${data.address}"/>
 	<div class="col-6" mb-2>
 		<div class="single-grid wow fadeInUp" data-wow-delay=".2s">
 			<div class="image">

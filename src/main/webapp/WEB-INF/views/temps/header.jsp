@@ -36,9 +36,9 @@
 								<li class="nav-item"><a href="/notice/list">공지사항</a></li>
 								<li class="nav-item"><a href="/qna/list">QNA</a></li>
 								<li class="nav-item"><a href="/qna/fnq">FNQ</a></li>
- 								 <%-- <c:if test="${member.roleDTO.roleName eq '관리자'}"> --%>
-								<li class="nav-item"><a href="/admin/adminpage">관리자페이지</a></li>
-								 <%-- </c:if> --%> 
+ 								 <c:if test="${member.roleDTO.roleNum eq 1}">
+								<li class="nav-item"><a href="/admin/list">관리자페이지</a></li>
+								 </c:if> 
 							</ul>	
 						</div>
 						<!-- navbar collapse -->

@@ -77,7 +77,7 @@
 		WHERE
 		<choose>
 			<when test="pager.searchFind=='find0'">
-				ADDRESS Like '%'|#{address}|'%' AND MOIMREGION = ADDRESS
+				ADDRESS Like '%'||#{CategoryDTO.address}||'%' AND MOIMREGION = ADDRESS
 			</when>
 			<otherwise>
 				ADDRESS Like '%'||'%'
