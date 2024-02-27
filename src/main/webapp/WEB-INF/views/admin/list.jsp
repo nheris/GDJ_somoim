@@ -52,12 +52,12 @@
 							<li class="nav-item"><a class="nav-link"
 								href="messages.html"><i class="lni lni-envelope"></i> 1:1 채팅</a></li>
 							<li class="nav-item"><a class="nav-link" href="/qna/list"><i
-									class="lni lni-circle-plus"></i> 문의게시판</a></li>
-							<li class="nav-item"><a class="nav-link" href="/notice/list"><i
-									class="lni lni-bookmark"></i> 공지게시판</a></li>
+									class="lni lni-circle-plus"></i> 문의확인</a></li>
+							<li class="nav-item"><a class="nav-link" href="/notice/add"><i
+									class="lni lni-bookmark"></i> 공지글쓰기</a></li>
 							<li class="nav-item"><a class="nav-link" href="/mypage/pay"><i
-									class="lni lni-trash"></i> 구독 결제 하기</a></li>
-							<li class="nav-item"><a class="nav-link" href="/admin/add">추천모임만들기</a></li>
+									class="lni lni-trash"></i> 구독 결제 화면</a></li>
+							<li class="nav-item" id="moimadd"><a class="nav-link">추천모임만들기</a></li>
 						</ul>
 					</div>
 				</nav>
@@ -74,6 +74,29 @@
 
 
 						<!--All User List  -->
+						<div class="col-2 mb-2 mt-1">
+						<form>
+					<select class="form-select" name="searchFind" id="searchFind"
+						aria-label="Default select example">
+						<option value="searchFind1">이름</option>
+						<option value="searchFind2">휴대폰</option>
+						<option value="searchFind3">이메일</option>
+					</select>
+				</div>
+				
+				<div class="col-auto ms-auto mt-2  d-flex">
+					<!-- 수정 필요 검색 버튼이 오른쪽으로 가야함-->
+					<div class="col-auto">
+						<!-- search -->
+
+						<label for="search" class="visually-hidden">Search</label> <input
+							type="text" name="search" class="form-control" id="search">
+					</div>
+					<div class="col-auto">
+						<button type="submit" class="btn btn-outline-dark" id="searchbtn">검색</button>
+					</div>
+					</div>
+					</form>
 						<div>
 							<table class="table">
 								<tr class="something">
@@ -96,10 +119,33 @@
 								</c:forEach>
 							</table>
 						</div>
-						
+
 						<!--  -->
 						<div class="col-12">
-							<div id="categoryList" class="categoryList row"></div>
+							<div id="pages">
+								<div>
+									<ul
+										class="list-group list-group-horizontal d-flex justify-content-center">
+										<c:if test="${!pager.start}">
+											<li class="page-item"><a class="page-link"
+												aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+											</a></li>
+										</c:if>
+
+										<c:forEach begin="${pager.startNum}" end="${pager.lastNum}"
+											var="i">
+											<li class="page-item"><a data-pageNum="${i}"
+												class="page-link">${i}</a></li>
+										</c:forEach>
+
+										<c:if test="${!pager.last}">
+											<li class="page-item"><a class="page-link"
+												aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+											</a></li>
+										</c:if>
+									</ul>
+								</div>
+							</div>
 						</div>
 					</div>
 					<!-- Main content goes here -->
@@ -118,5 +164,6 @@
 
 	<!-- ========================= JS improt ========================= -->
 	<c:import url="../temps/footer.jsp"></c:import>
+	<script src="/resources/js/admin/adminPage.js"></script>
 </body>
 </html>

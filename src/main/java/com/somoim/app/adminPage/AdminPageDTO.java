@@ -1,19 +1,34 @@
 package com.somoim.app.adminPage;
 
+import java.util.List;
+
+import com.somoim.app.board.BoardFileDTO;
+
 public class AdminPageDTO {
 
 	
-	private Long placenum;
+	private Long placeNum;
 	private String userName;
 	private String placeTitle;
 	private String placeAddress;
 	private String placeLink;
-	public Long getPlacenum() {
-		return placenum;
+	private String placeImageLink;
+	
+	
+	public String getPlaceImageLink() {
+		return placeImageLink;
 	}
-	public void setPlacenum(Long placenum) {
-		this.placenum = placenum;
+	public void setPlaceImageLink(String placeImageLink) {
+		this.placeImageLink = placeImageLink;
 	}
+	public Long getPlaceNum() {
+		return placeNum;
+	}
+	public void setPlaceNum(Long placeNum) {
+		this.placeNum = placeNum;
+	}
+
+
 	public String getUserName() {
 		return userName;
 	}

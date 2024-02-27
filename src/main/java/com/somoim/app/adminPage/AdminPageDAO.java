@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.somoim.app.board.BoardFileDTO;
 import com.somoim.app.member.MemberDTO;
 import com.somoim.app.util.Pager;
 
@@ -24,9 +25,25 @@ public class AdminPageDAO {
 	public List<MemberDTO> list(Pager pager) throws Exception{
 		return sqlSession.selectList(namespace+"list", pager);
 	}
+
 	
 	public Long getTotalCount (Pager pager)throws Exception{
 		return sqlSession.selectOne(namespace+"getTotalCount", pager);
 	}
+	
+	public int add (AdminPageDTO adminPageDTO)throws Exception{
+		return sqlSession.insert(namespace+"add", adminPageDTO);
+	}
+	public List<AdminPageDTO> placeList (AdminPageDTO adminPageDTO)throws Exception{
+		return sqlSession.selectList(namespace+"placeList",adminPageDTO);
+	}
+	
+//	// File
+//	public int setFileAdd(BoardFileDTO boardFileDTO)throws Exception{
+//		return sqlSession.insert(namespace+"setFileAdd", boardFileDTO);
+//	} 
+//	public List<BoardFileDTO> getFileList (AdminPageDTO adminPageDTO)throws Exception{
+//		return sqlSession.selectList(namespace+"getFileList", adminPageDTO);
+//	}
 	
 }

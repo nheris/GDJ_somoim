@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.somoim.app.member.MemberDTO;
 import com.somoim.app.moim.MoimDTO;
@@ -30,7 +31,28 @@ public class AdminPageController {
 		model.addAttribute("pager",pager);
 	}
 	
+	@GetMapping("add")
+	public String add ()throws Exception{
+		return "admin/add";
+	}
 	
-
+	@PostMapping("add")
+	public String add (AdminPageDTO adminPageDTO, HttpSession session)throws Exception{
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		adminPageDTO.setUserName(memberDTO.getUserName());
+		int result = adminPageService.add(adminPageDTO);
+		return "/adm";
+	}
+	
+	@GetMapping("placeList")
+	public String placeList(AdminPageDTO adminPageDTO, Model model)throws Exception{
+		List<AdminPageDTO> ar = adminPageService.placeList(adminPageDTO);
+		model.addAttribute("admin",ar);
+		
+		return "admin/placeList";
+	}
+	
+	
+	
 	
 }
