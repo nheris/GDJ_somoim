@@ -10,8 +10,8 @@
   	<selectKey keyProperty="replyNum" resultType="Long" order="BEFORE">
   			SELECT MOIMREPLY_SEQ.NEXTVAL FROM DUAL
 	</selectKey>
-		INSERT INTO REPLY
-		VALUES (#{replyNum}, #{userName}, #{boardNum},#{replyText}, current_date, #{replyWriter}, #{replyNum}, 0,0 )
+		INSERT INTO REPLY (REPLYNUM, USERNAME, BOARDNUM, REPLYTEXT, REPLYDATE, REPLYWRITER, REPLYREF, REPLYSTEP, REPLYDEPTH, REPLYPROFILE)
+		VALUES (#{replyNum}, #{userName}, #{boardNum},#{replyText}, current_date, #{replyWriter}, #{replyNum}, 0, 0, #{replyProfile})
 	</insert>
   
   	<!-- list -->
@@ -26,9 +26,8 @@
 			  FROM (SELECT *
 					FROM REPLY
 					WHERE BOARDNUM = #{replyDTO.boardNum}
-					<!-- ORDER BY REPLYNUM ASC) R) -->
 					ORDER BY REPLYREF ASC, REPLYDATE ASC) R)
-		WHERE RN BETWEEN #{pager.startRow} AND #{pager.lastRow}
+		WHERE RN BETWEEN 1 AND #{pager.lastRow}
 	</select>
 
   	<!-- delete -->
@@ -55,10 +54,6 @@
   		UPDATE REPLY SET REPLYSTEP=REPLYSTEP+1
   		WHERE REPLYREF= #{replyRef} AND REPLYSTEP > #{replyStep}
   	</update>
-  	<!-- <update id="replyUpdate" parameterType="ReplyDTO">
-  		UPDATE REPLY SET REPLYSTEP=REPLYSTEP+1
-  		WHERE REPLYNUM= #{replyNum}
-  	</update> -->
   	<!-- reply add -->
   	<insert id="reply" parameterType="ReplyDTO">
   		<selectKey keyProperty="replyNum" resultType="Long" order="BEFORE">
@@ -66,7 +61,9 @@
   		</selectKey>
   		INSERT INTO REPLY
   		VALUES
-  		(#{replyNum}, #{userName}, #{boardNum},#{replyText}, current_date, #{replyWriter}, #{replyRef},#{replyStep},#{replyDepth})
+  		(#{replyNum}, #{userName}, #{boardNum},#{replyText}, current_date, #{replyWriter}, #{replyRef},#{replyStep},#{replyDepth}, #{replyProfile, jdbcType = VARCHAR}, #{parent})
   	</insert>
- 
+ 	
+ 	
+ 	
   </mapper>

@@ -44,7 +44,7 @@
 
 
 
-	<!-- 댓글 임시 -->
+	<!-- 댓글 -->
 	<div class="items-details section py-5">
 		<div class="container mx-5">
 				<!-- 테두리 -->
@@ -55,7 +55,12 @@
 					<!-- 작성자 정보 -->
 					<div class="author my-3">
 						<div class="author-profile">
-								<img src="/resources/upload/member/${dto.boardProfile}" alt="2" style="width: 40px; height: 40px; border-radius: 100px; float: left;">
+								<c:if test="${not empty dto.boardProfile}">
+									<img src="/resources/upload/member/${dto.boardProfile}" alt="2" style="width: 40px; height: 40px; border-radius: 100px; float: left;">
+								</c:if>
+								<c:if test="${empty dto.boardProfile}">
+									<img src="/resources/img/profile/profile.jpg" alt="3" style="width: 40px; height: 40px; border-radius: 100px;">
+								</c:if>
 								<div class="mx-2" style=" display:inline-block;">
 									<div class="mx-2">${dto.boardWriter} ( ${dto.userName} )</div>
 									<div class="mx-2">${dto.boardDate}</div>
@@ -114,10 +119,10 @@
 					
 					
 					<!-- 댓 페이징 -->
-					<div class="col-auto text-center">
-				    	<button id="more" data-replyList-page="1" data-replyList-totalPage="1" class="btn btn-light btn-sm">더보기</button>
-						<button id="mo" data-replyList-page="${pager.page}" data-replyList-totalPage="${pager.totalPage}" class="btn btn-light btn-sm">더보기(/"${pager.totalPage}")</button>				    	
-				    </div>
+					<%-- <div class="col-auto text-center">
+				    	<!-- <button id="more" data-replyList-page="1" data-replyList-totalPage="1" class="btn btn-light btn-sm">더보기</button> -->
+						<button id="mo" data-replyList-page="${pager.page}" data-replyList-totalPage="${pager.totalPage}" class="btn btn-light btn-sm">더보기(${pager.page}/${pager.totalPage})</button>				    	
+				    </div> --%>
 				    
 					
 					<!-- 댓글 작성폼 -->

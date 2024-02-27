@@ -72,10 +72,10 @@
   	</insert>
   	
   	<!-- contain -->
-  	<!-- <select id="contain" parameterType="MeetMemberDTO">
-  		SELECT *
+  	<select id="contain" parameterType="MeetMemberDTO" resultType="String">
+  		SELECT USERNAME 
 		FROM MEETMEMBER
-		WHERE MEETNUM =#{meetNum}
-  	</select> -->
+		WHERE MEETNUM = #{meetNum}
+  	</select>
   	
   </mapper>

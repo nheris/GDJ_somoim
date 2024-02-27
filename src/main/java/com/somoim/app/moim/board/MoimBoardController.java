@@ -42,7 +42,9 @@ public class MoimBoardController {
 	public String add(MoimBoardDTO boardDTO, HttpSession session, MultipartFile[] file) throws Exception {
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		
-		boardDTO.setBoardProfile(memberDTO.getProfile().getFileName());
+		if(memberDTO.getProfile() != null) {			
+			boardDTO.setBoardProfile(memberDTO.getProfile().getFileName());
+		}
 		boardDTO.setBoardWriter(memberDTO.getNickName());
 		//boardDTO.setBoardWriter(memberDTO.getUserName());
 		boardDTO.setUserName(memberDTO.getUserName());

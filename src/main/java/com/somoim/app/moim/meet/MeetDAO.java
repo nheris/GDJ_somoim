@@ -53,5 +53,11 @@ public class MeetDAO {
 		return sqlSession.insert(NAMESPACE+"join", meetMemberDTO);
 	}
 	
+	//contain
+	public List<String> contain(MeetDTO meet) {
+		return sqlSession.selectList(NAMESPACE+"contain", meet);
+	}
+	
+	
 	
 }

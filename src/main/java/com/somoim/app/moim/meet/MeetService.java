@@ -78,6 +78,11 @@ public class MeetService {
 	public int join(MeetMemberDTO meetMemberDTO) {
 		return meetDAO.join(meetMemberDTO);
 	}
+	
+	//contain
+	public List<String> contain(MeetDTO meet) {
+		return meetDAO.contain(meet);
+	}
 
 	
 	

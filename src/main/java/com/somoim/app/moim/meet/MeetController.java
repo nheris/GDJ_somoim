@@ -32,7 +32,7 @@ public class MeetController {
 		//참여멤버 수(A)
 		List<Integer> memNum = new ArrayList<>();
 		//참여멤버 아이디(B)
-//		List<String> contain = new ArrayList<>();
+		List<List<String>> contain = new ArrayList<List<String>>();
 		for(int i=0; i<ar.size();i++) {           
 			//(A)
 			MeetDTO meet = new MeetDTO();
@@ -41,11 +41,17 @@ public class MeetController {
 			
 			memNum.add(result);
 			//(B)
-//			meetService.contain(meet);
-//			contain.add(ar.get(i).getUserName());
+			List<String> memId = meetService.contain(meet);
+			
+			contain.add(memId);
 		}
 		
-//		model.addAttribute("contain", contain);
+		System.out.println("???????^&*^&*"+contain.get(0));
+		System.out.println("???????^&*^&*"+contain.get(1));
+//		System.out.println("???????^&*^&*"+contain.get(0).get(0));
+
+		
+		model.addAttribute("contain", contain);
 		
 		model.addAttribute("dto", meetDTO);
 		model.addAttribute("memNum", memNum);

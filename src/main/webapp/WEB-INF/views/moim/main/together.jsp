@@ -127,13 +127,13 @@
                                     <div class="bottom-content">
                                         <p class="price">참여 인원 : <span>${memNum[j.index]} / ${ar.meetCount}</span></p>
                                         
-                                        <c:if test="${not fn:contains(contain, member.userName)}">
+                                        <c:if test="${not fn:contains(contain[j.index], member.userName)}">
 											
 	                                        <a href="javascript:void(0)" class="like join" data-mem-count="${memNum[j.index]}" data-meet-count="${ar.meetCount}"
 											data-meet-num="${ar.meetNum}" data-moim-num="${dto.moimNum}">참여</a>
 								
 										</c:if>
-										<c:if test="${fn:contains(contain, member.userName)}">
+										<c:if test="${fn:contains(contain[j.index], member.userName)}">
 											
 											<a href="javascript:void(0)" class="like chat" ">이동</a>
 										</c:if>
