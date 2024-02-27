@@ -36,8 +36,8 @@ public class ChatHandler extends TextWebSocketHandler{
 		
 		Long chat = chatMessageService.chatHistory(chatMessageDTO).get(0).getChatRoomNum();
 
-		chatMessageDTO.setNickName(chatMessageDTO.getNickName());
-		System.out.println(chatMessageDTO.toString());
+		//chatMessageDTO.setNickName(chatMessageDTO.getNickName());
+		//System.out.println(chatMessageDTO.toString());
 		
 		int result = chatMessageService.addChat(chatMessageDTO);
 		

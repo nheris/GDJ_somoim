@@ -3,11 +3,13 @@ package com.somoim.app.moim;
 
 
 import java.sql.Date;
+import java.util.List;
 
 import com.somoim.app.chat.ChatRoomDTO;
 import com.somoim.app.moim.member.MoimMemberDTO;
 
 public class MoimDTO {
+
 	private Long moimNum;
 	private String moimName;
 	private String moimRegion;
@@ -88,5 +90,13 @@ public class MoimDTO {
 	}
 	public void setMoimDate(Date moimDate) {
 		this.moimDate = moimDate;
+	}
+	
+	@Override
+	public String toString() {
+		return "MoimDTO [moimNum=" + moimNum + ", moimName=" + moimName + ", moimRegion=" + moimRegion
+				+ ", moimCategory=" + moimCategory + ", moimDate=" + moimDate + ", moimText=" + moimText
+				+ ", moimMemCount=" + moimMemCount + ", moimHead=" + moimHead + ", moimFileDTO=" + moimFileDTO
+				+ ", moimMemberDTO=" + moimMemberDTO + ", chatRoomDTO=" + chatRoomDTO + "]";
 	}
 }

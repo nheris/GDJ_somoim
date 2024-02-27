@@ -72,16 +72,18 @@
 	</resultMap>
 	
 	<select id="moimChatInfo" parameterType="MemberDTO" resultType="MoimDTO" resultMap="getRoomNumber">
-		SELECT * 
-			FROM MOIM
-			JOIN MOIMCHAT
-			USING (MOIMNUM)
-		WHERE CHATROOMNUM IN
-			(
-				SELECT DISTINCT CHATROOMNUM  
-				FROM CHATMESSAGE
-				WHERE USERNAME = #{userName}
-			)
+			SELECT * 
+					FROM MOIM
+					JOIN MOIMCHAT
+					USING (MOIMNUM)
+					JOIN MOIMFILE
+					USING (MOIMNUM)
+				WHERE CHATROOMNUM IN
+					(
+						SELECT DISTINCT CHATROOMNUM  
+						FROM CHATMESSAGE
+						WHERE USERNAME = #{userName}
+					)
 	</select>
 	
 	<resultMap type="MoimDTO" id="getRoomNumber">

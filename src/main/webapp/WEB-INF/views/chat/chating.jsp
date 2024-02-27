@@ -40,7 +40,7 @@
 										<h6>${item.moimName}</h6>
 										<!-- data-chatRoom="${item.chatRoomDTO.chatRoomNum}" -->
 										<li id="chatRoomNum" data-roomNum="${item.chatRoomDTO.chatRoomNum}" class="clearfix">
-											<img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="avatar">
+											<img src="${item.moimFileDTO.oriName}" alt="avatar">
 											<div class="about">
 												<div class="name my-4">
 												<c:if test="${not empty moimChat.moimName}">
@@ -58,7 +58,7 @@
 											<div class="chat-about">
 												<a href="javascript:void(0);" data-toggle="modal"
 													data-target="#view_info">
-													<img src="https://bootdey.com/img/Content/avatar/avatar2.png"
+													<img src="rere/${chatHistory.profileDTO.oriName}"
 														alt="avatar">
 												</a>
 												<h6 class="m-b-0">${user.nickName}</h6>
@@ -76,63 +76,12 @@
 								<!-- style="visibility: hidden;" -->
 								<div class="chat-history" id="chat-history" style="overflow-y: scroll; height: 450px;" style="visibility: hidden;">
 									<ul class="m-b-0" id="chat_record">
-
-										<!-- 상대방 (.text-right, float-right) -->
-										<li class="clearfix">
-											<div class="message-data text-right my-2">nickName</div>
-											<div class="message other-message float-right"> Hi Aiden, how are you? How
-												is the
-												project coming along?
-											</div>
-											<br>
-											<div class="message-data text-right pt-3">
-												<span class="message-data-time mx-1">10:10 AM, Today</span>
-											</div>
-										</li>
-										<!-- 내 채팅 -->
-										<li class="clearfix">
-											<div class="message my-message float-start">Are we meeting today?</div>
-											<div class="message-data">
-												<span class="message-data-time mt-4 pt-3">10:12 AM, Today</span>
-											</div>
-										</li>
-
-										<li class="clearfix">
+										<li>
 											<input type="hidden" id="userNick" value="${user.nickName}">
 											<input type="hidden" id="userCh" value="${user.userName}">
-											<input type="hidden" id="roomCh" value=${roomNum}>
-											<div class="message-data">
-												<span class="message-data-time">10:15 AM, Today</span>
-											</div>
-											<div class="message my-message">Project has been already finished and I have
-												results
-												to show you.</div>
+											<input type="hidden" id="roomCh" value="${roomNum}">
 										</li>
-										<!-- <c:forEach var="item" items="${chatHistory}">
-											<c:if test="${user.userName eq item.userName}">
-												<li class="clearfix">
-													<input type="hidden" id="userCh" value="${user.userName}">
-													<div class="message-data">
-														<span class="message-data-time">${item.chatTimeStamp}</span>
-													</div>
-													<div class="message my-message">${item.chatText}</div>
-												</li>
-											</c:if>
-											<c:if test="${user.userName ne item.userName}">
-												<li class="clearfix">
-													<div class="message-data text-right">
-														<span class="message-data-time">${item.chatTimeStamp}</span>
-														<img src="https://bootdey.com/img/Content/avatar/avatar7.png"
-															alt="avatar">
-													</div>
-													<div class="message other-message float-right">
-														${item.chatText}
-													</div>
-												</li>
-											</c:if>
-										</c:forEach> -->
-
-
+										
 									</ul>
 								</div>
 

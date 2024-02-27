@@ -38,20 +38,9 @@ public class ChatController {
 		MemberDTO dto = memberService.getLogin(memberDTO);
 		
 		mv.addObject("roomNum",session.getAttribute("roomNum"));
-		System.out.println(mv.getModelMap());
-//		List<ChatMessageDTO> chatHistory = chatMessageService.chatHistory(chatMessageDTO);
-//		mv.addObject("chatHistory", chatHistory);
-
-//		chatMessageDTO.setChatRoomNum((Long)session.getAttribute("roomNum"));
-//		System.out.println(chatMessageDTO.getChatRoomNum());
-//		System.out.println(chatMessageDTO.getUserName());
-//		MoimDTO moimChat = chatMessageService.moimChat(chatMessageDTO);
-//		System.out.println(moimChat.getMoimName());
-//		mv.addObject("moimChat",moimChat);
-
 		
 		List<MoimDTO> moimChatInfo = chatMessageService.moimChatInfo(dto);
-		System.out.println(moimChatInfo.get(0).toString());
+		System.out.println(moimChatInfo.get(0).getMoimFileDTO().toString());
 		
 		mv.addObject("moimInfo", moimChatInfo);
 		
@@ -69,8 +58,8 @@ public class ChatController {
 		session.setAttribute("roomNum", chatMessageDTO.getChatRoomNum());
 		List<ChatMessageDTO> chatHistory = chatMessageService.chatHistory(chatMessageDTO);
 		
-		System.out.println(chatHistory.get(0).getMemberDTO().toString());
-		System.out.println(chatHistory.get(0).getProfileDTO().toString());
+		System.out.println(chatHistory.get(chatHistory.size()-1).getMemberDTO().toString());
+		System.out.println(chatHistory.get(chatHistory.size()-1).getProfileDTO().toString());
 		// -> jsp
 		model.addAttribute("roomNum", chatMessageDTO.getChatRoomNum());
 		model.addAttribute("chatHistory", chatHistory);
@@ -81,3 +70,7 @@ public class ChatController {
 		return map;
 	}
 }
+
+// 채팅리스트 사진 경로조정
+// 채팅쳤을때 프로필사진
+// 브런치 새로 -> 채팅방만들기를 moim이 만들어질때로변경 
