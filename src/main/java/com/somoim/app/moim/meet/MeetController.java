@@ -46,8 +46,8 @@ public class MeetController {
 			contain.add(memId);
 		}
 		
-		System.out.println("???????^&*^&*"+contain.get(0));
-		System.out.println("???????^&*^&*"+contain.get(1));
+//		System.out.println("???????^&*^&*"+contain.get(0));
+//		System.out.println("???????^&*^&*"+contain.get(1));
 //		System.out.println("???????^&*^&*"+contain.get(0).get(0));
 
 		
