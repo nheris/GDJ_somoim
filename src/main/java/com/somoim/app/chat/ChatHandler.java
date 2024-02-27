@@ -10,7 +10,6 @@ import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.somoim.app.member.MemberDTO;
 
 public class ChatHandler extends TextWebSocketHandler{
 

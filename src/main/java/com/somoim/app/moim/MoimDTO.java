@@ -4,7 +4,6 @@ package com.somoim.app.moim;
 
 import java.sql.Date;
 
-import com.somoim.app.chat.ChatMessageDTO;
 import com.somoim.app.chat.ChatRoomDTO;
 import com.somoim.app.moim.member.MoimMemberDTO;
 

@@ -40,9 +40,11 @@
   	</insert>
 
 	<select id="chatHistory" parameterType="ChatMessageDTO" resultType="MemberDTO" resultMap="getRoomMember">
-		SELECT * 
+		SELECT *
 		FROM CHATMESSAGE
 			JOIN MEMBER
+			USING(USERNAME)
+			JOIN PROFILE
 			USING(USERNAME)
 		WHERE CHATROOMNUM = #{chatRoomNum}
 		ORDER BY CHATTIMESTAMP
@@ -94,6 +96,13 @@
 		
 		<association property="chatRoomDTO" javaType="ChatRoomDTO">
 			<id column="CHATROOMNUM" property="chatRoomNum"/>
+		</association>
+		
+		<association property="moimFileDTO" javaType="MoimFileDTO">
+			<id column="MOIMNUM" property="moimNum"/>
+			<result column="FILENUM" property="fileNum"/>
+			<result column="FILENAME" property="fileName"/>
+			<result column="ORINAME" property="oriName"/>
 		</association>
 	</resultMap>
 	
