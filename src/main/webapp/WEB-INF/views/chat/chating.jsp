@@ -36,11 +36,13 @@
 											<div class="name my-4">Vincent Porter</div>
 										</div>
 									</li>
-									<c:forEach var="item" items="${chatRoomList}">
-										<li id="chatRoomNum" data-roomNum="${item}" data-chatRoom="${item}" class="clearfix">
+									<c:forEach var="item" items="${moimInfo}">
+										<h6>${item.moimName}</h6>
+										<!-- data-chatRoom="${item.chatRoomDTO.chatRoomNum}" -->
+										<li id="chatRoomNum" data-roomNum="${item.chatRoomDTO.chatRoomNum}" class="clearfix">
 											<img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="avatar">
 											<div class="about">
-												<div class="name my-4">${item}
+												<div class="name my-4">
 												<c:if test="${not empty moimChat.moimName}">
 													<span>${moimChat.moimName}</span>
 												</c:if>

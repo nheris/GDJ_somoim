@@ -26,7 +26,6 @@ public class ChatHandler extends TextWebSocketHandler{
 		// 세션 아이디를 키로 사용, session을 값으로
 		System.out.println("연결");
 		sessionList.add(session);
-		System.out.println("connect : "+session.getAttributes().get("roomNum"));
 	}
 
 	//메세지를 다루는 메서드

@@ -48,17 +48,6 @@
 		ORDER BY CHATTIMESTAMP
 	</select>
 	
-	
-	<select id="moimChatList" parameterType="ChatMessageDTO" resultType="MoimDTO">
-		SELECT * 
-		FROM CHATROOM
-			JOIN MOIMCHAT
-			USING (CHATROOMNUM)
-			JOIN MOIM
-			USING (MOIMNUM)
-		WHERE CHATROOMNUM = #{chatRoomNum}
-	</select>
-	
 	<resultMap type="ChatMessageDTO" id="getRoomMember">
 		<id column="MESSAGENUM" property="messageNum"/>
 		<result column="CHATROOMNUM" property="chatRoomNum"/>
@@ -71,5 +60,41 @@
 			<result column="NICKNAME" property="nickName"/>
 			<result column="NAME" property="name"/>
 		</association>
+		
+		<association property="profileDTO" javaType="ProfileDTO">
+			<id column="USERNAME" property="userName"/>
+			<result column="FILENUM" property="fileNum"/>
+			<result column="FILENAME" property="fileName"/>
+			<result column="ORINAME" property="oriName"/>
+		</association>
 	</resultMap>
+	
+	<select id="moimChatInfo" parameterType="MemberDTO" resultType="MoimDTO" resultMap="getRoomNumber">
+		SELECT * 
+			FROM MOIM
+			JOIN MOIMCHAT
+			USING (MOIMNUM)
+		WHERE CHATROOMNUM IN
+			(
+				SELECT DISTINCT CHATROOMNUM  
+				FROM CHATMESSAGE
+				WHERE USERNAME = #{userName}
+			)
+	</select>
+	
+	<resultMap type="MoimDTO" id="getRoomNumber">
+		<id column="MOIMNUM" property="moimNum"/>
+		<result column="MOIMNAME" property="moimName"/>
+		<result column="MOIMREGION" property="moimRegion"/>
+		<result column="MOIMCATEGORY" property="moimCategory"/>
+		<result column="MOIMDATE" property="moimDate"/>
+		<result column="MOIMTEXT" property="moimText"/>
+		<result column="MOIMMEMCOUNT" property="moimMemCount"/>
+		<result column="MOIMHEAD" property="moimHead"/>
+		
+		<association property="chatRoomDTO" javaType="ChatRoomDTO">
+			<id column="CHATROOMNUM" property="chatRoomNum"/>
+		</association>
+	</resultMap>
+	
   </mapper>

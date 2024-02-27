@@ -1,6 +1,5 @@
 package com.somoim.app.chat;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.somoim.app.member.MemberDTO;
 import com.somoim.app.member.MemberService;
+import com.somoim.app.moim.MoimDTO;
 
 @Controller
 //@RequestMapping("/chat/*")
@@ -48,11 +48,16 @@ public class ChatController {
 //		MoimDTO moimChat = chatMessageService.moimChat(chatMessageDTO);
 //		System.out.println(moimChat.getMoimName());
 //		mv.addObject("moimChat",moimChat);
+
 		
+		List<MoimDTO> moimChatInfo = chatMessageService.moimChatInfo(dto);
+		System.out.println(moimChatInfo.get(0).toString());
+		
+		mv.addObject("moimInfo", moimChatInfo);
 		
 		List<Long> chatRoomList = chatMessageService.chatRoomList(dto);
 		mv.addObject("chatRoomList", chatRoomList);
-		
+				
 		mv.addObject("user",dto);
 		mv.setViewName("/chat/chating");
 		return mv;
@@ -63,7 +68,9 @@ public class ChatController {
 	public Map<String, Object> chatRecord(HttpSession session, ChatMessageDTO chatMessageDTO, Model model) {
 		session.setAttribute("roomNum", chatMessageDTO.getChatRoomNum());
 		List<ChatMessageDTO> chatHistory = chatMessageService.chatHistory(chatMessageDTO);
-		System.out.println(chatMessageService.roomUserList(chatMessageDTO).get(0));
+		
+		System.out.println(chatHistory.get(0).getMemberDTO().toString());
+		System.out.println(chatHistory.get(0).getProfileDTO().toString());
 		// -> jsp
 		model.addAttribute("roomNum", chatMessageDTO.getChatRoomNum());
 		model.addAttribute("chatHistory", chatHistory);

@@ -23,7 +23,7 @@ public class ChatMessageDAO {
 		return sqlSession.insert(NAMESPACE+"addChatRoom");
 	}
 	
-	// 특정 user의 참여중인 채팅방
+	// 특정 user의 참여중인 채팅방번호
 	public List<Long> chatRoomList(MemberDTO memberDTO){
 		return sqlSession.selectList(NAMESPACE+"chatRoomList", memberDTO);
 	}
@@ -48,7 +48,7 @@ public class ChatMessageDAO {
 	}
 	
 	// moim chat
-	public MoimDTO moimChatList(ChatMessageDTO chatMessageDTO){
-		return sqlSession.selectOne(NAMESPACE+"moimChat",chatMessageDTO);
+	public List<MoimDTO> moimChatInfo(MemberDTO memberDTO){
+		return sqlSession.selectList(NAMESPACE+"moimChatInfo",memberDTO);
 	}
 }

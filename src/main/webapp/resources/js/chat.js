@@ -17,10 +17,10 @@ const chat_message = document.querySelector('.chat-message');
 let sock = new SockJS("http://localhost:80/chat");
 const chatRoomNum = document.getElementById('chatRoomNum');
 
-const messageNum = "${chatMessageNum}";
-const userName = "${userName}";
-const chatText = "${chatText}";
-const chatMessageStamp = "${chatMessageStamp}";
+// const messageNum = "${chatMessageNum}";
+// const userName = "${userName}";
+// const chatText = "${chatText}";
+// const chatMessageStamp = "${chatMessageStamp}";
 
 let chatHistory = document.getElementById('chat-history');
 let scrollToBottom = chatHistory.scrollHeight - chatHistory.scrollTop === chatHistory.clientHeight;

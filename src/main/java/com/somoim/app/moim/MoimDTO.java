@@ -4,6 +4,8 @@ package com.somoim.app.moim;
 
 import java.sql.Date;
 
+import com.somoim.app.chat.ChatMessageDTO;
+import com.somoim.app.chat.ChatRoomDTO;
 import com.somoim.app.moim.member.MoimMemberDTO;
 
 public class MoimDTO {
@@ -16,11 +18,17 @@ public class MoimDTO {
 	private Long moimMemCount;
 	private String moimHead;
 
-
 	private MoimFileDTO moimFileDTO;
 	private MoimMemberDTO moimMemberDTO;
 
+	private ChatRoomDTO chatRoomDTO;
 
+	public ChatRoomDTO getChatRoomDTO() {
+		return chatRoomDTO;
+	}
+	public void setChatRoomDTO(ChatRoomDTO chatRoomDTO) {
+		this.chatRoomDTO = chatRoomDTO;
+	}
 	public MoimMemberDTO getMoimMemberDTO() {
 		return moimMemberDTO;
 	}
@@ -82,5 +90,4 @@ public class MoimDTO {
 	public void setMoimDate(Date moimDate) {
 		this.moimDate = moimDate;
 	}
-
 }
