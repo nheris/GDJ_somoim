@@ -45,6 +45,7 @@ public class CategoryController {
 		moimDTO.setAddress(memberDTO.getAddress());
 		System.out.println("유저 주소 : "+memberDTO.getAddress());
 		System.out.println("nickname : "+memberDTO.getNickName());
+		System.out.println(moimDTO.getMoimFileDTO());
 		List<MoimDTO> ar = categoryService.getListCategory(pager, moimDTO, memberDTO);
 		System.out.println("유저 주소 moim : "+moimDTO.getAddress());
 		model.addAttribute("data", ar);

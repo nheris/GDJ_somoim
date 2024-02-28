@@ -42,5 +42,17 @@ public class AdminPageService {
 	public List<AdminPageDTO> placeList(AdminPageDTO adminPageDTO) throws Exception {
 		return adminPageDAO.placeList(adminPageDTO);
 	}
+	public int update(AdminPageDTO adminPageDTO)throws Exception {
+		return adminPageDAO.update(adminPageDTO);
+	}
+	public List<AdminPageDTO> adminList(AdminPageDTO adminPageDTO) throws Exception {
+		return adminPageDAO.adminList(adminPageDTO);
+	}
+	public AdminPageDTO detail(AdminPageDTO adminPageDTO)throws Exception{
+		return adminPageDAO.detail(adminPageDTO);
+	}
+	public int delete(AdminPageDTO adminPageDTO)throws Exception{
+		return adminPageDAO.delete(adminPageDTO);
+	}
 
 }

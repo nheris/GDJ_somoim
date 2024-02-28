@@ -54,6 +54,10 @@
 SELECT * FROM MOIMPLACE
 </select>
 
+<select id="adminList" parameterType="AdminPageDTO" resultMap="moimPlace">
+SELECT * FROM MOIMPLACE
+</select>
+
 
 
 	<!-- getTotal -->
@@ -90,8 +94,32 @@ SELECT * FROM MOIMPLACE
 		#{placeNum},#{userName},#{placeTitle},#{placeAddress},#{placeLink},#{placeImageLink}
 		)
 	</insert>
+	<!-- detail -->
+	<select id="detail" parameterType="AdminPageDTO" resultMap="moimPlace">
+	select * from MOIMPLACE where PLACENUM=#{placeNum}
+	</select>
 
+	<update id="update" parameterType="AdminPageDTO">
+	update MOIMPLACE 
+	<set>
+				<if test="placeTitle != null and placeTitle !=''">
+				PLACETITLE=#{placeTitle},
+			</if>
+			<if test="placeAddress != null">
+				PLACEADDRESS=#{placeAddress},
+			</if>
+			<if test="placeLink != null">
+				PLACELINK=#{placeLink},
+			</if>
+			<if test="placeImageLink != null">
+				PLACEIMAGELINK=#{placeImageLink}
+			</if>
+	</set>
+	where PLACENUM=#{placeNum}
+	</update>
 
-
+	<delete id="delete" parameterType="AdminPageDTO">
+	delete MOIMPLACE where PLACENUM=#{placeNum}
+	</delete>
 
 </mapper>

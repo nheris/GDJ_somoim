@@ -57,7 +57,8 @@
 									class="lni lni-bookmark"></i> 공지글쓰기</a></li>
 							<li class="nav-item"><a class="nav-link" href="/mypage/pay"><i
 									class="lni lni-trash"></i> 구독 결제 화면</a></li>
-							<li class="nav-item" id="moimadd"><a class="nav-link">추천모임만들기</a></li>
+							<li class="nav-item" id="moimadd"><a href="#" class="nav-link">추천모임만들기</a></li>
+							<li class="nav-item" id="moimList"><a href="#" class="nav-link">추천모임전체리스트</a></li>
 						</ul>
 					</div>
 				</nav>
@@ -165,5 +166,6 @@
 	<!-- ========================= JS improt ========================= -->
 	<c:import url="../temps/footer.jsp"></c:import>
 	<script src="/resources/js/admin/adminPage.js"></script>
+	<script src="/resources/js/admin/adminlist.js"></script>
 </body>
 </html>

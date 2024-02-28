@@ -38,6 +38,19 @@ public class AdminPageDAO {
 		return sqlSession.selectList(namespace+"placeList",adminPageDTO);
 	}
 	
+	public int update(AdminPageDTO adminPageDTO)throws Exception{
+		return sqlSession.update(namespace+"update",adminPageDTO);
+	}
+	public List<AdminPageDTO> adminList (AdminPageDTO adminPageDTO)throws Exception{
+		return sqlSession.selectList(namespace+"adminList",adminPageDTO);
+	}
+	public AdminPageDTO detail (AdminPageDTO adminPageDTO)throws Exception{
+		return sqlSession.selectOne(namespace+"detail", adminPageDTO);
+	}
+	public int delete(AdminPageDTO adminPageDTO)throws Exception{
+		return sqlSession.delete(namespace+"delete", adminPageDTO);
+	}
+	
 //	// File
 //	public int setFileAdd(BoardFileDTO boardFileDTO)throws Exception{
 //		return sqlSession.insert(namespace+"setFileAdd", boardFileDTO);

@@ -1,5 +1,4 @@
 let moimadd = document.getElementById("moimadd");
-
 moimadd.addEventListener("click", function (e) {
     e.preventDefault();
     let width = 500;

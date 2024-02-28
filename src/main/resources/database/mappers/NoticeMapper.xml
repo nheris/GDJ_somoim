@@ -139,7 +139,7 @@
 		LEFT JOIN
 		NOTICEBOARDFILE NF
 		USING (BOARDNUM)
-		WHERE BOARDNUM =${boardNum}
+		WHERE BOARDNUM =#{boardNum}
 	</select>
 
 

@@ -90,7 +90,7 @@
       SELECT * FROM
       (SELECT ROWNUM R, N.* FROM
       (SELECT * FROM 
-      (SELECT * FROM MEMBER LEFT JOIN MOIMMEMBER using(username) LEFT JOIN MOIM USING(moimnum)
+      (SELECT * FROM MEMBER LEFT JOIN MOIMMEMBER using(username) LEFT JOIN MOIM USING(moimnum) LEFT JOIN MOIMFILE USING (MOIMNUM) 
        <include refid="moimCategory"></include>
       ORDER BY MOIMNUM DESC
       )

@@ -35,7 +35,7 @@
 						</div>
 						<div class="col-12"></div>
 						<div class="col-12 text-center">
-							<h3>추천모임생성</h3>
+							<h3>추천모임수정</h3>
 						</div>
 						<form method="POST" enctype="multipart/form-data" id="addform">
 						<input type="hidden" name="placeNum" value="${admin.placeNum}" id="placeNum">
