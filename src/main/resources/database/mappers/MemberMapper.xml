@@ -81,9 +81,9 @@
   		 		<result column="FILENAME" property="fileName"/>
   		 		<result column="ORINAME" property="oriName"/>
   		 	</association>
-  		 	<collection property="roleDTO" javaType="List" ofType="RoleDTO">
+  		 	<collection property="roleDTO" javaType="MemberRoleDTO">
   		 		<result column="ROLENUM" property="roleNum"/>
-  		 		<result column="ROLENAME" property="roleName"/>
+  		 		<result column="USERNAME" property="userName"/>
   		 	</collection>
   	</resultMap>
   	

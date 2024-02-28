@@ -1,3 +1,5 @@
+let boardReplyText = document.getElementById("boardReplyText");
+let replyAdd = document.getElementById("replyAdd");
 let temp = document.getElementById("temp");
 // let temp2 = temp.getAttribute("data-temp");
 let more = document.getElementById("more");
@@ -161,8 +163,13 @@ function getreplyList(page, temp) {
 }
 
 //댓글등록
-replyAdd.addEventListener("click", () => {
+replyAdd.addEventListener("click", (event) => {
     const replyForm = document.getElementById("replyForm");
+    if (boardReplyText.value == "") {
+        alert("내용이 입력되지 않았습니다.");
+        event.preventDefault();
+        return false;
+    }
     let form = new FormData(replyForm);
     fetch("/reply/add", {
         method: "POST",
@@ -177,29 +184,31 @@ replyAdd.addEventListener("click", () => {
         });
 });
 
-// delete
-// replyList.addEventListener("click", function (e) {
-//     if ((e.target.id = "del"));
-//     let boardReplyNum = document.getElementById("data-replynum");
-//     console.log(boardReplyNum);
-//     {
-//         console.log("click");
-//         fetch("/reply/delete", {
-//             method: "POST",
-//             body:
-//                 "boardReplyNum=" +
-//                 boardReplyNum +
-//                 "&boardNum=" +
-//                 updat.getAttribute("data-board-num"),
-//         })
-//             .then((r) => r.json())
-//             .then((r) => {
-//                 console.log(r);
-//                 replyList.innerHTML = "";
-//                 makeList(r);
-//             });
-//     }
-// });
 updat.addEventListener("click", function () {
     document.getElementById(frm).submit();
 });
+
+let boardReplyTexts = document.getElementById("boardReplyTexts");
+function enterkey(event) {
+    if (window.event.keyCode == 13) {
+        console.log("엔터키");
+        if (boardReplyText.value.trim() === "") {
+            alert("내용이 입력되지 않았습니다.");
+            event.preventDefault();
+            return false;
+        }
+        replyAdd.click();
+    }
+}
+
+function updateEnterKey(event) {
+    if (window.event.keyCode == 13) {
+        console.log("엔터키");
+        if (boardReplyTexts.value.trim() === "") {
+            alert("내용이 입력되지 않았습니다.");
+            event.preventDefault();
+            return false;
+        }
+        replyUpdateButton.click();
+    }
+}

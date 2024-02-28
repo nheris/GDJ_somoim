@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.somoim.app.member.role.RoleDTO;
+import com.somoim.app.member.role.MemberRoleDTO;
 import com.somoim.app.util.FileManager;
 
 @Service
@@ -100,12 +100,14 @@ public class MemberService {
 		if(dto!=null) {
 			if(dto.getPassword().equals(memberDTO.getPassword())) {
 
-				RoleDTO role = dto.getRoleDTO().get(0);
+				MemberRoleDTO role = dto.getRoleDTO();
 				
 				memberDTO.setNickName(dto.getNickName());
 				memberDTO.setProfile(dto.getProfile());
 				memberDTO.setLoginNum(dto.getLoginNum());
-				memberDTO.setEmail(dto.getEmail());				
+				memberDTO.setEmail(dto.getEmail());
+				memberDTO.setAddress(dto.getAddress());
+				memberDTO.setRoleDTO(role);
 				
 				return memberDTO;
 				

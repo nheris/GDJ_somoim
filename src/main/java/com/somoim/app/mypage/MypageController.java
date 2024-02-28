@@ -123,4 +123,9 @@ public class MypageController {
 		model.addAttribute("paymentType",ar);
 		return "mypage/pay";
 	}
+	
+	@GetMapping("paymentList")
+	public String paymentList(HttpSession session)throws Exception {
+		return "/mypage/paymentList";
+	}
 }
