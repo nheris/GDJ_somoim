@@ -208,6 +208,7 @@ public class PaymentService {
 			paymentDTO.setCustomerKey(ordersDTO.getCustomerKey());
 			paymentDTO.setpTypeNum(ordersDTO.getpTypeNum());
 			paymentDTO.setDepositKey((String)responseMap.get("secret"));
+			paymentDTO.setPayMethod((String)responseMap.get("method"));
 			System.out.println(paymentDTO);
 		//주문정보 결제완료로 수정
 			ordersDTO.setOrderStatus(1);
