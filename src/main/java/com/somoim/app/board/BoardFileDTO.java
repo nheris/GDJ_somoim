@@ -5,6 +5,14 @@ import com.somoim.app.files.FileDTO;
 public class BoardFileDTO extends FileDTO {
 
 	private Long boardNum;
+	private Long placeNum;
+	public Long getplaceNum() {
+		return placeNum;
+	}
+
+	public void setplaceNum(Long placeNum) {
+		this.placeNum = placeNum;
+	}
 
 	private String userName;
 
@@ -23,6 +31,7 @@ public class BoardFileDTO extends FileDTO {
 	public void setBoardNum(Long boardNum) {
 		this.boardNum = boardNum;
 	}
+
 
 
 

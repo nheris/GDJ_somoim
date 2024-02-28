@@ -48,10 +48,10 @@
 						<div>
 							<c:forEach items="${detail.fileDTOs}" var="f">
 								<c:if test="${board eq '문의게시판'}">
-									<a href="../resources/upload/qna/${f.fileName}">${f.oriName}</a>
+									<div><img src="../resources/upload/qna/${f.fileName}"></div>
 								</c:if>
 								<c:if test="${board eq '공지게시판'}">
-									<a href="../resources/upload/notice/${f.fileName}">${f.oriName}</a>
+								<div><img src="../resources/upload/notice/${f.fileName}"></div>
 								</c:if>
 
 							</c:forEach>
@@ -105,8 +105,7 @@
 
 
 				<div class="mb-3 mt-3">
-					<textarea class="form-control" id="boardReplyText rows="
-						3" name="boardReplyText"></textarea>
+					<textarea class="form-control" id="boardReplyText" onkeyup="enterkey()" name="boardReplyText"></textarea>
 					<div class="row">
 						<div class="col-2">
 							<button type="button" class="btn btn-outline-dark mb-3 mt-3"
@@ -135,7 +134,7 @@
 				<!-- form 자체를 가지고가기위해 id부여 -->
 					<form method="post" id="replyUpdateForm">
 						<textarea class="form-control" name="boardReplyText"
-							id="boardReplyTexts" rows="3"></textarea>
+							id="boardReplyTexts" rows="3" onkeyup="updateEnterKey()"></textarea>
 							
 						<input type="hidden" value="" name="boardReplyNum" id="boardReplyNum">
 						<!-- 작성자와 비교용 -->

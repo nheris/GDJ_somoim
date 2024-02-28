@@ -14,6 +14,7 @@
 		<result column="MOIMTEXT" property="moimText" />
 		<result column="MOIMMEMCOUNT" property="moimMemCount" />
 		<result column="MOIMHEAD" property="moimHead" />
+		<result column="ADDRESS" property="address"/>
 		<association property="moimFileDTO" javaType="MoimFileDTO">
 			<id column="FILENUM" property="fileNum" />
 			<result column="FILENAME" property="fileName" />
@@ -76,34 +77,34 @@
 		WHERE
 		<choose>
 			<when test="pager.searchFind=='find0'">
-				MOIMREGION Like '%'||#{moimRegion}||'%'
+				ADDRESS Like '%'||#{CategoryDTO.address}||'%' AND MOIMREGION = ADDRESS
 			</when>
 			<otherwise>
-				MOIMREGION Like '%'||'%'
+				ADDRESS Like '%'||'%'
 			</otherwise>
 		</choose>
 	</sql>
 	
 	
 	<select id="getListCategory" parameterType="Map" resultMap="listReault">
-		SELECT * FROM
-		(SELECT ROWNUM R, N.* FROM
-		(SELECT * FROM 
-		(SELECT * FROM MOIM LEFT JOIN MOIMFILE USING (MOIMNUM) LEFT JOIN MOIMMEMBER USING (MOIMNUM)
-		 <include refid="moimCategory"></include>
-		ORDER BY MOIMNUM DESC
-		)
-		<include refid="boardCategorys"></include>
-		)
-		N)
-		WHERE R BETWEEN #{pager.startRow} AND #{pager.lastRow}
+      SELECT * FROM
+      (SELECT ROWNUM R, N.* FROM
+      (SELECT * FROM 
+      (SELECT * FROM MEMBER LEFT JOIN MOIMMEMBER using(username) LEFT JOIN MOIM USING(moimnum) LEFT JOIN MOIMFILE USING (MOIMNUM) 
+       <include refid="moimCategory"></include>
+      ORDER BY MOIMNUM DESC
+      )
+      <include refid="boardCategorys"></include>
+      )
+      N)
+      WHERE R BETWEEN #{pager.startRow} AND #{pager.lastRow}
 
 	</select>
 	
 	<select id="getTotalCount" parameterType="Map" resultType="Long">
 		SELECT COUNT(MOIMNUM) from 
 		(SELECT * FROM (
-		SELECT * FROM MOIM
+		SELECT * FROM MEMBER LEFT JOIN MOIMMEMBER using(username) LEFT JOIN MOIM USING(moimnum)
 		<include refid="boardCategorys"></include>
 		)
 		<include refid="moimCategory"></include>

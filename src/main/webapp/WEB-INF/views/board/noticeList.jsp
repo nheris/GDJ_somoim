@@ -12,10 +12,10 @@ uri="http://java.sun.com/jsp/jstl/core"%>
         <c:when test="${data.boardSecret eq 1}">
         
         <c:choose>
-        <c:when test="${data.userName == data.boardWriter}">
+        <c:when test="${member.roleDTO.roleNum eq 1}">
         <td class="col-md-4"><a href="/qna/detail?boardNum=${data.boardNum}"><img src="/resources/img/board/file-lock.svg" > 비밀글입니다.</a></td>
          </c:when>
-         <c:when test="${member.roleDTO.roleNum eq 1}">
+         <c:when test="${member.userName eq data.boardWriter}">
          <td class="col-md-4"><a href="/qna/detail?boardNum=${data.boardNum}"><img src="/resources/img/board/file-lock.svg" > 비밀글입니다.</a></td>
          </c:when>
          <c:otherwise>
