@@ -17,7 +17,40 @@
 <c:import url="../../temps/header.jsp"></c:import>
 </head>
 <body>
+	<!-- empty경우 -->
+	<c:if test="${empty dto}">
+		<div class="breadcrumbs" style="background-color: white;">
+			<!-- <div class="container"> -->
+				<!-- <div class="row align-items-center"> -->
+					
 
+
+
+					<div class="d-table">
+						<div class="d-table-cell">
+						  <div class="container">
+							<div class="error-content">
+							  <h1>^0^)/♥</h1>
+							  <h2>존재하지 않는 모임입니다.</h2>
+							  <p>다시 시도 해주세요.</p>
+							  <div class="button">
+								<a href="/" class="btn">Go To Home</a>
+							  </div>
+							</div>
+						  </div>
+						</div>
+					  </div>
+
+
+				<!-- </div>
+			</div> -->
+		</div>
+
+		
+	</c:if>
+	
+	<c:if test="${not empty dto}">
+	
 	<!-- 모임 홈 헤더 -->
 	<div class="breadcrumbs">
 		<div class="container">
@@ -35,13 +68,14 @@
 							style="color: white">게시판</a></li>
 						<li class="nav-item"><a class="nav-link" href="./together?moimNum=${dto.moimNum}"
 							style="color: white">정모</a></li>
-						<li class="nav-item"><a class="nav-link" href="#"
+						<li class="nav-item"><a class="nav-link" href="/chat"
 							style="color: white">채팅</a></li>
 					</ul>
 				</div>
 			</div>
 		</div>
 	</div>
+	
 	<!-- 가입(비멤버만) -->
 		<c:if test="${not fn:contains(contain, member.userName)}">
 			<div class="button me-5 mt-3" style="text-align: right;">
@@ -147,6 +181,7 @@
 
 		</div>
 	</div>
+	</c:if>
 	
 
 	<!-- ========================= scroll-top ========================= -->
