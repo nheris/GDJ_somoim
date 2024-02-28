@@ -23,6 +23,9 @@ public class PaymentController {
 	@Autowired
 	private PaymentService paymentService;	
 	
+	@Autowired
+	private SubscriptionService subscriptionService;
+	
 	@PostMapping("webhook")
 	@ResponseBody
 	public boolean webHook(@RequestBody Map<String, Object> map, PaymentDTO paymentDTO, OrdersDTO order)throws Exception {
@@ -56,7 +59,14 @@ public class PaymentController {
 	@PostMapping("confirm")
 	@ResponseBody
 	public Map<String, Object> payConfirm(@RequestBody PaymentDTO paymentDTO)throws Exception{
-		return paymentService.paymentProcess(paymentDTO);
+		Map<String, Object> map = paymentService.paymentProcess(paymentDTO);
+		if((boolean)(map.get("result"))&&map.get("accountName")==null) {
+			paymentDTO = (PaymentDTO)map.get("DTO");
+			subscriptionService.setSubs(paymentDTO);
+		}
+		map.remove("DTO");
+		return map;
 	}
+	
 }
 

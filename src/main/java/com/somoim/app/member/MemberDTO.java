@@ -1,6 +1,5 @@
 package com.somoim.app.member;
 
-import java.util.List;
 import java.util.UUID;
 
 import com.somoim.app.member.role.MemberRoleDTO;
