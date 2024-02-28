@@ -4,16 +4,26 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <!-- mapper namespace는 비우면 에러 -->
   <mapper namespace="com.somoim.app.member.MemberDAO">
+  	
+  	<delete id="accountDel" parameterType="MemberDTO">
+  		DELETE FROM MEMBER
+  		WHERE USERNAME=#{userName} AND PASSWORD=#{password}
+  		
+  	</delete>
+  
+  	<select id="checkId" parameterType="MemberDTO" resultType="int">
+  		SELECT COUNT(*) FROM MEMBER
+  		WHERE USERNAME=#{userName} AND PASSWORD=#{password}	
+	</select>
   
   	<select id="checkPw" parameterType="MemberDTO" resultType="int">
   		SELECT COUNT(*) FROM MEMBER
   		WHERE USERNAME=#{userName} AND EMAIL=#{email}
-  	</select>  	  
+  	</select>
   
   	<update id="setPasswordUpdate" parameterType="MemberDTO">
   		UPDATE MEMBER
-  		SET 
-  			PASSWORD = #{password}
+  		SET PASSWORD = #{password}
   		WHERE USERNAME = #{userName} AND EMAIL=#{email}
   	</update>
   	
