@@ -37,14 +37,15 @@ public class MypageController {
 			model.addAttribute("member", dto);
 			System.out.println(dto.getAddress());
 			return "mypage/main";			
-		}			
+		}else {
+		session.setAttribute("member",null);
+		memberDTO=null;
 		memberDTO=(MemberDTO)session.getAttribute("appmember");
-		
+		System.out.println("앱로그인");
 		dto = memberService.getMypage(memberDTO);
-		model.addAttribute("member",dto);
-		System.out.println("앱");
-		return "mypage/main";	
-		
+		model.addAttribute("appmember",dto);
+		return "mypage/main";
+		}
 	}
 	
 	@PostMapping("password")
@@ -63,18 +64,57 @@ public class MypageController {
 
 	@PostMapping("update")
 	public String setUpdate(MultipartFile attachs,HttpSession session,MemberDTO memberDTO)throws Exception{
-
-
-		MemberDTO m = (MemberDTO)session.getAttribute("member");
-		m=(MemberDTO)session.getAttribute("appmember");
-		memberDTO.setUserName(m.getUserName());
 				
+		MemberDTO m = (MemberDTO)session.getAttribute("member");
+		
+		if(m == null) {
+			session.setAttribute("member", null);
+			System.out.println("나오며ㅛㄴ안돼");			
+			m=(MemberDTO)session.getAttribute("appmember");
+			memberDTO.setUserName(m.getUserName());
+			int result = memberService.setUpdate(memberDTO,attachs);
+			
+			return "redirect:./main";
+			
 
-		int result = memberService.setUpdate(memberDTO,attachs);
-
+		}else {
+			
+			memberDTO.setUserName(m.getUserName());
+			int result = memberService.setUpdate(memberDTO,attachs);
 
 		return "redirect:./main";
-
+		}
+	}
+	
+	//앱 회원탈퇴
+	@PostMapping("appDel")
+	public String appDel(MemberDTO memberDTO,HttpSession session)throws Exception{
+		MemberDTO dto = (MemberDTO)session.getAttribute("appmember");
+		memberDTO.setUserName(dto.getUserName());
+		memberDTO.setPassword(dto.getPassword());
+		
+		int result = memberService.accountDel(memberDTO);
+		session.setAttribute("appmember",null);
+		return "redirect:../";
+	}
+	
+	//회원탈퇴
+	@GetMapping("accountDel")
+	public void accountDel()throws Exception{
+		
+	}
+	@PostMapping("accountDel")
+	public String accountDel(MemberDTO memberDTO,HttpSession session)throws Exception{
+		MemberDTO dto = (MemberDTO)session.getAttribute("member");
+		System.out.println(dto.getUserName());
+		memberDTO.setUserName(dto.getUserName());
+		memberDTO.setPassword(dto.getPassword());
+		System.out.println(memberDTO.getPassword()+"pwd");
+		
+		int result = memberService.accountDel(memberDTO);
+		session.setAttribute("member", null);		
+		
+		return "../";
 	}
 
 	@GetMapping("pay")

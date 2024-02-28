@@ -12,7 +12,7 @@ const phone = document.getElementById("phone");
 const email = document.getElementById("email");
 
 const btn = document.getElementById("btn");
-const frn = document.querySelector("#frm");
+const frm = document.querySelector("#frm");
 const person_chk = document.getElementById("check1");
 const birthday = document.getElementById("userBirth").value;
 const btn_area = document.getElementById("btn_area");
@@ -49,6 +49,110 @@ let accessToken;
         }																														
     });																		
     }
+
+    const getLocation = document.getElementById("getLocation");
+//시,도,광역시,특별시
+getLocation.addEventListener("click", function() {
+    
+    
+    // AJAX 요청
+    jQuery.ajax({
+        type: "GET",
+        url: "https://sgisapi.kostat.go.kr/OpenAPI3/addr/stage.json",
+        data: {
+            accessToken: accessToken,
+            pg_yn: 0
+        },
+        success: function(data) {
+            errCnt = 0;
+            area.innerHTML='';
+            for (let i = 0; i < data.result.length; i++) {
+
+                let addr_name = data.result[i].addr_name;
+                let cd = data.result[i].cd;
+                    console.log(cd);
+                    let sel = document.createElement("option");
+                    sel.setAttribute("value", cd);
+                    sel.innerHTML = addr_name;
+                    area.append(sel);
+                    if(cd==11){    
+                        let selected = area.options[area.selectedIndex];
+                        let area_detail = document.getElementById("area_detail");
+                       
+                        // 여기서 result_item을 resultItem으로 수정
+                    
+                        jQuery.ajax({
+                            type:"GET",
+                            url: "https://sgisapi.kostat.go.kr/OpenAPI3/addr/stage.json",
+                            data:{
+                                accessToken:accessToken,
+                                cd:selected.value,
+                                pg_yn:0
+                            },
+                            success: function(data){
+                    
+                                area_detail.innerHTML = "";
+                                for(let i = 0;i<data.result.length;i++){
+                                    let addr_name = data.result[i].addr_name;
+                                    let cd = data.result[i].cd;
+                                    
+                                    let sel = document.createElement("option");
+                                    sel.setAttribute("value",cd);
+                                    sel.innerHTML = addr_name;
+                                    area_detail.append(sel);
+                                }
+                            },
+                            error: function(data){
+                                //에러 처리   
+                            }
+                    
+                        });
+                    }
+               
+                }
+            },
+        error: function(data) {
+            // 에러 처리
+        }
+    });
+});
+
+//군,구 처리
+function changeList(){
+
+    let selected = area.options[area.selectedIndex];
+
+    let area_detail = document.getElementById("area_detail");
+   
+    // 여기서 result_item을 resultItem으로 수정
+
+    jQuery.ajax({
+        type:"GET",
+        url: "https://sgisapi.kostat.go.kr/OpenAPI3/addr/stage.json",
+        data:{
+            accessToken:accessToken,
+            cd:selected.value,
+            pg_yn:0
+        },
+        success: function(data){
+
+            area_detail.innerHTML = "";
+            for(let i = 0;i<data.result.length;i++){
+                let addr_name = data.result[i].addr_name;
+                let cd = data.result[i].cd;
+                
+                let sel = document.createElement("option");
+                sel.setAttribute("value",cd);
+                sel.innerHTML = addr_name;
+                area_detail.append(sel);
+            }
+        },
+        error: function(data){
+            //에러 처리   
+        }
+
+    });
+}
 
 
 
@@ -171,73 +275,6 @@ selectDay.addEventListener("click",()=>{
     getDaysInMonth(year,month);
 })
 
-//시,도,광역시,특별시
-getLocation.addEventListener("click", function() {
-    
-    // AJAX 요청
-    jQuery.ajax({
-        type: "GET",
-        url: "https://sgisapi.kostat.go.kr/OpenAPI3/addr/stage.json",
-        data: {
-            accessToken: accessToken,
-            pg_yn: 0
-        },
-        success: function(data) {
-            errCnt = 0;
-            area.innerHTML='';
-            for (let i = 0; i < data.result.length; i++) {
-
-                let addr_name = data.result[i].addr_name;
-                let cd = data.result[i].cd;
-                    
-                    let sel = document.createElement("option");
-                    sel.setAttribute("value", cd);
-                    sel.innerHTML = addr_name;
-                    area.append(sel);                
-                }
-            },
-        error: function(data) {
-            // 에러 처리
-        }
-    });
-});
-
-//군,구 처리
-function changeList(){
-
-    let selected = area.options[area.selectedIndex];
-
-    let area_detail = document.getElementById("area_detail");
-   
-    // 여기서 result_item을 resultItem으로 수정
-
-    jQuery.ajax({
-        type:"GET",
-        url: "https://sgisapi.kostat.go.kr/OpenAPI3/addr/stage.json",
-        data:{
-            accessToken:accessToken,
-            cd:selected.value,
-            pg_yn:0
-        },
-        success: function(data){
-
-            area_detail.innerHTML = "";
-            for(let i = 0;i<data.result.length;i++){
-                let addr_name = data.result[i].addr_name;
-                let cd = data.result[i].cd;
-                
-                let sel = document.createElement("option");
-                sel.setAttribute("value",cd);
-                sel.innerHTML = addr_name;
-                area_detail.append(sel);
-            }
-        },
-        error: function(data){
-            //에러 처리   
-        }
-
-    });
-}
 
 btn_area.addEventListener("click",()=>{
     const btn_close = document.getElementById("btn_close");

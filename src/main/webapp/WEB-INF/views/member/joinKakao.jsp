@@ -24,26 +24,15 @@
                     <div class="form-head">
                         <h4 class="title">Registration</h4>
                         <form id="frm" action="./join" method="post" enctype="multipart/form-data">
-                            <div class="socila-login">
-                                <ul>
-                                    <li><a href="javascript:void(0)" class="facebook"><i class="lni lni-facebook-original"></i>Import
-                                            From Facebook</a></li>
-                                    <li><a href="javascript:void(0)" class="google"><i class="lni lni-google"></i>Import From Google
-                                            Plus</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="alt-option">
-                                <span>Or</span>
-                            </div>
+
                             <div class="form-group">
                                 <label for="userName">아이디&이메일</label>
-                                <input name="userName" id="userName" value="${appmember.userName}${goomember.userName}" type="text">
+                                <input name="userName" id="userName" value="${tempmem.userName}" type="text" readonly>
                             </div>
                             
                             <div class="form-group" hidden>
                                 <label for="userName">아이디&이메일</label>
-                                <input name="email" id="userName" value="${appmember.userName}${goomember.userName}" type="text">
+                                <input name="email" id="userName" value="${tempmem.userName}" type="text" readonly>
                             </div>
 
                             <div class="form-group" hidden>
@@ -53,11 +42,11 @@
 
                             <div class="form-group">
                                 <label for="nickName">별명</label>
-                                <input name="nickName" id="nickName" type="text">
+                                <input name="nickName" value="${tempmem.nickName}" id="nickName" type="text">
                             </div>
                             <div class="form-group">
                                 <label for="name">이름</label>
-                                <input name="name" id="name" value="${appmember.name}${goomember.userName}" type="text">
+                                <input name="name" id="name" value="${tempmem.name}" type="text">
                             </div>
                             <div class="form-group">
                                 <label for="userBirth">생년월일</label>

@@ -139,7 +139,41 @@ getLocation.addEventListener("click", function() {
                     let sel = document.createElement("option");
                     sel.setAttribute("value", cd);
                     sel.innerHTML = addr_name;
-                    area.append(sel);                
+                    area.append(sel);
+                    
+                    if(cd==11){    
+                        let selected = area.options[area.selectedIndex];
+                        let area_detail = document.getElementById("area_detail");
+                       
+                        // 여기서 result_item을 resultItem으로 수정
+                    
+                        jQuery.ajax({
+                            type:"GET",
+                            url: "https://sgisapi.kostat.go.kr/OpenAPI3/addr/stage.json",
+                            data:{
+                                accessToken:accessToken,
+                                cd:selected.value,
+                                pg_yn:0
+                            },
+                            success: function(data){
+                    
+                                area_detail.innerHTML = "";
+                                for(let i = 0;i<data.result.length;i++){
+                                    let addr_name = data.result[i].addr_name;
+                                    let cd = data.result[i].cd;
+                                    
+                                    let sel = document.createElement("option");
+                                    sel.setAttribute("value",cd);
+                                    sel.innerHTML = addr_name;
+                                    area_detail.append(sel);
+                                }
+                            },
+                            error: function(data){
+                                //에러 처리   
+                            }
+                    
+                        });
+                    }              
                 }
             },
         error: function(data) {

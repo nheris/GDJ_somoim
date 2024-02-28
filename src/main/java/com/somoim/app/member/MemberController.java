@@ -39,14 +39,22 @@ public class MemberController {
 	@Autowired
 	private JavaMailSenderImpl mailSenderImpl;
 	
-	//회원탈퇴
-	@GetMapping("accountDel")
-	public void accountDel()throws Exception{
+
+	
+	@PostMapping("checkId")
+	public String checkId(MemberDTO memberDTO,Model model)throws Exception{
 		
-	}
-	@PostMapping("accountDel")
-	public void accountDel(MemberDTO memberDTO,HttpSession session)throws Exception{
 		
+		int result = memberService.checkId(memberDTO);
+		if(result>0) {
+			result = 1;
+		}else {
+			result = 0;
+		}
+		
+		model.addAttribute("result", result);
+		
+		return "member/idCheck";
 	}
 	
 	//사용자 정보로 비밀번호 찾기
@@ -127,25 +135,8 @@ public class MemberController {
 			}
 			
 			return Integer.toString(checkNum);
-		}	   
-	
-	//앱 회원가입
-	@PostMapping("joinApp")
-	public String setJoinApp(MemberDTO memberDTO,MultipartFile attachs,Model model)throws Exception{
-		int result = memberService.setjoin(memberDTO, attachs);
-		String msg = "가입불가";
-		String path = "./joinApp";
-		
-		if(result>0) {
-			msg = "가입성공";
-			path = "../";
-		}
-		
-		model.addAttribute("msg", msg);
-		model.addAttribute("path", path);
-		
-		return "member/result";
-	}
+		}	  	
+
 	
 	//구글 아이디 정보 가져오기	
 	@PostMapping("submitApp")
@@ -155,7 +146,7 @@ public class MemberController {
 		MemberDTO dto = memberService.submitJoinApp(memberDTO);
         
 		if(dto==null) {
-			session.setAttribute("appmember",memberDTO);      			
+			session.setAttribute("appmember",memberDTO);
 			return "success";
 		}else {
 			session.setAttribute("appmember",dto);
@@ -194,9 +185,9 @@ public class MemberController {
 	//카카오 회원가입 및 로그인
 	
 	 @GetMapping("joinApp")
-	    public String kakaoLogin(@RequestParam String code,MemberDTO memberDTO,HttpSession session) throws Exception{
+	    public String kakaoLogin(@RequestParam String code,MemberDTO memberDTO,HttpSession session,Model model) throws Exception{
 	        // 1. 인가 코드 받기 (@RequestParam String code)
-
+		 	
 	        // 2. 토큰 받기
 	        String accessToken = kakaoAPI.getAccessToken(code);
 	        session.setAttribute("accessToken", accessToken);
@@ -206,18 +197,41 @@ public class MemberController {
 	        String getUserName = (String)userInfo.get("email");
 	        String nickname = (String)userInfo.get("nickname");
 	        memberDTO.setUserName(getUserName);
+	        memberDTO.setNickName(nickname);
 	     
 	        MemberDTO dto = memberService.submitJoinApp(memberDTO);
-			if(dto==null) {
-				session.setAttribute("appmember",memberDTO);
-				
+			if(dto==null) {				
+				model.addAttribute("tempmem", memberDTO);
 				return "member/joinKakao";
 			}else {
-
+				
 				session.setAttribute("appmember",dto);
+				System.out.println(dto.getAddress());
+				System.out.println(dto.getLoginNum());
 				return "redirect:../";
 			}
 	    }
+	 
+		//앱 회원가입
+		@PostMapping("joinApp")
+		public String setJoinApp(MemberDTO memberDTO,MultipartFile attachs,Model model,HttpSession session)throws Exception{
+			
+			int result = memberService.setjoin(memberDTO, attachs);
+			String msg = "가입불가";
+			String path = "./joinApp";
+			
+			if(result>0) {
+				msg = "가입성공";
+				path = "../";
+			}
+			
+			
+			model.addAttribute("msg", msg);
+			model.addAttribute("path", path);
+			
+			
+			return "member/result";
+		}
 	 
 	//somoim 앱로그인
 	@GetMapping("login")

@@ -50,34 +50,64 @@
 							</tr>
 							<tr>
 								<td class="table dark">닉네임</td>
-								<td class="del">${member.nickName}									
+								<td class="del">${member.nickName}${appmember.nickName}
 								</td>								
-								<td><input type="hidden" name="nickName" value="${member.nickName}" class="show"></td>
+								<td><input type="hidden" name="nickName" value="${member.nickName}${appmember.nickName}" class="show"></td>
 							</tr>
 
 							<tr>
 								<td class="table dark">이름</td>
 								<td>
-									${member.name}
+									${member.name}${appmember.name}
 								</td>								
 							</tr>
 
 							<tr>
 								<td class="table dark">주소</td>
-								<td class="del">${member.address}</td>
-								<td><input type="hidden" name="address" value="${member.address}" class="show"></td>
+								<td class="del">${member.address}${appmember.address}</td>
+								<td><input type="hidden" id="adrs_in" name="address" value="${member.address}${appmember.address}" class="show"></td>
+								<td><button type="button" id="getLocation" style="display: none;" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    주소 검색하기
+                                </button>
+                                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>                                            
+                                        <div class="modal-body">
+                                                <label for="area">지역 : </label>
+                                                <select id="area" onchange="changeList()">    
+                                                    <option value="0">선택하기</option>
+                                                </select>
+                                        </div>                                            
+                                        <div>
+                                            <label for="area_detail">세부지역 : </label>
+                                            <select id="area_detail">
+                                                <option value="0">선택하기</option>
+                                            </select>
+                                        </div>
+                                        <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="btn_close">Close</button>
+                                        <button type="button" class="btn btn-primary" id="btn_area">Save changes</button>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                                </td>
 							</tr>
 
 							<tr>
 								<td class="table dark">전화번호</td>
-								<td class="del">${member.phone}</td>
-								<td><input type="hidden" name="phone" value="${member.phone}" class="show"></td>
+								<td class="del">${member.phone}${appmember.phone}</td>
+								<td><input type="hidden" name="phone" value="${member.phone}${appmember.phone}" class="show"></td>
 							</tr>
 
 							<tr>
 								<td class="table dark">이메일</td>
-								<td class="del">${member.email}</td>
-								<td><input type="hidden" name="email" value="${member.email}" class="show"></td>
+								<td class="del">${member.email}${appmember.email}</td>
+								<td><input type="hidden" name="email" value="${member.email}${appmember.email}" class="show"></td>
 							</tr>
 
 						</table>

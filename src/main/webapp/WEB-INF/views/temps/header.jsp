@@ -44,16 +44,16 @@
 						<!-- navbar collapse -->
 						<div class="login-button">
 							<ul>
-								<c:if test="${member eq null and appmember eq null and goomember eq null}">
+								<c:if test="${member eq null and appmember eq null}">
 									<li><a href="/member/login"><i class="lni lni-enter"></i>
 											로그인</a></li>
 									<li><a href="/member/join"><i class="lni lni-user"></i>
 											회원가입</a></li>
 								</c:if>
-								<c:if test="${member ne null or appmember ne null or goomember ne null}">
+								<c:if test="${member ne null or appmember ne null}">
 									<li><a href="/mypage/main"><i class="lni lni-user"></i>
 											마이페이지</a></li>
-									<c:if test="${appmember eq null}">
+									<c:if test="${member.loginNum == 1 }">
 										<li><a href="/member/logout"><i class="lni lni-ban"></i>
 												로그아웃</a></li>
 									</c:if>
