@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.somoim.app.member.MemberDTO;
 import com.somoim.app.member.MemberService;
@@ -85,7 +86,9 @@ public class MypageController {
 	}
 	
 	@GetMapping("paymentList")
-	public String paymentList(HttpSession session)throws Exception {
-		return "/mypage/paymentList";
+	public ModelAndView paymentList(HttpSession session, ModelAndView mv)throws Exception {
+		
+		mv.setViewName("mypage/paymentList");
+		return mv;
 	}
 }
