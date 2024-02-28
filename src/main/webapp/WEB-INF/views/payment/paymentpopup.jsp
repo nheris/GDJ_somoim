@@ -18,12 +18,8 @@
 <script src="https://js.tosspayments.com/v1/payment-widget"></script>
 <style>
 body {
-	position: relative;
 	-webkit-text-size-adjust: none;
-}
-
-.container{
-	display: block;
+	display: flex;
 	justify-content: center;
 	align-items: center;
 }
@@ -38,11 +34,12 @@ body {
 
 
 
+
 </style>
 </head>
 
 <body>
-	<div class="container" style="width: 540px; margin: 0px; padding: 0px;">
+	<div class="container main-contents" style="width: 540px; margin: 0px; padding: 0px;">
 		<div class="row mx-auto" style="background-color: white; width: 100%;">
 			<div class="col-3 my-3 text-center">
 				<image src="/resources/assets/images/logo/logo.png"
@@ -62,7 +59,7 @@ body {
 						fill="#1E1E23"></path></svg>
 			</div>
 		</div>
-		<div class="mx-auto"
+		<div class="row mx-auto"
 			style="background-color: #F7F7F7; padding: 8px; width: 97%; height: auto;">
 			<div class="row mx-auto p-1"
 				style="background-color: white; padding: 0px; margin-bottom: 3px;">

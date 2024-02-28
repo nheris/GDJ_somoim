@@ -29,22 +29,11 @@ let popUp;
 Array.from(payBtn).forEach((button)=>{
   button.addEventListener("click",function(){
     let dataType = this.getAttribute('data-type');
-    popUp = popupWindow("/pay/paypopup?pTypeNum="+dataType,"payment",540,800);
+    popUp = popupWindow("/pay/paypopup?pTypeNum="+dataType,"payment",700,800);
     popUp.onresize = function(){
-      popUp.resizeTo(570,900)
-    }
-    popUp.onload = function(){
-      popUp.addEventListener("message", handleMessageFromChild);
+      popUp.resizeTo(730,900)
     }
   })
 })
-  
 
-  function handleMessageFromChild(e) {
-    console.log(e.data);
-    if (e.data === "paymentSelect") {
-        // 부모 창에 메시지를 전달
-     
-    }
-}
 

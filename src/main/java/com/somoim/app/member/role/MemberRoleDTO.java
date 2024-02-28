@@ -8,6 +8,12 @@ public class MemberRoleDTO {
 	
 	
 	
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
 	public Integer getRoleNum() {
 		return roleNum;
 	}

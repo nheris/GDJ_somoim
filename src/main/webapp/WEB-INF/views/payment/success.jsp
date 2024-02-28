@@ -163,15 +163,20 @@ color: #b0b8c1;
 </div>
 <div class="flex-column align-center confirm-success w-100 max-w-540">
   <img src="https://static.toss.im/illusts/check-blue-spot-ending-frame.png" width="120" height="120"></img>
-  <h2 class="title">결제를 완료했어요</h2>
+  <h2 class="title" id="title-message">결제를 완료했어요</h2>
   <div class="response-section w-100">
     <div class="flex justify-between">
-      <span class="response-label">결제 금액</span>
+      <span class="response-label" id="deposit">결제 금액</span>
       <span class="amount response-text"></span>
     </div>
     <div class="flex justify-between">
-      <span class="response-label">주문번호</span>
+      <span class="response-label">주문 번호</span>
       <span class="orderId response-text"></span>
+    </div>
+    <div class="flex justify-between" id="account" style="display: none;">
+      <span class="response-label">입금 계좌</span>
+      <span class="response-text" id="accountName"></span>
+      <span class="response-text" id="accountNum"></span>
     </div>
     <div class="w-100">
       <button id="confirmDoneBtn" class="btn primary w-100">확인</button>
@@ -187,11 +192,11 @@ color: #b0b8c1;
       <span class="amount response-text"></span>
     </div>
     <div class="flex justify-between">
-      <span class="response-label">주문번호</span>
+      <span class="response-label">주문 번호</span>
       <span class="orderId response-text"></span>
     </div>
     <div class="flex justify-between">
-      <span class="response-label">결제실패 사유</span>
+      <span class="response-label">결제 실패 사유</span>
       <span id="message" class="response-text"></span>
     </div>
     <div class="w-100">

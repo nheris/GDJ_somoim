@@ -27,27 +27,31 @@ public class PaymentService {
 	private PaymentDAO paymentDAO;
 	
 	@Autowired
-	private SubscriptionService subService;
+	private SecretKey secretKey;
 	
 	@Autowired
-	private SecretKey secretKey;
+	private ConvertBankCode convertBankCode;
+	
+	@Autowired
+	private SubscriptionService subscriptionService;
 	
 	public Map<String, Object> paymentReseponse(Map<String, Object> reqMap, OrdersDTO ordersDTO, ClientDTO clientDTO, MemberDTO memberDTO) throws Exception {
 		ObjectMapper om = new ObjectMapper();
 		ordersDTO = om.convertValue(reqMap.get("ordersDTO"),OrdersDTO.class);
 		clientDTO = om.convertValue(reqMap.get("clientDTO"), ClientDTO.class);
-		memberDTO = getCustomerKey(memberDTO);
+		memberDTO = paymentDAO.getCustomerKey(memberDTO);
 		ordersDTO.setCustomerKey(memberDTO.getCustomerKey());
 		OrdersDTO newOrder = getOrders(ordersDTO);
 		
 		if(newOrder!=null) {
 			ordersDTO = newOrder;
 		}else {
-			ordersDTO.creatOderId();			
-			setOrders(ordersDTO);
+			ordersDTO.creatOderId();
+			ordersDTO.setOrderStatus(0);
+			paymentDAO.setOrders(ordersDTO);
 		}
 
-		clientDTO = getClientKey(clientDTO);
+		clientDTO = paymentDAO.getClientKey(clientDTO);
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("orders", ordersDTO);
 		map.put("client", clientDTO);
@@ -112,7 +116,8 @@ public class PaymentService {
 			Date date = format1.parse(dateString);
 			sqlDate = new java.sql.Date(date.getTime());
 		}
-		paymentDTO.setPaymentDay(sqlDate);	
+		paymentDTO.setPaymentDay(sqlDate);
+		System.out.println("setPaymentDate:"+paymentDTO);
 		return paymentDTO;
 	}
 	
@@ -127,7 +132,6 @@ public class PaymentService {
 		String secret = (String)map.get("secret");
 		String depositKey = paymentDTO.getDepositKey(); 
 		if(!secret.equals(depositKey)) {
-			System.out.println("false");
 			return false;
 		}else {
 			if(map.get("status").equals("CANCELED")) {
@@ -135,15 +139,15 @@ public class PaymentService {
 				paymentDAO.upOrders(order);
 				return true;
 			}
-			System.out.println(map);
 			
 			order.setOrderStatus(1);
 			paymentDAO.upOrders(order);
 			
-			System.out.println(paymentDTO);
 			String dateString = (String)map.get("createdAt");
 			paymentDTO = setPaymentDate(paymentDTO, dateString);
 			paymentDAO.upPayment(paymentDTO);
+			subscriptionService.setSubs(paymentDTO);
+			
 			return true;
 		}	
 	}
@@ -182,11 +186,21 @@ public class PaymentService {
 	//결제 결과 저장할 ordersDTO DB에서 꺼내옴
 		OrdersDTO ordersDTO = new OrdersDTO();
 		ordersDTO.setOrderId(paymentDTO.getOrderId());
-		ordersDTO = searchOrder(ordersDTO);
+		ordersDTO = paymentDAO.searchOrder(ordersDTO);
 		responseStream.close();
 	//리스폰스 결과 체크하여 클라이언트에 리스폰스할 Map 작성
 		if(check) {
 			String dateString = (String)responseMap.get("approvedAt");
+			resultMap.put("message","결제 승인 완료");
+			if(dateString==null) {
+				dateString = (String)responseMap.get("requestedAt");
+				resultMap.put("message","입금 대기 상태입니다.");
+				Map<String, Object> account = (Map<String, Object>)responseMap.get("virtualAccount");
+				resultMap.put("accountNum", account.get("accountNumber"));
+				String bank = (String)account.get("bankCode");
+				bank = convertBankCode.getBankName(bank);
+				resultMap.put("accountName", bank);
+			}
 			System.out.println(responseMap);
 			paymentDTO = setPaymentDate(paymentDTO, dateString);				
 			Integer amount = (Integer)responseMap.get("totalAmount");
@@ -197,14 +211,15 @@ public class PaymentService {
 			System.out.println(paymentDTO);
 		//주문정보 결제완료로 수정
 			ordersDTO.setOrderStatus(1);
-			resultMap.put("mesaage","결제 승인");
 			resultMap.put("orderName",responseMap.get("orderName"));
 			resultMap.put("amount",paymentDTO.getAmount());
 			resultMap.put("paymentDay", dateString);
+			resultMap.put("DTO", paymentDTO);
 			resultMap.put("result",true);
 		//결과를 DB에 저장함
-			upOrders(ordersDTO);
-			setPayment(paymentDTO);
+			paymentDAO.upOrders(ordersDTO);
+			System.out.println("paymentProcess:"+paymentDTO);
+			paymentDAO.setPayment(paymentDTO);
 			return resultMap;
 		}else {
 			resultMap.put("message", responseMap.get("message"));
