@@ -28,7 +28,6 @@
   		<typeAlias type="com.somoim.app.payment.SubsDTO" alias="SubsDTO"/>
   		<typeAlias type="com.somoim.app.member.role.MemberRoleDTO" alias="MemberRoleDTO"/>
   		<typeAlias type="com.somoim.app.adminPage.AdminPageDTO" alias="AdminPageDTO"/>
-  		<typeAlias type="com.somoim.app.member.role.RoleDTO" alias="RoleDTO"/>
   	</typeAliases>
   </configuration>
   
