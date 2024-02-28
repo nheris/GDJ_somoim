@@ -17,16 +17,7 @@ public class ChatMessageDTO extends MemberDTO{
 	private String chatTimeStamp;
 	
 	private MemberDTO memberDTO; 
-	private ProfileDTO profileDTO;
 	
-	
-	
-	public ProfileDTO getProfileDTO() {
-		return profileDTO;
-	}
-	public void setProfileDTO(ProfileDTO profileDTO) {
-		this.profileDTO = profileDTO;
-	}
 	public MemberDTO getMemberDTO() {
 		return memberDTO;
 	}
@@ -73,6 +64,6 @@ public class ChatMessageDTO extends MemberDTO{
 	public String toString() {
 		return "ChatMessageDTO [messageNum=" + messageNum + ", chatRoomNum=" + chatRoomNum + ", userName=" + userName
 				+ ", chatText=" + chatText + ", chatTimeStamp=" + chatTimeStamp + ", memberDTO=" + memberDTO
-				+ ", profileDTO=" + profileDTO + "]";
+				+ "]";
 	}
 }

@@ -33,7 +33,7 @@
 							style="color: white">게시판</a></li>
 						<li class="nav-item"><a class="nav-link" href="./together?moimNum=${dto.moimNum}"
 							style="color: white">정모</a></li>
-						<li class="nav-item"><a class="nav-link" href="#"
+						<li class="nav-item"><a class="nav-link" href="/chat"
 							style="color: white">채팅</a></li>
 					</ul>
 				</div>

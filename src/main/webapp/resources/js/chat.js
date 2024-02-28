@@ -142,6 +142,11 @@ function otherSend(nick, msg, date){
     div.classList.add('message-data');
     div.classList.add('text-right');
     div.classList.add('my-2');
+
+    // let img = document.createElement('img');
+    // ${record.memberDTO.profile.fileName}
+    // img.src = `/resources/upload/member/`;
+
     div.innerHTML = "<h6 class='my-3'>"+nick+"</h6>";
     chat_record.append(li);
     li.append(div);
@@ -186,6 +191,7 @@ chatRoom.addEventListener('click',(e)=>{
             })
             .then(r => r.json())
             .then(r => {
+                console.log(r);
                 for(let i=0;i<r.record.length;i++){
                  let msg = r.record[i].chatText;
                  let date = r.record[i].chatTimeStamp;

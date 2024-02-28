@@ -30,22 +30,19 @@
 								</div>
 								<!-- 채팅방 목록 -->
 								<ul class="list-unstyled chat-list mt-2 mb-0">
-									<li class="clearfix">
-										<img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="avatar">
-										<div class="about">
-											<div class="name my-4">Vincent Porter</div>
-										</div>
-									</li>
 									<c:forEach var="item" items="${moimInfo}">
-										<h6>${item.moimName}</h6>
 										<!-- data-chatRoom="${item.chatRoomDTO.chatRoomNum}" -->
 										<li id="chatRoomNum" data-roomNum="${item.chatRoomDTO.chatRoomNum}" class="clearfix">
-											<img src="${item.moimFileDTO.oriName}" alt="avatar">
+											<!-- ${item.moimFileDTO.fileName} -->
+											<c:if test="${empty item.moimFileDTO.fileName}">
+												<img src="../resources/img/profile/profile.jpg" style="width: 50px; height: 50px;">
+											</c:if>
+											<c:if test="${not empty item.moimFileDTO.fileName}">
+												<img src="/resources/upload/moim/${item.moimFileDTO.fileName}" style="width: 50px; height: 50px;">
+											</c:if>
 											<div class="about">
-												<div class="name my-4">
-												<c:if test="${not empty moimChat.moimName}">
-													<span>${moimChat.moimName}</span>
-												</c:if>
+												<h6 class="pt-1">${item.moimName}</h6>												
+												<span>------</span>
 											</div>
 										</li>
 									</c:forEach>
@@ -58,8 +55,16 @@
 											<div class="chat-about">
 												<a href="javascript:void(0);" data-toggle="modal"
 													data-target="#view_info">
-													<img src="rere/${chatHistory.profileDTO.oriName}"
-														alt="avatar">
+													${chatHistory}
+													<c:forEach var="item" items="${chatHistory}">
+														<span>${item.memberDTO}</span>													
+													</c:forEach>
+													<c:if test="${not empty user.profile.fileName}">
+														<img src="/resources/upload/member/${user.profile.fileName}">
+													</c:if>
+													<c:if test="${empty user.profile.fileName}">
+														<img src="/resources/img/profile/profile.jpg">
+													</c:if>
 												</a>
 												<h6 class="m-b-0">${user.nickName}</h6>
 											</div>

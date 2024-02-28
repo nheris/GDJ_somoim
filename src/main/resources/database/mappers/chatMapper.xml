@@ -61,14 +61,15 @@
 			<id column="USERNAME" property="userName"/>
 			<result column="NICKNAME" property="nickName"/>
 			<result column="NAME" property="name"/>
+			<association property="profile" javaType="ProfileDTO">
+				<id column="USERNAME" property="userName"/>
+				<result column="FILENUM" property="fileNum"/>
+				<result column="FILENAME" property="fileName"/>
+				<result column="ORINAME" property="oriName"/>
+			</association>
 		</association>
 		
-		<association property="profileDTO" javaType="ProfileDTO">
-			<id column="USERNAME" property="userName"/>
-			<result column="FILENUM" property="fileNum"/>
-			<result column="FILENAME" property="fileName"/>
-			<result column="ORINAME" property="oriName"/>
-		</association>
+
 	</resultMap>
 	
 	<select id="moimChatInfo" parameterType="MemberDTO" resultType="MoimDTO" resultMap="getRoomNumber">

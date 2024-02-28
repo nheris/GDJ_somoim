@@ -36,6 +36,7 @@ public class ChatController {
 		
 		memberDTO = (MemberDTO)session.getAttribute("member");
 		MemberDTO dto = memberService.getLogin(memberDTO);
+		System.out.println(dto);
 		
 		mv.addObject("roomNum",session.getAttribute("roomNum"));
 		
@@ -59,7 +60,7 @@ public class ChatController {
 		List<ChatMessageDTO> chatHistory = chatMessageService.chatHistory(chatMessageDTO);
 		
 		System.out.println(chatHistory.get(chatHistory.size()-1).getMemberDTO().toString());
-		System.out.println(chatHistory.get(chatHistory.size()-1).getProfileDTO().toString());
+		System.out.println(chatHistory.get(chatHistory.size()-1).toString());
 		// -> jsp
 		model.addAttribute("roomNum", chatMessageDTO.getChatRoomNum());
 		model.addAttribute("chatHistory", chatHistory);
