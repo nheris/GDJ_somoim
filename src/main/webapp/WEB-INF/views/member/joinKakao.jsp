@@ -24,41 +24,29 @@
                     <div class="form-head">
                         <h4 class="title">Registration</h4>
                         <form id="frm" action="./join" method="post" enctype="multipart/form-data">
-                            <div class="socila-login">
-                                <ul>
-                                    <li><a href="javascript:void(0)" class="facebook"><i class="lni lni-facebook-original"></i>Import
-                                            From Facebook</a></li>
-                                    <li><a href="javascript:void(0)" class="google"><i class="lni lni-google"></i>Import From Google
-                                            Plus</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="alt-option">
-                                <span>Or</span>
-                            </div>
+
                             <div class="form-group">
-                                <label for="userName">아이디</label>
-                                <input name="userName" id="userName" type="text">
-                                <button id="checkId" type="button">중복검사</button>
+                                <label for="userName">아이디&이메일</label>
+                                <input name="userName" id="userName" value="${tempmem.userName}" type="text" readonly>
                             </div>
-                            <div class="form-group">
+                            
+                            <div class="form-group" hidden>
+                                <label for="userName">아이디&이메일</label>
+                                <input name="email" id="userName" value="${tempmem.userName}" type="text" readonly>
+                            </div>
+
+                            <div class="form-group" hidden>
                                 <label for="password">비밀번호</label>
-                                <input name="password" id="password" type="password">
-                                <div id="passwordResult"></div>
+                                <input name="password" value="appjoiner" id="password" type="password">                                
                             </div>
-                            <div class="form-group">
-                                <label for="passwordCheck">비밀번호 확인</label>
-                                <input id="passwordCheck" type="password">
-                                <div id="passwordCheckResult"></div>
-                            </div>
-                            <div id="passwordCheckReulst"></div>
+
                             <div class="form-group">
                                 <label for="nickName">별명</label>
-                                <input name="nickName" id="nickName" type="text">
+                                <input name="nickName" value="${tempmem.nickName}" id="nickName" type="text">
                             </div>
                             <div class="form-group">
                                 <label for="name">이름</label>
-                                <input name="name" id="name" type="text">
+                                <input name="name" id="name" value="${tempmem.name}" type="text">
                             </div>
                             <div class="form-group">
                                 <label for="userBirth">생년월일</label>
@@ -119,7 +107,7 @@
                                 </div>
                                 
                                 <div>
-                                    <input name="address" placeholder="주소버튼 클릭!" type="text" id="adrs_in" readonly>
+                                    <input name="address" type="text" id="adrs_in">
                                 </div>
                             </div>
 
@@ -127,28 +115,13 @@
                                 <label for="phone">전화번호</label>
                                 <input name="phone" id="phone" type="text">
                             </div>
-
-
-
-                            <div class="form-group">
-                                <label for="email">이메일</label>
-                                <input type="text" placeholder="이메일" name="email" id="email" class="email">
-                                <button type="button" id="email_auth_btn" class="email_auth_btn">인증번호 받기</button>
-                            </div>
-                            <div class="form-group">
-                                <input type="text" placeholder="인증번호 입력" id="email_auth_key">
-                                <button type="button" id="key_check">인증번호 확인</button>
-                                <br>
-                                <p style="display: none;" id="auth_check">인증확인!</p>
-                            </div>
-
                             <div class="form-group">
                                 <label for="attachs">사진첨부</label>
                                 <input name="attachs" id="attachs" type="file">
                             </div>
-
+                            
                             <div class="form-group" hidden>                                
-                                <input name="loginNum" id="attachs" value="1" type="text">
+                                <input name="loginNum" id="attachs" value="2" type="text">
                             </div>
 
 
@@ -166,7 +139,7 @@
                             <div class="button">
                                 <button type="submit" id="btn">Registration</button>
                             </div>
-                            <p class="outer-link">Already have an account? <a href="/member/login"> Login Now</a>
+                            <p class="outer-link">Already have an account? <a href="/login"> Login Now</a>
                             </p>
                         </form>
                     </div>
@@ -178,7 +151,7 @@
 	<c:import url="../temps/footer.jsp"></c:import>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script src="../resources/js/member/joinCheck.js"></script>
+	<script src="../resources/js/member/joinCheckApp.js"></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>	
 	
 </body>
