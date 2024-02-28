@@ -51,4 +51,8 @@ public class ChatMessageDAO {
 	public List<MoimDTO> moimChatInfo(MemberDTO memberDTO){
 		return sqlSession.selectList(NAMESPACE+"moimChatInfo",memberDTO);
 	}
+	
+	public int moimChatAdd(MemberDTO memberDTO) {
+		return sqlSession.insert(NAMESPACE+"moimChatAdd", memberDTO);
+	}
 }

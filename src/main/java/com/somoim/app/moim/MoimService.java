@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.somoim.app.chat.ChatMessageDAO;
+import com.somoim.app.chat.ChatRoomDTO;
 import com.somoim.app.member.MemberDTO;
 import com.somoim.app.util.FileManager;
 
@@ -19,6 +21,8 @@ public class MoimService {
 	private FileManager fileManager;
 	@Autowired
 	private ServletContext servletContext;
+	@Autowired
+	private ChatMessageDAO chatMessageDAO;
 
 	//list
 	public List<MoimDTO> getList(MemberDTO memberDTO) throws Exception {
@@ -34,7 +38,9 @@ public class MoimService {
 		String path = servletContext.getRealPath("/resources/upload/moim");
 
 		String fileName = fileManager.fileSave(path, file);
-
+		ChatRoomDTO chatRoomDTO = new ChatRoomDTO();
+		chatMessageDAO.addChatRoom(chatRoomDTO);
+		
 		MoimFileDTO moimFileDTO = new MoimFileDTO();
 		moimFileDTO.setFileName(fileName);
 		moimFileDTO.setOriName(file.getOriginalFilename());
@@ -42,7 +48,7 @@ public class MoimService {
 
 		result = moimDAO.fileAdd(moimFileDTO);
 
-
+		
 		return result;
 
 	}

@@ -6,8 +6,11 @@
   <mapper namespace="com.somoim.app.chat.ChatMessageDAO">
   	
   	<!-- ChatRoom -->
-  	<insert id="addChatRoom">
-  		INSERT INTO CHATROOM (CHATROOMNUM) VALUES (CHATROOM_SEQ.NEXTVAL)
+  	<insert id="addChatRoom" parameterType="ChatRoomDTO">
+  		<selectKey order="BEFORE" keyProperty="chatRoomNum" resultType="Long">
+  			CHATROOM_SEQ.NEXTVAL
+  		</selectKey>
+  		INSERT INTO CHATROOM (CHATROOMNUM) VALUES (#{chatRoomNum})
   	</insert>
   	  	
   	<select id="chatRoomCh" resultType="Long">
@@ -109,4 +112,26 @@
 		</association>
 	</resultMap>
 	
+	<insert id="moimChatAdd" parameterType="MemberDTO">
+		<selectKey resultType="Long" keyProperty="chatRoomNumKey" order="BEFORE">
+			SELECT * FROM 
+				(
+					SELECT * 
+					FROM CHATROOM 
+					ORDER BY CHATROOMNUM DESC
+				)
+			WHERE ROWNUM = 1
+		</selectKey>
+		<selectKey resultType="Long" keyProperty="moimNumKey" order="BEFORE">
+			SELECT MOIMNUM FROM
+				(
+					SELECT * 
+					FROM MOIM
+					ORDER BY MOIMDATE DESC
+				)
+			WHERE ROWNUM = 1
+		</selectKey>
+		INSERT INTO MOIMCHAT (CHATROOMNUM, MOIMNUM, USERNAME)
+		VALUES (#{chatRoomNumKey}, #{moimNumKey}, #{userName})
+	</insert>
   </mapper>
