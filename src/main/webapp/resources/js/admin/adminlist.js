@@ -1,7 +1,7 @@
 let moimList = document.getElementById("moimList");
 moimList.addEventListener("click", function (e) {
     e.preventDefault();
-    let width = 500;
+    let width = 1100;
     let height = 600;
     let left = (window.innerWidth - width) / 2;
     let top = (window.innerHeight - height) / 2;
@@ -12,7 +12,7 @@ moimList.addEventListener("click", function (e) {
         let content = popupWindow.document.querySelector("body");
         content.style.overflowX = "auto";
     });
-    // popupWindow.onresize = (_) => {
-    //     popupWindow.resizeTo(width, height);
-    // };
+    popupWindow.onresize = (_) => {
+        popupWindow.resizeTo(width, height);
+    };
 });
