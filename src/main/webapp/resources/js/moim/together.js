@@ -23,7 +23,6 @@ listBody.addEventListener("click", function(e){
         })
     }
 
-
 })
 //update
 
@@ -64,33 +63,3 @@ var mapOptions = {
 var map = new naver.maps.Map('map', mapOptions);
 
 
-//join
-//정원초과시 가입 불가
-listBody.addEventListener("click", function(e){
-    //console.log('연결');
-    if(e.target.classList.contains("join")){
-        //console.log('확인');
-        let result = confirm("정모에 참여 하시겠습니까?");
-        
-        if(result){
-            
-            let meetct = e.target.getAttribute('data-meet-count');
-            let memct = e.target.getAttribute('data-mem-count');
-            let meetNum = e.target.getAttribute('data-meet-num');
-            let moimNum = e.target.getAttribute('data-moim-num');
-            
-            
-            if(meetct == memct){
-                alert ('정원이 초과되었습니다.')
-                //e.defaultPrevented();
-                return false;
-            }
-        
-            e.target.setAttribute("href","./join?meetNum="+meetNum+"&moimNum="+moimNum)
-        }else {
-            // alert("취소되었습니다.");
-        }
-
-    }
-
-});

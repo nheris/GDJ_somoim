@@ -1,6 +1,7 @@
 package com.somoim.app.payment;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,5 +58,9 @@ public class PaymentDAO {
 	
 	public int upPayment(PaymentDTO paymentDTO)throws Exception{
 		return sqlSession.update(NAMESPACE+"upPayment", paymentDTO);
+	}
+	
+	public List<Map<String, Object>> getPaymentList(MemberDTO memberDTO)throws Exception{
+		return sqlSession.selectList(NAMESPACE+"getPaymentList",memberDTO);
 	}
 }

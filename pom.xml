@@ -15,10 +15,18 @@
 	</properties>
 	<dependencies>
 	
+		<!-- 스케줄링 라이브러리 -->
+		<dependency>
+			<groupId>org.quartz-scheduler</groupId>
+			<artifactId>quartz</artifactId>
+			<version>2.3.2</version>
+		</dependency>
+	
+		<!-- 메일인증 라이브러리 -->
 		<dependency>
 		    <groupId>com.sun.mail</groupId>
 		    <artifactId>javax.mail</artifactId>
-		    <version>1.6.2</version> <!-- 사용하는 JavaMail API 버전에 맞게 수정 -->
+		    <version>1.6.2</version>
 		</dependency>
 	
 		<dependency>

@@ -1,8 +1,12 @@
 package com.somoim.app.payment;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import com.somoim.app.member.MemberDTO;
 
 @Repository
 public class SubscriptionDAO {
@@ -22,5 +26,13 @@ public class SubscriptionDAO {
 	
 	public int upDonedate(SubsDTO subsDTO)throws Exception {
 		return sqlSession.update(NAMESPACE+"upDonedate",subsDTO);
+	}
+	
+	public List<SubsDTO> getAll()throws Exception{
+		return sqlSession.selectList(NAMESPACE+"getAll");
+	}
+	
+	public int updateSVS(SubsDTO subsDTO)throws Exception{
+		return sqlSession.update(NAMESPACE+"updateSVS",subsDTO);
 	}
 }

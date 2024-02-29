@@ -8,13 +8,19 @@ public class MoimMemberDTO {
 	private Long moimRoleNum;
 	private Long moimNum;
 	private Date joinDate;
-	
-	
+
+
 	public String getUserName() {
 		return userName;
 	}
 	public void setUserName(String userName) {
 		this.userName = userName;
+	}
+	public Date getJoinDate() {
+		return joinDate;
+	}
+	public void setJoinDate(Date joinDate) {
+		this.joinDate = joinDate;
 	}
 	public Long getMoimRoleNum() {
 		return moimRoleNum;
@@ -28,14 +34,7 @@ public class MoimMemberDTO {
 	public void setMoimNum(Long moimNum) {
 		this.moimNum = moimNum;
 	}
-	public Date getJoinDate() {
-		return joinDate;
-	}
-	public void setJoinDate(Date joinDate) {
-		this.joinDate = joinDate;
-	}
-	
-	
-	
+
+
 
 }

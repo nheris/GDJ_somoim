@@ -46,7 +46,18 @@
 									<div style="width: 30%; border: 1px solid black; border-radius: 10px;">
 										<ul style="margin: 1em;">
 											<li>구독 기간</li>
-											<li>1990.5.1. ~ 2004.5.1.</li>
+											<c:if test="${svs eq null}">
+												<c:if test="${start ne ''}">
+													<li>${start}~${done}</li>
+												</c:if>											
+												<c:if test="${start eq ''}">
+													<li>이용 중인 구독권이 없습니다</li>
+												</c:if>											
+											</c:if>
+											<c:if test="${svs ne null}">
+												<li style="text-decoration: line-through">${start}~${done}</li>
+												<li>${svs}</li>
+											</c:if>
 										</ul>
 									</div>
 									<table class="table" style="width: 90%; margin-top: 1em">
@@ -59,34 +70,9 @@
 											<th>결제날짜</th>
 										</tr>
 									</thead>
-									<tr>
-										<td>d</td>
-										<td>d</td>
-										<td>d</td>
-										<td>d</td>
-										<td>d</td>
-									</tr>
-									<tr>
-										<td>d</td>
-										<td>d</td>
-										<td>d</td>
-										<td>d</td>
-										<td>d</td>
-									</tr>
-									<tr>
-										<td>d</td>
-										<td>d</td>
-										<td>d</td>
-										<td>d</td>
-										<td>d</td>
-									</tr>
-									<tr>
-										<td>d</td>
-										<td>d</td>
-										<td>d</td>
-										<td>d</td>
-										<td>d</td>
-									</tr>
+									<tbody id="paymentList-body">
+									
+								</tbody>
 								</table>
 								</div>
 							</div>
@@ -103,6 +89,6 @@
 
 	<!-- ========================= JS improt ========================= -->
 	<c:import url="../temps/footer.jsp"></c:import>
-	<script src="/resources/js/payment/payment.js"></script>
+	<script src="/resources/js/payment/paymentListData.js"></script>
 </body>
 </html>

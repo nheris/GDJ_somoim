@@ -40,7 +40,7 @@
 							style="color: white">게시판</a></li>
 						<li class="nav-item"><a class="nav-link" href="./together?moimNum=${dto.moimNum}"
 							style="color: white">정모</a></li>
-						<li class="nav-item"><a class="nav-link" href="/chat"
+						<li class="nav-item"><a class="nav-link" href="#"
 							style="color: white">채팅</a></li>
 					</ul>
 				</div>
@@ -65,14 +65,14 @@
                 <div class="row">
 	
                     <div class="mb-3">
-                    	<label for="meetName" class="form-label">정모 이름(2~10자)</label>
-						<input type="text" class="form-control" id="meetName" name="meetName" placeholder="정모 이름" minlength = "2" maxlength = "10">
+                    	<label for="meetName" class="form-label">정모 이름</label>
+						<input type="text" class="form-control" id="meetName" name="meetName" placeholder="정모 이름">
 					</div>
 					
 					
 					<div class="mb-3">
 						<label for="meetDate" class="form-label">정모 날짜</label>
-						<input type="text" class="form-control " id="meetDate" name="meetDate" style="width: 300px;" readonly>
+						<input type="text" class="form-control " id="meetDate" name="meetDate" style="width: 300px;">
 					</div>
 					
 					<div class="mb-4">
@@ -97,11 +97,11 @@
 		
 					<div class="mb-3">
 						<label for="meetCost" class="form-label">참가비</label>
-						<input type="number" class="form-control" id="meetCost" name="meetCost" placeholder="15000" min="0">
+						<input type="number" class="form-control" id="meetCost" name="meetCost" placeholder="15000">
 					</div>
 					<div class="mb-3">
 						<label for="meetCount" class="form-label">정원(5~300명)</label>
-						<input type="number" class="form-control" id="meetCount" name="meetCount" placeholder="정원을 지정해 주세요." min="5" max="300">
+						<input type="number" class="form-control" id="meetCount" name="meetCount" placeholder="정원을 지정해 주세요.">
 					</div>
 					<div class="mb-3">
 						<label for="exampleFormControlTextarea1" class="form-label">정모 사진 등록</label>
