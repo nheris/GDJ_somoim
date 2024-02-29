@@ -46,6 +46,12 @@
 					<input type="hidden" name="boardNum" value="${DTO.boardNum}"
 						id="boardNum"> <input type="hidden"
 						value="${member.userName}" id="userName" name="userName">
+						<input type="hidden" name="boardWriter" value="${DTO.boardWriter}"
+						id="boardWriter">
+						<input type="hidden" name="boardSecret" value="${DTO.boardSecret}"
+						id="boardSecret">
+						
+						boardSecret
 					<div class="mb-3 text-start">
 						<label for="title" class="form-label">Title</label> <input
 							type="text" class="form-control" id="title"
@@ -57,12 +63,11 @@
 					<textarea class="form-control" id="boardText" rows="3"
 						name="boardText">${DTO.boardText}</textarea>
 				</div>
-				<input class="form-control" type="file" id="filelist"
-					data-file-count="0" data-file-max="5" name="attachs"
-					accept="image/jpg, image/jpeg, image/png, image/gif">
-			
+<input class="form-control" type="file" id="formFileMultiple"
+				multiple data-file-count="0" data-file-max="5" name="attachs"
+				accept="image/jpg, image/jpeg, image/png, image/gif">
 			<div class="col-auto d-flex justify-content-end mt-3 mb-3">
-				<button class="btn btn-outline-dark">등록</button>
+				<button class="btn btn-outline-dark" id="fileAdd">등록</button>
 			</div>
 			</div>
 	</div>

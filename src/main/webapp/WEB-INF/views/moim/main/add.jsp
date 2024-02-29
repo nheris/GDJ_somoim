@@ -65,14 +65,14 @@
                 <div class="row">
 	
                     <div class="mb-3">
-                    	<label for="meetName" class="form-label">정모 이름</label>
-						<input type="text" class="form-control" id="meetName" name="meetName" placeholder="정모 이름">
+                    	<label for="meetName" class="form-label">정모 이름(2~10자)</label>
+						<input type="text" class="form-control" id="meetName" name="meetName" placeholder="정모 이름" minlength = "2" maxlength = "10">
 					</div>
 					
 					
 					<div class="mb-3">
 						<label for="meetDate" class="form-label">정모 날짜</label>
-						<input type="text" class="form-control " id="meetDate" name="meetDate" style="width: 300px;">
+						<input type="text" class="form-control " id="meetDate" name="meetDate" style="width: 300px;" readonly>
 					</div>
 					
 					<div class="mb-4">
@@ -97,11 +97,11 @@
 		
 					<div class="mb-3">
 						<label for="meetCost" class="form-label">참가비</label>
-						<input type="number" class="form-control" id="meetCost" name="meetCost" placeholder="15000">
+						<input type="number" class="form-control" id="meetCost" name="meetCost" placeholder="15000" min="0">
 					</div>
 					<div class="mb-3">
 						<label for="meetCount" class="form-label">정원(5~300명)</label>
-						<input type="number" class="form-control" id="meetCount" name="meetCount" placeholder="정원을 지정해 주세요.">
+						<input type="number" class="form-control" id="meetCount" name="meetCount" placeholder="정원을 지정해 주세요." min="5" max="300">
 					</div>
 					<div class="mb-3">
 						<label for="exampleFormControlTextarea1" class="form-label">정모 사진 등록</label>

@@ -14,6 +14,7 @@ import com.somoim.app.chat.ChatMessageDAO;
 import com.somoim.app.chat.ChatMessageDTO;
 import com.somoim.app.chat.ChatRoomDTO;
 import com.somoim.app.member.MemberDTO;
+import com.somoim.app.moim.member.MoimMemberDTO;
 import com.somoim.app.util.FileManager;
 
 @Service
@@ -53,7 +54,18 @@ public class MoimService {
 		chatMessageDAO.addChat(chat);
 		
 		String path = servletContext.getRealPath("/resources/upload/moim");
+		
+		if(file.isEmpty()) {
+			
+			MoimFileDTO moimFileDTO = new MoimFileDTO();
+			moimFileDTO.setOriName(file.getOriginalFilename());
+			moimFileDTO.setMoimNum(moimDTO.getMoimNum());
 
+			result = moimDAO.fileAdd(moimFileDTO);
+			
+			return result;
+		}
+		
 		String fileName = fileManager.fileSave(path, file);
 		
 		
@@ -72,6 +84,9 @@ public class MoimService {
 	//delete
 	public int delete(MoimDTO moimDTO) throws Exception {
 		//모임사진 삭제
+		if(moimDAO.file(moimDTO) == null) {
+			return moimDAO.delete(moimDTO);
+		}
 		MoimFileDTO moimFileDTO = moimDAO.file(moimDTO);
 		String path = servletContext.getRealPath("/resources/upload/moim");
 		fileManager.fileDelete(path, moimFileDTO.getFileName());
@@ -89,7 +104,11 @@ public class MoimService {
 		int result = moimDAO.update(moimDTO);
 		
 		String path = servletContext.getRealPath("/resources/upload/moim");
-
+		
+		if(file.isEmpty()) {
+			return result;
+		}
+		
 		String fileName = fileManager.fileSave(path, file);
 
 		MoimFileDTO moimFileDTO = new MoimFileDTO();
@@ -101,6 +120,28 @@ public class MoimService {
 
 		return result;
 	}
+	//home
+	//memInfo
+	public List<MoimMemberDTO> memInfo(MoimDTO moimDTO) {
+		return moimDAO.memInfo(moimDTO);
+	}
+	public Long memNum(MoimDTO moimDTO) {
+		return moimDAO.memNum(moimDTO);
+	}
+	
+	
+	//join
+	public int join(MoimMemberDTO moimMemberDTO) {
+		return moimDAO.join(moimMemberDTO);
+	}
+	
+	//kick
+	public int kick(MoimMemberDTO moimMemberDTO) {
+		return moimDAO.kick(moimMemberDTO);
+	}
+
+
+
 
 	
 	

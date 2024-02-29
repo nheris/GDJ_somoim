@@ -19,7 +19,7 @@ import com.somoim.app.util.Pager;
 public class Noticetest extends MyTest{
 
 
-	@Autowired
+//	@Autowired
 	private NoticeDAO noticeDAO;
 
 //	@Test

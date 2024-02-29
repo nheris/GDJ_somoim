@@ -1,6 +1,5 @@
 package com.somoim.app.moim.meet;
 
-import java.sql.Date;
 
 public class MeetDTO {
 	private Long meetNum;
@@ -12,7 +11,16 @@ public class MeetDTO {
 	private Long meetCount;
 	private String meetX;
 	private String meetY;
+	private String meetHead;
 	
+	
+	
+	public String getMeetHead() {
+		return meetHead;
+	}
+	public void setMeetHead(String meetHead) {
+		this.meetHead = meetHead;
+	}
 	private MeetFileDTO meetFileDTO;
 	
 	

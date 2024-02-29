@@ -30,41 +30,41 @@
 							id="navbarSupportedContent">
 							<ul id="nav" class="navbar-nav ms-auto">
 								<li class="nav-item"><a href="/">Home</a></li>
-								<li class="nav-item"><a href="/moim/list"
-									aria-label="Toggle navigation">내 모임리스트</a></li>
-								<li class="nav-item"><a href="/">모임만들기</a></li>
+								<li class="nav-item"><a href="/category/main"
+									aria-label="Toggle navigation">모임리스트</a></li>
+								<li class="nav-item"><a href="/moim/add">모임만들기</a></li>
 								<li class="nav-item"><a href="/notice/list">공지사항</a></li>
 								<li class="nav-item"><a href="/qna/list">QNA</a></li>
 								<li class="nav-item"><a href="/qna/fnq">FNQ</a></li>
- 								 <%-- <c:if test="${member.roleDTO.roleName eq '관리자'}"> --%>
-								<li class="nav-item"><a href="/admin/adminpage">관리자페이지</a></li>
-								 <%-- </c:if> --%> 
+ 								 <c:if test="${member.roleDTO.roleNum eq 1}">
+								<li class="nav-item"><a href="/admin/list">관리자페이지</a></li>
+								 </c:if> 
 							</ul>	
 						</div>
 						<!-- navbar collapse -->
 						<div class="login-button">
 							<ul>
-								<c:if test="${member eq null and appmember eq null and goomember eq null}">
+								<c:if test="${member eq null and appmember eq null}">
 									<li><a href="/member/login"><i class="lni lni-enter"></i>
 											로그인</a></li>
 									<li><a href="/member/join"><i class="lni lni-user"></i>
 											회원가입</a></li>
 								</c:if>
-								<c:if test="${member ne null or appmember ne null or goomember ne null}">
+								<c:if test="${member ne null or appmember ne null}">
 									<li><a href="/mypage/main"><i class="lni lni-user"></i>
 											마이페이지</a></li>
-									<c:if test="${appmember eq null and goomember eq null}">
+									<c:if test="${member.loginNum == 1 }">
 										<li><a href="/member/logout"><i class="lni lni-ban"></i>
 												로그아웃</a></li>
 									</c:if>
-									<c:if test="${appmember ne null}">
+									<c:if test="${appmember.loginNum == 2}">
 									<li><a href="https://kauth.kakao.com/oauth/logout?client_id=f596bc753587abe6cf4b789ef8f12223&logout_redirect_uri=http://localhost/member/logout
 										"><i class="lni lni-ban"></i>
-										로그아웃1</a></li>
+										로그아웃</a></li>
 									</c:if>	
-									<c:if test="${goomember ne null}">
+									<c:if test="${appmember.loginNum == 3}">
 										<li><a href="/member/goologout"><i class="lni lni-ban"></i>
-											로그아웃2</a></li>
+											로그아웃</a></li>
 									</c:if>
 								</c:if>
 							</ul>

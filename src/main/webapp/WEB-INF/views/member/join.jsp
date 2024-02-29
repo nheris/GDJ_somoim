@@ -119,7 +119,7 @@
                                 </div>
                                 
                                 <div>
-                                    <input name="address" type="text" id="adrs_in" readonly>
+                                    <input name="address" placeholder="주소버튼 클릭!" type="text" id="adrs_in" readonly>
                                 </div>
                             </div>
 
