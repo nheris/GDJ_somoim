@@ -32,6 +32,7 @@ public class MoimReplyController {
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		replyDTO.setUserName(memberDTO.getUserName());
 		replyDTO.setReplyWriter(memberDTO.getNickName());
+		replyDTO.setReplyProfile(memberDTO.getProfile().getFileName());
 		int result = replyService.add(replyDTO);
 		
 		//조회
@@ -50,8 +51,6 @@ public class MoimReplyController {
 		
 		model.addAttribute("list", ar);
 		model.addAttribute("pager", pager);
-		
-		System.out.println("pager : "+pager.getTotalPage());
 		
 		return "moim/main/board/replyListResult";
 	}

@@ -1,6 +1,9 @@
 package com.somoim.app.moim;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -15,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.somoim.app.chat.ChatMessageDTO;
 import com.somoim.app.chat.ChatMessageService;
 import com.somoim.app.member.MemberDTO;
+import com.somoim.app.moim.meet.MeetDTO;
 import com.somoim.app.moim.member.MoimMemberDTO;
 
 @Controller
@@ -78,6 +82,7 @@ public class MoimController {
 		int result = moimService.update(moimDTO, file);
 		
 		return "redirect:./list";
+		
 	}
 	
 	
@@ -86,9 +91,34 @@ public class MoimController {
 	
 	//home
 	@GetMapping("main/home")
-	public void detail(MoimDTO moimDTO, Model model) throws Exception {
+	public Map<String, Object> detail(MoimDTO moimDTO) throws Exception {
+		//모임정보
 		moimDTO = moimService.getInfo(moimDTO);
-		model.addAttribute("dto", moimDTO);
+		
+		//회원정보
+		List<MoimMemberDTO> ar = moimService.memInfo(moimDTO);
+		Long memNum = moimService.memNum(moimDTO);
+		
+		
+		//System.out.println("확인:"+ ar.get(0).getUserName());
+		//System.out.println("확인2:"+ ar.size());
+		List<String> contain = new ArrayList<>();
+		
+		for(int i=0; i<ar.size();i++) {
+			contain.add(ar.get(i).getUserName());
+		}
+		
+		//System.out.println("111:"+ contain.get(0));
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("dto", moimDTO);
+		map.put("contain", contain);
+		map.put("memInfo", ar);
+		map.put("memNum", memNum);
+
+
+		return map;
 
 	}
 	
@@ -111,6 +141,7 @@ public class MoimController {
 			cdto.setUserName(memberDTO.getUserName());
 			
 			chatMessageService.addChat(cdto);
+
 			msg = "가입 완료";
 			path = "../home?moimNum="+moimMemberDTO.getMoimNum();
 		}
@@ -121,6 +152,12 @@ public class MoimController {
 		return "moim/resultAlert";
 	}
 	
+	//kick
+	@PostMapping("main/home/kick")
+	public void kick(MoimMemberDTO moimMemberDTO, Model model) throws Exception{
+		int result = moimService.kick(moimMemberDTO);
+		
+	}
 	
 	
 
