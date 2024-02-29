@@ -83,6 +83,9 @@
 								<!-- style="visibility: hidden;" -->
 								<div class="chat-history" id="chat-history" style="overflow-y: scroll; height: 450px;" style="visibility: hidden;">
 									<ul class="m-b-0" id="chat_record">
+										<div>
+											<span class="d-flex justify-content-center p-1 bg-secondary text-white rounded-pill">000000000</span>
+										</div>
 										<li>
 											<input type="hidden" id="userNick" value="${user.nickName}">
 											<input type="hidden" id="userCh" value="${user.userName}">
