@@ -11,7 +11,7 @@ import com.somoim.app.MyTest;
 import com.somoim.app.member.MemberDTO;
 
 public class MoimListTest extends MyTest{
-//	@Autowired
+	@Autowired
 	private MoimDAO moimDAO;
 
 	//@Test
