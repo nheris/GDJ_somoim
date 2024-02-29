@@ -29,11 +29,11 @@ public class MoimBoardService {
 	public List<Object> list(Pager pager, MoimBoardDTO boardDTO) throws Exception {
 		
 		Map<String, Object> map = new HashMap<String, Object>();
-		Long total = moimBoardDAO.getTotalCount(boardDTO);
-		pager.makeRow();
-		pager.makeNum(total);
 		map.put("pager", pager);
 		map.put("dto", boardDTO);
+		Long total = moimBoardDAO.getTotalCount(map);
+		pager.makeRow();
+		pager.makeNum(total);
 
 		return moimBoardDAO.list(map);
 	}
@@ -109,6 +109,11 @@ public class MoimBoardService {
 		}
 		//게시글 삭제
 		return moimBoardDAO.delete(boardDTO);
+	}
+	
+	//click
+	public int click(MoimBoardDTO boardDTO) {
+		return moimBoardDAO.click(boardDTO);
 	}
 
 	

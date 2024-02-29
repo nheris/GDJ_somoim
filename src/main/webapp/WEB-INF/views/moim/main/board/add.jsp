@@ -35,7 +35,7 @@
 							style="color: white; font-weight: bold;">게시판</a></li>
 						<li class="nav-item"><a class="nav-link" href="../together?moimNum=${dto.moimNum}"
 							style="color: white">정모</a></li>
-						<li class="nav-item"><a class="nav-link" href="#"
+						<li class="nav-item"><a class="nav-link" href="/chat"
 							style="color: white">채팅</a></li>
 					</ul>
 				</div>
@@ -60,7 +60,7 @@
                 <div class="row">
 					<input type="hidden" name="moimNum" value="${dto.moimNum}">
                     <div class="mb-3">
-						<input type="text" class="form-control" id="boardTitle" name="boardTitle" placeholder="제목을 입력해 주세요.">
+						<input type="text" class="form-control" id="boardTitle" name="boardTitle" maxlength = "30" placeholder="제목을 입력해 주세요.">
 					</div>
 					<div class="mb-3">
 						<textarea class="form-control" id="boardText" name="boardText" rows="8" placeholder="내용을 입력하세요."></textarea>
@@ -96,7 +96,7 @@
 	<c:import url="../../../temps/footer.jsp"></c:import>
 	<script src="https://unpkg.com/bootstrap@4.3.1/dist/js/bootstrap.bundle.min.js" data-src="https://unpkg.com/bootstrap@4.3.1/dist/js/bootstrap.min.js" ></script>
 	<script src="https://unpkg.com/bootstrap-select@1.13.8/dist/js/bootstrap-select.min.js"></script>
-	<script src="/resources/js/moim/main.js"></script>
+	<script src="/resources/js/moim/moimboardAdd.js"></script>
 </body>
 
 </html>

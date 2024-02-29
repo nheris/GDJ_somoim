@@ -23,20 +23,14 @@
 	  		<result column="MEETCOUNT" property="meetCount"/>
 	  		<result column="MEETX" property="meetX"/>
 	  		<result column="MEETY" property="meetY"/>
+	  		<result column="MEETHEAD" property="meetHead"/>
 	  		<association property="meetFileDTO" javaType="MeetFileDTO">
 	  			<id column="FILENUM" property="fileNum"/>
 		  		<result column="FILENAME" property="fileName"/>
 		  		<result column="ORINAME" property="oriName"/>
 	  		</association>
   	</resultMap>
-  		<!-- 참여인원 -->
-  	<!-- <select id="partiNum" parameterType="java.util.List" resultType="java.util.List">
-  		<foreach collection="list" item="item" separator=" ">
-  		SELECT count(*)
-		FROM MEETMEMBER m 
-		WHERE MEETNUM = #{item.meetNum}
-  		</foreach>
-  	</select> -->
+
   	
   
   	<!-- add -->
@@ -46,7 +40,7 @@
   		</selectKey>
   	
   		INSERT INTO MEETING
-  		VALUES (#{meetNum}, #{moimNum}, #{meetName}, #{meetDate}, #{meetPlace}, #{meetCost}, #{meetCount}, #{meetX}, #{meetY})
+  		VALUES (#{meetNum}, #{moimNum}, #{meetName}, #{meetDate}, #{meetPlace}, #{meetCost}, #{meetCount}, #{meetX}, #{meetY}, #{meetHead})
   		
   	</insert>
   	<insert id="fileAdd" parameterType="MeetFileDTO">
@@ -55,15 +49,34 @@
   	</insert>
 
     <!-- delete -->
-    <select id="file" parameterType="meetDTO" resultType="MeetFileDTO">
+    <select id="file" parameterType="MeetDTO" resultType="MeetFileDTO">
   		SELECT FILENAME
 		FROM MEETFILE
 		WHERE MEETNUM = #{meetNum}
   	</select>
-  	<delete id="delete" parameterType="meetDTO">
+  	<delete id="delete" parameterType="MeetDTO">
   		DELETE MEETING
   		WHERE MEETNUM = #{meetNum}
   	</delete>
-  
-  
+  	
+  	<!-- 모인 멤버수 -->
+  	<select id="memNum" parameterType="MeetDTO" resultType="Integer">
+		SELECT COUNT(*)
+		FROM MEETMEMBER 
+		WHERE MEETNUM = #{meetNum}
+	</select>
+	
+  	<!-- join -->
+  	<insert id="join" parameterType="MeetMemberDTO">
+  		INSERT INTO MEETMEMBER
+  		VALUES (#{userName}, #{moimNum}, #{meetNum})
+  	</insert>
+  	
+  	<!-- contain -->
+  	<select id="contain" parameterType="MeetMemberDTO" resultType="String">
+  		SELECT USERNAME 
+		FROM MEETMEMBER
+		WHERE MEETNUM = #{meetNum}
+  	</select>
+  	
   </mapper>

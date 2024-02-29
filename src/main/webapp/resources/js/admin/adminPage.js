@@ -1,15 +1,20 @@
 let moimadd = document.getElementById("moimadd");
+let popupWindow = null;
+let width = 500;
+let height = 600;
+
 moimadd.addEventListener("click", function (e) {
     e.preventDefault();
-    let width = 500;
-    let height = 600;
     let left = (window.innerWidth - width) / 2;
     let top = (window.innerHeight - height) / 2;
     let features = `width=${width},height=${height},left=${left},top=${top},resizable=no,location=no`;
 
-    let popupWindow = window.open("/admin/add", "PopupWin", features);
-    popupWindow.resizeTo(width, height);
-    popupWindow.onresize = (_) => {
+    popupWindow = window.open("/admin/add", "PopupWin", features);
+});
+
+// 팝업 창의 크기 변경 시
+window.addEventListener("resize", function () {
+    if (popupWindow) {
         popupWindow.resizeTo(width, height);
-    };
+    }
 });
