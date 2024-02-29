@@ -24,7 +24,7 @@
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
-	
+
 	<!-- 모임 회원만 가능 -->
 	<interceptors>
 		<interceptor>
@@ -37,6 +37,7 @@
 		</interceptor>
 	</interceptors>
 	
+
 	<!-- websocket handler -->
 	<websocket:handlers>
 		<websocket:mapping handler="chatHandler" path="/chat"/>
@@ -47,9 +48,6 @@
 	</websocket:handlers>
 	
 	<beans:bean id="chatHandler" class="com.somoim.app.chat.ChatHandler"></beans:bean>
-	
-	
-	
 	
 	<context:component-scan base-package="com.somoim.app" />
 	

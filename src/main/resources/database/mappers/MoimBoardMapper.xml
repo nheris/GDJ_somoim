@@ -7,13 +7,13 @@
   
   	<sql id="search">
   		<where>
-  			<if test="pager.searchFind == 'searchFind1' or pager.searchFind=='searchFind4'">
+  			<if test="searchFind == 'searchFind1' or searchFind=='searchFind4'">
   				BOARDTITLE LIKE '%'||#{pager.search}||'%'
   			</if>
-  			<if test="pager.searchFind == 'searchFind2' or pager.searchFind=='searchFind4'">
+  			<if test="searchFind == 'searchFind2' or searchFind=='searchFind4'">
   				OR BOARDTEXT LIKE '%'||#{pager.search}||'%'
   			</if>
-  			<if test="pager.searchFind == 'searchFind3' or pager.searchFind=='searchFind4'">
+  			<if test="searchFind == 'searchFind3' or searchFind=='searchFind4'">
   				OR BOARDWRITER LIKE '%'||#{pager.search}||'%'
   			</if>
   		</where>
@@ -27,7 +27,7 @@
 	 		  		<include refid="search"></include>
 	   		  		ORDER BY BOARDNUM DESC)N)
 	   	WHERE R BETWEEN #{pager.startRow} AND #{pager.lastRow} -->
-  	<!-- list -->
+  	
   	<select id="list" resultType="MoimBoardDTO" parameterType="Map">
 	   	SELECT *
 		FROM (SELECT ROWNUM R, N.*
@@ -39,12 +39,10 @@
 	  				ORDER BY BOARDNUM DESC)N)
 		WHERE R BETWEEN #{pager.startRow} AND #{pager.lastRow}
   	</select>
-  	<select id="getTotalCount" resultType="Long" parameterType="Map">
+  	<select id="getTotalCount" resultType="Long" parameterType="MoimBoardDTO">
 		SELECT COUNT(BOARDNUM)
-		FROM (SELECT *
-			  FROM MOIMBOARD
-			  WHERE MOIMNUM =#{dto.moimNum})
-		<include refid="search"></include>
+		FROM MOIMBOARD
+		WHERE MOIMNUM =#{moimNum}
 	</select>
   
   
@@ -56,7 +54,7 @@
   			SELECT MOIMBOARD_SEQ.NEXTVAL FROM DUAL
   		</selectKey>
 		INSERT INTO MOIMBOARD
-	  	VALUES(#{boardNum}, #{boardTitle},#{boardText}, current_date, 0, 0, #{userName}, #{moimNum}, #{boardWriter}, #{boardProfile, jdbcType = VARCHAR})	
+	  	VALUES(#{boardNum}, #{boardTitle},#{boardText}, current_date, 0, 0, #{userName}, #{moimNum}, #{boardWriter}, #{boardProfile})	
 	</insert>
 	<!-- File Add -->
 	<insert id="fileAdd" parameterType="MoimBoardFileDTO">
@@ -91,14 +89,6 @@
 			<result column="ORINAME" property="oriName"/>
 		</collection>
 	</resultMap>
-	
-	<!-- click -->
-	<update id="click" parameterType="MoimBoardDTO">
-		UPDATE MOIMBOARD
-		SET BOARDCLICK = BOARDCLICK + 1
-		WHERE BOARDNUM = #{boardNum}
-	</update>
-	
 	
 	<!-- update -->
 	<update id="update" parameterType="MoimBoardDTO">
