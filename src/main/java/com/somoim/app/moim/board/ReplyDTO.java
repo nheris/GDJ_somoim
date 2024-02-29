@@ -11,6 +11,23 @@ public class ReplyDTO {
 	private String replyWriter;
 	private Long replyRef;
 	private Long replyStep;
+	private String replyProfile;
+	private String parent;
+	
+	
+	
+	public String getReplyProfile() {
+		return replyProfile;
+	}
+	public void setReplyProfile(String replyProfile) {
+		this.replyProfile = replyProfile;
+	}
+	public String getParent() {
+		return parent;
+	}
+	public void setParent(String parent) {
+		this.parent = parent;
+	}
 	public Long getReplyRef() {
 		return replyRef;
 	}

@@ -9,6 +9,7 @@ const sendMsg = document.getElementById('sendMsg');
 
 const chat_record = document.getElementById('chat_record');
 const userCh = document.getElementById('userCh');
+const userNick = document.getElementById('userNick')
 
 const msgForm = document.getElementById('msgForm');
 const chat_message = document.querySelector('.chat-message');
@@ -16,10 +17,10 @@ const chat_message = document.querySelector('.chat-message');
 let sock = new SockJS("http://localhost:80/chat");
 const chatRoomNum = document.getElementById('chatRoomNum');
 
-const messageNum = "${chatMessageNum}";
-const userName = "${userName}";
-const chatText = "${chatText}";
-const chatMessageStamp = "${chatMessageStamp}";
+// const messageNum = "${chatMessageNum}";
+// const userName = "${userName}";
+// const chatText = "${chatText}";
+// const chatMessageStamp = "${chatMessageStamp}";
 
 let chatHistory = document.getElementById('chat-history');
 let scrollToBottom = chatHistory.scrollHeight - chatHistory.scrollTop === chatHistory.clientHeight;
@@ -31,6 +32,7 @@ function scroller(){
     }
 }
 
+// 엔터하면 값을 서버로 보냄
 sendMsg.addEventListener('keyup',(e) => {
     if(sendMsg.value != ""){
         if(e.key == 'Enter' || e.keyCode == '13'){
@@ -40,7 +42,8 @@ sendMsg.addEventListener('keyup',(e) => {
             const chatMessage = {
                 "userName" : userCh.value,
                 "chatText" : sendMsg.value,
-                "chatRoomNum" : roomCh
+                "chatRoomNum" : roomCh,
+                "nickName" : userNick.value
             };
             
             console.log(chatMessage);
@@ -57,6 +60,7 @@ sock.onopen = function(){
     console.log('연결');
 }
 
+// 메세지를 정보를 서버로
 sock.onmessage =  function (e){
     console.log("onmessage");
     const week = new Array('SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT');
@@ -71,21 +75,18 @@ sock.onmessage =  function (e){
     let data = e.data;
     let jsonData = JSON.parse(data);
     
+    console.log(jsonData);
+    
     let user = jsonData.userName;
-    let str = jsonData.chatText;
     let roomNumber = jsonData.chatRoomNum;
-
-    console.log(user +" : "+str+" : "+roomNumber);
-    console.log(user +" : "+userCh.value);
-    console.log(roomNumber +" : "+chatRoomNum.getAttribute('data-chatRoom'));
+    // let str = jsonData.chatText;
+    let nick = jsonData.nickName;
     
     if(roomNumber === chatRoomNum.getAttribute('data-chatRoom')){
         if(user === userCh.value){
-            console.log('mySend');
-            mySend(str, date);
+            mySend(jsonData.chatText, date);
         }else{
-            console.log('otherSend');
-            otherSend(str, date);
+            otherSend(nick, jsonData.chatText, date);
         }
     }
     
@@ -103,66 +104,85 @@ sock.onclose = function(){
     console.log('onClose');
 }
 
+// 내 채팅
 
-function mySend(msg, date){
+function mySend(msg ,date){
     // 채팅형태로 Element 추가
     // chat-record add
     let li = document.createElement("li");
     li.classList.add('clearfix');
-    let div = document.createElement("div");
-    div.classList.add('message-data')
-    let span = document.createElement("span");
-    span.classList.add('message-data-time');
-    span.innerText = date;
-
-    // 날짜와 프로필사진 (my 는 profile 사진이 위에 있음)
     chat_record.append(li);
-    li.append(div);
-    div.append(span);
 
-    // msg 를 담을 div
-    div = document.createElement('div');
-    
-    li.append(div);
+    let div = document.createElement("div");
     div.classList.add('message');
     div.classList.add('my-message');
+    div.classList.add('float-start');
     div.innerText = msg;
+    li.append(div);
+
+    div = document.createElement("div");
+    div.classList.add('message-data');
+    let span = document.createElement("span");
+    span.classList.add('message-data-time');
+    span.classList.add('mt-4');
+    span.classList.add('pt-3');
+    span.innerText = date;
+    div.append(span);
+    
+    li.append(div);
+
 }
 
-function otherSend(msg, date){
+// 타인의 채팅
+function otherSend(nick, msg, date){
     let li = document.createElement("li");
     li.classList.add('clearfix');
+    
     let div = document.createElement("div");
     div.classList.add('message-data');
     div.classList.add('text-right');
-    let span = document.createElement("span");
-    span.classList.add('message-data-time');
-    
-    span.innerText = date;
-    
-    // 날짜, 프로필사진 
+    div.classList.add('my-2');
+
+    // let img = document.createElement('img');
+    // ${record.memberDTO.profile.fileName}
+    // img.src = `/resources/upload/member/`;
+
+    div.innerHTML = "<h6 class='my-3'>"+nick+"</h6>";
     chat_record.append(li);
     li.append(div);
-    div.append(span);
-
-    div = document.createElement("div");
     
-    li.append(div);
+    div = document.createElement("div");
     div.classList.add('message');
     div.classList.add('other-message');
     div.classList.add('float-right');
     div.innerText = msg;
+
+    li.append(div);
+    let br = document.createElement("br");
+    li.append(br);
+    
+    div = document.createElement("div");
+    div.classList.add('message-data');
+    div.classList.add('text-right');
+    div.classList.add('pt-3');
+    let span = document.createElement("span");
+    span.classList.add('message-data-time');
+    span.classList.add('mx-1');
+    span.innerText = date;
+    div.append(span);
+    
+    li.append(div);
 }
 
 let chatRoom = document.querySelector(".chat-list");
 
+// 채팅방을 클릭하면 DB에서 채팅기록 가져오기
 chatRoom.addEventListener('click',(e)=>{
     chat_record.innerHTML = null;
     if(e.target.classList.contains('clearfix')){
         let n = e.target.getAttribute('data-roomNum');
         
         chatRoomNum.setAttribute('data-chatRoom',n);
-        console.log("n : "+n +" +chatRoomNum.getAttribute('data-roomNum') : "+chatRoomNum.getAttribute('data-roomNum'));
         chat_record.style.visibility = 'visible';
         chat_message.style.visibility = 'visible';
         
@@ -171,15 +191,16 @@ chatRoom.addEventListener('click',(e)=>{
             })
             .then(r => r.json())
             .then(r => {
-             console.log(r);
-             for(let i=0;i<r.record.length;i++){
+                console.log(r);
+                for(let i=0;i<r.record.length;i++){
                  let msg = r.record[i].chatText;
                  let date = r.record[i].chatTimeStamp;
-                 
+                 let nick = r.record[i].memberDTO.nickName;
+
                  if(r.record[i].userName === userCh.value){
                      mySend(msg,date);
                  }else{
-                     otherSend(msg,date);
+                     otherSend(nick,msg,date);
                  }
              }
              scroller();

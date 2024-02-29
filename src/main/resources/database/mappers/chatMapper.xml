@@ -6,8 +6,11 @@
   <mapper namespace="com.somoim.app.chat.ChatMessageDAO">
   	
   	<!-- ChatRoom -->
-  	<insert id="addChatRoom">
-  		INSERT INTO CHATROOM (CHATROOMNUM) VALUES (CHATROOM_SEQ.NEXTVAL)
+  	<insert id="addChatRoom" parameterType="ChatRoomDTO">
+  		<selectKey order="BEFORE" keyProperty="chatRoomNum" resultType="Long">
+  			SELECT CHATROOM_SEQ.NEXTVAL FROM DUAL 
+  		</selectKey>
+  		INSERT INTO CHATROOM (CHATROOMNUM) VALUES (#{chatRoomNum})
   	</insert>
   	  	
   	<select id="chatRoomCh" resultType="Long">
@@ -39,21 +42,89 @@
 			(MESSAGE_SEQ.NEXTVAL, #{chatRoomNum}, #{userName}, #{chatText}, SYSDATE)
   	</insert>
 
-	<select id="chatHistory" parameterType="ChatMessageDTO" resultType="ChatMessageDTO">
-		SELECT * 
-			FROM CHATMESSAGE
+	<select id="chatHistory" parameterType="ChatMessageDTO" resultType="MemberDTO" resultMap="getRoomMember">
+		SELECT *
+		FROM CHATMESSAGE
+			JOIN MEMBER
+			USING(USERNAME)
+			JOIN PROFILE
+			USING(USERNAME)
 		WHERE CHATROOMNUM = #{chatRoomNum}
 		ORDER BY CHATTIMESTAMP
 	</select>
 	
+	<resultMap type="ChatMessageDTO" id="getRoomMember">
+		<id column="MESSAGENUM" property="messageNum"/>
+		<result column="CHATROOMNUM" property="chatRoomNum"/>
+		<result column="USERNAME" property="userName"/>
+		<result column="CHATTEXT" property="chatText"/>
+		<result column="CHATTIMESTAMP" property="chatTimeStamp"/>
+		
+		<association property="memberDTO" javaType="MemberDTO">
+			<id column="USERNAME" property="userName"/>
+			<result column="NICKNAME" property="nickName"/>
+			<result column="NAME" property="name"/>
+			<association property="profile" javaType="ProfileDTO">
+				<id column="USERNAME" property="userName"/>
+				<result column="FILENUM" property="fileNum"/>
+				<result column="FILENAME" property="fileName"/>
+				<result column="ORINAME" property="oriName"/>
+			</association>
+		</association>
+		
+
+	</resultMap>
 	
-	<select id="moimChat" parameterType="ChatMessageDTO" resultType="MoimDTO">
-		SELECT * 
-		FROM CHATROOM
-			JOIN MOIMCHAT
-			USING (CHATROOMNUM)
-			JOIN MOIM
-			USING (MOIMNUM)
-		WHERE CHATROOMNUM = #{chatRoomNum}
+	<select id="moimChatInfo" parameterType="MemberDTO" resultType="MoimDTO" resultMap="getRoomNumber">
+	
+					<!-- JOIN MOIMFILE
+					USING (MOIMNUM) -->
+			SELECT * 
+					FROM MOIM
+					JOIN MOIMCHAT
+					USING (MOIMNUM)
+				WHERE CHATROOMNUM IN
+					(
+						SELECT DISTINCT CHATROOMNUM  
+						FROM CHATMESSAGE
+						WHERE USERNAME = #{userName}
+					)
+	</select>
+	
+	<resultMap type="MoimDTO" id="getRoomNumber">
+		<id column="MOIMNUM" property="moimNum"/>
+		<result column="MOIMNAME" property="moimName"/>
+		<result column="MOIMREGION" property="moimRegion"/>
+		<result column="MOIMCATEGORY" property="moimCategory"/>
+		<result column="MOIMDATE" property="moimDate"/>
+		<result column="MOIMTEXT" property="moimText"/>
+		<result column="MOIMMEMCOUNT" property="moimMemCount"/>
+		<result column="MOIMHEAD" property="moimHead"/>
+		
+		<association property="chatRoomDTO" javaType="ChatRoomDTO">
+			<id column="CHATROOMNUM" property="chatRoomNum"/>
+		</association>
+		
+		<association property="moimFileDTO" javaType="MoimFileDTO">
+			<id column="MOIMNUM" property="moimNum"/>
+			<result column="FILENUM" property="fileNum"/>
+			<result column="FILENAME" property="fileName"/>
+			<result column="ORINAME" property="oriName"/>
+		</association>
+	</resultMap>
+	
+	<insert id="moimChatAdd" parameterType="Map">
+		INSERT INTO MOIMCHAT (CHATROOMNUM, MOIMNUM, USERNAME)
+		VALUES (#{chatRoomDTO.chatRoomNum}, #{moimDTO.moimNum}, #{memberDTO.userName})
+	</insert>
+	
+	<select id="getLastChat" parameterType="ChatMessageDTO" resultType="ChatMessageDTO">
+		SELECT * FROM 
+			(
+				SELECT * FROM CHATMESSAGE
+				WHERE CHATROOMNUM = #{chatRoomNum}
+				ORDER BY CHATTIMESTAMP DESC
+			)
+		WHERE ROWNUM = 1	
 	</select>
   </mapper>

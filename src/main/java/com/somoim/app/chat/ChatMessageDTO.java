@@ -5,7 +5,10 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
-public class ChatMessageDTO {
+import com.somoim.app.member.MemberDTO;
+import com.somoim.app.member.ProfileDTO;
+
+public class ChatMessageDTO extends MemberDTO{
 
 	private Long messageNum;
 	private Long chatRoomNum;
@@ -13,7 +16,15 @@ public class ChatMessageDTO {
 	private String chatText;
 	private String chatTimeStamp;
 	
+	private MemberDTO memberDTO; 
 	
+	public MemberDTO getMemberDTO() {
+		return memberDTO;
+	}
+	public void setMemberDTO(MemberDTO memberDTO) {
+		this.memberDTO = memberDTO;
+	}
+
 	public Long getMessageNum() {
 		return messageNum;
 	}
@@ -49,6 +60,4 @@ public class ChatMessageDTO {
 		
 		this.chatTimeStamp = format.format(c.getTime());
 	}
-
-
 }

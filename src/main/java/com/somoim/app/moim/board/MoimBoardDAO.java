@@ -17,8 +17,8 @@ public class MoimBoardDAO {
 	private final String NAMESPACE = "com.somoim.app.moim.board.BoardDAO.";
 	
 	//list
-	public Long getTotalCount(MoimBoardDTO boardDTO) throws Exception {
-		return sqlSession.selectOne(NAMESPACE+"getTotalCount", boardDTO);
+	public Long getTotalCount(Map<String, Object> map) throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"getTotalCount", map);
 	}
 	public List<Object> list(Map<String, Object> map) throws Exception{
 		return sqlSession.selectList(NAMESPACE+"list", map);
@@ -48,6 +48,11 @@ public class MoimBoardDAO {
 	}
 	public int delete(MoimBoardDTO boardDTO) throws Exception {
 		return sqlSession.delete(NAMESPACE+"delete", boardDTO);
+	}
+	
+	//click
+	public int click(MoimBoardDTO boardDTO) {
+		return sqlSession.update(NAMESPACE+"click", boardDTO);
 	}
 	
 
