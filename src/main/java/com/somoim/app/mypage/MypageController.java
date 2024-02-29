@@ -17,8 +17,11 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.somoim.app.member.MemberDTO;
 import com.somoim.app.member.MemberService;
+import com.somoim.app.payment.PaymentDTO;
 import com.somoim.app.payment.PaymentService;
 import com.somoim.app.payment.PaymentTypeDTO;
+import com.somoim.app.payment.SubsDTO;
+import com.somoim.app.payment.SubscriptionService;
 
 
 @Controller
@@ -30,6 +33,10 @@ public class MypageController {
 
 	@Autowired
 	private PaymentService paymentService;
+	
+	@Autowired
+	private SubscriptionService subscriptionService;
+	
 
 	@GetMapping("main")
 	public String getMypage(HttpSession session,Model model)throws Exception{
@@ -128,17 +135,38 @@ public class MypageController {
 	}
 	
 	@GetMapping("paymentList")
-	public String paymentListPage()throws Exception {
-		return "mypage/paymentList";
+	public Model paymentListPage(HttpSession session, Model model)throws Exception {
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		memberDTO = paymentService.getCustomerKey(memberDTO);
+		PaymentDTO paymentDTO = new PaymentDTO();
+		paymentDTO.setCustomerKey(memberDTO.getCustomerKey());
+		SubsDTO subsDTO = subscriptionService.getSubs(paymentDTO);
+		String subStart="";
+		String subDone="";
+		if(subsDTO!=null) {
+			subStart = subsDTO.getStartDate().toString();
+			subDone = subsDTO.getDoneDate().toString();
+		}
+		String svs = "";
+		if(!subsDTO.getSvs()) {
+			svs = "구독권 갱신이 필요합니다";
+			model.addAttribute("svs",svs);
+		}
+		model.addAttribute("start",subStart);
+		model.addAttribute("done",subDone);
+		return model;
 	}
 	
+	// mc bean    mcbean
+ 	// ref mcbean    method = schedule
+	//schedule
 	@GetMapping("paymentData")
 	@ResponseBody
 	public List<Map<String, Object>> paymentListData(HttpSession session)throws Exception {
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		memberDTO = paymentService.getCustomerKey(memberDTO);
-		System.out.println(memberDTO);
 		List<Map<String, Object>> list = paymentService.getPaymentList(memberDTO);
+		System.out.println(list);
 		return list;
 	}
 }
