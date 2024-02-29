@@ -44,6 +44,7 @@ public class ChatController {
 		
 		List<Long> chatRoomList = chatMessageService.chatRoomList(dto);
 		mv.addObject("chatRoomList", chatRoomList);
+		
 				
 		mv.addObject("user",dto);
 		mv.setViewName("/chat/chating");
@@ -67,4 +68,3 @@ public class ChatController {
 	}
 }
 
-// 브런치 새로 -> 채팅방만들기를 moim이 만들어질때로변경 

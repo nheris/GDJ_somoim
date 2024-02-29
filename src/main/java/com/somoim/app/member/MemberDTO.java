@@ -106,15 +106,4 @@ public class MemberDTO {
 	public void setLoginNum(Long loginNum) {
 		this.loginNum = loginNum;
 	}
-
-
-	@Override
-	public String toString() {
-		return "MemberDTO [userName=" + userName + ", password=" + password + ", nickName=" + nickName + ", name="
-				+ name + ", userBirth=" + userBirth + ", address=" + address + ", phone=" + phone + ", email=" + email
-				+ ", customerKey=" + customerKey + ", loginNum=" + loginNum + ", profile=" + profile + ", roleDTO="
-				+ roleDTO + "]";
-	}
-	
-	
 }

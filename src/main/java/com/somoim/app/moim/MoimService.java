@@ -1,6 +1,8 @@
 package com.somoim.app.moim;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletContext;
 
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.somoim.app.chat.ChatMessageDAO;
+import com.somoim.app.chat.ChatMessageDTO;
 import com.somoim.app.chat.ChatRoomDTO;
 import com.somoim.app.member.MemberDTO;
 import com.somoim.app.util.FileManager;
@@ -31,15 +34,28 @@ public class MoimService {
 	}
 
 	//add
-	public int add(MoimDTO moimDTO, MultipartFile file) throws Exception {
+	public int add(MoimDTO moimDTO, MultipartFile file, MemberDTO memberDTO) throws Exception {
 		int result = moimDAO.add(moimDTO);
 		result = moimDAO.moimHeadAdd(moimDTO);
 
+		// chating room, chating, moimchat에 insert
+		Map<String, Object> map = new HashMap<>();
+		ChatRoomDTO chatRoomDTO = new ChatRoomDTO();
+		map.put("chatRoomDTO", chatRoomDTO);
+		map.put("memberDTO", memberDTO);
+		map.put("moimDTO", moimDTO);
+		chatMessageDAO.addChatRoom(chatRoomDTO);
+		chatMessageDAO.moimChatAdd(map);
+		ChatMessageDTO chat = new ChatMessageDTO();
+		chat.setChatRoomNum(chatRoomDTO.getChatRoomNum());
+		chat.setUserName(memberDTO.getUserName());
+		chat.setChatText(memberDTO.getUserName()+"가 들어왔습니다.");
+		chatMessageDAO.addChat(chat);
+		
 		String path = servletContext.getRealPath("/resources/upload/moim");
 
 		String fileName = fileManager.fileSave(path, file);
-		ChatRoomDTO chatRoomDTO = new ChatRoomDTO();
-		chatMessageDAO.addChatRoom(chatRoomDTO);
+		
 		
 		MoimFileDTO moimFileDTO = new MoimFileDTO();
 		moimFileDTO.setFileName(fileName);

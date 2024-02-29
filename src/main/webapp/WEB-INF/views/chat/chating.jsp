@@ -41,8 +41,10 @@
 												<img src="/resources/upload/moim/${item.moimFileDTO.fileName}" style="width: 50px; height: 50px;">
 											</c:if>
 											<div class="about">
-												<h6 class="pt-1">${item.moimName}</h6>												
-												<span>------</span>
+												<h6 class="pt-1">${item.moimName}</h6>
+												<%-- <c:forEach var="img" items="${chatMsg}">
+													<span>${img.chatText}</span>
+												</c:forEach> --%>
 											</div>
 										</li>
 									</c:forEach>

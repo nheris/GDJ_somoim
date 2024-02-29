@@ -8,7 +8,7 @@
   	<!-- ChatRoom -->
   	<insert id="addChatRoom" parameterType="ChatRoomDTO">
   		<selectKey order="BEFORE" keyProperty="chatRoomNum" resultType="Long">
-  			CHATROOM_SEQ.NEXTVAL
+  			SELECT CHATROOM_SEQ.NEXTVAL FROM DUAL 
   		</selectKey>
   		INSERT INTO CHATROOM (CHATROOMNUM) VALUES (#{chatRoomNum})
   	</insert>
@@ -76,11 +76,12 @@
 	</resultMap>
 	
 	<select id="moimChatInfo" parameterType="MemberDTO" resultType="MoimDTO" resultMap="getRoomNumber">
+	
+					<!-- JOIN MOIMFILE
+					USING (MOIMNUM) -->
 			SELECT * 
 					FROM MOIM
 					JOIN MOIMCHAT
-					USING (MOIMNUM)
-					JOIN MOIMFILE
 					USING (MOIMNUM)
 				WHERE CHATROOMNUM IN
 					(
@@ -112,26 +113,18 @@
 		</association>
 	</resultMap>
 	
-	<insert id="moimChatAdd" parameterType="MemberDTO">
-		<selectKey resultType="Long" keyProperty="chatRoomNumKey" order="BEFORE">
-			SELECT * FROM 
-				(
-					SELECT * 
-					FROM CHATROOM 
-					ORDER BY CHATROOMNUM DESC
-				)
-			WHERE ROWNUM = 1
-		</selectKey>
-		<selectKey resultType="Long" keyProperty="moimNumKey" order="BEFORE">
-			SELECT MOIMNUM FROM
-				(
-					SELECT * 
-					FROM MOIM
-					ORDER BY MOIMDATE DESC
-				)
-			WHERE ROWNUM = 1
-		</selectKey>
+	<insert id="moimChatAdd" parameterType="Map">
 		INSERT INTO MOIMCHAT (CHATROOMNUM, MOIMNUM, USERNAME)
-		VALUES (#{chatRoomNumKey}, #{moimNumKey}, #{userName})
+		VALUES (#{chatRoomDTO.chatRoomNum}, #{moimDTO.moimNum}, #{memberDTO.userName})
 	</insert>
+	
+	<select id="getLastChat" parameterType="ChatMessageDTO" resultType="ChatMessageDTO">
+		SELECT * FROM 
+			(
+				SELECT * FROM CHATMESSAGE
+				WHERE CHATROOMNUM = #{chatRoomNum}
+				ORDER BY CHATTIMESTAMP DESC
+			)
+		WHERE ROWNUM = 1	
+	</select>
   </mapper>

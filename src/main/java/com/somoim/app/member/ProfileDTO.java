@@ -14,11 +14,4 @@ public class ProfileDTO extends FileDTO {
 		this.userName = userName;
 	}
 
-	@Override
-	public String toString() {
-		return "ProfileDTO [userName=" + userName + ", getUserName()=" + getUserName() + ", getFileNum()="
-				+ getFileNum() + ", getFileName()=" + getFileName() + ", getOriName()=" + getOriName() + "]";
-	}
-	
-	
 }

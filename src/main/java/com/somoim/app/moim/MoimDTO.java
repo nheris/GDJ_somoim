@@ -92,11 +92,4 @@ public class MoimDTO {
 		this.moimDate = moimDate;
 	}
 	
-	@Override
-	public String toString() {
-		return "MoimDTO [moimNum=" + moimNum + ", moimName=" + moimName + ", moimRegion=" + moimRegion
-				+ ", moimCategory=" + moimCategory + ", moimDate=" + moimDate + ", moimText=" + moimText
-				+ ", moimMemCount=" + moimMemCount + ", moimHead=" + moimHead + ", moimFileDTO=" + moimFileDTO
-				+ ", moimMemberDTO=" + moimMemberDTO + ", chatRoomDTO=" + chatRoomDTO + "]";
-	}
 }

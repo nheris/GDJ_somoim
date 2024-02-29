@@ -41,7 +41,7 @@ public class MoimController {
 		moimDTO.setMoimHead(memberDTO.getUserName());
 
 
-		moimService.add(moimDTO, file);
+		moimService.add(moimDTO, file, memberDTO);
 
 		return "redirect:./list";
 

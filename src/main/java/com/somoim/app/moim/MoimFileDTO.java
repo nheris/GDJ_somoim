@@ -13,10 +13,4 @@ public class MoimFileDTO extends FileDTO{
 	public void setMoimNum(Long moimNum) {
 		this.moimNum = moimNum;
 	}
-
-	@Override
-	public String toString() {
-		return "MoimFileDTO [moimNum=" + moimNum + ", getFileNum()=" + getFileNum() + ", getFileName()=" + getFileName()
-				+ ", getOriName()=" + getOriName() + "]";
-	}	
 }

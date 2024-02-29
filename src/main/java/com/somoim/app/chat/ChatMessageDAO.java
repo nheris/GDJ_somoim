@@ -1,6 +1,7 @@
 package com.somoim.app.chat;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +20,8 @@ public class ChatMessageDAO {
 	
 	// room
 	// chating 치기전 방 생성 
-	public int addChatRoom() {
-		return sqlSession.insert(NAMESPACE+"addChatRoom");
+	public int addChatRoom(ChatRoomDTO chatRoomDTO) {
+		return sqlSession.insert(NAMESPACE+"addChatRoom",chatRoomDTO);
 	}
 	
 	// 특정 user의 참여중인 채팅방번호
@@ -52,7 +53,11 @@ public class ChatMessageDAO {
 		return sqlSession.selectList(NAMESPACE+"moimChatInfo",memberDTO);
 	}
 	
-	public int moimChatAdd(MemberDTO memberDTO) {
-		return sqlSession.insert(NAMESPACE+"moimChatAdd", memberDTO);
+	public int moimChatAdd(Map<String,Object> map) {
+		return sqlSession.insert(NAMESPACE+"moimChatAdd", map);
+	}
+	
+	public ChatMessageDTO getLastChat(List<Long> chatMessageDTO) {
+		return sqlSession.selectOne(NAMESPACE+"getLastChat", chatMessageDTO);
 	}
 }

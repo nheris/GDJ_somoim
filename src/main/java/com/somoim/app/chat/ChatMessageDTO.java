@@ -60,10 +60,4 @@ public class ChatMessageDTO extends MemberDTO{
 		
 		this.chatTimeStamp = format.format(c.getTime());
 	}
-	@Override
-	public String toString() {
-		return "ChatMessageDTO [messageNum=" + messageNum + ", chatRoomNum=" + chatRoomNum + ", userName=" + userName
-				+ ", chatText=" + chatText + ", chatTimeStamp=" + chatTimeStamp + ", memberDTO=" + memberDTO
-				+ "]";
-	}
 }
