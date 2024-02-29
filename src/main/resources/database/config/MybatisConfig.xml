@@ -33,7 +33,7 @@
   		<typeAlias type="java.lang.Long" alias="Long"/>
   		<typeAlias type="java.lang.Integer" alias="Integer"/>
   		<typeAlias type="java.lang.String" alias="String"/>
-  		<typeAlias type="com.somoim.app.moim.meet.MeetMemberDTO" alias="MeetMemberDTO"/>111111
+  		<typeAlias type="com.somoim.app.moim.meet.MeetMemberDTO" alias="MeetMemberDTO"/>
   	</typeAliases>
   </configuration>
   

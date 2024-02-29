@@ -35,6 +35,13 @@ public class MoimService {
 		String path = servletContext.getRealPath("/resources/upload/moim");
 		
 		if(file.isEmpty()) {
+			
+			MoimFileDTO moimFileDTO = new MoimFileDTO();
+			moimFileDTO.setOriName(file.getOriginalFilename());
+			moimFileDTO.setMoimNum(moimDTO.getMoimNum());
+
+			result = moimDAO.fileAdd(moimFileDTO);
+			
 			return result;
 		}
 		

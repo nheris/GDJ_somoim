@@ -29,6 +29,8 @@
 			<mapping path="/moim/main/**"/>
 			<!-- <mapping path="/chat"/> -->
 			<exclude-mapping path="/moim/main/home"/>
+			<exclude-mapping path="/moim/main/reply/**"/>
+			<exclude-mapping path="/moim/main/home/**"/>
 			<beans:ref bean="moimJoinCheck"/>
 		</interceptor>
 	</interceptors>
