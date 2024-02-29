@@ -86,7 +86,7 @@ replyList.addEventListener("click",(e)=>{
         })
         .then(res=>res.text())
         .then(r=>{
-            //console.log(r);
+            console.log(r);
             //폼내용 초기화
             //replyUpdateForm.reset();
             //modal창 닫기 버튼 강제 누름
@@ -138,69 +138,36 @@ replyList.addEventListener("click",(e)=>{
 })
 
 
+
 //댓 페이징
+const more = document.getElementById("more");
 
 //getReplyList(1, update.getAttribute("data-product-num"));
 
-replyList.addEventListener("click",(e)=>{
-    //console.log(e.target.getAttribute("id"));
-    if(e.target.getAttribute("id")=='more'){
-        let page = more.getAttribute("data-replyList-page");//현재 페이지 번호
-        let totalPage = more.getAttribute("data-replyList-totalPage");//전체 페이지 번호
+more.addEventListener("click", ()=>{
+	console.log('연결');
+	let p = more.getAttribute("data-replyList-page");//현재 페이지 번호
+	let a = more.getAttribute("data-replyList-totalPage");//전체 페이지 번호
 
-        //console.log(page)
-        //console.log(totalPage)
+	if(p>a){
+		alert('마지막 페이지 입니다');
+	}
 
-        if(page>=totalPage){
-            alert('마지막 페이지 입니다');
+    fetch("../reply/list?boardNum="+boardNum+"&page="+p,{
+        method: "get",
+        
+    })
+    .then(res=>res.text())
+    .then(r=>{
+        //console.log(r);
+        
+        //more.setAttribute("data-replyList-page", r.pager.page*1+1);
+        //more.setAttribute("data-replyList-totalPage", r.pager.totalPage);
 
-            return false;
-        }
+        replyList.innerHTML=r;
 
-        fetch("../reply/list?boardNum="+boardNum+"&page="+(page*1+1),{
-                method: "get"
-        })
-        .then(res=>res.text())
-        .then(r=>{
-            //console.log(r);
-            replyList.innerHTML=r;
-            
-            more.setAttribute("data-replyList-page", page*1+1);
-            more.setAttribute("data-replyList-totalPage", totalPage);
-
-
-        })
-
-    }
-});
-
-    // const more = document.getElementById("more");
-    // if(e.target.getAttribute("id")){
-    // more.addEventListener("click", ()=>{
-    //     console.log('연결');
-        // let p = more.getAttribute("data-replyList-page");//현재 페이지 번호
-        // let a = more.getAttribute("data-replyList-totalPage");//전체 페이지 번호
-
-        // if(p>a){
-        // 	alert('마지막 페이지 입니다');
-        // }
-
-        // fetch("../reply/list?boardNum="+boardNum+"&page="+p,{
-        //     method: "get",
-            
-        // })
-        // .then(res=>res.text())
-        // .then(r=>{
-        //     //console.log(r);
-            
-        //     //more.setAttribute("data-replyList-page", r.pager.page*1+1);
-        //     //more.setAttribute("data-replyList-totalPage", r.pager.totalPage);
-
-        //     replyList.innerHTML=r;
-
-        // })
-    //})}
-//});
+    })
+})
 
 // getReplyList(p, update.getAttribute("data-product-num"))
 // function getReplyList(page, num){
@@ -220,27 +187,53 @@ replyList.addEventListener("click",(e)=>{
 
 
 
+//listbody
+
+{/* 
+<c:if test="${dto.userName eq member.userName}">
+    <div style="text-align: right;">
+        <a href="#" data-moim-num="120"><i class="lni lni-pencil update"></i></a>
+        <a href="javascript:void(0)" class="del" data-moim-num="120"><i class="lni lni-trash del"></i></a>
+        <a href="javascript:void(0)" class="del" data-moim-num="120"><i class="lni lni-reply"></i></a>
+    </div>
+</c:if>
+
+<div class="author-profile">
+    <img src="/resources/img/profile/profile.jpg" alt="2" style="width: 36px; height: 36px; border-radius: 100px;">
+    <span class="mx-2">${}&ensp;·&ensp;작성일</span>
+</div>
+<div class="ms-5">
+    Donec aliquam ex ut odio dictum, ut consequat leo interdum. Aenean nunc
+    ipsum, blandit eu enim sed, facilisis convallis orci. Etiam commodo
+    lectus
+    quis vulputate tincidunt. Mauris tristique velit eu magna maximus
+    condimentum.
+</div>
+<h3 class="comment-title my-3"></h3> */}
+
+
+
+
+
+
 
 
 //UPDATE DELETE
 //
-if(document.getElementById("update") != null){
-    
-    const update = document.getElementById("update");
-    const delBtn = document.getElementById("delBtn");
-    const frm = document.getElementById("frm");
-    
-    
-    update.addEventListener("click",(e)=>{
-        e.preventDefault();
-        frm.submit();
-    })
-    
-    delBtn.addEventListener("click", (e)=>{
-        //console.log('연결');
-        e.preventDefault();
-        frm.setAttribute("action", "./delete");
-        frm.setAttribute("method", "post");
-        frm.submit();
-    });
-}
+const update = document.getElementById("update");
+const delBtn = document.getElementById("delBtn");
+const frm = document.getElementById("frm");
+
+
+update.addEventListener("click",(e)=>{
+    e.preventDefault();
+    frm.submit();
+})
+
+delBtn.addEventListener("click", (e)=>{
+	//console.log('연결');
+    e.preventDefault();
+    frm.setAttribute("action", "./delete");
+    frm.setAttribute("method", "post");
+    frm.submit();
+});

@@ -42,9 +42,7 @@ public class MoimBoardController {
 	public String add(MoimBoardDTO boardDTO, HttpSession session, MultipartFile[] file) throws Exception {
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		
-		if(memberDTO.getProfile() != null) {			
-			boardDTO.setBoardProfile(memberDTO.getProfile().getFileName());
-		}
+		boardDTO.setBoardProfile(memberDTO.getProfile().getFileName());
 		boardDTO.setBoardWriter(memberDTO.getNickName());
 		//boardDTO.setBoardWriter(memberDTO.getUserName());
 		boardDTO.setUserName(memberDTO.getUserName());
@@ -60,7 +58,6 @@ public class MoimBoardController {
 	//detail
 	@GetMapping("detail")
 	public void detail(MoimBoardDTO boardDTO, Model model) throws Exception {
-		int result = moimBoardService.click(boardDTO);
 		boardDTO = moimBoardService.detail(boardDTO);
 		
 		model.addAttribute("dto",boardDTO);

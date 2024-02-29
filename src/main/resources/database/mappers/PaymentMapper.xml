@@ -47,7 +47,7 @@
   	
   	<!-- 결제된 Payment 정보 저장 -->
   	<insert id="setPayment" parameterType="PaymentDTO">
-  		INSERT INTO PAYMENT VALUES(#{paymentKey},#{orderId},#{customerKey},#{keyName},#{pTypeNum},#{paymentDay},#{amount},#{depositKey},#{payMethod})
+  		INSERT INTO PAYMENT VALUES(#{paymentKey},#{orderId},#{customerKey},#{keyName},#{pTypeNum},#{paymentDay},#{amount},#{depositKey})
   	</insert>
   	
   	<!-- 결제 상태 변경된 Payment 정보 업데이트 -->
@@ -59,15 +59,4 @@
   	<select id="getPayment" parameterType="PaymentDTO" resultType="PaymentDTO">
   		SELECT * FROM PAYMENT WHERE ORDERID=#{orderId}
   	</select>
-  	
-  	<!-- 멤버의 결제 내역 조회 -->
-  	<select id="getPaymentList" parameterType="MemberDTO" resultType="HashMap">
-  		SELECT ROWNUM,AMOUNT,ptypeName,PAYMETHOD, PAYMENTDAY FROM (
-			SELECT AMOUNT,ptypeName,PAYMETHOD, PAYMENTDAY FROM PAYMENT
-			LEFT JOIN PAYMENTTYPE
-			USING(PTYPENUM)
-			WHERE CUSTOMERKEY = #{customerKey}
-			ORDER BY PAYMENTDAY DESC)
-  	</select>
-  	
   </mapper>
