@@ -15,6 +15,14 @@
 <c:import url="../temps/head_css.jsp"></c:import>
 <!-- 내비게이터 import -->
 <%-- <c:import url="../temps/header.jsp"></c:import> --%>
+<style>
+body {
+	-webkit-text-size-adjust: none;
+	display: flex;
+	/* justify-content: center; */
+	/* align-items: center; */
+}
+</style>
 </head>
 <body>
 	<div class="items-grid section">
