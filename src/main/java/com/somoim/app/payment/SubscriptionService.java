@@ -38,6 +38,8 @@ public class SubscriptionService {
 			subscriptionDAO.setSubs(paymentDTO);
 			subsDTO = subscriptionDAO.getSubs(paymentDTO);
 		}
+		subsDTO.setSvs(true);
+		updateSVS(subsDTO);
 		PaymentTypeDTO p = new PaymentTypeDTO();
 		int pTypeNum = paymentDTO.getpTypeNum();
 		p.setpTypeNum((long)pTypeNum);
