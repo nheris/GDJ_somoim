@@ -59,6 +59,7 @@
 											<th>결제날짜</th>
 										</tr>
 									</thead>
+									<tbody id="paymentList-body">
 									<tr>
 										<td>d</td>
 										<td>d</td>
@@ -87,6 +88,7 @@
 										<td>d</td>
 										<td>d</td>
 									</tr>
+								</tbody>
 								</table>
 								</div>
 							</div>
@@ -103,6 +105,6 @@
 
 	<!-- ========================= JS improt ========================= -->
 	<c:import url="../temps/footer.jsp"></c:import>
-	<script src="/resources/js/payment/payment.js"></script>
+	<script src="/resources/js/payment/paymentListData.js"></script>
 </body>
 </html>

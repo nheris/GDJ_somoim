@@ -1,8 +1,10 @@
 package com.somoim.app.mypage;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
+import javax.ws.rs.GET;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,8 +12,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.somoim.app.member.MemberDTO;
 import com.somoim.app.member.MemberService;
@@ -126,9 +128,17 @@ public class MypageController {
 	}
 	
 	@GetMapping("paymentList")
-	public ModelAndView paymentList(HttpSession session, ModelAndView mv)throws Exception {
-		
-		mv.setViewName("mypage/paymentList");
-		return mv;
+	public String paymentListPage()throws Exception {
+		return "mypage/paymentList";
+	}
+	
+	@GetMapping("paymentData")
+	@ResponseBody
+	public List<Map<String, Object>> paymentListData(HttpSession session)throws Exception {
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		memberDTO = paymentService.getCustomerKey(memberDTO);
+		System.out.println(memberDTO);
+		List<Map<String, Object>> list = paymentService.getPaymentList(memberDTO);
+		return list;
 	}
 }
