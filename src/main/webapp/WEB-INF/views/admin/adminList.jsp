@@ -40,7 +40,7 @@
 					</div>
 					<div>
 						<table class="table"
-							style='width: 100%; table-layout: fixed; word-break: break-all; height: auto'>
+							style='min-width: 100%; table-layout: fixed; word-break: break-all; height: auto'>
 							<tr class="something">
 								<th>관리</th>
 								<th>제목</th>
@@ -51,27 +51,30 @@
 							<c:forEach items="${admin}" var="admin">
 								<tr>
 									<td><a class="updateLink" href="#"
-										data-place-num="${admin.placeNum}"> <i
-											class="lni lni-pencil update"></i>
-									</a> <a href="#" class="del" data-place-num="${admin.placeNum}">
-											<i class="lni lni-trash del"></i>
-									</a></td>
+										data-place-num="${admin.placeNum}"><i
+											class="lni lni-pencil update"></i></a> <a href="#" class="del"
+										data-place-num="${admin.placeNum}"><i
+											class="lni lni-trash del"></i></a></td>
 									<td>${admin.placeTitle}</td>
 									<td>${admin.placeAddress}</td>
 									<td>${admin.placeLink}</td>
-									<td><img src="${admin.placeImageLink}" width="200" height="150" onerror="this.src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGZ5KhIvwJU6d0MF-v6FikyHflaaf37EaGXA&usqp=CAU';"/></td>
+									<td><img src="${admin.placeImageLink}" width="200"
+										height="150"
+										onerror="this.src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGZ5KhIvwJU6d0MF-v6FikyHflaaf37EaGXA&usqp=CAU';" /></td>
 								</tr>
 							</c:forEach>
 						</table>
-
 					</div>
-				</div>
-				<!-- Main content goes here -->
-			</div>
-		</div>
-		<!--  -->
 
-		<!--  -->
+
+				</div>
+			</div>
+			<!-- Main content goes here -->
+		</div>
+	</div>
+	<!--  -->
+
+	<!--  -->
 	</div>
 	</div>
 
