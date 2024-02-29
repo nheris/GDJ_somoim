@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<nav id="sidebar"
+		<nav id="sidebar"
 					class="col-lg-2 col-md-4 col-12 py-3 bg-white dashboard-sidebar"
 					style="border-radius: 10px">
 					<div class="user-image mb-3">
@@ -32,19 +32,55 @@
 								href="/moim/wish"><i class="lni lni-heart"></i> 찜
 									모임 리스트</a></li>
 							<li class="nav-item"><a class="nav-link"
-								href="/mypage/main"><i class="lni lni-envelope"></i> 1:1 채팅</a></li>
+								href="/chat"><i class="lni lni-envelope"></i> 1:1 채팅</a></li>
 							<li class="nav-item"><a class="nav-link"
-								href="/mypage/main"><i class="lni lni-circle-plus"></i>
+								href="/qna/list"><i class="lni lni-circle-plus"></i>
 									문의게시판</a></li>
 							<li class="nav-item"><a class="nav-link"
 								href="/notice/list"><i class="lni lni-bookmark"></i>
 									공지게시판</a></li>
 							<li class="nav-item"><a class="nav-link"
-								href="/mypage/pay"><i class="lni lni-trash"></i> 구독
+								href="/mypage/pay"><i class="lni lni-credit-cards"></i> 구독
 									결제 하기</a></li>
+							<li class="nav-item"><a class="nav-link"
+								href="/mypage/paymentList"><i class="lni lni-printer"></i> 결제내역 확인</a></li>		
 						</ul>
 						<div class="text-center">
-							<button class="btn btn-danger mt-5" href="javascript:void(0)">회원탈퇴</button>
+							<c:if test="${member ne null}">
+								<button type="button" class="btn btn-danger mt-5" onclick="location.href='/mypage/accountDel'" >회원탈퇴</button>
+							</c:if>
+							
+							<c:if test="${appmember ne null}">
+								<form action="./appDel" method="post" id="frm">
+									<button type="button" class="btn btn-danger mt-5" id="appDel">회원탈퇴</button>
+
+									<!-- Button trigger modal -->
+									<div>
+										<button type="button" id="letModal" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal" hidden></button>
+									</div>
+										<!-- Modal -->
+										<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+										  <div class="modal-dialog">
+											<div class="modal-content">
+											  <div class="modal-header">
+												<h1 class="modal-title fs-5" id="exampleModalLabel">somoim</h1>
+												<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+											  </div>
+											  <div class="modal-body">
+												탈퇴하면 복구가 어렵습니다.<br>
+												정말 탈퇴 하겠습니까?
+											  </div>
+											  <div class="modal-footer">
+												<button type="submit" class="btn btn-primary" id="realDel">탈퇴</button>
+												<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+											  </div>
+											</div>
+										  </div>
+										</div>
+								</form>
+							</c:if>
 						</div>
 					</div>
 				</nav>
+
+				<script src="../resources/js/mypage/mypage_nav.js"></script>

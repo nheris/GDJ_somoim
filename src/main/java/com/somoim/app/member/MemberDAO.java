@@ -9,6 +9,18 @@ public class MemberDAO {
 	@Autowired
 	private SqlSession sqlSession;
 	private final String namespace="com.somoim.app.member.MemberDAO.";
+	
+	public int accountDel(MemberDTO memberDTO)throws Exception{
+		return sqlSession.delete(namespace+"accountDel", memberDTO);
+	}
+	
+	public int checkId(MemberDTO memberDTO)throws Exception{
+		return sqlSession.selectOne(namespace+"checkId", memberDTO);
+	}
+	
+	public int checkPw(MemberDTO memberDTO)throws Exception{
+		return sqlSession.selectOne(namespace+"checkPw",memberDTO);
+	}
 
 	public int setMemberRole(MemberDTO memberDTO)throws Exception{
 		return sqlSession.insert(namespace+"setMemberRole", memberDTO);

@@ -84,7 +84,30 @@ public class NoticeService implements BoardService{
 	@Override
 	public int setUpdate(BoardDTO boardDTO, MultipartFile[] attachs) throws Exception {
 
-		return noticeDAO.setUpdate(boardDTO);
+		//1. 글을 등록 - 글번호를 알아오기 위해서
+		int result = noticeDAO.setAdd(boardDTO);	
+		
+		//2. 파일을 HDD에 저장
+		//2-1 저장할 폴더의 실제 경로 구하기
+		String path = servletContext.getRealPath("/resources/upload/notice");
+		//2-2 HDD에 저장하고 파일명 받아오기
+		for(MultipartFile f: attachs) {
+			System.out.println(f);
+			if(f.isEmpty()) {
+				continue;
+			}
+
+			String fileName = fileManager.fileSave(path, f);
+		//2-3 DB에 파일 정보 저장하기
+			BoardFileDTO boardFileDTO = new BoardFileDTO();
+			boardFileDTO.setUserName(boardDTO.getUserName());
+			boardFileDTO.setFileName(fileName);
+			boardFileDTO.setOriName(f.getOriginalFilename());
+			boardFileDTO.setBoardNum(boardDTO.getBoardNum());
+			result = noticeDAO.setFileAdd(boardFileDTO);
+		}
+
+		return result;
 	}
 
 	@Override

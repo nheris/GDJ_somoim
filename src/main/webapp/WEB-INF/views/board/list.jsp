@@ -9,7 +9,8 @@
 <title>Somoim</title>
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <!-- CSS 임포트 -->
 <c:import url="../temps/head_css.jsp"></c:import>
 </head>
@@ -90,12 +91,22 @@
 	</table>
 	<c:if test="${not empty member}">
 		<div class="mb-3 col-6"></div>
+		<c:if test="${board eq '공지게시판'}">
+			<c:if test="${member.roleDTO.roleNum eq 1}">
+				<div class="col-auto d-flex justify-content-end mb-3">
+					<a href="./add" class="btn btn-outline-dark">글쓰기</a>
+				</div>
+			</c:if>
+		</c:if>
+		<c:if test="${board eq '문의게시판'}">
+		<div class="mb-3 col-6"></div>
 		<div class="col-auto d-flex justify-content-end mb-3">
-			<a href="./add" class="btn btn-outline-dark">글쓰기</a>
-		</div>
+					<a href="./add" class="btn btn-outline-dark">글쓰기</a>
+				</div>
+		</c:if>
 	</c:if>
-</div>
-	
+	</div>
+
 
 
 	<!-- ========================= JS improt ========================= -->

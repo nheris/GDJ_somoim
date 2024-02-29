@@ -39,135 +39,40 @@ public class MemberController {
 	@Autowired
 	private JavaMailSenderImpl mailSenderImpl;
 	
-	@GetMapping("findPw")
-	public void findPw()throws Exception{
+
+	
+	@PostMapping("checkId")
+	public String checkId(MemberDTO memberDTO,Model model)throws Exception{
 		
-	}
-	
-	@GetMapping("login")
-	public String getLogin(Model model)throws Exception{
-		model.addAttribute("kakaoApiKey", kakaoAPI.getKakaoApiKey());
-		model.addAttribute("redirectUri", kakaoAPI.getKakaoRedirectUri());
-		System.out.println(kakaoAPI.getKakaoApiKey()+"왜여기선안돼는거얌");
-		System.out.println(kakaoAPI.getKakaoRedirectUri());
 		
-
-        return "member/login";
-	}
-
-	
-	
-    @GetMapping("joinApp")
-    public String kakaoLogin(@RequestParam String code,MemberDTO memberDTO,HttpSession session) throws Exception{
-        // 1. 인가 코드 받기 (@RequestParam String code)
-
-        // 2. 토큰 받기
-        String accessToken = kakaoAPI.getAccessToken(code);
-        session.setAttribute("accessToken", accessToken);
-        // 3. 사용자 정보 받기
-        Map<String, Object> userInfo = kakaoAPI.getUserInfo(accessToken);
-
-        String getUserName = (String)userInfo.get("email");
-        String nickname = (String)userInfo.get("nickname");
-        memberDTO.setUserName(getUserName);
-        
-        System.out.println(memberDTO.getUserName()); 
-        System.out.println("email = " + getUserName);
-        System.out.println("nickname = " + nickname);
-        System.out.println("accessToken = " + accessToken);
-        
-        MemberDTO dto = memberService.submitJoinApp(memberDTO);
-        System.out.println("컨트롤러 dto확인"+dto);
-		if(dto==null) {
-			session.setAttribute("appmember",memberDTO);
-			
-			return "member/joinApp";
-		}else {
-			
-			System.out.println(dto.getUserName()+"왜 로그인이 안되니?");
-			session.setAttribute("appmember",dto);
-			return "redirect:../";
-		}
-    }
-	
-	
-	//구글 로그인
-//	@GetMapping("joinApp")
-//	public void setJoinApp(ModelAndView mv)throws Exception{		
-//	}
-	
-	@PostMapping("joinApp")
-	public String setJoinApp(MemberDTO memberDTO,MultipartFile attachs,Model model)throws Exception{
-		int result = memberService.setjoin(memberDTO, attachs);
-		String msg = "가입불가";
-		String path = "./joinApp";
-		
+		int result = memberService.checkId(memberDTO);
 		if(result>0) {
-			msg = "가입성공";
-			path = "../";
-		}
-		
-		model.addAttribute("msg", msg);
-		model.addAttribute("path", path);
-		
-		return "member/result";
-	}
-	
-	//구글 아이디 정보 가져오기	
-	@PostMapping("submitApp")
-	@ResponseBody
-	public String submitJoinApp(MemberDTO memberDTO,HttpSession session)throws Exception{
-		System.out.println("Received userName: " + memberDTO.getName());
-		System.out.println("Received email: " + memberDTO.getUserName());        
-		
-		MemberDTO dto = memberService.submitJoinApp(memberDTO);
-        
-		if(dto==null) {
-			session.setAttribute("appmember",memberDTO);      			
-			return "success";
+			result = 1;
 		}else {
-			System.out.println(dto.getUserName()+"왜 로그인이 안되니?");
-			session.setAttribute("appmember",dto);
-			return "goHome";
-		}
-	}
-	
-	@PostMapping("/emailAuth")
-	@ResponseBody
-	public String mailCheck(String email) {
-		System.out.println("이메일 인증 요청이 들어옴!");
-		System.out.println("이메일 인증 이메일 : " + email);
-		
-		Random random = new Random();
-		int checkNum = random.nextInt(888888)+111111;
-		
-		String setFrom = "qjatj802@naver.com";
-		String toMail = email;
-		String title = "회원가입 이증 이메일 입니다";
-		String content =
-				"홈페이지를 방문해주셔서 감사합니다"+
-				"<br><br>"+
-				"인증번호는"+checkNum+"입니다"+
-				"<br>"+
-				"해당 인증번호를 인증번호 확인란에 기입하여 주세요.";
-		try {			
-			MimeMessage message = mailSenderImpl.createMimeMessage();
-			MimeMessageHelper helper = new MimeMessageHelper(message, true,"utf-8");
-			helper.setFrom(setFrom);
-			helper.setTo(toMail);
-			helper.setSubject(title);
-			helper.setText(content, true);
-			mailSenderImpl.send(message);	
-			
-		}catch(Exception e) {
-			e.printStackTrace();
+			result = 0;
 		}
 		
-		return Integer.toString(checkNum);
+		model.addAttribute("result", result);
+		
+		return "member/idCheck";
 	}
 	
+	//사용자 정보로 비밀번호 찾기
+	@GetMapping("findPw")
+	public void findPw()throws Exception{}
 	
+	@PostMapping("findPw")
+	public String findPw(HttpSession session,MemberDTO memberDTO)throws Exception{
+		
+		System.out.println(memberDTO.getUserName()); 
+		System.out.println(memberDTO.getEmail());
+		memberService.setPasswordUpdate(memberDTO);
+		
+		
+		return "member/login";
+	}
 	
+	//소모임 앱아이디 중복검사
 	@GetMapping("idCheck")
 	public String getIdCheck(MemberDTO memberDTO,Model model)throws Exception{
 		int result = 0;
@@ -182,7 +87,78 @@ public class MemberController {
 		return "member/idCheck";
 		
 	}
+	@GetMapping("findCheck")
+	public String findPw(MemberDTO memberDTO,Model model)throws Exception{
+		int result = memberService.checkPw(memberDTO);
 
+		if(result>0) {
+			result=1;
+		}else {
+			result=0;
+		}
+		
+		model.addAttribute("result", result);
+		
+		return "member/idCheck";
+	}
+	
+
+	
+	//회원가입 이메일 인증
+		@PostMapping("/emailAuth")
+		@ResponseBody
+		public String mailCheck(String email) {
+			
+			Random random = new Random();
+			int checkNum = random.nextInt(888888)+111111;
+			
+			String setFrom = "qjatj802@naver.com";
+			String toMail = email;
+			String title = "회원가입 이증 이메일 입니다";
+			String content =
+					"홈페이지를 방문해주셔서 감사합니다"+
+					"<br><br>"+
+					"인증번호는"+checkNum+"입니다"+
+					"<br>"+
+					"해당 인증번호를 인증번호 확인란에 기입하여 주세요.";
+			try {			
+				MimeMessage message = mailSenderImpl.createMimeMessage();
+				MimeMessageHelper helper = new MimeMessageHelper(message, true,"utf-8");
+				helper.setFrom(setFrom);
+				helper.setTo(toMail);
+				helper.setSubject(title);
+				helper.setText(content, true);
+				mailSenderImpl.send(message);	
+				
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+			
+			return Integer.toString(checkNum);
+		}	  	
+
+	
+	//구글 아이디 정보 가져오기	
+	@PostMapping("submitApp")
+	@ResponseBody
+	public String submitJoinApp(MemberDTO memberDTO,HttpSession session)throws Exception{
+		
+		MemberDTO dto = memberService.submitJoinApp(memberDTO);
+        
+		if(dto==null) {
+			session.setAttribute("appmember",memberDTO);
+			return "success";
+		}else {
+			session.setAttribute("appmember",dto);
+			return "goHome";
+		}
+	}
+	
+	
+	
+
+
+	//소모임 앱회원가입
 	@GetMapping("join")
 	public void setJoin(MemberDTO memberDTO)throws Exception{
 
@@ -201,13 +177,72 @@ public class MemberController {
 		}
 
 		model.addAttribute("msg", msg);
-		System.out.println("path");
 		model.addAttribute("path", path);
 
 		return "member/result";
 	}
+	
+	//카카오 회원가입 및 로그인
+	
+	 @GetMapping("joinApp")
+	    public String kakaoLogin(@RequestParam String code,MemberDTO memberDTO,HttpSession session,Model model) throws Exception{
+	        // 1. 인가 코드 받기 (@RequestParam String code)
+		 	
+	        // 2. 토큰 받기
+	        String accessToken = kakaoAPI.getAccessToken(code);
+	        session.setAttribute("accessToken", accessToken);
+	        // 3. 사용자 정보 받기
+	        Map<String, Object> userInfo = kakaoAPI.getUserInfo(accessToken);
+
+	        String getUserName = (String)userInfo.get("email");
+	        String nickname = (String)userInfo.get("nickname");
+	        memberDTO.setUserName(getUserName);
+	        memberDTO.setNickName(nickname);
+	     
+	        MemberDTO dto = memberService.submitJoinApp(memberDTO);
+			if(dto==null) {				
+				model.addAttribute("tempmem", memberDTO);
+				return "member/joinKakao";
+			}else {
+				
+				session.setAttribute("appmember",dto);
+				System.out.println(dto.getAddress());
+				System.out.println(dto.getLoginNum());
+				return "redirect:../";
+			}
+	    }
+	 
+		//앱 회원가입
+		@PostMapping("joinApp")
+		public String setJoinApp(MemberDTO memberDTO,MultipartFile attachs,Model model,HttpSession session)throws Exception{
+			
+			int result = memberService.setjoin(memberDTO, attachs);
+			String msg = "가입불가";
+			String path = "./joinApp";
+			
+			if(result>0) {
+				msg = "가입성공";
+				path = "../";
+			}
+			
+			
+			model.addAttribute("msg", msg);
+			model.addAttribute("path", path);
+			
+			
+			return "member/result";
+		}
+	 
+	//somoim 앱로그인
+	@GetMapping("login")
+	public String getLogin(Model model)throws Exception{
+		model.addAttribute("kakaoApiKey", kakaoAPI.getKakaoApiKey());
+		model.addAttribute("redirectUri", kakaoAPI.getKakaoRedirectUri());
 
 
+        return "member/login";
+	}
+	
 	@PostMapping("login")
 	public String getLogin(MemberDTO memberDTO,HttpSession session,Model model)throws Exception{
 		memberDTO= memberService.getLogin(memberDTO);
@@ -224,7 +259,6 @@ public class MemberController {
 			return "member/result";
 		}
 		session.setAttribute("member", memberDTO);
-		System.out.println(memberDTO.getAddress());
 		return "redirect:../";
 	}
 	@GetMapping("logout")

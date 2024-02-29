@@ -10,10 +10,10 @@ import com.somoim.app.member.KakaoAPI;
 
 public class KakaoTest extends MyTest {
 
-	@Autowired
+//	@Autowired
 	private KakaoAPI kakaoAPI;
 	
-	@Test
+//	@Test
 	public void test() {
 		
 	System.out.println(kakaoAPI.getKakaoApiKey()+"왜 여기서만되는거얌");

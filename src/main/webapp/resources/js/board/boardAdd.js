@@ -27,26 +27,19 @@ ctncheck.on("change", () => {
 
 //Title
 let title = document.getElementById("title");
-title.addEventListener("blur", function () {
-    if (title.value.trim() === "") {
-        alert("제목을 입력해 주십시오.");
-    }
-});
+
 //Text
 let boardText = document.getElementById("boardText");
-boardText.addEventListener("blur", function () {
-    alert("내용을 입력해 주십시오.");
-});
 
 // Add
 let fileAddBtn = document.getElementById("fileAdd");
 fileAddBtn.addEventListener("click", function (event) {
     let title = document.getElementById("title");
-    if (title.value.trim() === "") {
+    if (title.value == "") {
         alert("제목이 입력되지 않았습니다.");
         event.preventDefault();
     }
-    if (boardText.value.trim() === "") {
+    if (boardText.value == "") {
         alert("내용이 입력되지 않았습니다.");
         event.preventDefault();
     }
