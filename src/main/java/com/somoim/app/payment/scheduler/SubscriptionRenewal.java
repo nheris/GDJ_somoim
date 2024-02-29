@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-import com.somoim.app.payment.PaymentService;
 import com.somoim.app.payment.SubsDTO;
 import com.somoim.app.payment.SubscriptionService;
 
@@ -20,8 +19,7 @@ public class SubscriptionRenewal {
 	private SubscriptionService subscriptionService;
 	
 	
-//    @Scheduled(cron = "0 0 0 * * *") // 매일 자정에 실행
-	@Scheduled(fixedDelay = 10000)
+    @Scheduled(cron = "0 0 0 * * *") // 매일 자정에 실행
     public void checkSubscriptions() throws Exception {
 		System.out.println("start");
         
@@ -43,6 +41,9 @@ public class SubscriptionRenewal {
                 if (!startToCurrentDuration.minus(startToDoneDuration).isNegative()) {
                     // svs를 0으로 업데이트
                     subscription.setSvs(false);
+                    subscriptionService.updateSVS(subscription);
+                }else {
+                	subscription.setSvs(true);
                     subscriptionService.updateSVS(subscription);
                 }
             }
