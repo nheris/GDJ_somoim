@@ -10,7 +10,7 @@
 			<div class="image" style="text-align: center;">
 				<a href="${admin.placeLink}" class="thumbnail"><img
 					src="${admin.placeImageLink}" alt="#" width="300" height="250"
-					style="object-fit: cover;"></a>
+					style="object-fit: cover;" onerror="this.src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGZ5KhIvwJU6d0MF-v6FikyHflaaf37EaGXA&usqp=CAU';"></a>
 			</div>
 
 			<div class="content">
