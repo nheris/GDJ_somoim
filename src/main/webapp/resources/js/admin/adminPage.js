@@ -12,9 +12,9 @@ moimadd.addEventListener("click", function (e) {
     popupWindow = window.open("/admin/add", "PopupWin", features);
 });
 
-// 팝업 창의 크기 변경 시
 window.addEventListener("resize", function () {
-    if (popupWindow) {
-        popupWindow.resizeTo(width, height);
-    }
+    let left = (window.innerWidth - width) / 2;
+    let top = (window.innerHeight - height) / 2;
+    popupWindow.resizeTo(width, height);
+    popupWindow.moveTo(left, top);
 });

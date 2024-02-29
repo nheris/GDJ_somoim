@@ -16,11 +16,14 @@ moimList.addEventListener("click", function (e) {
     });
 });
 
-// 팝업 창의 크기 변경 시
 window.addEventListener("resize", function () {
-    if (popupWindow) {
-        let newWidth = Math.max(width, window.innerWidth);
-        let newHeight = Math.max(height, window.innerHeight);
-        popupWindow.resizeTo(newWidth, newHeight);
-    }
+    let left = (window.innerWidth - width) / 2;
+    let top = (window.innerHeight - height) / 2;
+    popupWindow.moveTo(left, top);
+});
+
+window.addEventListener("resize", function () {
+    let left = (window.innerWidth - width) / 2;
+    let top = (window.innerHeight - height) / 2;
+    popupWindow.moveTo(left, top);
 });
