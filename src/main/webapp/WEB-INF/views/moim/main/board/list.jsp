@@ -33,7 +33,7 @@
 							style="color: white; font-weight: bold;">게시판</a></li>
 						<li class="nav-item"><a class="nav-link" href="../together?moimNum=${moimDTO.moimNum}"
 							style="color: white">정모</a></li>
-						<li class="nav-item"><a class="nav-link" href="/chat"
+						<li class="nav-item"><a class="nav-link" href="#"
 							style="color: white">채팅</a></li>
 					</ul>
 				</div>
@@ -90,7 +90,7 @@
 							<th scope="col">작성자</th>
 							<th scope="col">작성일</th>
 							<th scope="col">조회</th>
-							<!-- <th scope="col">좋아요</th> -->
+							<th scope="col">좋아요</th>
 						  </tr>
 						</thead>
 						<tbody class="table-group-divider" id="listTbody">
@@ -106,9 +106,9 @@
 									<th class="col-md-1 text-center" scope="row">${dto.boardNum}</th>
 									<td class="col-md-5 ps-5 "><a href="./detail?moimNum=${dto.moimNum}&boardNum=${dto.boardNum}">${dto.boardTitle}</td>
 									<td class="col-md-2 text-center">${dto.boardWriter}</td>
-									<td class="col-md-3 text-center">${dto.boardDate}</td>
+									<td class="col-md-2 text-center">${dto.boardDate}</td>
 									<td class="col-md-1 text-center">${dto.boardClick}</td>
-									<%-- <td class="col-md-1 text-center"> ${dto.boardLike}</td> --%>
+									<td class="col-md-1 text-center"> ${dto.boardLike}</td>
 								  </tr>
 							</c:forEach>
 
@@ -133,7 +133,7 @@
 										<li><a href="./list?page=${pager.startNum-1}&search=${pager.search}&searchFind=${pager.searchFind}&moimNum=${moimDTO.moimNum}"><i class="lni lni-chevron-left"></i></a></li>
 									</c:if>
 									<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
-                                    	<li ><a href="./list?page=${i}&search=${pager.search}&searchFind=${pager.searchFind}&moimNum=${moimDTO.moimNum}">${i}</a></li>
+                                    	<li class="active"><a href="./list?page=${i}&search=${pager.search}&searchFind=${pager.searchFind}&moimNum=${moimDTO.moimNum}">${i}</a></li>
 									</c:forEach>
 									<c:if test="${!pager.last}">
                                     	<li><a href="./list?page=${pager.lastNum+1}&search=${pager.search}&searchFind=${pager.searchFind}&moimNum=${moimDTO.moimNum}"><i class="lni lni-chevron-right"></i></a></li>
@@ -148,6 +148,39 @@
 				</div>
                 
                 
+                <!-- <div class="tab-pane fade" id="nav-list" role="tabpanel" aria-labelledby="nav-list-tab">
+                    <게시판>
+                    <div class="row ">
+                        
+
+                    </div>
+                    
+                    <글쓰기>
+                    <div class="row">
+	                    <div class="button">
+							<a href="./add?moimNum=${moimDTO.moimNum}" class="btn my-3" id="addBtn">글쓰기</a>
+						</div>
+                    </div>
+					
+                    <페이징>
+                    <div class="row text-">
+                        <div class="col-12">
+                            
+                            <div class="pagination text-center">
+                                <ul class="pagination-list">
+                                    <li><a href="javascript:void(0)">1</a></li>
+                                    <li class="active"><a href="javascript:void(0)">2</a></li>
+                                    <li><a href="javascript:void(0)">3</a></li>
+                                    <li><a href="javascript:void(0)">4</a></li>
+                                    <li><a href="javascript:void(0)"><i class="lni lni-chevron-right"></i></a></li>
+                                </ul>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+                    
+                </div> -->
             </div>
 			
 	</div>

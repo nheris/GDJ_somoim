@@ -35,7 +35,7 @@
 							style="color: white; font-weight: bold;">게시판</a></li>
 						<li class="nav-item"><a class="nav-link" href="../together?moimNum=${dto.moimNum}"
 							style="color: white">정모</a></li>
-						<li class="nav-item"><a class="nav-link" href="/chat"
+						<li class="nav-item"><a class="nav-link" href="#"
 							style="color: white">채팅</a></li>
 					</ul>
 				</div>
@@ -66,14 +66,14 @@
 					<div class="mb-3">
 						<textarea class="form-control" id="boardText" name="boardText" rows="8">${dto.boardText}</textarea>
 					</div>
-					<!-- <div class="mb-3">
+					<div class="mb-3">
 						<label for="exampleFormControlTextarea1" class="form-label">파일 첨부</label>
 						<div class="input-group mb-3">
 						  <input type="file" class="form-control" name="file">
 						  <input type="file" class="form-control" name="file">
 						  <input type="file" class="form-control" name="file">
 						</div>
-					</div> -->
+					</div>
 							
 								
                     <div class="col-12">
@@ -97,7 +97,7 @@
 	<c:import url="../../../temps/footer.jsp"></c:import>
 	<script src="https://unpkg.com/bootstrap@4.3.1/dist/js/bootstrap.bundle.min.js" data-src="https://unpkg.com/bootstrap@4.3.1/dist/js/bootstrap.min.js" ></script>
 	<script src="https://unpkg.com/bootstrap-select@1.13.8/dist/js/bootstrap-select.min.js"></script>
-	<script src="/resources/js/moim/moimboardAdd.js"></script>
+	<script src="/resources/js/moim/main.js"></script>
 </body>
 
 </html>

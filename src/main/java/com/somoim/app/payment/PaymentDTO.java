@@ -17,7 +17,7 @@ public class PaymentDTO {
 	private java.sql.Date paymentDay;
 	private Long amount;
 	private String depositKey;
-	private String payMethod;
+	
 	
 	@Override
 	public String toString() {
@@ -73,13 +73,5 @@ public class PaymentDTO {
 	public void setAmount(Long amount) {
 		this.amount = amount;
 	}
-	public String getPayMethod() {
-		return payMethod;
-	}
-	public void setPayMethod(String payMethod) {
-		this.payMethod = payMethod;
-	}
-	
-	
 	
 }

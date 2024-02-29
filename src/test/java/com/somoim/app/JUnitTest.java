@@ -10,7 +10,7 @@ import com.somoim.app.member.MemberDTO;
 
 
 public class JUnitTest extends MyTest {
-//	@Autowired
+	@Autowired
 	private MemberDAO memberDAO;
 
 	//@Test

@@ -16,7 +16,6 @@ public class KakaoTest extends MyTest {
 //	@Test
 	public void test() {
 		
-	System.out.println(kakaoAPI.getKakaoApiKey()+"왜 여기서만되는거얌");
 	
 	}
 

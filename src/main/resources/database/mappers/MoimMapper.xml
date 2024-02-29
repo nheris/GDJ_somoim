@@ -129,29 +129,17 @@
 		WHERE MOIMNUM = #{moimNum}
 	</update>
 	
-	<!-- 모임 멤버 -->
-	<select id="memInfo" parameterType="MoimDTO" resultType="MoimMemberDTO">
-		SELECT *
-		FROM MOIMMEMBER m 
-		WHERE MOIMNUM =#{moimNum}
-		ORDER BY JOINDATE ASC
-	</select>
-	<select id="memNum" parameterType="MoimDTO" resultType="Long">
-		SELECT COUNT(*)
-		FROM MOIMMEMBER m 
-		WHERE MOIMNUM =#{moimNum}
-	</select>
+	<!-- 모임 멤버 수 -->
+	
+	<!-- SELECT count(*)
+	FROM MOIMMEMBER
+	WHERE MOIMNUM =#{moimNum} -->
+  
+  
+  	<!-- 게시판 글쓰기 -->
   	
-  	<!-- join -->
-  	<insert id="join" parameterType="MoimMemberDTO">
-  		INSERT INTO MOIMMEMBER
-  		VALUES (#{userName}, 3, #{moimNum}, current_date)
-  	</insert>
   		
-  	<!-- kick -->
-  	<delete id="kick" parameterType="MoimMemberDTO">
-	DELETE FROM MOIMMEMBER
-	WHERE MOIMNUM=#{moimNum} AND USERNAME =#{userName}
-	</delete>
+  		
+  
   
   </mapper>

@@ -54,11 +54,12 @@ public class AdminPageController {
 	@GetMapping("placeList")
 	public String placeList(AdminPageDTO adminPageDTO, Model model)throws Exception{
 		List<AdminPageDTO> ar = adminPageService.placeList(adminPageDTO);
+		// map은 중복된 값이 안들어가서 사용
 		Map<Integer, Object> index = new HashMap<>();
+		// 결과값을 담을 arrayList 생성
 		List<AdminPageDTO> resultList = new ArrayList<AdminPageDTO>();
 		for(int i = 0; i < ar.size(); i++) {
 			int random =(int) (Math.random()*ar.size());
-			System.out.println(random);
 			if(index.containsKey(random)) {
 				i--;
 				continue;

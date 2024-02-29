@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.somoim.app.member.MemberDTO;
-import com.somoim.app.moim.member.MoimMemberDTO;
 
 @Repository
 public class MoimDAO {
@@ -48,7 +47,6 @@ public class MoimDAO {
 
 
 	//update
-		//모임정보
 	public MoimDTO getInfo(MoimDTO moimDTO) throws Exception {
 		return sqlSession.selectOne(NAMESPACE+"getInfo", moimDTO);
 	}
@@ -59,27 +57,18 @@ public class MoimDAO {
 		return sqlSession.update(NAMESPACE+"fileUpdate", moimFileDTO);
 	}
 
-	
-	//memInfo
-	public List<MoimMemberDTO> memInfo(MoimDTO moimDTO) {
-		return sqlSession.selectList(NAMESPACE+"memInfo", moimDTO);
-	}
-	public Long memNum(MoimDTO moimDTO) {
-		return sqlSession.selectOne(NAMESPACE+"memNum", moimDTO);
-	}
 
-	//join
-	public int join(MoimMemberDTO moimMemberDTO) {
-		return sqlSession.insert(NAMESPACE+"join", moimMemberDTO);
-	}
+//	public MoimDTO getInfo(MoimDTO moimDTO) throws Exception {
+//		return sqlSession.selectOne(NAMESPACE+"update", moimDTO);
+//	}
 
 
-	//kick
-	public int kick(MoimMemberDTO moimMemberDTO) {
-		return sqlSession.delete(NAMESPACE+"kick", moimMemberDTO);
-	}
 
-	
+	//모임 멤버 가입
+//	public int moimMemAdd(MoimDTO moimDTO) {
+//		return sqlSession.insert(NAMESPACE+"moimMemAdd", moimDTO);
+//	}
+
 
 
 
