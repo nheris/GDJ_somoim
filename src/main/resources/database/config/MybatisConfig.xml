@@ -16,7 +16,6 @@
   		<typeAlias type="com.somoim.app.moim.MoimFileDTO" alias="MoimFileDTO"/>
   		<typeAlias type="com.somoim.app.moim.member.MoimMemberDTO" alias="MoimMemberDTO"/>
      	<typeAlias type="com.somoim.app.payment.PaymentTypeDTO" alias="PaymentTypeDTO"/>
-  		<typeAlias type="com.somoim.app.member.role.RoleDTO" alias="RoleDTO"/>
   		<typeAlias type="com.somoim.app.board.qna.QnaDTO" alias="QnaDTO"/>	
         <typeAlias type="com.somoim.app.payment.ClientDTO" alias="ClientDTO"/>
         <typeAlias type="com.somoim.app.moim.meet.MeetDTO" alias="MeetDTO"/>
@@ -28,11 +27,13 @@
         <typeAlias type="com.somoim.app.moim.board.ReplyDTO" alias="ReplyDTO"/>
         <typeAlias type="com.somoim.app.payment.PaymentDTO" alias="PaymentDTO"/>
         <typeAlias type="com.somoim.app.payment.OrdersDTO" alias="OrdersDTO"/>
-  		<typeAlias type="com.somoim.app.member.role.RoleDTO" alias="RoleDTO"/>
+      <typeAlias type="com.somoim.app.payment.SubsDTO" alias="SubsDTO"/>
+  		<typeAlias type="com.somoim.app.member.role.MemberRoleDTO" alias="MemberRoleDTO"/>
+  		<typeAlias type="com.somoim.app.adminPage.AdminPageDTO" alias="AdminPageDTO"/>
   		<typeAlias type="java.lang.Long" alias="Long"/>
   		<typeAlias type="java.lang.Integer" alias="Integer"/>
   		<typeAlias type="java.lang.String" alias="String"/>
-  		<typeAlias type="com.somoim.app.moim.meet.MeetMemberDTO" alias="MeetMemberDTO"/>
+  		<typeAlias type="com.somoim.app.moim.meet.MeetMemberDTO" alias="MeetMemberDTO"/>111111
   	</typeAliases>
   </configuration>
   

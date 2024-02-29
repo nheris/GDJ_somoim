@@ -75,7 +75,7 @@
 						<div></div>
 						<!-- 안에 내용 수정해서 사용하세요 -->
 						<div class="col-12 text-center">
-							<h3>카테고리</h3>
+							<h3>전체모임</h3>
 						</div>
 							<div class="container mb-4 mt-4" name="searchFind">
 								<ul class="nav nav-pills list-group-horizontal d-flex justify-content-center" name="searchFind">
@@ -85,7 +85,7 @@
 									</li>
 									<li class="nav-item px-2" name="find0" id="find0">
 										<a class="nav-link moimRegion" href="#"
-										data-selete="find0">내지역만(미구현)</a>
+										data-selete="find0">내지역만</a>
 									</li>
 									</ul>
 									</div>

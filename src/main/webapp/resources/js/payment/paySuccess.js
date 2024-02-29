@@ -8,6 +8,7 @@ const amount = urlParams.get("amount");
 
 const orderIdElement = document.getElementsByClassName("orderId");
 const amountElement = document.getElementsByClassName("amount");
+const titleElement = document.getElementById("title-message");
 
 for(let i=0;i<orderIdElement.length;i++){
   orderIdElement[i].textContent = orderId;
@@ -19,6 +20,13 @@ const confirmSuccessSection = document.querySelector('.confirm-success');
 const confirmFailSection = document.querySelector('.confirm-Fail');
 
 async function confirmPayment() {
+
+  window.resizeBy(500,600);
+
+  window.onresize = function(){
+    window.resizeTo(500,600);
+  };
+
   // TODO: API를 호출해서 서버에게 paymentKey, orderId, amount를 넘겨주세요.
   // 서버에선 해당 데이터를 가지고 승인 API를 호출하면 결제가 완료됩니다.
   // https://docs.tosspayments.com/reference#%EA%B2%B0%EC%A0%9C-%EC%8A%B9%EC%9D%B8
@@ -37,9 +45,18 @@ async function confirmPayment() {
     return r;
   }));
   console.log(response);
-  if (response.result) {
+  titleElement.textContent=response.message;
+  if(response.result==true) {
+    if(response.accountNum!=null){
+      document.getElementById("account").style.display="flex";
+      document.getElementById("accountName").textContent=response.accountName;
+      document.getElementById("accountNum").textContent=response.accountNum;
+      document.getElementById("deposit").textContent="입금할 금액";
+    }
     confirmLoadingSection.style.display = 'none';
     confirmSuccessSection.style.display = 'flex';
+    
+    console.log(response.message);
   }else{
     confirmLoadingSection.style.display = 'none';
     confirmFailSection.style.display = 'flex';

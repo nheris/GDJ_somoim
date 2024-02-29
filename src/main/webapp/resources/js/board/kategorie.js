@@ -70,3 +70,5 @@ let searchFind = document.getElementById("searchFind");
 searchFind.addEventListener("change", (e) => {
     console.log(searchFind.value);
 });
+
+let secretclick = document.getElementById("secretclick");
