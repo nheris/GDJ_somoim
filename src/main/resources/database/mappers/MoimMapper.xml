@@ -51,7 +51,7 @@
   	</insert>
   	<insert id="fileAdd" parameterType="MoimFileDTO">
   		INSERT INTO MOIMFILE
-  		VALUES (MOIMFILE_SEQ.NEXTVAL, #{moimNum},#{fileName},#{oriName})
+  		VALUES (MOIMFILE_SEQ.NEXTVAL, #{moimNum},#{fileName, jdbcType = VARCHAR},#{oriName})
   	</insert>
   	<insert id="moimHeadAdd" parameterType="MoimDTO">
   		INSERT INTO MOIMMEMBER

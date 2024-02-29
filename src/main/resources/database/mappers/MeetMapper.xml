@@ -23,6 +23,7 @@
 	  		<result column="MEETCOUNT" property="meetCount"/>
 	  		<result column="MEETX" property="meetX"/>
 	  		<result column="MEETY" property="meetY"/>
+	  		<result column="MEETHEAD" property="meetHead"/>
 	  		<association property="meetFileDTO" javaType="MeetFileDTO">
 	  			<id column="FILENUM" property="fileNum"/>
 		  		<result column="FILENAME" property="fileName"/>
@@ -46,7 +47,7 @@
   		</selectKey>
   	
   		INSERT INTO MEETING
-  		VALUES (#{meetNum}, #{moimNum}, #{meetName}, #{meetDate}, #{meetPlace}, #{meetCost}, #{meetCount}, #{meetX}, #{meetY})
+  		VALUES (#{meetNum}, #{moimNum}, #{meetName}, #{meetDate}, #{meetPlace}, #{meetCost}, #{meetCount}, #{meetX}, #{meetY}, #{meetHead})
   		
   	</insert>
   	<insert id="fileAdd" parameterType="MeetFileDTO">

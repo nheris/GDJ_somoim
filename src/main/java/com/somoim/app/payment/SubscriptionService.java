@@ -2,11 +2,14 @@ package com.somoim.app.payment;
 
 import java.sql.Date;
 import java.util.Calendar;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.somoim.app.member.MemberDTO;
 
 @Service
 public class SubscriptionService {
@@ -16,6 +19,18 @@ public class SubscriptionService {
 	
 	@Autowired
 	private PaymentDAO paymentDAO;
+	
+	public SubsDTO getSubs(PaymentDTO paymentDTO)throws Exception {
+		return subscriptionDAO.getSubs(paymentDTO);
+	}
+	
+	public List<SubsDTO> getAll()throws Exception{
+		return subscriptionDAO.getAll();
+	}
+	
+	public int updateSVS(SubsDTO subsDTO)throws Exception {
+		return subscriptionDAO.updateSVS(subsDTO);
+	}
 	
 	public int setSubs(PaymentDTO paymentDTO)throws Exception {
 		SubsDTO subsDTO = subscriptionDAO.getSubs(paymentDTO);
