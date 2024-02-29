@@ -3,6 +3,7 @@ package com.somoim.app.moim;
 import com.somoim.app.files.FileDTO;
 
 public class MoimFileDTO extends FileDTO{
+
 	private Long moimNum;
 
 	public Long getMoimNum() {
@@ -12,6 +13,4 @@ public class MoimFileDTO extends FileDTO{
 	public void setMoimNum(Long moimNum) {
 		this.moimNum = moimNum;
 	}
-
-
 }

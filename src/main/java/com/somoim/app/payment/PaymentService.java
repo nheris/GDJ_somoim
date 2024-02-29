@@ -35,10 +35,6 @@ public class PaymentService {
 	@Autowired
 	private SubscriptionService subscriptionService;
 	
-	public List<Map<String, Object>> getPaymentList(MemberDTO memberDTO)throws Exception{
-		return paymentDAO.getPaymentList(memberDTO);
-	}
-	
 	public Map<String, Object> paymentReseponse(Map<String, Object> reqMap, OrdersDTO ordersDTO, ClientDTO clientDTO, MemberDTO memberDTO) throws Exception {
 		ObjectMapper om = new ObjectMapper();
 		ordersDTO = om.convertValue(reqMap.get("ordersDTO"),OrdersDTO.class);
