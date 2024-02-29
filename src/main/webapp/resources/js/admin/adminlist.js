@@ -16,6 +16,9 @@ moimList.addEventListener("click", function (e) {
         let content = popupWindow.document.querySelector("body");
         content.style.overflowX = "auto";
     });
+    // popupWindow.onresize = (_) => {
+    //     popupWindow.resizeTo(width, height);
+    // };
 });
 
 window.addEventListener("resize", function () {
