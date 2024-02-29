@@ -58,7 +58,6 @@ public class AdminPageController {
 		List<AdminPageDTO> resultList = new ArrayList<AdminPageDTO>();
 		for(int i = 0; i < ar.size(); i++) {
 			int random =(int) (Math.random()*ar.size());
-			System.out.println(random);
 			if(index.containsKey(random)) {
 				i--;
 				continue;
