@@ -24,6 +24,7 @@
         <typeAlias type="com.somoim.app.moim.board.MoimBoardFileDTO" alias="MoimBoardFileDTO"/>
         <typeAlias type="com.somoim.app.board.qna.BoardReplyDTO" alias="BoardReplyDTO"/>
   		<typeAlias type="com.somoim.app.chat.ChatMessageDTO" alias="ChatMessageDTO"/>
+  		<typeAlias type="com.somoim.app.chat.ChatRoomDTO" alias="ChatRoomDTO"/>
         <typeAlias type="com.somoim.app.moim.board.ReplyDTO" alias="ReplyDTO"/>
         <typeAlias type="com.somoim.app.payment.PaymentDTO" alias="PaymentDTO"/>
         <typeAlias type="com.somoim.app.payment.OrdersDTO" alias="OrdersDTO"/>

@@ -25,17 +25,19 @@ public class ChatHandler extends TextWebSocketHandler{
 		// 세션 아이디를 키로 사용, session을 값으로
 		System.out.println("연결");
 		sessionList.add(session);
-		System.out.println("connect : "+session.getAttributes().get("roomNum"));
 	}
 
 	//메세지를 다루는 메서드
 	@Override
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
+		System.out.println("message");
 		ObjectMapper objectMapper = new ObjectMapper();
 		ChatMessageDTO chatMessageDTO = objectMapper.readValue(message.getPayload(), ChatMessageDTO.class);
-		System.out.println(chatMessageDTO.getChatText() +" : "+ chatMessageDTO.getUserName()+" : "+chatMessageDTO.getChatRoomNum());
 		
 		Long chat = chatMessageService.chatHistory(chatMessageDTO).get(0).getChatRoomNum();
+
+		//chatMessageDTO.setNickName(chatMessageDTO.getNickName());
+		//System.out.println(chatMessageDTO.toString());
 		
 		int result = chatMessageService.addChat(chatMessageDTO);
 		

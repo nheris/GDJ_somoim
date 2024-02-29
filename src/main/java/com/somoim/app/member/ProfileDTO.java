@@ -14,5 +14,4 @@ public class ProfileDTO extends FileDTO {
 		this.userName = userName;
 	}
 
-
 }

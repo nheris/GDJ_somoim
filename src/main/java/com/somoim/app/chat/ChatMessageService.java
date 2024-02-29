@@ -15,15 +15,6 @@ public class ChatMessageService {
 	private ChatMessageDAO chatMessageDAO;
 	
 	public int addChat(ChatMessageDTO chatMessageDTO) {
-		List<Long> roomList = chatMessageDAO.chatRoomCh();
-
-		// 방이 없다면 (방번호로 찾기)
-		if(!roomList.contains(chatMessageDTO.getChatRoomNum())){
-			// 방 생성
-			chatMessageDAO.addChatRoom();
-		}
-
-		// 채팅
 		return chatMessageDAO.addChat(chatMessageDTO);
 	}
 	
@@ -40,7 +31,11 @@ public class ChatMessageService {
 		return chatMessageDAO.roomUserList(chatMessageDTO);
 	}
 	
-	public MoimDTO moimChat(ChatMessageDTO chatMessageDTO){
-		return chatMessageDAO.moimChat(chatMessageDTO);
+	public List<MoimDTO> moimChatInfo(MemberDTO memberDTO){
+		return chatMessageDAO.moimChatInfo(memberDTO);
+	}
+	
+	public ChatMessageDTO getLastChat(List<Long> chatMessageDTO) {
+		return chatMessageDAO.getLastChat(chatMessageDTO);
 	}
 }

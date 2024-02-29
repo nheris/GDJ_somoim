@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.somoim.app.chat.ChatMessageDTO;
+import com.somoim.app.chat.ChatMessageService;
 import com.somoim.app.member.MemberDTO;
 import com.somoim.app.moim.meet.MeetDTO;
 import com.somoim.app.moim.member.MoimMemberDTO;
@@ -24,6 +26,8 @@ import com.somoim.app.moim.member.MoimMemberDTO;
 public class MoimController {
 	@Autowired
 	private MoimService moimService;
+	@Autowired
+	private ChatMessageService chatMessageService; 
 
 	//모임 리스트
 	@GetMapping("list")
@@ -45,7 +49,7 @@ public class MoimController {
 		moimDTO.setMoimHead(memberDTO.getUserName());
 
 
-		moimService.add(moimDTO, file);
+		moimService.add(moimDTO, file, memberDTO);
 
 		return "redirect:./list";
 
@@ -132,7 +136,12 @@ public class MoimController {
 		String msg = "다시 시도해주세요.";
 		String path = "../home?moimNum="+moimMemberDTO.getMoimNum();
 		if(result == 1) {
+			ChatMessageDTO cdto = new ChatMessageDTO();
+			cdto.setChatText(memberDTO.getNickName()+"이 들어왔습니다");
+			cdto.setUserName(memberDTO.getUserName());
 			
+			chatMessageService.addChat(cdto);
+
 			msg = "가입 완료";
 			path = "../home?moimNum="+moimMemberDTO.getMoimNum();
 		}

@@ -38,21 +38,14 @@ public class ChatController {
 		MemberDTO dto = memberService.getLogin(memberDTO);
 		
 		mv.addObject("roomNum",session.getAttribute("roomNum"));
-		System.out.println(mv.getModelMap());
-//		List<ChatMessageDTO> chatHistory = chatMessageService.chatHistory(chatMessageDTO);
-//		mv.addObject("chatHistory", chatHistory);
-
-//		chatMessageDTO.setChatRoomNum((Long)session.getAttribute("roomNum"));
-//		System.out.println(chatMessageDTO.getChatRoomNum());
-//		System.out.println(chatMessageDTO.getUserName());
-//		MoimDTO moimChat = chatMessageService.moimChat(chatMessageDTO);
-//		System.out.println(moimChat.getMoimName());
-//		mv.addObject("moimChat",moimChat);
-		
+		System.out.println("session room num"+session.getAttribute("roomNum"));
+		List<MoimDTO> moimChatInfo = chatMessageService.moimChatInfo(dto);
+		mv.addObject("moimInfo", moimChatInfo);
 		
 		List<Long> chatRoomList = chatMessageService.chatRoomList(dto);
 		mv.addObject("chatRoomList", chatRoomList);
 		
+				
 		mv.addObject("user",dto);
 		mv.setViewName("/chat/chating");
 		return mv;
@@ -74,3 +67,4 @@ public class ChatController {
 		return map;
 	}
 }
+
