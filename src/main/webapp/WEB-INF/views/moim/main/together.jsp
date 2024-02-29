@@ -135,7 +135,7 @@
 										</c:if>
 										<c:if test="${fn:contains(contain[j.index], member.userName)}">
 											
-											<a href="javascript:void(0)" class="like chat" ">이동</a>
+											<a href="/chat" class="like chat" ">이동</a>
 										</c:if>
                                         
                                         
