@@ -60,4 +60,6 @@ public class ChatMessageDAO {
 	public ChatMessageDTO getLastChat(List<Long> chatMessageDTO) {
 		return sqlSession.selectOne(NAMESPACE+"getLastChat", chatMessageDTO);
 	}
+	
+	
 }

@@ -38,7 +38,7 @@ public class ChatController {
 		MemberDTO dto = memberService.getLogin(memberDTO);
 		
 		mv.addObject("roomNum",session.getAttribute("roomNum"));
-		
+		System.out.println("session room num"+session.getAttribute("roomNum"));
 		List<MoimDTO> moimChatInfo = chatMessageService.moimChatInfo(dto);
 		mv.addObject("moimInfo", moimChatInfo);
 		

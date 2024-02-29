@@ -18,10 +18,18 @@ public class MoimDTO {
 	private String moimText;
 	private Long moimMemCount;
 	private String moimHead;
+	private String address;
 
 	private MoimFileDTO moimFileDTO;
 	private MoimMemberDTO moimMemberDTO;
 
+	
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
 	private ChatRoomDTO chatRoomDTO;
 
 	public ChatRoomDTO getChatRoomDTO() {

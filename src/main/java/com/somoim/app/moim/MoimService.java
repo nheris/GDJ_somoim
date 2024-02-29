@@ -50,7 +50,7 @@ public class MoimService {
 		ChatMessageDTO chat = new ChatMessageDTO();
 		chat.setChatRoomNum(chatRoomDTO.getChatRoomNum());
 		chat.setUserName(memberDTO.getUserName());
-		chat.setChatText(memberDTO.getUserName()+"가 들어왔습니다.");
+		chat.setChatText(memberDTO.getNickName()+"가 들어왔습니다.");
 		chatMessageDAO.addChat(chat);
 		
 		String path = servletContext.getRealPath("/resources/upload/moim");
@@ -132,6 +132,7 @@ public class MoimService {
 	
 	//join
 	public int join(MoimMemberDTO moimMemberDTO) {
+		
 		return moimDAO.join(moimMemberDTO);
 	}
 	
