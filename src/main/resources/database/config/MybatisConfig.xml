@@ -1,6 +1,5 @@
-<typeAlias type="com.somoim.app.payment.SubsDTO" alias="SubsDTO"/>
-  		<typeAlias type="com.somoim.app.member.role.MemberRoleDTO" alias="MemberRoleDTO"/>
-  		<typeAlias type="com.somoim.app.adminPage.AdminPageDTO" alias="AdminPageDTO"/><?xml version="1.0" encoding="UTF-8"?>
+
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE configuration
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-config.dtd">
@@ -8,6 +7,9 @@
   	<settings> <setting name="jdbcTypeForNull" value="VARCHAR"/> </settings>
   
   	<typeAliases>
+ 	 	<typeAlias type="com.somoim.app.payment.SubsDTO" alias="SubsDTO"/>
+  		<typeAlias type="com.somoim.app.member.role.MemberRoleDTO" alias="MemberRoleDTO"/>
+  		<typeAlias type="com.somoim.app.adminPage.AdminPageDTO" alias="AdminPageDTO"/>
   		<typeAlias type="com.somoim.app.member.MemberDTO" alias="MemberDTO"/>
   		<typeAlias type="com.somoim.app.member.ProfileDTO" alias="ProfileDTO"/>
   		<typeAlias type="com.somoim.app.board.notice.NoticeDTO" alias="NoticeDTO"/>
@@ -29,7 +31,6 @@
         <typeAlias type="com.somoim.app.moim.board.ReplyDTO" alias="ReplyDTO"/>
         <typeAlias type="com.somoim.app.payment.PaymentDTO" alias="PaymentDTO"/>
         <typeAlias type="com.somoim.app.payment.OrdersDTO" alias="OrdersDTO"/>
-  		<typeAlias type="com.somoim.app.payment.SubsDTO" alias="SubsDTO"/>
   		<typeAlias type="com.somoim.app.member.role.MemberRoleDTO" alias="MemberRoleDTO"/>
   		<typeAlias type="com.somoim.app.adminPage.AdminPageDTO" alias="AdminPageDTO"/>
   		<typeAlias type="java.lang.Long" alias="Long"/>

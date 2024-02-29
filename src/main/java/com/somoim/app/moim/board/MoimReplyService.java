@@ -59,7 +59,7 @@ public class MoimReplyService {
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		replyDTO.setUserName(memberDTO.getUserName());
 		replyDTO.setReplyWriter(memberDTO.getNickName());
-		
+	
 		if(memberDTO.getProfile() != null) {
 			replyDTO.setReplyProfile(memberDTO.getProfile().getFileName());
 		}

@@ -52,8 +52,6 @@ public class MoimReplyController {
 		model.addAttribute("list", ar);
 		model.addAttribute("pager", pager);
 		
-		//System.out.println("pager : "+pager.getTotalPage());
-		
 		return "moim/main/board/replyListResult";
 	}
 	
