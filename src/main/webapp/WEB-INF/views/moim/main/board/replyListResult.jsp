@@ -40,7 +40,7 @@
 				<a href="javascript:void(0)" ><i class="lni lni-trash del" data-reply-num="${dto.replyNum}"></i></a>
 			</c:if>
 
-			<c:if test="${dto.replyDepth eq '0' }">
+			<%-- <c:if test="${dto.replyDepth eq '0' }"> --%>
 				<a href="javascript:void(0)"><i class="lni lni-reply re" data-bs-toggle="modal" data-bs-target="#reModal${dto.replyNum}" data-reply-num="${dto.replyNum}"></i></a>
 				<!-- 답댓 Madal -->
 				<div class="modal fade" id="reModal${dto.replyNum}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -64,18 +64,23 @@
 					</div>
 					</div>
 				</div>
-			</c:if>
+			<%-- </c:if> --%>
 		</div>
 		<!-- 댓글 -->
 		<div class="author-profile">
-			<img src="/resources/img/profile/profile.jpg" alt="3" style="width: 36px; height: 36px; border-radius: 100px;">
+			<c:if test="${not empty dto.replyProfile}">
+				<img src="/resources/upload/member/${dto.replyProfile}" alt="2" style="width: 36px; height: 36px; border-radius: 100px;">
+			</c:if>
+			<c:if test="${empty dto.replyProfile}">
+				<img src="/resources/img/profile/profile.jpg" alt="3" style="width: 36px; height: 36px; border-radius: 100px;">
+			</c:if>
 			<span class="mx-2">${dto.replyWriter}&ensp;·&ensp;${dto.replyDate}</span>
 			
 		</div>
 		<div class="ms-5">
 			
-			<c:if test="${dto.replyDepth ne '0' }">
-			<span style="color: steelblue; font-weight: bolder;">@parent닉</span>
+			<c:if test="${dto.replyDepth > '1' }">
+			<span style="color: steelblue; font-weight: bolder;">@${dto.parent}&nbsp;</span>
 			</c:if>
 			${dto.replyText}
 		</div>
@@ -84,3 +89,7 @@
 
 
 </c:forEach>
+
+<div class="col-auto text-center">
+	<button id="more" data-replyList-page="${pager.page}" data-replyList-totalPage="${pager.totalPage}" class="btn btn-light btn-sm">더보기 (${pager.page} / ${pager.totalPage})</button>				    	
+</div>

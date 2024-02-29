@@ -1,18 +1,3 @@
-//정모이름 10글자 제한 일단 나중에
-// let meetName= document.getElementById("meetName");
-// meetName.addEventListener('blur', function(){
-//     //console.log('연결');
-//     let name = meetName.value;
-//     if(name.length<2||10<name.length){
-//     	console.log(meetName.className);
-//     	meetName.className += ' is-invalid';
-//         let div = document.createElement('div');
-//         div.setAttribute("class","invalid-feedback");
-//         let text = document.createTextNode('이름: 2~10자');
-//         div.appendChild(text);
-//         meetName.after(div);
-//     }
-// })
 
 //datepicker
 $(function() {
@@ -41,7 +26,45 @@ $(function() {
     $('#meetDate').datepicker('setDate', 'today'); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)            
 });
         
-        
+
+//공백시
+const submitBtn = document.getElementById("submitBtn");
+let meetName = document.getElementById("meetName");
+let meetDate = document.getElementById("meetDate");
+let meetPlace = document.getElementById("meetPlace");
+let meetCost = document.getElementById("meetCost");
+let meetCount = document.getElementById("meetCount");
+
+document.addEventListener("DOMContentLoaded", function(){
+    submitBtn.addEventListener("click",(e)=>{
+    console.log('연결')
+    if(meetName.value === ''){
+      alert('이름을 입력하세요.');
+      e.preventDefault();
+      return false;
+    }else if(meetDate.value === ''){
+      alert('날짜를 지정하세요.');
+      e.preventDefault();
+      return false;
+    }else if(meetPlace.value === ''){
+        alert('위치를 지정하세요.');
+        e.preventDefault();
+        return false;
+    }else if(meetCost.value === ''){
+    alert('비용을 입력하세요.');
+    e.preventDefault();
+    return false;
+    }else if(meetCount.value === ''){
+      alert('정원을 입력하세요.');
+      e.preventDefault();
+      return false;
+    }
+
+    return true;
+  })
+});
+
+
 
 //지도 실행
 showMap();
