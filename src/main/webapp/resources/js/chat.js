@@ -143,10 +143,6 @@ function otherSend(nick, msg, date){
     div.classList.add('text-right');
     div.classList.add('my-2');
 
-    // let img = document.createElement('img');
-    // ${record.memberDTO.profile.fileName}
-    // img.src = `/resources/upload/member/`;
-
     div.innerHTML = "<h6 class='my-3'>"+nick+"</h6>";
     chat_record.append(li);
     li.append(div);
@@ -202,11 +198,52 @@ chatRoom.addEventListener('click',(e)=>{
                  }else{
                      otherSend(nick,msg,date);
                  }
-             }
-             scroller();
-            });
+                }
+                
+                for(let i=0;i<r.chatUser.length;i++){
+                    console.log("user : "+r.chatUser[i].nickName);
+                    let user = r.chatUser[i].nickName;
+                    console.log('user : '+user);
+                    getUserList(user)
+                }
+            
+            scroller();
+        });
+
+
     }
 });
 
-    
+let searchChat = document.getElementById('searchChat');
+searchChat.addEventListener("keyup",(e)=>{
+    console.log(e.target.value);
+    if(e.target.value != null){
+        
+    }
+});
 
+
+// userList modal
+let userList = document.getElementById('userList');
+const userListUl = document.getElementById('userListUl');
+
+userList.addEventListener('click',()=>{
+    userModal.classList.add('d-block');
+    userModal.classList.remove('d-none');
+});
+
+let list = document.querySelectorAll('list');
+closeBtn.addEventListener('click',()=>{
+    userModal.classList.add('d-none');
+    userModal.classList.remove('d-block');
+    userListUl.innerHTML = '';
+});
+
+function getUserList(user){
+    let li = document.createElement('li');
+    li.classList.add('list');
+    li.classList.add('fw-bold');
+    li.classList.add('fs-5');
+    li.innerText = user;
+    userListUl.append(li);
+}

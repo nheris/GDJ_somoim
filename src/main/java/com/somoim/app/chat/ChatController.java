@@ -30,7 +30,9 @@ public class ChatController {
 	@GetMapping("/chat")
 	public ModelAndView chat(HttpSession session,ChatMessageDTO chatMessageDTO, MemberDTO memberDTO, ModelAndView mv) throws Exception{
 		if(session.getAttribute("member") == null) {
-			mv.setViewName("/member/login");
+			mv.addObject("msg","로그인 해주세요.");
+			mv.addObject("path", "/member/login");
+			mv.setViewName("/chat/resultLogin");
 			return mv;
 		}
 		
@@ -38,14 +40,9 @@ public class ChatController {
 		MemberDTO dto = memberService.getLogin(memberDTO);
 		
 		mv.addObject("roomNum",session.getAttribute("roomNum"));
-		System.out.println("session room num"+session.getAttribute("roomNum"));
 		List<MoimDTO> moimChatInfo = chatMessageService.moimChatInfo(dto);
 		mv.addObject("moimInfo", moimChatInfo);
 		
-		List<Long> chatRoomList = chatMessageService.chatRoomList(dto);
-		mv.addObject("chatRoomList", chatRoomList);
-		
-				
 		mv.addObject("user",dto);
 		mv.setViewName("/chat/chating");
 		return mv;
@@ -55,15 +52,28 @@ public class ChatController {
 	@ResponseBody
 	public Map<String, Object> chatRecord(HttpSession session, ChatMessageDTO chatMessageDTO, Model model) {
 		session.setAttribute("roomNum", chatMessageDTO.getChatRoomNum());
+		MemberDTO member = (MemberDTO)session.getAttribute("member");
+		chatMessageDTO.setUserName(member.getUserName());
 		List<ChatMessageDTO> chatHistory = chatMessageService.chatHistory(chatMessageDTO);
+		List<MemberDTO> chatUser = chatMessageService.chatUserList(chatMessageDTO);
 		
 		// -> jsp
 		model.addAttribute("roomNum", chatMessageDTO.getChatRoomNum());
 		model.addAttribute("chatHistory", chatHistory);
+		model.addAttribute("chatUser", chatUser);
 		// -> js
 		Map<String, Object> map = new HashMap<>();
 		map.put("record", chatHistory);
 		map.put("roomNum", chatMessageDTO.getChatRoomNum());
+		map.put("chatUser", chatUser);
+		return map;
+	}
+	
+	@GetMapping("/chat/roomList")
+	@ResponseBody
+	public Map<String, Object> chatRommList(){
+		Map<String, Object> map = new HashMap<>();
+		
 		return map;
 	}
 }

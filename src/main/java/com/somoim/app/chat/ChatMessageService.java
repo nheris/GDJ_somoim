@@ -5,8 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.somoim.app.chat.moim.MoimChatDTO;
 import com.somoim.app.member.MemberDTO;
 import com.somoim.app.moim.MoimDTO;
+import com.somoim.app.moim.member.MoimMemberDTO;
 
 @Service
 public class ChatMessageService {
@@ -27,8 +29,8 @@ public class ChatMessageService {
 		return chatMessageDAO.chatRoomList(memberDTO);
 	}
 	
-	public List<MemberDTO> roomUserList(ChatMessageDTO chatMessageDTO){
-		return chatMessageDAO.roomUserList(chatMessageDTO);
+	public List<MemberDTO> chatUserList(ChatMessageDTO chatMessageDTO){
+		return chatMessageDAO.chatUserList(chatMessageDTO);
 	}
 	
 	public List<MoimDTO> moimChatInfo(MemberDTO memberDTO){
@@ -37,5 +39,9 @@ public class ChatMessageService {
 	
 	public ChatMessageDTO getLastChat(List<Long> chatMessageDTO) {
 		return chatMessageDAO.getLastChat(chatMessageDTO);
+	}
+	
+	public MoimChatDTO getMoimRoom(MoimMemberDTO moimMemberDTO) {
+		return chatMessageDAO.getMoimRoom(moimMemberDTO);
 	}
 }
