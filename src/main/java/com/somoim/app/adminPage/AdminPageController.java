@@ -27,7 +27,7 @@ public class AdminPageController {
 	private AdminPageService adminPageService;
 	
 	
-	@GetMapping("list")
+	@GetMapping("memberlist")
 	public void list (MemberDTO memberDTO, Model model, Pager pager) throws Exception{
 		List<MemberDTO> ar = adminPageService.list(pager);
 		model.addAttribute("list",ar);

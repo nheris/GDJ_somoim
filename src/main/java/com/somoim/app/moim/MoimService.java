@@ -15,6 +15,7 @@ import com.somoim.app.chat.ChatMessageDTO;
 import com.somoim.app.chat.ChatRoomDTO;
 import com.somoim.app.member.MemberDTO;
 import com.somoim.app.moim.member.MoimMemberDTO;
+import com.somoim.app.payment.SubsDTO;
 import com.somoim.app.util.FileManager;
 
 @Service
@@ -138,11 +139,6 @@ public class MoimService {
 	//kick
 	public int kick(MoimMemberDTO moimMemberDTO) {
 		return moimDAO.kick(moimMemberDTO);
-	}
-
-
-
-
-	
+	}	
 	
 }
