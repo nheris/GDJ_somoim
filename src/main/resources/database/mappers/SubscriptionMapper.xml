@@ -24,4 +24,5 @@
 	<select id="updateSVS" parameterType="SubsDTO">
 		UPDATE SUBSCRIPTION SET SVS = #{svs} WHERE SUBNUM=#{subNum}	
 	</select>
+
 </mapper>
