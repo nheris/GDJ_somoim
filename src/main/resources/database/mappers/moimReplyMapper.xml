@@ -11,7 +11,7 @@
   			SELECT MOIMREPLY_SEQ.NEXTVAL FROM DUAL
 	</selectKey>
 		INSERT INTO REPLY (REPLYNUM, USERNAME, BOARDNUM, REPLYTEXT, REPLYDATE, REPLYWRITER, REPLYREF, REPLYSTEP, REPLYDEPTH, REPLYPROFILE)
-		VALUES (#{replyNum}, #{userName}, #{boardNum},#{replyText}, current_date, #{replyWriter}, #{replyNum}, 0, 0, #{replyProfile})
+		VALUES (#{replyNum}, #{userName}, #{boardNum},#{replyText}, current_date, #{replyWriter}, #{replyNum}, 0, 0, #{replyProfile, jdbcType = VARCHAR})
 	</insert>
   
   	<!-- list -->
