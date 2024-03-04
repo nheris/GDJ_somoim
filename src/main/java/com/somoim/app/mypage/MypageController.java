@@ -1,6 +1,7 @@
 package com.somoim.app.mypage;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -10,13 +11,17 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.somoim.app.member.MemberDTO;
 import com.somoim.app.member.MemberService;
+import com.somoim.app.payment.PaymentDTO;
 import com.somoim.app.payment.PaymentService;
 import com.somoim.app.payment.PaymentTypeDTO;
+import com.somoim.app.payment.SubsDTO;
+import com.somoim.app.payment.SubscriptionService;
 
 
 @Controller
@@ -28,6 +33,9 @@ public class MypageController {
 
 	@Autowired
 	private PaymentService paymentService;
+	
+	@Autowired
+	private SubscriptionService subscriptionService;
 
 	@GetMapping("main")
 	public String getMypage(HttpSession session,Model model)throws Exception{
@@ -127,8 +135,26 @@ public class MypageController {
 	
 	@GetMapping("paymentList")
 	public ModelAndView paymentList(HttpSession session, ModelAndView mv)throws Exception {
-		
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		memberDTO = paymentService.getCustomerKey(memberDTO);
+		PaymentDTO paymentDTO = new PaymentDTO();
+		paymentDTO.setCustomerKey(memberDTO.getCustomerKey());
+		SubsDTO subsDTO = subscriptionService.getSubs(paymentDTO);
+		mv.addObject("start",subsDTO.getStartDate());
+		mv.addObject("done",subsDTO.getDoneDate());
+		mv.addObject("svs",subsDTO.getSvs());
 		mv.setViewName("mypage/paymentList");
 		return mv;
 	}
+	
+	@GetMapping("paymentData")
+	@ResponseBody
+	public List<Map<String, Object>> getPaymentList(HttpSession session)throws Exception{
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		memberDTO = paymentService.getCustomerKey(memberDTO);
+		List<Map<String, Object>> list = paymentService.getPaymentList(memberDTO);
+		System.out.println(list);
+		return list;
+	}
+	
 }

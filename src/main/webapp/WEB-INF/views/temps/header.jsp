@@ -1,14 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-	<!-- Preloader -->
-	<div class="preloader">
-		<div class="preloader-inner">
-			<div class="preloader-icon">
-				<span></span> <span></span>
-			</div>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!-- Preloader -->
+<div class="preloader">
+	<div class="preloader-inner">
+		<div class="preloader-icon">
+			<span></span> <span></span>
 		</div>
 	</div>
+</div>
 <header class="header navbar-area">
 	<div class="container">
 		<div class="row align-items-center">
@@ -36,10 +36,7 @@
 								<li class="nav-item"><a href="/notice/list">공지사항</a></li>
 								<li class="nav-item"><a href="/qna/list">QNA</a></li>
 								<li class="nav-item"><a href="/qna/fnq">FNQ</a></li>
- 								 <c:if test="${member.roleDTO.roleNum eq 1}">
-								<li class="nav-item"><a href="/admin/list">관리자페이지</a></li>
-								 </c:if> 
-							</ul>	
+							</ul>
 						</div>
 						<!-- navbar collapse -->
 						<div class="login-button">
@@ -51,20 +48,26 @@
 											회원가입</a></li>
 								</c:if>
 								<c:if test="${member ne null or appmember ne null}">
-									<li><a href="/mypage/main"><i class="lni lni-user"></i>
-											마이페이지</a></li>
+									<c:if test="${member.roleDTO.roleNum eq 1}">
+										<li><a href="/admin/memberlist"><i class="lni lni-user"></i> 관리자페이지</a></li>
+									</c:if>
+									<c:if test="${member.roleDTO.roleNum ne 1}">
+										<li><a href="/mypage/main"><i class="lni lni-user"></i>
+												마이페이지</a></li>
+									</c:if>
 									<c:if test="${member.loginNum == 1 }">
 										<li><a href="/member/logout"><i class="lni lni-ban"></i>
 												로그아웃</a></li>
 									</c:if>
 									<c:if test="${appmember.loginNum == 2}">
-									<li><a href="https://kauth.kakao.com/oauth/logout?client_id=f596bc753587abe6cf4b789ef8f12223&logout_redirect_uri=http://localhost/member/logout
-										"><i class="lni lni-ban"></i>
-										로그아웃</a></li>
-									</c:if>	
+										<li><a
+											href="https://kauth.kakao.com/oauth/logout?client_id=f596bc753587abe6cf4b789ef8f12223&logout_redirect_uri=http://localhost/member/logout
+										"><i
+												class="lni lni-ban"></i> 로그아웃</a></li>
+									</c:if>
 									<c:if test="${appmember.loginNum == 3}">
-										<li><a href="/member/goologout"><i class="lni lni-ban"></i>
-											로그아웃</a></li>
+										<li><a href="/member/goologout"><i
+												class="lni lni-ban"></i> 로그아웃</a></li>
 									</c:if>
 								</c:if>
 							</ul>

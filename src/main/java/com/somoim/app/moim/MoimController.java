@@ -20,6 +20,10 @@ import com.somoim.app.chat.ChatMessageService;
 import com.somoim.app.chat.moim.MoimChatDTO;
 import com.somoim.app.member.MemberDTO;
 import com.somoim.app.moim.member.MoimMemberDTO;
+import com.somoim.app.payment.PaymentDTO;
+import com.somoim.app.payment.PaymentService;
+import com.somoim.app.payment.SubsDTO;
+import com.somoim.app.payment.SubscriptionService;
 
 @Controller
 @RequestMapping("/moim/*")
@@ -28,6 +32,10 @@ public class MoimController {
 	private MoimService moimService;
 	@Autowired
 	private ChatMessageService chatMessageService; 
+	@Autowired
+	private PaymentService paymentService;
+	@Autowired
+	private SubscriptionService subscriptionService;
 
 	//모임 리스트
 	@GetMapping("list")
@@ -40,8 +48,20 @@ public class MoimController {
 
 	//모임 개설
 	@GetMapping("add")
-	public void add()  {
-
+	public String add(HttpSession session, Model model)throws Exception  {
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		memberDTO = paymentService.getCustomerKey(memberDTO);
+		PaymentDTO paymentDTO = new PaymentDTO();
+		paymentDTO.setCustomerKey(memberDTO.getCustomerKey());
+		SubsDTO subsDTO = subscriptionService.getSubs(paymentDTO);
+		boolean result = subsDTO==null?false:subsDTO.getSvs();
+		if(result) {
+			return "moim/add";
+		}else {
+			model.addAttribute("msg","구독권을 결제해야 모임개설 가능");
+			model.addAttribute("path","../mypage/pay");
+			return "moim/resultAlert";
+		}
 	}
 	@PostMapping("add")
 	public String add(MoimDTO moimDTO, MultipartFile file, HttpSession session) throws Exception{
