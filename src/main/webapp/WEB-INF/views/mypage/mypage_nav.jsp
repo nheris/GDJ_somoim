@@ -7,16 +7,13 @@
 					<div class="user-image mb-3">
 						<table class="mx-auto text-center" style="width: 90%">
 							<tr>
-								<td rowspan="3" style="text-align: left;"><img
+								<td rowspan="2" style="text-align: left; width: 50%;"><img
 									src="../resources/upload/member/${member.profile.fileName}" alt="#" class="m-1"
-									style="width: 50%; height: 90%; border-radius: 10px"></td>
-								<td rowspan="2" colspan="2">${member.nickName}</td>
+									style="width: 90%; height: 90%; border-radius: 10px"></td>
+								<td>${member.nickName}</td>
 							</tr>
 							<tr>
-
-							</tr>
-							<tr>
-								<td colspan="2"><span><a href="javascript:void(0)">${member.name}</a></span></td>
+								<td><span><a href="javascript:void(0)">${member.name}</a></span></td>
 							</tr>
 						</table>
 					</div>
@@ -28,9 +25,6 @@
 							<li class="nav-item"><a class="nav-link"
 								href="/moim/list"><i class="lni lni-bolt-alt"></i> 내
 									모임리스트</a></li>
-							<li class="nav-item"><a class="nav-link"
-								href="/moim/wish"><i class="lni lni-heart"></i> 찜
-									모임 리스트</a></li>
 							<li class="nav-item"><a class="nav-link"
 								href="/chat"><i class="lni lni-envelope"></i> 1:1 채팅</a></li>
 							<li class="nav-item"><a class="nav-link"
