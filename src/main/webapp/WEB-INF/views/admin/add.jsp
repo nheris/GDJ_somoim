@@ -17,9 +17,16 @@
 <%-- <c:import url="../temps/header.jsp"></c:import> --%>
 <style>
 body {
-	-webkit-text-size-adjust: none;
-	display: flex;
+    display: flex;
+    flex-direction: column; /* body의 자식 요소를 세로로 나열합니다. */
+    justify-content: space-between; /* body 내용을 위아래로 분배하여 공간을 채웁니다. */
+    margin: 0;
 }
+
+.items-grid {
+    flex-grow: 1; /* 내용을 body의 나머지 공간을 채우도록 설정합니다. */
+}
+
 </style>
 </head>
 <body>
