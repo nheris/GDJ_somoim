@@ -59,7 +59,7 @@
 									<td>${admin.placeTitle}</td>
 									<td>${admin.placeAddress}</td>
 									<td>${admin.placeLink}</td>
-									<td><img src="${admin.placeImageLink}" width="200" height="150" onerror="this.src='http://localhost/resources/img/moim/basic.png';"/></td>
+									<td><img src="${admin.placeImageLink}" width="200" height="150" onerror="this.src='/resources/img/moim/basic.png';"/></td>
 								</tr>
 							</c:forEach>
 						</table>

@@ -10,7 +10,7 @@
 			<div class="image" style="text-align: center;">
 				<a href="${admin.placeLink}" class="thumbnail"><img
 					src="${admin.placeImageLink}" alt="#" width="300" height="250"
-					style="object-fit: cover;" onerror="this.src='http://localhost/resources/img/moim/basic.png';"></a>
+					style="object-fit: cover;" onerror="this.src='/resources/img/moim/basic.png';"></a>
 			</div>
 
 			<div class="content">
