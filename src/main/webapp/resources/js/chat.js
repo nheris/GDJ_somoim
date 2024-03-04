@@ -17,11 +17,6 @@ const chat_message = document.querySelector('.chat-message');
 let sock = new SockJS("http://localhost:80/chat");
 const chatRoomNum = document.getElementById('chatRoomNum');
 
-// const messageNum = "${chatMessageNum}";
-// const userName = "${userName}";
-// const chatText = "${chatText}";
-// const chatMessageStamp = "${chatMessageStamp}";
-
 let chatHistory = document.getElementById('chat-history');
 let scrollToBottom = chatHistory.scrollHeight - chatHistory.scrollTop === chatHistory.clientHeight;
 
@@ -199,14 +194,12 @@ chatRoom.addEventListener('click',(e)=>{
                      otherSend(nick,msg,date);
                  }
                 }
-                
+
                 for(let i=0;i<r.chatUser.length;i++){
-                    console.log("user : "+r.chatUser[i].nickName);
                     let user = r.chatUser[i].nickName;
-                    console.log('user : '+user);
                     getUserList(user)
                 }
-            
+                
             scroller();
         });
 
@@ -222,17 +215,15 @@ searchChat.addEventListener("keyup",(e)=>{
     }
 });
 
-
 // userList modal
-let userList = document.getElementById('userList');
+const closeBtn = document.getElementById('closeBtn');
 const userListUl = document.getElementById('userListUl');
-
+let userList = document.getElementById('userList');
 userList.addEventListener('click',()=>{
     userModal.classList.add('d-block');
     userModal.classList.remove('d-none');
 });
 
-let list = document.querySelectorAll('list');
 closeBtn.addEventListener('click',()=>{
     userModal.classList.add('d-none');
     userModal.classList.remove('d-block');
