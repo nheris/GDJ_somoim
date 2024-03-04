@@ -19,7 +19,7 @@
 <c:import url="../temps/header.jsp"></c:import>
 </head>
 <body>
-	<section class="dashboard section bg-light">
+	<section class="dashboard section bg-light" style="padding-top: 120px;">
 		<div class="container mx-7">
 			<div class="row">
 				<!-- Sidebar -->
