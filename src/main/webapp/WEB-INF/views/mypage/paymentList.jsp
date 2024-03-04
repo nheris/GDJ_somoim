@@ -68,7 +68,7 @@
 												<th>결제금액</th>
 												<th>구매상품</th>
 												<th>결제수단</th>
-												<th>결제날짜</th>
+												<th>결제일시</th>
 											</tr>
 										</thead>
 										<tbody id="paymentList-body">
