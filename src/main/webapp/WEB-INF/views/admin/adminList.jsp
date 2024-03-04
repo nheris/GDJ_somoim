@@ -59,7 +59,7 @@
 									<td>${admin.placeTitle}</td>
 									<td>${admin.placeAddress}</td>
 									<td>${admin.placeLink}</td>
-									<td><img src="${admin.placeImageLink}" width="200" height="150" onerror="this.src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGZ5KhIvwJU6d0MF-v6FikyHflaaf37EaGXA&usqp=CAU';"/></td>
+									<td><img src="${admin.placeImageLink}" width="200" height="150" onerror="this.src='/resources/img/moim/basic.png';"/></td>
 								</tr>
 							</c:forEach>
 						</table>

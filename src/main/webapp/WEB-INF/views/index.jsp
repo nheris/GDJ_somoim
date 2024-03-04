@@ -54,7 +54,9 @@
 									<img src="/resources/assets/images/categories/car.svg" alt="#">
 								</div>
 								<h3>문화/공연/음악</h3>
-								<h5 class="total">35</h5>
+								<h5 class="total">
+									${category['문화/공연/음악'] == null ? 0 : category['문화/공연/음악']}
+								</h5>
 							</a>
 							<!-- End Single Category -->
 							<!-- Start Single Category -->
@@ -74,7 +76,9 @@
 										alt="#">
 								</div>
 								<h3>사교/인맥</h3>
-								<h5 class="total">55</h5>
+								<h5 class="total">
+									${category['사교/인맥'] == null ? 0 : category['사교/인맥']}
+								</h5>
 							</a>
 							<!-- End Single Category -->
 							<!-- Start Single Category -->
@@ -84,7 +88,9 @@
 										alt="#">
 								</div>
 								<h3>공예/만들기</h3>
-								<h5 class="total">21</h5>
+								<h5 class="total">
+									${category['공예/만들기'] == null ? 0 : category['공예/만들기']}
+								</h5>
 							</a>
 							<!-- End Single Category -->
 							<!-- Start Single Category -->
@@ -93,7 +99,9 @@
 									<img src="/resources/assets/images/categories/jobs.svg" alt="#">
 								</div>
 								<h3>업종/직무</h3>
-								<h5 class="total">44</h5>
+								<h5 class="total">
+									${category['업종/직무'] == null ? 0 : category['업종/직무']}
+								</h5>
 							</a>
 							<!-- End Single Category -->
 							<!-- Start Single Category -->
@@ -103,7 +111,9 @@
 										alt="#">
 								</div>
 								<h3>자유주제</h3>
-								<h5 class="total">65</h5>
+								<h5 class="total">
+									${category['자유주제'] == null ? 0 : category['자유주제']}
+								</h5>
 							</a>
 							<!-- End Single Category -->
 							<!-- Start Single Category -->
@@ -113,7 +123,9 @@
 										alt="#">
 								</div>
 								<h3>외국/언어</h3>
-								<h5 class="total">35</h5>
+								<h5 class="total">
+									${category['외국/언어'] == null ? 0 : category['외국/언어']}
+								</h5>
 							</a>
 							<!-- End Single Category -->
 							<!-- Start Single Category -->
@@ -123,7 +135,9 @@
 										alt="#">
 								</div>
 								<h3>봉사활동</h3>
-								<h5 class="total">22</h5>
+								<h5 class="total">
+									${category['봉사활동'] == null ? 0 : category['봉사활동']}
+								</h5>
 							</a>
 							<!-- End Single Category -->
 							<!-- Start Single Category -->
@@ -133,7 +147,9 @@
 										alt="#">
 								</div>
 								<h3>운동/스포츠</h3>
-								<h5 class="total">25</h5>
+								<h5 class="total">
+									${category['운동/스포츠'] == null ? 0 : category['운동/스포츠']}
+								</h5>
 							</a>
 							<!-- End Single Category -->
 							<!-- Start Single Category -->
@@ -143,7 +159,9 @@
 										alt="#">
 								</div>
 								<h3>인문학</h3>
-								<h5 class="total">42</h5>
+								<h5 class="total">
+									${category['인문학'] == null ? 0 : category['인문학']}
+								</h5>
 							</a>
 							<!-- End Single Category -->
 							<!-- Start Single Category -->
@@ -153,7 +171,9 @@
 										alt="#">
 								</div>
 								<h3>게임/오락</h3>
-								<h5 class="total">32</h5>
+								<h5 class="total">
+									${category['게임/오락'] == null ? 0 : category['게임/오락']}
+								</h5>
 							</a>
 							<!-- End Single Category -->
 							<!-- Start Single Category -->
@@ -163,7 +183,9 @@
 										alt="#">
 								</div>
 								<h3>아웃도어/여행</h3>
-								<h5 class="total">15</h5>
+								<h5 class="total">
+									${category['아웃도어/여행'] == null ? 0 : category['아웃도어/여행']}
+								</h5>
 							</a>
 							<!-- End Single Category -->
 							<!-- Start Single Category -->
@@ -173,7 +195,9 @@
 										alt="#">
 								</div>
 								<h3>요리/제조</h3>
-								<h5 class="total">65</h5>
+								<h5 class="total">
+									${category['요리/제조'] == null ? 0 : category['요리/제조']}
+								</h5>
 							</a>
 							<!-- End Single Category -->
 						</div>

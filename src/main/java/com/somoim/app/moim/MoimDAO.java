@@ -1,6 +1,7 @@
 package com.somoim.app.moim;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.somoim.app.member.MemberDTO;
 import com.somoim.app.moim.member.MoimMemberDTO;
+import com.somoim.app.payment.SubsDTO;
 
 @Repository
 public class MoimDAO {
@@ -79,8 +81,9 @@ public class MoimDAO {
 		return sqlSession.delete(NAMESPACE+"kick", moimMemberDTO);
 	}
 
+	//카테고리 별 숫자 카운트
+	public List<Map<String, Object>> getCategoryCount ()throws Exception{
+		return sqlSession.selectList(NAMESPACE+"getCategoryCount");
+	}
 	
-
-
-
 }

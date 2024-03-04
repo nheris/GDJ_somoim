@@ -57,8 +57,10 @@
 									class="lni lni-bookmark"></i> 공지글쓰기</a></li>
 							<li class="nav-item"><a class="nav-link" href="/mypage/pay"><i
 									class="lni lni-trash"></i> 구독 결제 화면</a></li>
-							<li class="nav-item" id="moimadd"><a href="#" class="nav-link">추천모임만들기</a></li>
-							<li class="nav-item" id="moimList"><a href="#" class="nav-link">추천모임전체리스트</a></li>
+							<li class="nav-item" id="moimadd"><a href="#"
+								class="nav-link">추천모임만들기</a></li>
+							<li class="nav-item" id="moimList"><a href="#"
+								class="nav-link">추천모임전체리스트</a></li>
 						</ul>
 					</div>
 				</nav>
@@ -76,28 +78,29 @@
 
 						<!--All User List  -->
 						<div class="col-2 mb-2 mt-1">
-						<form>
-					<select class="form-select" name="searchFind" id="searchFind"
-						aria-label="Default select example">
-						<option value="searchFind1">이름</option>
-						<option value="searchFind2">휴대폰</option>
-						<option value="searchFind3">이메일</option>
-					</select>
-				</div>
-				
-				<div class="col-auto ms-auto mt-2  d-flex">
-					<!-- 수정 필요 검색 버튼이 오른쪽으로 가야함-->
-					<div class="col-auto">
-						<!-- search -->
+							<form>
+								<select class="form-select" name="searchFind" id="searchFind"
+									aria-label="Default select example">
+									<option value="searchFind1">이름</option>
+									<option value="searchFind2">휴대폰</option>
+									<option value="searchFind3">이메일</option>
+								</select>
+						</div>
 
-						<label for="search" class="visually-hidden">Search</label> <input
-							type="text" name="search" class="form-control" id="search">
-					</div>
-					<div class="col-auto">
-						<button type="submit" class="btn btn-outline-dark" id="searchbtn">검색</button>
-					</div>
-					</div>
-					</form>
+						<div class="col-auto ms-auto mt-2  d-flex">
+							<!-- 수정 필요 검색 버튼이 오른쪽으로 가야함-->
+							<div class="col-auto">
+								<!-- search -->
+
+								<label for="search" class="visually-hidden">Search</label> <input
+									type="text" name="search" class="form-control" id="search">
+							</div>
+							<div class="col-auto">
+								<button type="submit" class="btn btn-outline-dark"
+									id="searchbtn">검색</button>
+							</div>
+						</div>
+						</form>
 						<div>
 							<table class="table">
 								<tr class="something">
@@ -106,7 +109,7 @@
 									<th>주소</th>
 									<th>휴대폰번호</th>
 									<th>이메일</th>
-									<th>권한번호</th>
+									<th>권한</th>
 								</tr>
 								<c:forEach items="${list}" var="data">
 									<tr>
@@ -115,7 +118,14 @@
 										<td>${data.address}</td>
 										<td>${data.phone}</td>
 										<td>${data.email}</td>
-										<td>${data.roleDTO.roleNum}</td>
+										<td><c:choose>
+												<c:when test="${data.roleDTO.roleNum eq 1}">
+												관리자
+											</c:when>
+												<c:when test="${data.roleDTO.roleNum eq 2}">
+												일반회원
+											</c:when>
+											</c:choose></td>
 									</tr>
 								</c:forEach>
 							</table>

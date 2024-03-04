@@ -18,7 +18,7 @@
 <c:import url="../temps/summernote.jsp"></c:import>
 </head>
 <body>
-	<div class="items-grid section">
+	<div class="items-grid section" style="padding-top: 120px;">
 		<div class="container mx-5">
 			<div class="row">
 				<!-- Sidebar -->

@@ -19,7 +19,7 @@
 <c:import url="../temps/header.jsp"></c:import>
 </head>
 <body>
-	<section class="dashboard section bg-light">
+	<section class="dashboard section bg-light" style="padding-top: 120px;">
 		<div class="container mx-7">
 			<div class="row">
 				<!-- Sidebar -->
@@ -43,57 +43,48 @@
 							<div class="row mb-3">
 								<div style="padding-left: 20px; margin-top: 2em">
 									<h4 style="margin-bottom: 0.5em;">내 구독권</h4>
-									<div style="width: 30%; border: 1px solid black; border-radius: 10px;">
+									<div
+										style="width: 30%; border: 1px solid black; border-radius: 10px;">
 										<ul style="margin: 1em;">
 											<li>구독 기간</li>
-											<li>1990.5.1. ~ 2004.5.1.</li>
+											<c:if test="${svs eq true}">
+												<c:if test="${start ne ''}">
+													<li>${start}~${done}</li>
+												</c:if>
+												<c:if test="${start eq ''}">
+													<li>이용 중인 구독권이 없습니다</li>
+												</c:if>
+											</c:if>
+											<c:if test="${svs ne true}">
+												<li style="text-decoration: line-through">${start}~${done}</li>
+												<li>구독권 갱신이 필요합니다</li>
+											</c:if>
 										</ul>
 									</div>
 									<table class="table" style="width: 90%; margin-top: 1em">
-									<thead>
-										<tr>
-											<th>주문번호</th>
-											<th>결제금액</th>
-											<th>구매상품</th>
-											<th>결제수단</th>
-											<th>결제날짜</th>
-										</tr>
-									</thead>
-									<tr>
-										<td>d</td>
-										<td>d</td>
-										<td>d</td>
-										<td>d</td>
-										<td>d</td>
-									</tr>
-									<tr>
-										<td>d</td>
-										<td>d</td>
-										<td>d</td>
-										<td>d</td>
-										<td>d</td>
-									</tr>
-									<tr>
-										<td>d</td>
-										<td>d</td>
-										<td>d</td>
-										<td>d</td>
-										<td>d</td>
-									</tr>
-									<tr>
-										<td>d</td>
-										<td>d</td>
-										<td>d</td>
-										<td>d</td>
-										<td>d</td>
-									</tr>
-								</table>
+										<thead>
+											<tr>
+												<th>주문번호</th>
+												<th>결제금액</th>
+												<th>구매상품</th>
+												<th>결제수단</th>
+												<th>결제일시</th>
+											</tr>
+										</thead>
+										<tbody id="paymentList-body">
+											<tr>
+												<td colspan="5" style="text-align: center;">결제 내역이 없습니다</td>
+											</tr>
+										</tbody>
+									</table>
 								</div>
 							</div>
 							<!-- Main content goes here -->
 						</div>
 					</div>
 				</div>
+			</div>
+		</div>
 	</section>
 
 	<!-- ========================= scroll-top ========================= -->
@@ -103,6 +94,6 @@
 
 	<!-- ========================= JS improt ========================= -->
 	<c:import url="../temps/footer.jsp"></c:import>
-	<script src="/resources/js/payment/payment.js"></script>
+	<script src="/resources/js/payment/paymentListData.js"></script>
 </body>
 </html>

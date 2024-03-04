@@ -1,6 +1,7 @@
 package com.somoim.app.payment;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,4 +35,5 @@ public class SubscriptionDAO {
 	public int updateSVS(SubsDTO subsDTO)throws Exception{
 		return sqlSession.update(NAMESPACE+"updateSVS",subsDTO);
 	}
+	
 }

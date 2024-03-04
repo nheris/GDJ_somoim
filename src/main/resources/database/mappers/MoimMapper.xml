@@ -6,7 +6,7 @@
   <mapper namespace="com.somoim.app.moim.MoimDAO">
   
   	<!-- list -->
-	<select id="getList" parameterType="MoimDTO" resultMap="listReault">
+	<select id="getList" parameterType="MoimDTO" resultMap="listResult">
 	  		SELECT *
 			FROM MOIM 
 			 	 LEFT JOIN MOIMFILE m 
@@ -18,7 +18,7 @@
 	</select>
 	
 	
-	<resultMap type="MoimDTO" id="listReault">
+	<resultMap type="MoimDTO" id="listResult">
 	  		<id column="MOIMNUM" property="moimNum"/>
 	  		<result column="MOIMNAME" property="moimName"/>
 	  		<result column="MOIMREGION" property="moimRegion"/>
@@ -153,5 +153,10 @@
 	DELETE FROM MOIMMEMBER
 	WHERE MOIMNUM=#{moimNum} AND USERNAME =#{userName}
 	</delete>
+	
+	<!-- 카테고리 별 숫자 카운트 -->
+	<select id="getCategoryCount" resultType="Map">
+		SELECT MOIMCATEGORY, COUNT(*) AS count FROM MOIM GROUP BY MOIMCATEGORY
+	</select>
   
   </mapper>

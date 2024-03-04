@@ -35,6 +35,7 @@
   		<typeAlias type="java.lang.Integer" alias="Integer"/>
   		<typeAlias type="java.lang.String" alias="String"/>
   		<typeAlias type="com.somoim.app.moim.meet.MeetMemberDTO" alias="MeetMemberDTO"/>
+  		<typeAlias type="com.somoim.app.chat.moim.MoimChatDTO" alias="MoimChatDTO"/>
   	</typeAliases>
   </configuration>
   
