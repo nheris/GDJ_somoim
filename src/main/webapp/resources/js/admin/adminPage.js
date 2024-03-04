@@ -1,7 +1,7 @@
 let moimadd = document.getElementById("moimadd");
 moimadd.addEventListener("click", function (e) {
     e.preventDefault();
-    let width = 600;
+    let width = 520;
     let height = 600;
     let left = (window.innerWidth - width) / 2;
     let top = (window.innerHeight - height) / 2;
