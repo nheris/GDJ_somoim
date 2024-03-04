@@ -17,8 +17,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.somoim.app.chat.ChatMessageDTO;
 import com.somoim.app.chat.ChatMessageService;
+import com.somoim.app.chat.moim.MoimChatDTO;
 import com.somoim.app.member.MemberDTO;
-import com.somoim.app.moim.meet.MeetDTO;
 import com.somoim.app.moim.member.MoimMemberDTO;
 
 @Controller
@@ -137,9 +137,10 @@ public class MoimController {
 		String path = "../home?moimNum="+moimMemberDTO.getMoimNum();
 		if(result == 1) {
 			ChatMessageDTO cdto = new ChatMessageDTO();
+			MoimChatDTO c = chatMessageService.getMoimRoom(moimMemberDTO);
 			cdto.setChatText(memberDTO.getNickName()+"이 들어왔습니다");
 			cdto.setUserName(memberDTO.getUserName());
-			
+			cdto.setChatRoomNum(c.getChatRoomNum());
 			chatMessageService.addChat(cdto);
 
 			msg = "가입 완료";

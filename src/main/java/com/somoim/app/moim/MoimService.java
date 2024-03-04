@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.somoim.app.chat.ChatMessageDAO;
 import com.somoim.app.chat.ChatMessageDTO;
 import com.somoim.app.chat.ChatRoomDTO;
+import com.somoim.app.chat.moim.MoimChatDTO;
 import com.somoim.app.member.MemberDTO;
 import com.somoim.app.moim.member.MoimMemberDTO;
 import com.somoim.app.util.FileManager;
@@ -47,6 +48,7 @@ public class MoimService {
 		map.put("moimDTO", moimDTO);
 		chatMessageDAO.addChatRoom(chatRoomDTO);
 		chatMessageDAO.moimChatAdd(map);
+		
 		ChatMessageDTO chat = new ChatMessageDTO();
 		chat.setChatRoomNum(chatRoomDTO.getChatRoomNum());
 		chat.setUserName(memberDTO.getUserName());
@@ -54,13 +56,12 @@ public class MoimService {
 		chatMessageDAO.addChat(chat);
 		
 		String path = servletContext.getRealPath("/resources/upload/moim");
-		
 		if(file.isEmpty()) {
 			
 			MoimFileDTO moimFileDTO = new MoimFileDTO();
 			moimFileDTO.setOriName(file.getOriginalFilename());
 			moimFileDTO.setMoimNum(moimDTO.getMoimNum());
-
+			
 			result = moimDAO.fileAdd(moimFileDTO);
 			
 			return result;
@@ -132,6 +133,7 @@ public class MoimService {
 	
 	//join
 	public int join(MoimMemberDTO moimMemberDTO) {
+		
 		return moimDAO.join(moimMemberDTO);
 	}
 	

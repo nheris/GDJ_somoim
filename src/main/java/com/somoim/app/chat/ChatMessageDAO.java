@@ -7,8 +7,10 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.somoim.app.chat.moim.MoimChatDTO;
 import com.somoim.app.member.MemberDTO;
 import com.somoim.app.moim.MoimDTO;
+import com.somoim.app.moim.member.MoimMemberDTO;
 
 @Repository
 public class ChatMessageDAO {
@@ -29,8 +31,8 @@ public class ChatMessageDAO {
 		return sqlSession.selectList(NAMESPACE+"chatRoomList", memberDTO);
 	}
 	// 방에있는 유저
-	public List<MemberDTO> roomUserList(ChatMessageDTO chatMessageDTO){
-		return sqlSession.selectList(NAMESPACE+"roomUserList", chatMessageDTO);
+	public List<MemberDTO> chatUserList(ChatMessageDTO chatMessageDTO){
+		return sqlSession.selectList(NAMESPACE+"chatUserList", chatMessageDTO);
 	}
 
 	// chatMessage 테이블의 방번호와 chatRoom 테이블의 번호를 비교하기위해
@@ -61,5 +63,8 @@ public class ChatMessageDAO {
 		return sqlSession.selectOne(NAMESPACE+"getLastChat", chatMessageDTO);
 	}
 	
-	
+	// moim
+	public MoimChatDTO getMoimRoom(MoimMemberDTO moimMemberDTO) {
+		return sqlSession.selectOne(NAMESPACE+"getMoimRoom",moimMemberDTO);
+	}
 }

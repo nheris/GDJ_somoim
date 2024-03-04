@@ -16,7 +16,9 @@ public class ChatMessageDTO extends MemberDTO{
 	private String chatText;
 	private String chatTimeStamp;
 	
-	private MemberDTO memberDTO; 
+	private MemberDTO memberDTO;
+	
+	private String search;
 	
 	public MemberDTO getMemberDTO() {
 		return memberDTO;
@@ -59,5 +61,19 @@ public class ChatMessageDTO extends MemberDTO{
 		c.add(Calendar.HOUR, 9);
 		
 		this.chatTimeStamp = format.format(c.getTime());
+	}
+	
+	public String getSearch() {
+		return search;
+	}
+	public void setSearch(String search) {
+		this.search = search;
+	}
+	
+	@Override
+	public String toString() {
+		return "ChatMessageDTO [chatRoomNum=" + chatRoomNum + ", chatText=" + chatText + ", chatTimeStamp="
+				+ chatTimeStamp + ", memberDTO=" + memberDTO + ", messageNum=" + messageNum + ", userName=" + userName
+				+ "]";
 	}
 }
